@@ -34,3 +34,14 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Gold rates
+
+Apply `database/rates.sql` to the database configured in `.env` before using
+`/admin/rate`. The **Rate** sidebar page saves 24K, 22K and 18K INR prices per gram.
+The table starts empty. The first save inserts row 1; subsequent saves atomically
+update it. A database constraint prevents any additional row IDs.
+
+The homepage reads `/api/rates` on load, every minute, and when Refresh rates is
+clicked. The calculator offers the saved 24K, 22K and 18K rates. If published
+rates are unavailable, the homepage labels its demo fallback prices.

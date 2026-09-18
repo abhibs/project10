@@ -1,0 +1,28 @@
+.page { min-height: 100vh; display: grid; grid-template-columns: minmax(0, 7fr) minmax(420px, 5fr); gap: 24px; padding: 24px 32px; background: #fbf9f9; color: #263252; }
+.formPanel { display: grid; place-items: center; min-width: 0; }
+.formContent { width: min(100%, 528px); }
+.brand { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 31px; color: #141a36; font-size: 25px; font-weight: 800; text-decoration: none; letter-spacing: -.8px; }
+.brandMark { display: grid; place-items: center; width: 25px; height: 25px; color: #ff9a43; font-size: 25px; transform: skew(-8deg); }
+.formContent h1 { margin: 0; font-size: 25px; line-height: 1.3; letter-spacing: -.6px; }
+.intro { margin: 12px 0 40px; color: #60728d; font-size: 14px; }
+.formContent label { display: block; margin-bottom: 9px; color: #526883; font-size: 14px; }
+.formContent input[type="email"], .passwordField input { box-sizing: border-box; width: 100%; height: 40px; padding: 0 16px; border: 1px solid #ccd7e5; border-radius: 8px; outline: none; color: #34445e; background: #fff; font: inherit; font-size: 14px; }
+.formContent input:focus { border-color: #ff6c35; box-shadow: 0 0 0 3px #ff6c3520; }
+.passwordLabel { display: flex; justify-content: space-between; align-items: baseline; margin-top: 26px; }
+.passwordLabel label { margin: 0; }
+.passwordField { position: relative; margin-top: 9px; }
+.passwordField input { padding-right: 48px; }
+.passwordField button { position: absolute; top: 2px; right: 5px; width: 36px; height: 36px; border: 0; border-radius: 6px; color: #698099; background: transparent; cursor: pointer; font-size: 21px; }
+.submit { width: 100%; height: 40px; margin-top: 28px; border: 0; border-radius: 12px; color: #fff; background: #ff6934; cursor: pointer; font-size: 14px; transition: background .2s; }
+.submit:hover { background: #ea5724; }
+.submit:disabled { cursor: wait; opacity: .72; }
+.toast { position: fixed; z-index: 10; top: 28px; right: 28px; display: flex; align-items: center; gap: 16px; padding: 12px 12px 12px 18px; border-radius: 8px; color: #fff; box-shadow: 0 12px 28px #172b1d3d; font-size: 14px; font-weight: 600; animation: toast-in .22s ease-out; }.successToast { background: #178a4b; }.errorToast { background: #c93d4a; }.toastClose { width: 24px; height: 24px; padding: 0; border: 0; border-radius: 4px; color: #fff; background: transparent; cursor: pointer; font-size: 21px; line-height: 1; }.toastClose:hover { background: #ffffff2b; }
+@keyframes toast-in { from { transform: translateY(-12px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.visual { position: relative; overflow: hidden; border-radius: 12px; background: linear-gradient(113deg, #ececec 0%, #f9f9f9 48%, #d8d8d8 100%); }
+.visual::before { content: ""; position: absolute; inset: 0; opacity: .55; background: repeating-linear-gradient(29deg, transparent 0 38px, #c9c9c9 39px 41px, transparent 42px 78px); }
+.visual::after { content: ""; position: absolute; inset: 0 0 0 62%; background: linear-gradient(90deg, transparent, #f7f7f7 45%, #d4d4d4); }
+.architecture { position: absolute; z-index: 1; bottom: 0; right: 12%; width: 48%; height: 57%; border-left: 1px solid #a9a9a9; background: linear-gradient(103deg, transparent 0 63%, #e4e4e4 64%); box-shadow: -12px 11px 0 #dedede; }
+.rail { position: absolute; width: 70%; height: 2px; top: 46%; left: -10%; background: #999; transform: rotate(-59deg); transform-origin: left center; box-shadow: 0 2px 1px #fff; }
+.steps { position: absolute; right: 6%; bottom: 0; width: 32%; height: 58%; background: repeating-linear-gradient(to bottom, transparent 0 19px, #111 20px 22px), linear-gradient(120deg, transparent 48%, #111 49% 52%, transparent 53%); opacity: .78; }
+@media (max-width: 1199px) { .page { grid-template-columns: 1fr; padding: 28px; } .visual { display: none; } .formContent { width: min(100%, 528px); } }
+@media (max-width: 520px) { .page { padding: 24px; } .intro { margin-bottom: 30px; } .toast { top: 20px; right: 20px; left: 20px; text-align: center; } }
