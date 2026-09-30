@@ -10,7 +10,6 @@ export default function GoldHomepage() {
   const root = useRef(null);
   const pending = useRef(null);
   const submitLock = useRef({booking: false, contact: false});
-  const [theme, setTheme] = useState("light");
   const [menuOpen, setMenuOpen] = useState(false);
   const [rates, setRates] = useState(FALLBACK_RATES);
   const [weight, setWeight] = useState("10");
@@ -25,11 +24,6 @@ export default function GoldHomepage() {
   const [updated, setUpdated] = useState("using fallback");
   const [rateStatus, setRateStatus] = useState("Loading published gold rates…");
   const weightNumber = Math.max(0, Number(weight) || 0);
-
-  function changeTheme(nextTheme) {
-    setTheme(nextTheme);
-    try { localStorage.setItem("aryanGoldTheme", nextTheme); } catch { /* Storage may be disabled. */ }
-  }
 
   const fetchRates = useCallback(async () => {
     pending.current?.abort();
@@ -65,7 +59,6 @@ export default function GoldHomepage() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      try { setTheme(localStorage.getItem("aryanGoldTheme") === "dark" ? "dark" : "light"); } catch { /* Use light theme. */ }
       const date = new Date();
       setMinimumDate(`${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`);
       fetchRates();
@@ -148,7 +141,7 @@ export default function GoldHomepage() {
   }
 
   return (
-    <div className="aryan-home" data-theme={theme} ref={root}>
+    <div className="aryan-home" data-theme="light" ref={root}>
 <div className="topbar">
     <div className="container topbar-inner">
       <span>Transparent gold evaluation • Fast payout • Private & secure</span>
@@ -176,11 +169,6 @@ export default function GoldHomepage() {
         <a href="#faq">FAQ</a>
       </nav>
 
-
-      <div className="theme-switch" role="group" aria-label="Color theme">
-        <button className={theme === "light" ? "theme-option active" : "theme-option"} type="button" onClick={() => changeTheme("light")} aria-pressed={theme === "light"} title="Light mode"><span className="theme-icon" aria-hidden="true">☀</span><span className="theme-label">Light</span></button>
-        <button className={theme === "dark" ? "theme-option active" : "theme-option"} type="button" onClick={() => changeTheme("dark")} aria-pressed={theme === "dark"} title="Dark mode"><span className="theme-icon" aria-hidden="true">☾</span><span className="theme-label">Dark</span></button>
-      </div>
 
       <a className="btn btn-dark nav-cta" href="#contact">Get a Call Back</a>
     </div>
