@@ -50,7 +50,7 @@ export default function RateForm() {
   return <article className={`${styles.modal} ${styles.ratePanel}`}>
     <div className={styles.modalHead}><div><h2>Gold rates</h2><p>Set the price per gram in INR shown on the website.</p></div></div>
     <p className={styles.rateHelp}>The first save creates your rates. Future saves update the same record.</p>
-    {loading ? <p role="status">Loading rates…</p> : loadError ? <button type="button" onClick={() => { setLoading(true); setLoadError(false); setError(""); setAttempt(attempt + 1); }}>Retry loading</button> :
+    {loading ? <p role="status">Loading rates…</p> : loadError ? <button className={styles.retryButton} type="button" onClick={() => { setLoading(true); setLoadError(false); setError(""); setAttempt(attempt + 1); }}>Retry loading</button> :
       <form onSubmit={save}>
         <fieldset className={styles.rateFields} disabled={saving}>
           {[24, 22, 18].map(karat => <div key={karat}>

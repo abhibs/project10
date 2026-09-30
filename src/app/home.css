@@ -673,3 +673,110 @@
 @media(max-width:1050px){
   .aryan-home[data-theme="light"] .main-nav{background:#FDF4E6}
 }
+
+/* Black content text and the second brand-palette color for accents. */
+.aryan-home[data-theme="light"]{
+  --text-light:#000000;
+  --muted-light:#000000;
+  --content-black:#000000;
+  --accent-yellow:#F5C21B;
+}
+.aryan-home[data-theme="light"] :is(
+  .site-header .brand-copy strong,.main-nav a,.hero-copy h1,.hero-lead,.eyebrow,
+  .trust-row strong,.trust-row span,.rate-intro h2,.rate-card strong,.rate-card span,.rate-card small,.rate-meta,
+  .calc-grid .section-copy h2,.calculator-card h3,.check-list li,
+  .calculator-card .field>span,.form-card .field>span,.input-unit b,.fine-print,
+  .section-heading h2,.service-card:not(.featured) h3,.service-card:not(.featured) p,.service-card:not(.featured) li,
+  .step h3,.step p,.booking-copy p,.booking-note strong,.booking-note small,
+  .form-card .consent,.form-card .field input,.form-card .field select,.calculator-card .field input,.calculator-card .field select,
+  .mode-switch button:not(.active),.why-section .section-copy h2,.why-card h3,.why-card p,
+  .faq-section .section-copy h2,.accordion summary,.accordion details p,.pledge-card,.pledge-card strong,.pledge-center,
+  .hero-actions .btn-gold,.hero-actions .btn-outline,.calculator-card .btn-gold,.form-card .btn-gold
+){color:var(--content-black)}
+.aryan-home[data-theme="light"] :is(
+  .hero-copy h1 span,.booking-copy h2,.kicker,.booking-copy .kicker.light,
+  .site-header .brand-copy small,.inline-link,.text-button,.service-card:not(.featured)>a,
+  .service-card:not(.featured) .service-icon,.secure-chip,.why-card b,.pledge-card span,
+  .value-panel strong,.contact-section .field>span
+){color:var(--accent-yellow)}
+.aryan-home[data-theme="light"] .accordion summary:after{color:var(--accent-yellow)}
+.aryan-home[data-theme="light"] .hero-actions .btn-outline:hover{color:var(--on-teal)}
+
+/* Yellow text and accents on the teal gold-rate card. */
+.aryan-home[data-theme] .hero-card,
+.aryan-home[data-theme] .hero-card :is(div,span,strong,small,b,a){color:#F5C21B !important}
+.aryan-home[data-theme] .hero-card .live-pill{
+  border-color:rgba(245,194,27,.35) !important;
+  background:rgba(245,194,27,.06);
+}
+.aryan-home[data-theme] .hero-card .live-pill i{
+  background:#F5C21B !important;
+  box-shadow:0 0 0 4px rgba(245,194,27,.14) !important;
+}
+.aryan-home[data-theme] .hero-card .mini-badge{
+  border-color:rgba(245,194,27,.45) !important;
+  background:rgba(245,194,27,.06) !important;
+}
+.aryan-home[data-theme] .hero-card .hero-highlight-item{
+  border-color:rgba(245,194,27,.18);
+  background:linear-gradient(180deg,rgba(245,194,27,.1),rgba(255,255,255,.02));
+}
+.aryan-home[data-theme] .hero-card .hero-card-bottom{border-top-color:rgba(245,194,27,.18) !important}
+
+/* Homepage brand palette: teal, yellow, red, and cream. */
+.aryan-home{
+  --brand-red:#A11E1E;
+  --brand-cream:#FDF4E6;
+  --gold:#F5C21B;
+}
+.aryan-home[data-theme="light"] .btn-gold{
+  background:var(--accent-yellow);
+  border-color:var(--accent-yellow);
+  box-shadow:0 8px 22px rgba(245,194,27,.2);
+}
+.aryan-home[data-theme="light"] .hero-actions .btn.btn-outline,
+.aryan-home[data-theme="light"] .btn.btn-dark{
+  background:var(--brand-red);
+  border-color:var(--brand-red);
+  color:var(--brand-cream);
+}
+.aryan-home[data-theme="light"] .btn:hover{box-shadow:0 0 0 3px rgba(245,194,27,.28)}
+.aryan-home[data-theme="light"] .btn-light{background:var(--brand-cream);border-color:var(--teal)}
+.aryan-home[data-theme="light"] .brand-logo-shell{background:var(--brand-cream);border-color:var(--brand-red);box-shadow:0 0 0 2px rgba(245,194,27,.3)}
+.aryan-home[data-theme="light"] .main-nav a:after,
+.aryan-home[data-theme="light"] .dot{background:var(--accent-yellow)}
+.aryan-home[data-theme="light"] .rate-card{border-left-color:var(--brand-red)}
+.aryan-home[data-theme="light"] :is(.calculator-card,.form-card,.service-card:not(.featured),.why-card){
+  background:var(--brand-cream);
+  border:1px solid rgba(0,106,100,.25);
+  border-top:3px solid var(--brand-red);
+  box-shadow:0 16px 40px rgba(0,106,100,.08);
+}
+.aryan-home[data-theme="light"] .service-card.featured,
+.aryan-home[data-theme="light"] .quick-form{
+  background:var(--teal);
+  border:1px solid var(--accent-yellow);
+  border-top:3px solid var(--brand-red);
+}
+.aryan-home[data-theme="light"] .services-grid .service-card .service-icon{background:var(--accent-yellow);color:#000000;border:1px solid var(--brand-red)}
+.aryan-home[data-theme="light"] .services-grid .service-card li:before{color:var(--accent-yellow)}
+.aryan-home[data-theme="light"] .secure-chip{background:var(--teal);border-color:var(--accent-yellow)}
+.aryan-home[data-theme="light"] .value-panel{background:var(--teal);border:1px solid var(--accent-yellow)}
+.aryan-home[data-theme="light"] :is(.calculator-card,.form-card) :is(.field input,.field select,.input-unit){background:var(--brand-cream);border-color:rgba(0,106,100,.35)}
+.aryan-home[data-theme="light"] .mode-switch{background:var(--brand-cream);border:1px solid rgba(0,106,100,.25)}
+.aryan-home[data-theme="light"] .mode-switch button.active{background:var(--teal);box-shadow:inset 0 -3px var(--accent-yellow)}
+.aryan-home[data-theme="light"] .consent input{accent-color:var(--teal)}
+.aryan-home[data-theme="light"] .why-card b{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--teal);border:1px solid var(--accent-yellow)}
+.aryan-home[data-theme="light"] .pledge-center{background:var(--accent-yellow);border:3px solid var(--brand-red);box-shadow:0 20px 45px rgba(0,106,100,.2)}
+.aryan-home[data-theme="light"] .pledge-card{background:var(--brand-cream);border:1px solid var(--brand-red)}
+.aryan-home[data-theme="light"] .pledge-card span{align-self:flex-start;background:var(--teal);padding:2px 6px;border-radius:4px;margin-bottom:4px}
+.aryan-home[data-theme="light"] .step>span{color:var(--brand-red)}
+.aryan-home[data-theme="light"] .step-line{background:var(--accent-yellow)}
+.aryan-home[data-theme="light"] .accordion details{border-color:rgba(0,106,100,.3)}
+.aryan-home[data-theme="light"] .accordion details[open]{border-top-color:var(--brand-red)}
+.aryan-home[data-theme="light"] .footer-grid h4{color:var(--accent-yellow)}
+.aryan-home[data-theme="light"] .footer-brand .brand-copy small{color:var(--accent-yellow) !important}
+.aryan-home[data-theme="light"] .brand-mark{border-color:var(--accent-yellow)}
+.aryan-home[data-theme="light"] .float-btn:not(.gold){background:var(--brand-red);color:var(--brand-cream)}
+.aryan-home[data-theme="light"] .float-btn.gold{background:var(--accent-yellow);color:#000000}
+.aryan-home[data-theme="light"] :focus-visible{outline-color:var(--brand-red)}

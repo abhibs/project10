@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import AdminBrand from "../AdminBrand";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 
@@ -67,24 +69,21 @@ export default function AdminLoginPage() {
     <main className={styles.page}>
       <section className={styles.formPanel} aria-label="Admin sign in">
         <div className={styles.formContent}>
-          <Link className={styles.brand} href="/" aria-label="Larkon home">
-            <span className={styles.brandMark} aria-hidden="true">▰</span>
-            <span>Larkon</span>
-          </Link>
-
-          <h1>Sign In</h1>
-          <p className={styles.intro}>Enter your email address and password to access admin panel.</p>
+          <div className={styles.brand}><AdminBrand /></div>
+          <p className={styles.eyebrow}>ARYAN GOLD ADMIN</p>
+          <h1>Welcome back.</h1>
+          <p className={styles.intro}>Sign in to manage gold rates, customer enquiries and your account.</p>
 
           <form onSubmit={submit}>
             <label htmlFor="email">Email</label>
-            <input id="email" name="email" type="email" placeholder="user@demo.com" autoComplete="email" required />
+            <input id="email" name="email" type="email" placeholder="Enter your email address" autoComplete="email" required />
 
             <div className={styles.passwordLabel}>
               <label htmlFor="password">Password</label>
             </div>
             <div className={styles.passwordField}>
               <input id="password" name="password" type={showPassword ? "text" : "password"} placeholder="Enter your password" autoComplete="current-password" required />
-              <button type="button" onClick={() => setShowPassword(!showPassword)} aria-label={showPassword ? "Hide password" : "Show password"}>
+              <button type="button" onClick={() => setShowPassword(!showPassword)} aria-label={showPassword ? "Hide password" : "Show password"} aria-pressed={showPassword}>
                 {showPassword ? "◉" : "◌"}
               </button>
             </div>
@@ -93,12 +92,16 @@ export default function AdminLoginPage() {
               {isSubmitting ? "Signing in…" : "Sign In"}
             </button>
           </form>
+          <Link className={styles.backLink} href="/">← Back to website</Link>
         </div>
       </section>
-      <aside className={styles.visual} aria-hidden="true">
-        <div className={styles.architecture}>
-          <span className={styles.rail} />
-          <span className={styles.steps} />
+      <aside className={styles.visual}>
+        <Image className={styles.visualImage} src="/aryan-gold-hero.webp" alt="" fill sizes="(max-width: 900px) 100vw, 50vw" />
+        <div className={styles.visualContent}>
+          <p className={styles.visualLabel}>TRUST. VALUE. NEW BEGINNINGS.</p>
+          <h2>Old gold.<br /><span>New value.</span></h2>
+          <p>A trusted experience for every customer. A simple workspace for your team.</p>
+          <div className={styles.values}><span>Fair valuation</span><span>Transparent process</span><span>Respectful service</span></div>
         </div>
       </aside>
       {successMessage && <div className={`${styles.toast} ${styles.successToast}`} role="status"><span>✓ {successMessage}</span><button className={styles.toastClose} type="button" onClick={() => setSuccessMessage("")} aria-label="Close notification">×</button></div>}

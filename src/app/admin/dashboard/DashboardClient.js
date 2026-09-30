@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import RateForm from "./RateForm";
 import ContactsTable from "./ContactsTable";
+import AdminBrand from "../AdminBrand";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 
@@ -126,22 +127,23 @@ export default function DashboardClient({ admin, section = "dashboard" }) {
   }
 
   const avatar = imagePreview || (profile.image ? `/admin/${profile.image}` : "");
-  const sectionTitle = section === "rate" ? "Rate" : section === "contact" ? "Contact" : "Dashboard";
+  const sectionTitle = section === "rate" ? "Gold rates" : section === "contact" ? "Contact requests" : "Dashboard";
 
   return (
     <main className={styles.dashboard}>
       <aside className={styles.sidebar}>
-        <div className={styles.brand}><span>▰</span> Larkon</div>
-        <p className={styles.menuTitle}>MENU</p>
-        <nav>
-          <Link className={section === "dashboard" ? styles.active : undefined} href="/admin/dashboard"><span>▦</span> Dashboard</Link>
-          <Link className={section === "contact" ? styles.active : undefined} href="/admin/contact/index"><span>☏</span> Contact</Link>
-          <Link className={section === "rate" ? styles.active : undefined} href="/admin/rate"><span>₹</span> Rate</Link>
+        <div className={styles.brand}><AdminBrand /></div>
+        <p className={styles.menuTitle}>ADMIN WORKSPACE</p>
+        <nav aria-label="Admin navigation">
+          <Link className={section === "dashboard" ? styles.active : undefined} aria-current={section === "dashboard" ? "page" : undefined} href="/admin/dashboard"><span aria-hidden="true">▦</span> Dashboard</Link>
+          <Link className={section === "contact" ? styles.active : undefined} aria-current={section === "contact" ? "page" : undefined} href="/admin/contact/index"><span aria-hidden="true">☏</span> Contacts</Link>
+          <Link className={section === "rate" ? styles.active : undefined} aria-current={section === "rate" ? "page" : undefined} href="/admin/rate"><span aria-hidden="true">₹</span> Gold rates</Link>
         </nav>
+        <div className={styles.sidebarFoot}><span>ARYAN GOLD</span><p>Trust today.<br />Brighter tomorrows.</p><Link href="/">View website →</Link></div>
       </aside>
       <section className={styles.content}>
         <header className={styles.topbar}>
-          <div><p className={styles.crumb}>Larkon / {sectionTitle}</p><h1>{sectionTitle}</h1></div>
+          <div><p className={styles.crumb}>Aryan Gold / Admin</p><h1>{sectionTitle}</h1></div>
           <div className={styles.profile}>
             <button className={styles.profileToggle} type="button" onClick={() => setIsProfileOpen(!isProfileOpen)} aria-expanded={isProfileOpen}>
               <span className={styles.avatar}>{profile.image && !profileImageError ? <Image src={`/admin/${profile.image}`} alt="" width={37} height={37} onError={() => setProfileImageError(true)} /> : profile.name.charAt(0).toUpperCase()}</span><div><strong>{profile.name}</strong><small>{profile.email}</small></div><span className={styles.chevron}>⌄</span>
@@ -154,11 +156,18 @@ export default function DashboardClient({ admin, section = "dashboard" }) {
             </div>}
           </div>
         </header>
-        {section === "rate" ? <RateForm /> : section === "contact" ? <ContactsTable /> : <article className={styles.emptyState}>
-          <span className={styles.emptyIcon}>▦</span>
-          <h2>Dashboard</h2>
-          <p>Welcome, {profile.name}. Use the sidebar to manage contact requests and gold rates.</p>
-        </article>}
+        {section === "rate" ? <RateForm /> : section === "contact" ? <ContactsTable /> : <>
+          <article className={styles.welcome}>
+            <p className={styles.eyebrow}>YOUR ARYAN GOLD WORKSPACE</p>
+            <h2>Welcome back, {profile.name}.</h2>
+            <p>Keep your gold rates up to date and every customer enquiry within reach.</p>
+            <Link href="/admin/rate">Manage gold rates →</Link>
+          </article>
+          <div className={styles.quickGrid}>
+            <Link className={styles.quickCard} href="/admin/contact/index"><span className={styles.cardIcon} aria-hidden="true">☏</span><h2>Customer enquiries</h2><p>Review branch visits, doorstep service requests and quick contacts.</p><strong>View contact requests →</strong></Link>
+            <Link className={styles.quickCard} href="/admin/rate"><span className={styles.cardIcon} aria-hidden="true">₹</span><h2>Gold rates</h2><p>Manage the 24K, 22K and 18K prices displayed on your website.</p><strong>Update gold rates →</strong></Link>
+          </div>
+        </>}
       </section>
       {successMessage && <div className={styles.toast} role="status"><span>✓ {successMessage}</span><button className={styles.toastClose} type="button" onClick={() => setSuccessMessage("")} aria-label="Close notification">×</button></div>}
       {isProfileModalOpen && <div className={styles.modalBackdrop} role="presentation" onMouseDown={closeProfileModal}>

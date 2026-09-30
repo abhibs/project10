@@ -1,0 +1,23 @@
+.theme {
+  --admin-teal: #006A64;
+  --admin-gold: #F5C21B;
+  --admin-red: #A11E1E;
+  --admin-cream: #FDF4E6;
+  --admin-ink: #000000;
+  --admin-border: rgba(0, 106, 100, .24);
+  --admin-tint: rgba(0, 106, 100, .06);
+  --admin-shadow: 0 16px 40px rgba(0, 106, 100, .08);
+  min-height: 100vh;
+  background: var(--admin-cream);
+  color: var(--admin-ink);
+  color-scheme: light;
+  font-family: var(--font-admin-body), Arial, sans-serif;
+}
+.theme *, .theme *::before, .theme *::after { box-sizing: border-box; }
+.theme :is(button, input, select, textarea) { font-family: inherit; }
+.theme :focus-visible { outline: 3px solid var(--admin-red); outline-offset: 3px; }
+.theme button:disabled { cursor: wait; opacity: .65; }
+.brand { display: inline-flex; align-items: center; gap: 12px; color: inherit; text-decoration: none; flex-shrink: 0; }
+.logo { width: 56px; height: 56px; object-fit: contain; padding: 4px; border-radius: 50%; border: 1px solid var(--admin-red); background: var(--admin-cream); box-shadow: 0 0 0 2px rgba(245, 194, 27, .35); }
+.brand strong { display: block; font: 700 24px/1.2 var(--font-admin-display), Georgia, serif; }
+.brand small { display: block; margin-top: 4px; font-size: 10px; font-weight: 700; letter-spacing: .42em; color: var(--admin-gold); }
