@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import RateForm from "./RateForm";
 import ContactsTable from "./ContactsTable";
+import BranchManager from "../branches/BranchManager";
 import AdminBrand from "../AdminBrand";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
@@ -127,7 +128,7 @@ export default function DashboardClient({ admin, section = "dashboard" }) {
   }
 
   const avatar = imagePreview || (profile.image ? `/admin/${profile.image}` : "");
-  const sectionTitle = section === "rate" ? "Gold rates" : section === "contact" ? "Contact requests" : "Dashboard";
+  const sectionTitle = section === "branches" ? "Branches" : section === "rate" ? "Gold rates" : section === "contact" ? "Contact requests" : "Dashboard";
 
   return (
     <main className={styles.dashboard}>
@@ -136,6 +137,7 @@ export default function DashboardClient({ admin, section = "dashboard" }) {
         <p className={styles.menuTitle}>ADMIN WORKSPACE</p>
         <nav aria-label="Admin navigation">
           <Link className={section === "dashboard" ? styles.active : undefined} aria-current={section === "dashboard" ? "page" : undefined} href="/admin/dashboard"><span aria-hidden="true">▦</span> Dashboard</Link>
+          <Link className={section === "branches" ? styles.active : undefined} aria-current={section === "branches" ? "page" : undefined} href="/admin/branches"><span aria-hidden="true">⌂</span> Branches</Link>
           <Link className={section === "contact" ? styles.active : undefined} aria-current={section === "contact" ? "page" : undefined} href="/admin/contact/index"><span aria-hidden="true">☏</span> Contacts</Link>
           <Link className={section === "rate" ? styles.active : undefined} aria-current={section === "rate" ? "page" : undefined} href="/admin/rate"><span aria-hidden="true">₹</span> Gold rates</Link>
         </nav>
@@ -156,7 +158,7 @@ export default function DashboardClient({ admin, section = "dashboard" }) {
             </div>}
           </div>
         </header>
-        {section === "rate" ? <RateForm /> : section === "contact" ? <ContactsTable /> : <>
+        {section === "branches" ? <BranchManager /> : section === "rate" ? <RateForm /> : section === "contact" ? <ContactsTable /> : <>
           <article className={styles.welcome}>
             <p className={styles.eyebrow}>YOUR ARYAN GOLD WORKSPACE</p>
             <h2>Welcome back, {profile.name}.</h2>
@@ -164,6 +166,7 @@ export default function DashboardClient({ admin, section = "dashboard" }) {
             <Link href="/admin/rate">Manage gold rates →</Link>
           </article>
           <div className={styles.quickGrid}>
+            <Link className={styles.quickCard} href="/admin/branches"><span className={styles.cardIcon} aria-hidden="true">⌂</span><h2>Branch locations</h2><p>Add and manage the branches customers can find on your website.</p><strong>Manage branches →</strong></Link>
             <Link className={styles.quickCard} href="/admin/contact/index"><span className={styles.cardIcon} aria-hidden="true">☏</span><h2>Customer enquiries</h2><p>Review branch visits, doorstep service requests and quick contacts.</p><strong>View contact requests →</strong></Link>
             <Link className={styles.quickCard} href="/admin/rate"><span className={styles.cardIcon} aria-hidden="true">₹</span><h2>Gold rates</h2><p>Manage the 24K, 22K and 18K prices displayed on your website.</p><strong>Update gold rates →</strong></Link>
           </div>

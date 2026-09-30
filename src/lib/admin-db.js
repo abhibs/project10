@@ -1,4 +1,73 @@
 import mysql from "mysql2/promise";
+const BRANCH_COLUMNS = `id, branch_id AS branchId, name, slug, image, area, city, state,
+  pincode, timings, latitude, longitude, url, status, address`;
+
+function branchRow(row) {
+  return row ? { ...row, latitude: row.latitude === null ? null : Number(row.latitude),
+    longitude: row.longitude === null ? null : Number(row.longitude) } : null;
+}
+
+export async function getBranches(activeOnly = false) {
+  const [rows] = await getPool().execute(
+    `SELECT ${BRANCH_COLUMNS} FROM branches ${activeOnly ? "WHERE status = 'active'" : ""} ORDER BY city, name, id`
+  );
+  return rows.map(branchRow);
+}
+
+export async function findBranchById(id) {
+  const [rows] = await getPool().execute(`SELECT ${BRANCH_COLUMNS} FROM branches WHERE id = ?`, [id]);
+  return branchRow(rows[0]);
+}
+
+function branchParameters(branch) {
+  return [branch.branchId, branch.name, branch.slug, branch.image, branch.area, branch.city, branch.state,
+    branch.pincode, branch.timings, branch.latitude, branch.longitude, branch.url, branch.status, branch.address];
+}
+
+export async function createBranch(branch) {
+  for (let suffix = 1; suffix <= 100; suffix++) {
+    const candidate = branchSlugCandidate(branch.slug, suffix);
+    try {
+      const [result] = await getPool().execute(
+        `INSERT INTO branches (branch_id, name, slug, image, area, city, state, pincode, timings, latitude, longitude, url, status, address)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        branchParameters({ ...branch, slug: candidate })
+      );
+      return findBranchById(result.insertId);
+    } catch (error) {
+      if (error.code !== "ER_DUP_ENTRY" || !error.message.includes("branches_slug_unique")) throw error;
+    }
+  }
+  throw new Error("Could not find an available branch slug.");
+}
+
+function branchSlugCandidate(base, suffix) {
+  if (suffix === 1) return base;
+  const ending = "-" + suffix;
+  return base.slice(0, 64 - ending.length).replace(/-+$/g, "") + ending;
+}
+
+export async function updateBranch(id, branch) {
+  for (let suffix = 1; suffix <= 100; suffix++) {
+    const candidate = branchSlugCandidate(branch.slug, suffix);
+    try {
+      const [result] = await getPool().execute(
+        `UPDATE branches SET branch_id = ?, name = ?, slug = ?, image = ?, area = ?, city = ?, state = ?, pincode = ?,
+          timings = ?, latitude = ?, longitude = ?, url = ?, status = ?, address = ? WHERE id = ?`,
+        [...branchParameters({ ...branch, slug: candidate }), id]
+      );
+      return result.affectedRows ? findBranchById(id) : null;
+    } catch (error) {
+      if (error.code !== "ER_DUP_ENTRY" || !error.message.includes("branches_slug_unique")) throw error;
+    }
+  }
+  throw new Error("Could not find an available branch slug.");
+}
+
+export async function deleteBranch(id) {
+  const [result] = await getPool().execute("DELETE FROM branches WHERE id = ?", [id]);
+  return result.affectedRows > 0;
+}
 
 let pool;
 

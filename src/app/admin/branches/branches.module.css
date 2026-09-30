@@ -1,0 +1,52 @@
+.manager { display: grid; gap: 24px; }
+.toolbar, .heading { display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+.toolbar p { font-size: 13px; line-height: 1.8; }
+.manager button { padding: 12px 20px; border: 1px solid var(--admin-border); border-radius: 999px; background: var(--admin-cream); color: var(--admin-teal); font-size: 12px; font-weight: 800; cursor: pointer; }
+.manager .primary { flex-shrink: 0; background: var(--admin-gold); color: var(--admin-ink); border-color: var(--admin-gold); }
+.manager .danger { background: var(--admin-red); color: var(--admin-cream); border-color: var(--admin-red); }
+.panel { min-width: 0; scroll-margin-top: 24px; border: 1px solid var(--admin-border); border-top: 3px solid var(--admin-red); border-radius: 24px; background: var(--admin-cream); box-shadow: var(--admin-shadow); }
+.heading { padding: 24px; border-bottom: 1px solid var(--admin-border); }
+.heading h2 { margin: 0 0 8px; font: 700 26px/1.2 var(--font-admin-display), Georgia, serif; }
+.heading p { margin: 0; color: var(--admin-teal); font-size: 12px; line-height: 1.7; }
+.form { padding: 24px; }
+.form fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.formGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.field, .fullField, .search { display: flex; flex-direction: column; gap: 8px; min-width: 0; font-size: 12px; font-weight: 700; }
+.field input, .field select, .fullField textarea, .search input { width: 100%; min-width: 0; border: 1px solid var(--admin-border); border-radius: 12px; padding: 12px; background: var(--admin-cream); color: var(--admin-ink); font: inherit; font-weight: 400; }
+.field input, .field select { min-height: 46px; }
+.slugPreview { display: flex; align-items: center; min-height: 46px; padding: 12px; border: 1px solid var(--admin-border); border-radius: 12px; color: var(--admin-teal); overflow-wrap: anywhere; font-size: 13px; font-weight: 800; }
+.field input[type=file] { padding: 8px; font-size: 11px; }
+.field input::file-selector-button { border: 0; border-radius: 8px; padding: 8px; margin-right: 8px; background: var(--admin-teal); color: var(--admin-cream); cursor: pointer; }
+.field small { color: var(--admin-teal); font-size: 10px; font-weight: 400; }
+.fullField { grid-column: 1 / -1; }
+.fullField textarea { resize: vertical; }
+.preview { width: 200px; max-width: 100%; height: 125px; object-fit: cover; border-radius: 12px; }
+.field .checkbox { display: flex; align-items: center; gap: 8px; font-weight: 400; }
+.checkbox input { width: 16px; min-height: 16px; accent-color: var(--admin-teal); }
+.actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.error, .success { margin: 0; padding: 16px; border-radius: 12px; font-size: 13px; line-height: 1.7; }
+.error { color: var(--admin-red); background: rgba(161,30,30,.06); }
+.success { color: var(--admin-teal); background: var(--admin-tint); }
+.form .error { margin-top: 20px; }
+.empty { padding: 32px 24px; font-size: 13px; color: var(--admin-teal); }
+.list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; padding: 24px; }
+.branch { min-width: 0; padding: 20px; border: 1px solid var(--admin-border); border-radius: 18px; }
+.branchTop { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.branchTop > div { flex: 1; min-width: 120px; overflow-wrap: anywhere; }
+.branch h3 { margin: 4px 0; font: 700 21px/1.3 var(--font-admin-display), Georgia, serif; }
+.branch p { margin: 0; font-size: 12px; }
+.branchId { font-size: 10px; color: var(--admin-teal); font-weight: 800; }
+.thumbnail, .placeholder { width: 80px; height: 64px; object-fit: cover; border-radius: 10px; }
+.placeholder { display: grid; place-items: center; color: var(--admin-cream); background: var(--admin-teal); font-size: 30px; }
+.active, .inactive { border-radius: 999px; padding: 6px 10px; font-size: 10px; font-weight: 800; }
+.active { background: var(--admin-teal); color: var(--admin-cream); }
+.inactive { background: var(--admin-gold); color: var(--admin-ink); }
+.branch details { margin-top: 20px; font-size: 12px; }
+.branch summary { color: var(--admin-teal); font-weight: 800; cursor: pointer; }
+.branch dl { display: grid; gap: 6px; margin-bottom: 0; overflow-wrap: anywhere; }
+.branch dt { margin-top: 8px; font-weight: 800; }
+.branch dd { margin: 0; line-height: 1.7; white-space: pre-wrap; }
+.branch dd a { color: var(--admin-red); }
+.srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media (max-width: 1150px) { .list { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 600px) { .formGrid { grid-template-columns: minmax(0, 1fr); } .heading, .toolbar { align-items: stretch; flex-direction: column; gap: 16px; } .form, .heading, .list { padding: 20px; } .search { width: 100%; } .branch { padding: 16px; } }

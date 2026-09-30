@@ -45,3 +45,33 @@ update it. A database constraint prevents any additional row IDs.
 The homepage reads `/api/rates` on load, every minute, and when Refresh rates is
 clicked. The calculator offers the saved 24K, 22K and 18K rates. If published
 rates are unavailable, the homepage labels its demo fallback prices.
+
+## Branch management
+
+Run `node scripts/migrate-branches.mjs` from the project root once per environment.
+It uses the existing database settings in `.env` and creates `branches` without
+changing other tables. Existing rows receive a separate name-based `slug` column;
+branch IDs and other branch details are preserved.
+
+Sign in and open `/admin/branches` to add, view, search, edit or delete branches.
+Branch IDs are entered separately. Slugs are generated automatically from names
+in lowercase with hyphens. Repeated names receive a numeric suffix.
+An image, URL and coordinate pair are optional; the
+remaining fields are required. Deletion requires confirmation. Use **Inactive**
+to hide a location without deleting it.
+
+Active branches appear in the homepage's **Branches** section. The public feed
+(`/api/branches`) is uncached, refreshes every minute and on window focus, and never
+returns inactive branches. Cards show location, address, timings, an optional
+branch link and Google Maps directions. Empty, loading and retry states are included.
+
+Uploads accept JPG, PNG and WebP up to 10 MB and 25 megapixels. Images are decoded,
+stripped of metadata, resized to fit 1600 × 1200 and saved as WebP with unique
+branch-ID-prefixed filenames in `uploads/branches/`. A dedicated image route serves
+new uploads immediately, including in production. Keep that directory on writable,
+persistent storage and back it up with MySQL. Ephemeral/serverless deployments
+need persistent shared storage or an object-storage adapter before using uploads.
+Replaced/deleted images are retained on disk to avoid breaking in-flight readers;
+they are not referenced by the branch feed. Failed new uploads are cleaned up.
+
+Validation tests: `node --test tests/branch-values.test.mjs`.

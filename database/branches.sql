@@ -1,0 +1,23 @@
+CREATE TABLE IF NOT EXISTS branches (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  branch_id VARCHAR(64) NOT NULL,
+  name VARCHAR(160) NOT NULL,
+  slug VARCHAR(64) NOT NULL,
+  image VARCHAR(160) DEFAULT NULL,
+  area VARCHAR(160) NOT NULL,
+  city VARCHAR(120) NOT NULL,
+  state VARCHAR(120) NOT NULL,
+  pincode CHAR(6) NOT NULL,
+  timings VARCHAR(160) NOT NULL,
+  latitude DECIMAL(10,7) DEFAULT NULL,
+  longitude DECIMAL(10,7) DEFAULT NULL,
+  url VARCHAR(2048) NOT NULL DEFAULT '',
+  status ENUM('active', 'inactive') NOT NULL DEFAULT 'active',
+  address VARCHAR(2000) NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  UNIQUE KEY branches_branch_id_unique (branch_id),
+  UNIQUE KEY branches_slug_unique (slug),
+  KEY branches_status_city (status, city)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

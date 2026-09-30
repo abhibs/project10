@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import BranchLocations from "./BranchLocations";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const FALLBACK_RATES = {24: 14250, 22: 13062, 18: 10688};
@@ -166,6 +167,7 @@ export default function GoldHomepage() {
         <a href="#calculator">Calculator</a>
         <a href="#how-it-works">How it works</a>
         <a href="#booking">Book Service</a>
+        <a href="#branches">Branches</a>
         <a href="#faq">FAQ</a>
       </nav>
 
@@ -370,6 +372,8 @@ export default function GoldHomepage() {
       </div>
     </section>
 
+    <BranchLocations />
+
     <section className="booking-section" id="booking">
       <div className="container booking-grid">
         <div className="booking-copy reveal">
@@ -464,7 +468,7 @@ export default function GoldHomepage() {
         <p>Transparent gold buying, pledged-gold assistance and convenient valuation services.</p>
       </div>
       <div><h4>Services</h4><a href="#services">Sell Gold</a><a href="#pledge">Release Pledged Gold</a><a href="#calculator">Gold Calculator</a><a href="#booking">Book Valuation</a></div>
-      <div><h4>Quick Links</h4><a href="#rates">Gold Rate</a><a href="#how-it-works">How It Works</a><a href="#faq">FAQs</a><a href="#contact">Contact</a></div>
+      <div><h4>Quick Links</h4><a href="#rates">Gold Rate</a><a href="#branches">Our Branches</a><a href="#how-it-works">How It Works</a><a href="#faq">FAQs</a><a href="#contact">Contact</a></div>
       <div><h4>Important</h4><p className="footer-small">Rates shown online are indicative. Final value is confirmed after physical evaluation and applicable compliance checks.</p></div>
     </div>
     <div className="container footer-bottom"><span>© <span id="year">{new Date().getFullYear()}</span> Aryan Gold. All rights reserved.</span><span>White • Gold • Black premium theme</span></div>
