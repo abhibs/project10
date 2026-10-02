@@ -154,7 +154,7 @@ export default function GoldHomepage() {
     <div className="container nav-wrap">
       <a className="brand" href="#home" aria-label="Aryan Gold Buyers home">
         <span className="brand-logo-shell"><Image className="brand-image" src="/aryan-mark.png" width={64} height={64} alt="Aryan Gold Buyers logo" /></span>
-        <span className="brand-copy"><small>GOLD</small><strong>ARYAN</strong><small>BUYERS</small></span>
+        <span className="brand-wordmark"><span>ARYAN</span><span>Gold Buyers</span></span>
       </a>
 
       <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="main-nav" aria-label={menuOpen ? "Close menu" : "Open menu"}>

@@ -911,6 +911,17 @@
 }
 
 /* Give the tightly framed Aryan emblem room to remain legible. */
+.aryan-home .site-header .brand-wordmark{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font:400 14px/1.4 Arial,sans-serif;
+  letter-spacing:0;
+  white-space:nowrap;
+  color:#000;
+}
+.aryan-home[data-theme="dark"] .site-header .brand-wordmark{color:#FDF4E6}
+.aryan-home .site-header .brand-wordmark>span:last-child{color:#F5C21B}
 .aryan-home .brand-copy{align-items:center}
 .aryan-home .brand-copy small:first-child{margin-top:0;margin-bottom:6px}
 .aryan-home .site-header .brand-logo-shell{
