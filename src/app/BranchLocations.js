@@ -24,7 +24,23 @@ function BranchCard({ branch }) {
   </article>;
 }
 
-export default function BranchLocations() {
+export default function BranchLocations({ showBranches = false }) {
+  if (showBranches) return <BranchDirectory />;
+
+  return <section className={"section " + styles.section} id="branches" aria-labelledby="branches-title">
+    <div className="container">
+      <div className={styles.heading}>
+        <div>
+          <p className={styles.kicker}>OUR BRANCHES</p>
+          <h2 id="branches-title">Coming Soon</h2>
+          <p>Our branch locations will be listed here soon.</p>
+        </div>
+      </div>
+    </div>
+  </section>;
+}
+
+function BranchDirectory() {
   const [branches, setBranches] = useState([]);
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);

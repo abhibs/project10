@@ -152,9 +152,9 @@ export default function GoldHomepage() {
 
   <header className="site-header" id="home">
     <div className="container nav-wrap">
-      <a className="brand" href="#home" aria-label="Aryan Gold home">
-        <span className="brand-logo-shell"><Image className="brand-image" src="/aryan-mark.png" width={64} height={64} alt="Aryan Gold logo" /></span>
-        <span className="brand-copy"><strong>ARYAN</strong><small>GOLD</small></span>
+      <a className="brand" href="#home" aria-label="Aryan Gold Buyers home">
+        <span className="brand-logo-shell"><Image className="brand-image" src="/aryan-mark.png" width={64} height={64} alt="Aryan Gold Buyers logo" /></span>
+        <span className="brand-copy"><small>GOLD</small><strong>ARYAN</strong><small>BUYERS</small></span>
       </a>
 
       <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="main-nav" aria-label={menuOpen ? "Close menu" : "Open menu"}>
@@ -463,7 +463,7 @@ export default function GoldHomepage() {
       <div className="footer-brand">
         <div className="brand-fallback footer-wordmark">
           <span className="brand-mark">AG</span>
-          <span className="brand-copy"><strong>ARYAN</strong><small>GOLD</small></span>
+          <span className="brand-copy"><small>GOLD</small><strong>ARYAN</strong><small>BUYERS</small></span>
         </div>
         <p>Transparent gold buying, pledged-gold assistance and convenient valuation services.</p>
       </div>

@@ -46,7 +46,7 @@
 .aryan-home .brand-image{display:block;max-width:180px;max-height:60px;object-fit:contain}
 .aryan-home .brand-fallback{display:flex;align-items:center;gap:11px}
 .aryan-home .brand-mark{width:43px;height:43px;display:grid;place-items:center;background:var(--black);color:var(--gold);border:1px solid #2d2d2d;border-radius:50%;font-family:var(--serif);font-size:1.05rem;font-weight:700}
-.aryan-home .brand-copy{display:flex;flex-direction:column;line-height:.9}.aryan-home .brand-copy strong{font-family:var(--serif);font-size:1.35rem;letter-spacing:.05em}.aryan-home .brand-copy small{font-size:.67rem;letter-spacing:.42em;color:var(--gold-dark);margin-top:6px}
+.aryan-home .brand-copy{display:flex;flex-direction:column;line-height:.9}.aryan-home .brand-copy strong{font-family:var(--serif);font-size:1.35rem;letter-spacing:.05em}.aryan-home .brand-copy small{font-size:.67rem;letter-spacing:.18em;white-space:nowrap;color:var(--gold-dark);margin-top:6px}
 .aryan-home .main-nav{display:flex;align-items:center;gap:26px;margin-left:auto;font-size:.92rem;font-weight:600}
 .aryan-home .main-nav a{position:relative}.aryan-home .main-nav a:after{content:"";position:absolute;left:0;right:100%;bottom:-7px;height:2px;background:var(--gold);transition:.25s}.aryan-home .main-nav a:hover:after{right:0}
 .aryan-home .menu-toggle{display:none;border:0;background:transparent;padding:7px}.aryan-home .menu-toggle span{display:block;width:24px;height:2px;background:var(--teal);margin:5px}
@@ -911,6 +911,8 @@
 }
 
 /* Give the tightly framed Aryan emblem room to remain legible. */
+.aryan-home .brand-copy{align-items:center}
+.aryan-home .brand-copy small:first-child{margin-top:0;margin-bottom:6px}
 .aryan-home .site-header .brand-logo-shell{
   width:72px;
   height:72px;
