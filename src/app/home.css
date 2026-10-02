@@ -1,8 +1,8 @@
 /* Homepage styles scoped to preserve the existing admin screens. */
 
 .aryan-home{
-  --teal:#006A64;
-  --on-teal:#FDF4E6;
+  --teal:#FDF4E6;
+  --on-teal:#006A64;
   --bg:#f7f6f2;
   --paper:#ffffff;
   --ink:#111214;
@@ -328,7 +328,7 @@
 /* Hero card cleanup requested */
 .aryan-home .hero-card{
   min-height:380px;
-  background:#006A64;
+  background:#FDF4E6;
 }
 .aryan-home .hero-card:before,
 .aryan-home .hero-card:after{
@@ -667,18 +667,18 @@
 .aryan-home[data-theme="light"] .why-section,
 .aryan-home[data-theme="light"] .faq-section,
 .aryan-home[data-theme="light"] .booking-section{
-  background:#FDF4E6;
+  background:#006A64;
 }
 .aryan-home[data-theme="light"] .hero:before{content:none}
 @media(max-width:1050px){
-  .aryan-home[data-theme="light"] .main-nav{background:#FDF4E6}
+  .aryan-home[data-theme="light"] .main-nav{background:#006A64}
 }
 
 /* Black content text and the second brand-palette color for accents. */
 .aryan-home[data-theme="light"]{
-  --text-light:#000000;
-  --muted-light:#000000;
-  --content-black:#000000;
+  --text-light:#FDF4E6;
+  --muted-light:#FDF4E6;
+  --content-black:#FDF4E6;
   --accent-yellow:#F5C21B;
 }
 .aryan-home[data-theme="light"] :is(
@@ -702,9 +702,10 @@
 .aryan-home[data-theme="light"] .accordion summary:after{color:var(--accent-yellow)}
 .aryan-home[data-theme="light"] .hero-actions .btn-outline:hover{color:var(--on-teal)}
 
-/* Yellow text and accents on the teal gold-rate card. */
+/* Gold-rate card palette: cream background with brand-red text. */
+.aryan-home[data-theme] .hero-card{background:#FDF4E6}
 .aryan-home[data-theme] .hero-card,
-.aryan-home[data-theme] .hero-card :is(div,span,strong,small,b,a){color:#F5C21B !important}
+.aryan-home[data-theme] .hero-card :is(div,span,strong,small,b,a){color:#A11E1E !important}
 .aryan-home[data-theme] .hero-card .live-pill{
   border-color:rgba(245,194,27,.35) !important;
   background:rgba(245,194,27,.06);
@@ -726,7 +727,7 @@
 /* Homepage brand palette: teal, yellow, red, and cream. */
 .aryan-home{
   --brand-red:#A11E1E;
-  --brand-cream:#FDF4E6;
+  --brand-cream:#006A64;
   --gold:#F5C21B;
 }
 .aryan-home[data-theme="light"] .btn-gold{
@@ -780,3 +781,131 @@
 .aryan-home[data-theme="light"] .float-btn:not(.gold){background:var(--brand-red);color:var(--brand-cream)}
 .aryan-home[data-theme="light"] .float-btn.gold{background:var(--accent-yellow);color:#000000}
 .aryan-home[data-theme="light"] :focus-visible{outline-color:var(--brand-red)}
+
+/* Post-swap text contrast: cream text on teal, teal text on cream. */
+.aryan-home[data-theme="light"] .topbar{color:#006A64}
+.aryan-home[data-theme="light"] :is(
+  .service-card.featured h3,
+  .service-card.featured p,
+  .service-card.featured li,
+  .service-card.featured .service-num,
+  .service-card.featured>a,
+  .quick-form .field>span,
+  .quick-form .field input,
+  .quick-form .field select,
+  .quick-form .input-unit b,
+  footer,
+  footer p,
+  footer a,
+  footer .brand-copy strong,
+  footer .footer-small,
+  footer .footer-bottom
+){color:#006A64 !important}
+.aryan-home[data-theme="light"] .quick-form :is(input,select){color:#006A64}
+.aryan-home[data-theme="light"] .quick-form input::placeholder{color:#006A64;opacity:.78}
+.aryan-home[data-theme="light"] .value-panel :is(span,small,strong){color:#006A64}
+.aryan-home[data-theme="light"] :is(.secure-chip,.why-card b,.pledge-card span){color:#006A64}
+.aryan-home[data-theme="light"] .pledge-center{color:#000000}
+.aryan-home[data-theme="light"] :is(.btn-gold,.service-icon){color:#000000}
+.aryan-home[data-theme="light"] :is(.hero-actions .btn.btn-outline,.btn.btn-dark){color:#FDF4E6}
+.aryan-home[data-theme="light"] .btn-light{color:#FDF4E6 !important}
+.aryan-home[data-theme="light"] .mode-switch button.active{color:#006A64}
+
+/* Yellow-on-cream labels use teal for accessible contrast. */
+.aryan-home[data-theme="light"] :is(
+  .service-card.featured .kicker,
+  footer .footer-grid h4,
+  footer .brand-copy small
+){color:#006A64 !important}
+
+/* Alternating homepage section rhythm: teal, cream, teal, cream. */
+.aryan-home[data-theme="light"] .topbar{
+  background:#006A64;
+  color:#FDF4E6;
+}
+.aryan-home[data-theme="light"] .topbar a{color:#FDF4E6}
+.aryan-home[data-theme="light"] .site-header{background:#FDF4E6}
+.aryan-home[data-theme="light"] .site-header :is(.brand-copy strong,.main-nav a){color:#006A64}
+
+.aryan-home[data-theme="light"] :is(.hero,#calculator,.pledge-section,.why-section,.contact-section){
+  background:#006A64;
+  color:#FDF4E6;
+}
+.aryan-home[data-theme="light"] :is(.rate-strip,.services-section,#how-it-works,.booking-section,.faq-section,footer){
+  background:#FDF4E6;
+  color:#006A64;
+}
+
+/* Text on teal sections. */
+.aryan-home[data-theme="light"] .hero-copy :is(h1,p,.eyebrow,.trust-row strong,.trust-row span),
+.aryan-home[data-theme="light"] #calculator>.container>.section-copy :is(h2,p,li),
+.aryan-home[data-theme="light"] .pledge-section>.container>.section-copy :is(h2,p,.pledge-points strong,.pledge-points small),
+.aryan-home[data-theme="light"] .why-section>.container>.section-copy :is(h2,p),
+.aryan-home[data-theme="light"] .contact-copy :is(h2,p),
+.aryan-home[data-theme="light"] .contact-chips span{
+  color:#FDF4E6 !important;
+}
+
+/* Text on cream sections. */
+.aryan-home[data-theme="light"] .rate-strip :is(h2,p,strong,span,small,.rate-meta),
+.aryan-home[data-theme="light"] .services-section>.container>.section-heading :is(h2,p),
+.aryan-home[data-theme="light"] #how-it-works>.container :is(h2,h3,p),
+.aryan-home[data-theme="light"] .booking-copy :is(h2,p,strong,small),
+.aryan-home[data-theme="light"] .faq-section>.container :is(h2,p,summary),
+.aryan-home[data-theme="light"] footer :is(p,a,.footer-small,.footer-bottom,.brand-copy strong,.brand-copy small,h4){
+  color:#006A64 !important;
+}
+
+.aryan-home[data-theme="light"] :is(.hero-copy,.rate-strip,.section-copy,.section-heading,.booking-copy,.contact-copy) .kicker,
+.aryan-home[data-theme="light"] .hero-copy h1 span{
+  color:#F5C21B !important;
+}
+.aryan-home[data-theme="light"] .faq-section .btn-dark{color:#FDF4E6 !important}
+@media(max-width:1050px){
+  .aryan-home[data-theme="light"] .main-nav{background:#FDF4E6}
+}
+
+/* Keep calculator controls distinct from the teal calculator card. */
+.aryan-home[data-theme="light"] .calculator-card :is(.field input,.field select,.input-unit){
+  background:#FDF4E6;
+  border-color:#F5C21B;
+  color:#006A64;
+}
+.aryan-home[data-theme="light"] .calculator-card .input-unit input{
+  background:transparent;
+  color:#006A64;
+}
+.aryan-home[data-theme="light"] .calculator-card .input-unit b{
+  color:#006A64;
+  border-left-color:rgba(0,106,100,.3);
+}
+.aryan-home[data-theme="light"] .calculator-card :is(.field input,.field select):focus,
+.aryan-home[data-theme="light"] .calculator-card .input-unit:focus-within{
+  border-color:#F5C21B;
+  box-shadow:0 0 0 4px rgba(245,194,27,.2);
+}
+
+/* A visible brand border on every card surface. */
+.aryan-home[data-theme] :is(
+  .rate-card,
+  .calculator-card,
+  .service-card,
+  .pledge-card,
+  .form-card,
+  .why-card,
+  .quick-form
+){
+  border:2px solid #A11E1E;
+}
+.aryan-home .rate-card{
+  border-radius:14px;
+}
+.aryan-home[data-theme] .hero-card,
+.aryan-home[data-theme] .value-panel{
+  border:2px solid #F5C21B;
+}
+
+/* Override the light-theme card group's top-only border accent. */
+.aryan-home[data-theme="light"] #calculator .calculator-card{
+  border:2px solid var(--brand-red);
+}
