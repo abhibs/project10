@@ -17,7 +17,6 @@ const displayFont = Playfair_Display({
 export const metadata = {
   title: "Aryan Gold | Sell Gold for Instant Cash",
   description: "Aryan Gold — cash for gold, pledged gold release and doorstep valuation services.",
-  icons: { icon: "/logo.jpeg" },
 };
 
 export default function Home() {

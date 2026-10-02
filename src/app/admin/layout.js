@@ -7,7 +7,6 @@ const displayFont = Playfair_Display({ subsets: ["latin"], variable: "--font-adm
 export const metadata = {
   title: "Aryan Gold | Admin Panel",
   description: "Manage Aryan Gold enquiries, gold rates and your account.",
-  icons: { icon: "/logo.jpeg" },
   robots: { index: false, follow: false },
 };
 

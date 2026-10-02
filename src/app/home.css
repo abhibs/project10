@@ -909,3 +909,21 @@
 .aryan-home[data-theme="light"] #calculator .calculator-card{
   border:2px solid var(--brand-red);
 }
+
+/* Give the tightly framed Aryan emblem room to remain legible. */
+.aryan-home .site-header .brand-logo-shell{
+  width:72px;
+  height:72px;
+  border-radius:16px;
+  margin-right:0;
+}
+.aryan-home .site-header .brand-logo-shell .brand-image{
+  width:64px;
+  height:64px;
+  object-fit:contain;
+  border-radius:10px;
+}
+@media(max-width:560px){
+  .aryan-home .site-header .brand-logo-shell{width:62px;height:62px;border-radius:14px}
+  .aryan-home .site-header .brand-logo-shell .brand-image{width:56px;height:56px}
+}

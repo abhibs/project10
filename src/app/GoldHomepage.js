@@ -153,7 +153,7 @@ export default function GoldHomepage() {
   <header className="site-header" id="home">
     <div className="container nav-wrap">
       <a className="brand" href="#home" aria-label="Aryan Gold home">
-        <span className="brand-logo-shell"><Image className="brand-image" src="/logo.jpeg" width="44" height="44" alt="Aryan Gold logo" /></span>
+        <span className="brand-logo-shell"><Image className="brand-image" src="/aryan-mark.png" width={64} height={64} alt="Aryan Gold logo" /></span>
         <span className="brand-copy"><strong>ARYAN</strong><small>GOLD</small></span>
       </a>
 
