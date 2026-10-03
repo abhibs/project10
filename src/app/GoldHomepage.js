@@ -291,7 +291,7 @@ export default function GoldHomepage() {
           </div>
           <div className="calc-actions">
             <a className="btn btn-gold" href="#booking">Book Free Evaluation</a>
-            <a className="btn btn-light" href="#contact">Talk to an Expert</a>
+            <a className="btn btn-outline" href="#contact">Talk to an Expert</a>
           </div>
           <p className="fine-print">This calculator is for guidance only. Stones, non-gold materials, verified purity and applicable buying terms may affect the final offer.</p>
         </div>

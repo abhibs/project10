@@ -600,6 +600,10 @@
 .aryan-home[data-theme="dark"] .text-button{color:#e3c370}
 .aryan-home[data-theme="dark"] .secure-chip{color:#e0c06b;background:var(--teal);border-color:#4a4130}
 .aryan-home[data-theme="dark"] .check-list li:before{background:var(--teal);color:#e6c778}
+.aryan-home[data-theme] #calculator .check-list li::before{
+  background:#F5C21B;
+  color:#006A64;
+}
 
 .aryan-home[data-theme="dark"] .form-card{color:#f0ebe2}
 .aryan-home[data-theme="dark"] .form-card .consent{color:#b1b7bf}
@@ -762,7 +766,7 @@
   border-color:var(--accent-yellow);
   box-shadow:0 8px 22px rgba(245,194,27,.2);
 }
-.aryan-home[data-theme="light"] .hero-actions .btn.btn-outline,
+.aryan-home[data-theme="light"] :is(.hero-actions,.calc-actions) .btn.btn-outline,
 .aryan-home[data-theme="light"] .btn.btn-dark{
   background:var(--brand-red);
   border-color:var(--brand-red);
@@ -834,14 +838,14 @@
 .aryan-home[data-theme="light"] :is(.secure-chip,.why-card b,.pledge-card span){color:#006A64}
 .aryan-home[data-theme="light"] .pledge-center{color:#000000}
 .aryan-home[data-theme="light"] :is(.btn-gold,.service-icon){color:#000000}
-.aryan-home[data-theme="light"] :is(.hero-actions .btn.btn-outline,.btn.btn-dark){color:#FDF4E6}
+.aryan-home[data-theme="light"] :is(.hero-actions .btn.btn-outline,.calc-actions .btn.btn-outline,.btn.btn-dark){color:#FDF4E6}
 /* Swap both button colors together when either button is hovered or focused. */
-.aryan-home[data-theme="light"] .hero-actions:has(.btn:is(:hover,:focus-visible)) .btn.btn-gold{
+.aryan-home[data-theme="light"] :is(.hero-actions,.calc-actions):has(.btn:is(:hover,:focus-visible)) .btn.btn-gold{
   background:var(--brand-red);
   border-color:var(--brand-red);
   color:#FDF4E6;
 }
-.aryan-home[data-theme="light"] .hero-actions:has(.btn:is(:hover,:focus-visible)) .btn.btn-outline{
+.aryan-home[data-theme="light"] :is(.hero-actions,.calc-actions):has(.btn:is(:hover,:focus-visible)) .btn.btn-outline{
   background:var(--accent-yellow);
   border-color:var(--accent-yellow);
   color:#FDF4E6;
