@@ -67,7 +67,7 @@
 .aryan-home .hero h1{font-size:clamp(4rem,7.2vw,7rem);margin:0 0 28px}.aryan-home .hero h1 span{color:var(--gold-dark)}
 .aryan-home .hero-lead{font-size:1.15rem;max-width:650px;line-height:1.7}
 .aryan-home .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin:34px 0 42px}
-.aryan-home .trust-row{display:grid;grid-template-columns:repeat(3,1fr);max-width:650px;border-top:1px solid var(--line);padding-top:24px}.aryan-home .trust-row div{display:flex;flex-direction:column}.aryan-home .trust-row strong{font-size:1.02rem}.aryan-home .trust-row span{font-size:.78rem;color:var(--muted);margin-top:2px}
+.aryan-home .trust-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:650px;text-align:center}.aryan-home .trust-row div{display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid #F5C21B;padding:24px 12px}.aryan-home .trust-row strong{font-size:1.02rem}.aryan-home .trust-row span{font-size:.78rem;color:var(--muted);margin-top:2px}
 .aryan-home .hero-visual{position:relative;min-height:550px;display:grid;place-items:center}
 .aryan-home .gold-orbit{position:absolute;border:1px solid rgba(165,112,8,.22);border-radius:50%;transform:rotate(-18deg)}.aryan-home .orbit-one{width:520px;height:260px}.aryan-home .orbit-two{width:420px;height:420px;border-style:dashed}
 .aryan-home .hero-card{width:min(100%,455px);min-height:500px;background:var(--teal);border-radius:32px;padding:30px;color:#fff;position:relative;z-index:2;box-shadow:0 35px 100px rgba(0,0,0,.25);overflow:hidden}
@@ -808,6 +808,17 @@
 .aryan-home[data-theme="light"] .pledge-center{color:#000000}
 .aryan-home[data-theme="light"] :is(.btn-gold,.service-icon){color:#000000}
 .aryan-home[data-theme="light"] :is(.hero-actions .btn.btn-outline,.btn.btn-dark){color:#FDF4E6}
+/* Swap both button colors together when either button is hovered or focused. */
+.aryan-home[data-theme="light"] .hero-actions:has(.btn:is(:hover,:focus-visible)) .btn.btn-gold{
+  background:var(--brand-red);
+  border-color:var(--brand-red);
+  color:#FDF4E6;
+}
+.aryan-home[data-theme="light"] .hero-actions:has(.btn:is(:hover,:focus-visible)) .btn.btn-outline{
+  background:var(--accent-yellow);
+  border-color:var(--accent-yellow);
+  color:#FDF4E6;
+}
 .aryan-home[data-theme="light"] .btn-light{color:#FDF4E6 !important}
 .aryan-home[data-theme="light"] .mode-switch button.active{color:#006A64}
 
@@ -825,7 +836,8 @@
 }
 .aryan-home[data-theme="light"] .topbar a{color:#FDF4E6}
 .aryan-home[data-theme="light"] .site-header{background:#FDF4E6}
-.aryan-home[data-theme="light"] .site-header :is(.brand-copy strong,.main-nav a){color:#006A64}
+.aryan-home[data-theme="light"] .site-header .brand-copy strong{color:#006A64}
+.aryan-home[data-theme] .site-header .main-nav a{color:#F5C21B !important}
 
 .aryan-home[data-theme="light"] :is(.hero,#calculator,.pledge-section,.why-section,.contact-section){
   background:#006A64;
