@@ -7,6 +7,17 @@ import { useCallback, useEffect, useRef, useState } from "react";
 const FALLBACK_RATES = {24: 14250, 22: 13062, 18: 10688};
 const rupees = new Intl.NumberFormat("en-IN", {style: "currency", currency: "INR", maximumFractionDigits: 0});
 
+function StepIcon({type}) {
+  const icons = {
+    book: <><rect x="7" y="9" width="34" height="32" rx="5"/><path d="M7 18h34M15 6v7M33 6v7M15 27l5 5 10-11"/></>,
+    test: <><path d="M19 6h10M21 6v13l-9 15a5 5 0 0 0 4 8h16a5 5 0 0 0 4-8l-9-15V6M17 30h14"/><circle cx="23" cy="35" r="1"/><circle cx="29" cy="34" r="1"/></>,
+    value: <><path d="M6 24 22 8h15a4 4 0 0 1 4 4v15L25 43a4 4 0 0 1-6 0L6 30a4 4 0 0 1 0-6Z"/><circle cx="33" cy="16" r="2"/><path d="M17 25h12M21 25c4 0 4 6 0 6h-2l7 7"/></>,
+    paid: <><rect x="5" y="13" width="38" height="28" rx="5"/><path d="M5 21h38M12 13V8h25M17 29h10M21 29c3 0 3 5 0 5h-2l6 5"/></>,
+  };
+
+  return <span className="step-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">{icons[type]}</svg></span>;
+}
+
 export default function GoldHomepage() {
   const root = useRef(null);
   const pending = useRef(null);
@@ -364,10 +375,10 @@ export default function GoldHomepage() {
           <h2>From gold to payment in four clear steps.</h2>
         </div>
         <div className="steps-grid">
-          <div className="step reveal"><span>01</span><div className="step-line"></div><h3>Book</h3><p>Choose branch or doorstep service and your preferred time.</p></div>
-          <div className="step reveal delay-1"><span>02</span><div className="step-line"></div><h3>Test</h3><p>Your gold is weighed and purity is checked transparently.</p></div>
-          <div className="step reveal delay-2"><span>03</span><div className="step-line"></div><h3>Value</h3><p>Receive a clear market-linked valuation before you decide.</p></div>
-          <div className="step reveal delay-3"><span>04</span><div className="step-line"></div><h3>Get Paid</h3><p>Accept the offer and complete payment through the available payout mode.</p></div>
+          <div className="step reveal"><div className="step-top"><span>01</span><StepIcon type="book"/></div><div className="step-line"></div><h3>Book</h3><p>Choose branch or doorstep service and your preferred time.</p></div>
+          <div className="step reveal delay-1"><div className="step-top"><span>02</span><StepIcon type="test"/></div><div className="step-line"></div><h3>Test</h3><p>Your gold is weighed and purity is checked transparently.</p></div>
+          <div className="step reveal delay-2"><div className="step-top"><span>03</span><StepIcon type="value"/></div><div className="step-line"></div><h3>Value</h3><p>Receive a clear market-linked valuation before you decide.</p></div>
+          <div className="step reveal delay-3"><div className="step-top"><span>04</span><StepIcon type="paid"/></div><div className="step-line"></div><h3>Get Paid</h3><p>Accept the offer and complete payment through the available payout mode.</p></div>
         </div>
       </div>
     </section>
