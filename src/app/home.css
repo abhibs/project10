@@ -953,6 +953,27 @@
   border:2px solid var(--brand-red);
 }
 
+/* Service cards share the teal default and cream interaction state. */
+.aryan-home[data-theme] .services-grid .service-card{
+  background:#006A64;
+  color:#FDF4E6;
+  border:1px solid #F5C21B;
+  border-top-width:3px;
+}
+.aryan-home[data-theme] .services-grid .service-card :is(h3,p,li,.service-num){color:inherit}
+.aryan-home[data-theme] .services-grid .service-card>a{color:#F5C21B}
+.aryan-home[data-theme] .services-grid .service-card .service-icon{
+  background:#F5C21B;
+  color:#000;
+  border:0;
+}
+.aryan-home[data-theme] .services-grid .service-card li:before{color:#F5C21B}
+.aryan-home[data-theme] .services-grid .service-card:is(:hover,:focus-within){
+  background:#FDF4E6;
+  color:#006A64;
+}
+.aryan-home[data-theme] .services-grid .service-card:is(:hover,:focus-within)>a{color:#006A64}
+
 /* Give the tightly framed Aryan emblem room to remain legible. */
 .aryan-home .site-header .brand{gap:2px}
 .aryan-home .site-header .brand-wordmark{

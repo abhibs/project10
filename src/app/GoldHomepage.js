@@ -307,7 +307,7 @@ export default function GoldHomepage() {
         </div>
 
         <div className="services-grid">
-          <article className="service-card featured reveal">
+          <article className="service-card reveal">
             <div className="service-icon">₹</div>
             <span className="service-num">01</span>
             <h3>Sell Gold for Cash</h3>
