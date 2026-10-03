@@ -911,11 +911,12 @@
 }
 
 /* Give the tightly framed Aryan emblem room to remain legible. */
+.aryan-home .site-header .brand{gap:2px}
 .aryan-home .site-header .brand-wordmark{
   display:flex;
   flex-direction:column;
   align-items:center;
-  font:400 14px/1.4 Arial,sans-serif;
+  font:700 18px/1.4 Arial,sans-serif;
   letter-spacing:0;
   white-space:nowrap;
   color:#000;
@@ -927,6 +928,9 @@
 .aryan-home .site-header .brand-logo-shell{
   width:72px;
   height:72px;
+  border:0;
+  background:transparent;
+  box-shadow:none;
   border-radius:16px;
   margin-right:0;
 }
