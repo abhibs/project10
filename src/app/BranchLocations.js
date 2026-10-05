@@ -13,7 +13,7 @@ function BranchCard({ branch }) {
   return <article className={styles.card} id={"branch-" + branch.slug}>
     {branch.image && !imageFailed
       ? <Image className={styles.image} src={"/api/branch-images/" + branch.image} alt={branch.name + " branch"} width={600} height={360} unoptimized onError={() => setImageFailed(true)} />
-      : <div className={styles.imageFallback}><Image src="/logo.jpeg" alt="Aryan Gold" width={80} height={80} /><span>ARYAN GOLD · {branch.city}</span></div>}
+      : <div className={styles.imageFallback}><Image src="/aryan-mark.png" alt="Aryan Gold" width={80} height={80} /><span>ARYAN GOLD · {branch.city}</span></div>}
     <div className={styles.cardBody}>
       <span className={styles.area}>{branch.area} · {branch.city}</span>
       <h3>{branch.name}</h3>

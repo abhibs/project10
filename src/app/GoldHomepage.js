@@ -1,11 +1,43 @@
 "use client";
 
-import Image from "next/image";
+import Brand from "./Brand";
 import BranchLocations from "./BranchLocations";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const FALLBACK_RATES = {24: 14250, 22: 13062, 18: 10688};
 const rupees = new Intl.NumberFormat("en-IN", {style: "currency", currency: "INR", maximumFractionDigits: 0});
+
+function AnimatedAmount({ value }) {
+  const number = useRef(null);
+  const displayed = useRef(value);
+
+  useEffect(() => {
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const from = displayed.current;
+    let frame;
+    const finish = () => {
+      cancelAnimationFrame(frame);
+      displayed.current = value;
+      number.current.textContent = rupees.format(value);
+    };
+    const start = performance.now();
+    const tick = (now) => {
+      const progress = Math.min((now - start) / 420, 1);
+      displayed.current = from + (value - from) * (1 - Math.pow(1 - progress, 3));
+      number.current.textContent = rupees.format(displayed.current);
+      if (progress < 1) frame = requestAnimationFrame(tick);
+    };
+    if (motion.matches || from === value) finish();
+    else frame = requestAnimationFrame(tick);
+    motion.addEventListener("change", finish);
+    return () => {
+      cancelAnimationFrame(frame);
+      motion.removeEventListener("change", finish);
+    };
+  }, [value]);
+
+  return <strong id="estimate-value"><span ref={number} aria-hidden="true">{rupees.format(value)}</span><span className="amount-accessible">{rupees.format(value)}</span></strong>;
+}
 
 function StepIcon({type}) {
   const icons = {
@@ -20,6 +52,7 @@ function StepIcon({type}) {
 
 export default function GoldHomepage() {
   const root = useRef(null);
+  const scrollProgress = useRef(null);
   const pending = useRef(null);
   const submitLock = useRef({booking: false, contact: false});
   const [menuOpen, setMenuOpen] = useState(false);
@@ -76,6 +109,8 @@ export default function GoldHomepage() {
       fetchRates();
     }, 0);
     const interval = setInterval(fetchRates, 60000);
+    const container = root.current;
+    container.dataset.motion = "ready";
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -83,17 +118,44 @@ export default function GoldHomepage() {
           observer.unobserve(entry.target);
         }
       });
-    }, {threshold: 0.12});
-    root.current.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+    }, {threshold: 0.08});
+    container.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
     return () => {
       clearTimeout(timer);
       clearInterval(interval);
       observer.disconnect();
+      delete container.dataset.motion;
       const controller = pending.current;
       pending.current = null;
       controller?.abort();
     };
   }, [fetchRates]);
+
+  useEffect(() => {
+    const container = root.current;
+    let frame;
+    const update = () => {
+      frame = undefined;
+      const distance = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = distance > 0 ? Math.min(window.scrollY / distance, 1) : 0;
+      scrollProgress.current.style.transform = `scaleX(${progress})`;
+      container.dataset.scrolled = window.scrollY > 40 ? "true" : "false";
+    };
+    const schedule = () => {
+      if (frame === undefined) frame = requestAnimationFrame(update);
+    };
+    const observer = new ResizeObserver(schedule);
+    observer.observe(container);
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    schedule();
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+    };
+  }, []);
 
   useEffect(() => {
     if (!toast) return;
@@ -103,6 +165,23 @@ export default function GoldHomepage() {
 
   function keepNameCharacters(event) {
     event.currentTarget.value = event.currentTarget.value.replace(/[^\p{L}\s]/gu, "");
+  }
+
+  function moveHeroCard(event) {
+    if (!window.matchMedia("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)").matches) return;
+    const card = event.currentTarget;
+    const bounds = card.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width;
+    const y = (event.clientY - bounds.top) / bounds.height;
+    card.style.setProperty("--card-rx", `${(0.5 - y) * 4}deg`);
+    card.style.setProperty("--card-ry", `${(x - 0.5) * 4}deg`);
+    card.style.setProperty("--spot-x", `${x * 100}%`);
+    card.style.setProperty("--spot-y", `${y * 100}%`);
+  }
+
+  function resetHeroCard(event) {
+    event.currentTarget.style.removeProperty("--card-rx");
+    event.currentTarget.style.removeProperty("--card-ry");
   }
 
   function keepTenDigits(event) {
@@ -154,19 +233,27 @@ export default function GoldHomepage() {
 
   return (
     <div className="aryan-home" data-theme="light" ref={root}>
-<div className="topbar">
-    <div className="container topbar-inner">
-      <span>Transparent gold evaluation • Fast payout • Private & secure</span>
-      <a href="#rates">View today&apos;s gold rate <span aria-hidden="true">→</span></a>
+<div className="topbar" aria-label="Gold rates and service highlights">
+    <div className="topbar-marquee">
+      <div className="topbar-track">
+        {[0, 1].map((copy) => (
+          <div className="topbar-marquee-group" key={copy} aria-hidden={copy === 1}>
+            {[24, 22, 18].map((karat) => (
+              <span className="topbar-marquee-pair" key={karat}>
+                <span className="topbar-rate">{karat}K gold <strong>{rupees.format(rates[karat])}/g</strong></span>
+                <span className="topbar-promise">Transparent gold evaluation <b>•</b> Fast payout <b>•</b> Private &amp; secure</span>
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 
   <header className="site-header" id="home">
+    <div className="reading-progress" ref={scrollProgress} aria-hidden="true" />
     <div className="container nav-wrap">
-      <a className="brand" href="#home" aria-label="Aryan Gold Buyers home">
-        <span className="brand-logo-shell"><Image className="brand-image" src="/aryan-mark.png" width={64} height={64} alt="Aryan Gold Buyers logo" /></span>
-        <span className="brand-wordmark"><span>ARYAN</span><span>Gold Buyers</span></span>
-      </a>
+      <Brand href="#home" className="brand" />
 
       <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="main-nav" aria-label={menuOpen ? "Close menu" : "Open menu"}>
         <span></span><span></span><span></span>
@@ -210,7 +297,7 @@ export default function GoldHomepage() {
         <div className="hero-visual reveal delay-1">
           <div className="gold-orbit orbit-one"></div>
           <div className="gold-orbit orbit-two"></div>
-          <div className="hero-card">
+          <div className="hero-card" onPointerMove={moveHeroCard} onPointerLeave={resetHeroCard}>
             <div className="hero-card-top">
               <span>Today&apos;s indicative rate</span>
               <span className="live-pill"><i></i> {live ? "PUBLISHED" : "INDICATIVE"}</span>
@@ -295,9 +382,13 @@ export default function GoldHomepage() {
               </select>
             </label>
           </div>
+          <div className="weight-presets" role="group" aria-label="Quick gold weight">
+            <span>Try a weight</span>
+            {[5, 10, 20, 50].map((grams) => <button key={grams} type="button" aria-pressed={weightNumber === grams} onClick={() => setWeight(String(grams))}>{grams} g</button>)}
+          </div>
           <div className="value-panel">
             <span>Estimated metal value</span>
-            <strong id="estimate-value">{rupees.format(weightNumber * rates[purity])}</strong>
+            <AnimatedAmount value={weightNumber * rates[purity]} />
             <small id="estimate-copy">{`${weightNumber} g × ${purity}K reference rate of ${rupees.format(rates[purity])}/g`}</small>
           </div>
           <div className="calc-actions">
@@ -472,17 +563,14 @@ export default function GoldHomepage() {
   <footer>
     <div className="container footer-grid">
       <div className="footer-brand">
-        <div className="brand-fallback footer-wordmark">
-          <span className="brand-mark">AG</span>
-          <span className="brand-copy"><small>GOLD</small><strong>ARYAN</strong><small>BUYERS</small></span>
-        </div>
+        <Brand href="#home" className="brand footer-wordmark" />
         <p>Transparent gold buying, pledged-gold assistance and convenient valuation services.</p>
       </div>
       <div><h4>Services</h4><a href="#services">Sell Gold</a><a href="#pledge">Release Pledged Gold</a><a href="#calculator">Gold Calculator</a><a href="#booking">Book Valuation</a></div>
       <div><h4>Quick Links</h4><a href="#rates">Gold Rate</a><a href="#branches">Our Branches</a><a href="#how-it-works">How It Works</a><a href="#faq">FAQs</a><a href="#contact">Contact</a></div>
       <div><h4>Important</h4><p className="footer-small">Rates shown online are indicative. Final value is confirmed after physical evaluation and applicable compliance checks.</p></div>
     </div>
-    <div className="container footer-bottom"><span>© <span id="year">{new Date().getFullYear()}</span> Aryan Gold. All rights reserved.</span><span>White • Gold • Black premium theme</span></div>
+    <div className="container footer-bottom"><span>© <span id="year">{new Date().getFullYear()}</span> Aryan Gold. All rights reserved.</span></div>
   </footer>
 
   <div className="floating-actions" aria-label="Quick actions">

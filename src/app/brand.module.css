@@ -1,0 +1,6 @@
+.brand { display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; color: inherit; text-decoration: none; }
+.mark { display: block; flex: none; width: 64px; height: 64px; object-fit: contain; border-radius: 10px; }
+.wordmark { display: flex; flex-direction: column; align-items: center; gap: 2px; font-family: "Playfair Display", Georgia, serif; font-weight: 700; letter-spacing: -.025em; white-space: nowrap; }
+.wordmark > span:first-child { font-size: 28px; line-height: 1; }
+.wordmark > span:last-child { color: var(--brand-label-color, #806024); font-size: 17px; line-height: 1.1; }
+@media(max-width:560px) { .mark { width: 56px; height: 56px; } .wordmark > span:first-child { font-size: 24px; } .wordmark > span:last-child { font-size: 15px; } }

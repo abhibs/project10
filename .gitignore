@@ -40,5 +40,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-# Runtime branch images are stored outside the public build output.
-/uploads/branches/

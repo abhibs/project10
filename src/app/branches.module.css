@@ -1,33 +1,33 @@
-.section { background: #006A64; color: #FDF4E6; scroll-margin-top: 100px; }
+.section { background-color:#165D58; background-image:linear-gradient(90deg,rgba(0,91,85,.97),rgba(0,91,85,.65)),url("/ornaments/branches-bracelet.webp"); background-size:cover,cover; background-position:center,right center; background-repeat:no-repeat,no-repeat; color: #FAF7F0; scroll-margin-top: 100px; }
 .heading { display: flex; justify-content: space-between; align-items: end; gap: 32px; margin-bottom: 36px; }
-.heading .kicker { color: #FDF4E6; font-size: 11px; font-weight: 800; letter-spacing: .16em; margin: 0 0 14px; }
+.heading .kicker { color: #FAF7F0; font-size: 11px; font-weight: 800; letter-spacing: .16em; margin: 0 0 14px; }
 .heading h2 { max-width: 640px; margin: 0; font-family: var(--font-aryan-display), Georgia, serif; font-size: clamp(32px, 4vw, 52px); line-height: 1.15; }
 .heading p { margin: 18px 0 0; font-size: 14px; line-height: 1.8; }
 .search { flex-shrink: 0; width: 260px; display: grid; gap: 8px; font-size: 12px; font-weight: 800; }
-.search input { width: 100%; padding: 14px; border: 2px solid #A11E1E; border-radius: 12px; background: #FDF4E6; color: #006A64; font: inherit; font-weight: 400; }
+.search input { width: 100%; padding: 14px; border: 2px solid #C54136; border-radius: 12px; background: #FAF7F0; color: #165D58; font: inherit; font-weight: 400; }
 .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
-.card { min-width: 0; display: flex; flex-direction: column; overflow: hidden; border: 2px solid #A11E1E; border-radius: 24px; box-shadow: 0 16px 40px rgba(0,0,0,.12); }
+.card { min-width: 0; display: flex; flex-direction: column; overflow: hidden; border: 2px solid #C54136; border-radius: 24px; box-shadow: 0 16px 40px rgba(0,0,0,.12); }
 .image { width: 100%; height: 210px; object-fit: cover; }
-.imageFallback { min-height: 210px; background: #FDF4E6; color: #F5C21B; display: grid; place-content: center; justify-items: center; gap: 16px; }
-.imageFallback img { border-radius: 50%; border: 2px solid #F5C21B; }
+.imageFallback { min-height: 210px; background: #FAF7F0; color: #F4C84A; display: grid; place-content: center; justify-items: center; gap: 16px; }
+.imageFallback img { border-radius: 50%; border: 2px solid #F4C84A; }
 .imageFallback span { font-size: 11px; font-weight: 800; letter-spacing: .08em; }
 .cardBody { flex: 1; display: flex; flex-direction: column; padding: 26px; overflow-wrap: anywhere; }
-.area { color: #FDF4E6; font-size: 11px; font-weight: 800; }
+.area { color: #FAF7F0; font-size: 11px; font-weight: 800; }
 .card h3 { margin: 12px 0 16px; font-family: var(--font-aryan-display), Georgia, serif; font-size: 26px; line-height: 1.25; }
 .address { margin: 0 0 22px; font-size: 13px; line-height: 1.8; white-space: pre-wrap; }
-.timings { display: grid; gap: 8px; margin: auto 0 0; padding: 16px; border-radius: 12px; background: #FDF4E6; color: #006A64; font-size: 12px; }
-.timings strong { color: #F5C21B; }
-.section .timings span { color: #006A64; }
+.timings { display: grid; gap: 8px; margin: auto 0 0; padding: 16px; border-radius: 12px; background: #FAF7F0; color: #165D58; font-size: 12px; }
+.timings strong { color: #F4C84A; }
+.section .timings span { color: #165D58; }
 .links { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 22px; font-size: 12px; font-weight: 800; }
 .links a { text-decoration: none; }
-.directions { padding: 12px 16px; border-radius: 999px; background: #F5C21B; color: #000; }
-.more { color: #A11E1E; }
+.directions { padding: 12px 16px; border-radius: 999px; background: #F4C84A; color: #000; }
+.more { color: #F4C84A; }
 .notice { padding: 28px; border: 1px solid rgba(253,244,230,.55); border-radius: 18px; font-size: 14px; line-height: 1.8; }
-.notice a, .notice button { color: #A11E1E; font-weight: 800; }
+.notice a, .notice button { color: #F4C84A; font-weight: 800; }
 .notice button { margin-left: 8px; background: transparent; border: 0; text-decoration: underline; cursor: pointer; }
-.section :focus-visible { outline: 3px solid #A11E1E; outline-offset: 3px; }
+.section :focus-visible { outline: 3px solid #C54136; outline-offset: 3px; }
 @media (max-width: 1000px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .heading { align-items: start; flex-direction: column; } .search { width: min(100%, 400px); } }
 @media (max-width: 600px) { .grid { grid-template-columns: minmax(0, 1fr); } }
 .search input::placeholder { color: rgba(0,106,100,.72); }
 
-.imageFallback span, .timings strong { color: #006A64; }
+.imageFallback span, .timings strong { color: #165D58; }

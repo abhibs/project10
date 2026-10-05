@@ -1,9 +1,9 @@
 .theme {
-  --admin-teal: #006A64;
-  --admin-gold: #F5C21B;
-  --admin-red: #A11E1E;
-  --admin-cream: #FDF4E6;
-  --admin-ink: #000000;
+  --admin-teal: #165D58;
+  --admin-gold: #F4C84A;
+  --admin-red: #C54136;
+  --admin-cream: #FAF7F0;
+  --admin-ink: #203D35;
   --admin-border: rgba(0, 106, 100, .24);
   --admin-tint: rgba(0, 106, 100, .06);
   --admin-shadow: 0 16px 40px rgba(0, 106, 100, .08);
