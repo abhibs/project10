@@ -291,9 +291,9 @@ export default function GoldHomepage() {
         <a href="#rates">Gold Rate</a>
         <a href="#calculator">Calculator</a>
         <a href="#how-it-works-testing">How it works</a>
-        <a href="#booking">Book Service</a>
         <a href="#branches">Branches</a>
         <a href="#faq">FAQ</a>
+        <a href="#booking">Book Service</a>
       </nav>
 
 
@@ -518,6 +518,7 @@ export default function GoldHomepage() {
     <PaymentSection />
     <ExperienceSection />
     <StorySection />
+    <FaqSection />
 
     <section className="booking-section booking-refresh" id="booking">
       <div className="container booking-grid">
@@ -558,7 +559,6 @@ export default function GoldHomepage() {
       </div>
     </section>
 
-    <FaqSection />
   </main>
 
   <footer>
