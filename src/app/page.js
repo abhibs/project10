@@ -1,5 +1,6 @@
 import GoldHomepage from "./GoldHomepage";
 import "./home.css";
+import "./booking-refresh.css";
 import { Manrope, Playfair_Display } from "next/font/google";
 
 const bodyFont = Manrope({

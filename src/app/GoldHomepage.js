@@ -2,10 +2,48 @@
 
 import Brand from "./Brand";
 import BranchLocations from "./BranchLocations";
+import PaymentSection from "./PaymentSection";
+import ExperienceSection from "./ExperienceSection";
+import StorySection from "./StorySection";
+import FaqSection from "./FaqSection";
+import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const FALLBACK_RATES = {24: 14250, 22: 13062, 18: 10688};
 const rupees = new Intl.NumberFormat("en-IN", {style: "currency", currency: "INR", maximumFractionDigits: 0});
+const BUY_ITEMS = [
+  {title: "Gold Jewellery", description: "Chains, rings, bangles and more", image: "/buy-gold-jewellery.webp", alt: "Traditional gold jewellery on emerald velvet"},
+  {title: "Old Gold", description: "Unused and outdated jewellery", image: "/buy-old-gold.webp", alt: "Collection of old gold chains and rings"},
+  {title: "Broken Gold", description: "Damaged and broken articles", image: "/buy-broken-gold.webp", alt: "Broken gold rings and jewellery pieces"},
+  {title: "Gold Coins", description: "All eligible gold coins", image: "/buy-gold-coins.webp", alt: "Stack of gold coins"},
+  {title: "Gold Bars / Biscuits", description: "Investment gold, subject to verification", image: "/buy-gold-bars.webp", alt: "Stack of gold bars"},
+  {title: "Silver Articles", description: "Silver jewellery, coins and more", image: "/buy-silver-articles.webp", alt: "Silver vessels and jewellery"},
+];
+const TESTING_BENEFITS = [
+  {title: "No Scratching", description: "Truly non-destructive evaluation", icon: "shield", tone: "teal"},
+  {title: "No Cutting", description: "Your jewellery stays intact", icon: "atom", tone: "red"},
+  {title: "Accurate Purity Check", description: "Advanced XRF technology", icon: "search", tone: "teal"},
+  {title: "Transparent Results", description: "See the purity details clearly", icon: "check", tone: "red"},
+];
+const TESTING_STEPS = [
+  {title: "Place Your Item", description: "Keep your gold item on the testing machine.", icon: "bangle"},
+  {title: "XRF Analysis", description: "Advanced technology analyses purity instantly.", icon: "scan"},
+  {title: "View Results", description: "See the purity details on screen.", icon: "report"},
+  {title: "Get Valuation", description: "We offer a fair price based on verified purity.", icon: "check"},
+];
+const VALUATION_FACTORS = [
+  {title: "Weight", description: "Verified weight on a digital machine.", icon: "scale"},
+  {title: "Purity", description: "Measured using advanced XRF technology.", icon: "gem"},
+  {title: "Current Gold Rate", description: "Applicable live market rate at the time of evaluation.", icon: "chart"},
+  {title: "Service Charges", description: "Clearly explained before you decide.", icon: "report"},
+  {title: "Your Final Offer", description: "Based on verified weight, purity and live rate.", icon: "rupee"},
+];
+const VALUATION_STEPS = [
+  {title: "Accurate Weight Check", description: "Your gold is weighed on a calibrated digital machine in front of you.", image: "/valuation-weight.webp", alt: "Gold jewellery on a digital weighing scale"},
+  {title: "Purity Testing", description: "We use advanced XRF technology to check the purity without damaging your item.", image: "/valuation-purity.webp", alt: "Jeweller testing a gold bangle with an XRF scanner"},
+  {title: "Live Gold Rate", description: "We apply the current market rate at the time of evaluation.", image: "/valuation-rate.webp", alt: "Gold rate display beside gold bars", liveRate: true},
+  {title: "Clear Final Offer", description: "You get a complete breakup and the final offer before you decide.", image: "/valuation-offer.webp", alt: "Valuation sheet with gold jewellery"},
+];
 
 function AnimatedAmount({ value }) {
   const number = useRef(null);
@@ -39,15 +77,40 @@ function AnimatedAmount({ value }) {
   return <strong id="estimate-value"><span ref={number} aria-hidden="true">{rupees.format(value)}</span><span className="amount-accessible">{rupees.format(value)}</span></strong>;
 }
 
-function StepIcon({type}) {
-  const icons = {
-    book: <><rect x="7" y="9" width="34" height="32" rx="5"/><path d="M7 18h34M15 6v7M33 6v7M15 27l5 5 10-11"/></>,
-    test: <><path d="M19 6h10M21 6v13l-9 15a5 5 0 0 0 4 8h16a5 5 0 0 0 4-8l-9-15V6M17 30h14"/><circle cx="23" cy="35" r="1"/><circle cx="29" cy="34" r="1"/></>,
-    value: <><path d="M6 24 22 8h15a4 4 0 0 1 4 4v15L25 43a4 4 0 0 1-6 0L6 30a4 4 0 0 1 0-6Z"/><circle cx="33" cy="16" r="2"/><path d="M17 25h12M21 25c4 0 4 6 0 6h-2l7 7"/></>,
-    paid: <><rect x="5" y="13" width="38" height="28" rx="5"/><path d="M5 21h38M12 13V8h25M17 29h10M21 29c3 0 3 5 0 5h-2l6 5"/></>,
+function HeroBenefitIcon({type}) {
+  const paths = {
+    diamond: <><path d="M4 16 12 5h24l8 11-20 27L4 16Z"/><path d="M4 16h40M12 5l6 11 6 27 6-27 6-11"/></>,
+    shield: <><path d="M24 4 40 10v12c0 11-7 18-16 22C15 40 8 33 8 22V10L24 4Z"/><path d="m16 24 5 5 11-12"/></>,
+    chart: <><path d="M5 41h38M10 35V26h7v9M21 35V19h7v16M32 35V12h7v23M10 20l11-8 8 5L41 5M35 5h6v6"/></>,
+    payment: <><circle cx="24" cy="24" r="19"/><path d="M16 15h17M16 21h17M18 15c11 0 11 10 0 10l13 11"/></>,
+    coins: <><ellipse cx="17" cy="13" rx="10" ry="4"/><path d="M7 13v8c0 2 4 4 10 4 2 0 4 0 6-1M7 20c1 2 5 4 10 4"/><ellipse cx="31" cy="25" rx="10" ry="4"/><path d="M21 25v12c0 2 4 4 10 4s10-2 10-4V25M21 31c0 2 4 4 10 4s10-2 10-4"/></>,
+    support: <><circle cx="24" cy="15" r="6"/><path d="M12 37v-3c0-6 5-10 12-10s12 4 12 10v3H12Z"/><circle cx="9" cy="20" r="4"/><path d="M8 27c-4 0-6 3-6 8v2h7M39 27c4 0 7 3 7 8v2h-7"/><circle cx="39" cy="20" r="4"/></>,
   };
+  return <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[type]}</svg>;
+}
 
-  return <span className="step-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">{icons[type]}</svg></span>;
+function TestingIcon({type}) {
+  const paths = {
+    shield: <><path d="M24 4 40 10v12c0 11-7 18-16 22C15 40 8 33 8 22V10L24 4Z"/><path d="m16 24 5 5 11-12"/></>,
+    atom: <><circle cx="24" cy="24" r="3"/><ellipse cx="24" cy="24" rx="18" ry="7"/><ellipse cx="24" cy="24" rx="18" ry="7" transform="rotate(60 24 24)"/><ellipse cx="24" cy="24" rx="18" ry="7" transform="rotate(120 24 24)"/></>,
+    search: <><circle cx="21" cy="21" r="14"/><path d="m31 31 12 12"/></>,
+    check: <><circle cx="24" cy="24" r="19"/><path d="m14 24 7 7 14-15"/></>,
+    bangle: <><ellipse cx="24" cy="18" rx="17" ry="7"/><path d="M7 18v12c0 4 8 7 17 7s17-3 17-7V18M7 24c0 4 8 7 17 7s17-3 17-7"/></>,
+    scan: <><path d="M5 17V7h10M33 7h10v10M43 31v10H33M15 41H5V31"/><path d="m24 15 9 9-9 9-9-9 9-9Z"/></>,
+    report: <><path d="M12 5h18l7 7v31H12V5Z"/><path d="M30 5v8h7M18 21h13M18 27h13M18 33h10"/></>,
+  };
+  return <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[type]}</svg>;
+}
+
+function ValuationIcon({type}) {
+  const paths = {
+    scale: <><path d="M24 5v35M11 12h26M13 12 5 29h16l-8-17ZM35 12l-8 17h16l-8-17ZM14 42h20"/></>,
+    gem: <><path d="M5 18 14 7h20l9 11-19 24L5 18Z"/><path d="M5 18h38M14 7l6 11 4 24 4-24 6-11"/></>,
+    chart: <><path d="M5 42h38M9 37V26h8v11M20 37V19h8v18M31 37V12h8v25M8 21l12-8 8 4L41 5M35 5h6v6"/></>,
+    report: <><path d="M12 5h18l7 7v31H12V5Z"/><path d="M30 5v8h7M18 21h13M18 27h13M18 33h10"/></>,
+    rupee: <><path d="M11 13h26M11 20h26M15 13c15 0 15 13 0 13l17 17"/></>,
+  };
+  return <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[type]}</svg>;
 }
 
 export default function GoldHomepage() {
@@ -66,9 +129,9 @@ export default function GoldHomepage() {
   const [minimumDate, setMinimumDate] = useState("");
   const [loading, setLoading] = useState(false);
   const [live, setLive] = useState(false);
-  const [updated, setUpdated] = useState("using fallback");
   const [rateStatus, setRateStatus] = useState("Loading published gold rates…");
   const weightNumber = Math.max(0, Number(weight) || 0);
+  const selectedRate = purity === 20 ? (Number(rates[20]) || Math.round(rates[24] * 20 / 24)) : rates[purity];
 
   const fetchRates = useCallback(async () => {
     pending.current?.abort();
@@ -87,14 +150,12 @@ export default function GoldHomepage() {
       setRates(data.rates);
       const date = new Date(data.updatedAt);
       const time = date.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" });
-      setUpdated(time);
       setLive(true);
       setRateStatus(`Published gold rates • updated ${time}`);
     } catch {
       if (pending.current !== controller) return;
       setRates(FALLBACK_RATES);
       setLive(false);
-      setUpdated("using fallback");
       setRateStatus("Published rates unavailable • showing demo fallback rates");
     } finally {
       clearTimeout(timeout);
@@ -167,23 +228,6 @@ export default function GoldHomepage() {
     event.currentTarget.value = event.currentTarget.value.replace(/[^\p{L}\s]/gu, "");
   }
 
-  function moveHeroCard(event) {
-    if (!window.matchMedia("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)").matches) return;
-    const card = event.currentTarget;
-    const bounds = card.getBoundingClientRect();
-    const x = (event.clientX - bounds.left) / bounds.width;
-    const y = (event.clientY - bounds.top) / bounds.height;
-    card.style.setProperty("--card-rx", `${(0.5 - y) * 4}deg`);
-    card.style.setProperty("--card-ry", `${(x - 0.5) * 4}deg`);
-    card.style.setProperty("--spot-x", `${x * 100}%`);
-    card.style.setProperty("--spot-y", `${y * 100}%`);
-  }
-
-  function resetHeroCard(event) {
-    event.currentTarget.style.removeProperty("--card-rx");
-    event.currentTarget.style.removeProperty("--card-ry");
-  }
-
   function keepTenDigits(event) {
     event.currentTarget.value = event.currentTarget.value.replace(/\D/g, "").slice(0, 10);
   }
@@ -233,23 +277,6 @@ export default function GoldHomepage() {
 
   return (
     <div className="aryan-home" data-theme="light" ref={root}>
-<div className="topbar" aria-label="Gold rates and service highlights">
-    <div className="topbar-marquee">
-      <div className="topbar-track">
-        {[0, 1].map((copy) => (
-          <div className="topbar-marquee-group" key={copy} aria-hidden={copy === 1}>
-            {[24, 22, 18].map((karat) => (
-              <span className="topbar-marquee-pair" key={karat}>
-                <span className="topbar-rate">{karat}K gold <strong>{rupees.format(rates[karat])}/g</strong></span>
-                <span className="topbar-promise">Transparent gold evaluation <b>•</b> Fast payout <b>•</b> Private &amp; secure</span>
-              </span>
-            ))}
-          </div>
-        ))}
-      </div>
-    </div>
-  </div>
-
   <header className="site-header" id="home">
     <div className="reading-progress" ref={scrollProgress} aria-hidden="true" />
     <div className="container nav-wrap">
@@ -263,220 +290,236 @@ export default function GoldHomepage() {
         <a href="#services">Services</a>
         <a href="#rates">Gold Rate</a>
         <a href="#calculator">Calculator</a>
-        <a href="#how-it-works">How it works</a>
+        <a href="#how-it-works-testing">How it works</a>
         <a href="#booking">Book Service</a>
         <a href="#branches">Branches</a>
         <a href="#faq">FAQ</a>
       </nav>
 
 
-      <a className="btn btn-dark nav-cta" href="#contact">Get a Call Back</a>
+      <a className="btn btn-gold nav-cta" href="#booking">Get Free Gold Valuation <span aria-hidden="true">→</span></a>
     </div>
   </header>
 
   <main>
-    <section className="hero section-shell">
+    <section className="hero section-shell" id="hero" aria-labelledby="hero-title">
       <div className="container hero-grid">
         <div className="hero-copy reveal">
-          <div className="eyebrow"><span className="dot"></span> Trusted gold buying, in a premium blended finish</div>
-          <h1>Your gold.<br /><span>Your value.</span><br />Paid fast.</h1>
-          <p className="hero-lead">Sell old gold, unlock pledged jewellery, or request a doorstep valuation with a process built around transparency, convenience and speed.</p>
+          <div className="eyebrow">Gold buyers in Bangalore &amp; Chennai</div>
+          <h1 id="hero-title">Your Gold Deserves<br /><span>Its True Value.</span></h1>
+          <p className="hero-lead">Sell your gold with confidence at Aryan Gold Buyers. Get your gold evaluated in front of you using advanced, non-destructive testing technology — without scratching, cutting or damaging your ornaments.</p>
 
           <div className="hero-actions">
-            <a className="btn btn-gold btn-lg" href="#calculator">Calculate Gold Value</a>
-            <a className="btn btn-outline btn-lg" href="#booking">Book Free Valuation</a>
+            <a className="btn btn-gold btn-lg" href="#booking">Get Free Gold Valuation <span aria-hidden="true">→</span></a>
+            <a className="btn btn-outline btn-lg" href="#branches"><span aria-hidden="true">⌖</span> Find Nearest Branch</a>
           </div>
 
-          <div className="trust-row" aria-label="Service highlights">
-            <div><strong>100%</strong><span>Transparent testing</span></div>
-            <div><strong>Fast</strong><span>Cash / bank payout</span></div>
-            <div><strong>Secure</strong><span>Private process</span></div>
+          <div className="trust-row" aria-label="Our service benefits">
+            <div><HeroBenefitIcon type="diamond" /><span>Non-Destructive<br />Testing</span></div>
+            <div><HeroBenefitIcon type="shield" /><span>Transparent<br />Evaluation</span></div>
+            <div><HeroBenefitIcon type="chart" /><span>Competitive<br />Gold Rate</span></div>
+            <div><HeroBenefitIcon type="payment" /><span>Quick<br />Payment</span></div>
           </div>
         </div>
 
-        <div className="hero-visual reveal delay-1">
-          <div className="gold-orbit orbit-one"></div>
-          <div className="gold-orbit orbit-two"></div>
-          <div className="hero-card" onPointerMove={moveHeroCard} onPointerLeave={resetHeroCard}>
-            <div className="hero-card-top">
-              <span>Today&apos;s indicative rate</span>
-              <span className="live-pill"><i></i> {live ? "PUBLISHED" : "INDICATIVE"}</span>
-            </div>
-            <div className="hero-price-row">
-              <div>
-                <span>24K / gram</span>
-                <strong id="hero-rate">{rupees.format(rates[24])}</strong>
-              </div>
-              <div className="mini-badge">999<br /><small>purity</small></div>
-            </div>
-            <div className="hero-highlights" aria-label="Service highlights">
-              <div className="hero-highlight-item"><span>Purity Test</span><strong>XRF Evaluation</strong></div>
-              <div className="hero-highlight-item"><span>Payout</span><strong>Instant Transfer</strong></div>
-              <div className="hero-highlight-item"><span>Service</span><strong>Branch / Doorstep</strong></div>
-            </div>
-            <div className="hero-card-bottom"><span>Updated <b id="hero-updated">{updated}</b></span><a href="#rates">See all rates →</a></div>
-          </div>
-        </div>
+        <p className="hero-motto">Trust today<br />Brighter<br />tomorrows</p>
       </div>
     </section>
 
     <section className="rate-strip" id="rates">
       <div className="container rate-grid">
         <div className="rate-intro">
-          <span className="kicker">GOLD RATE TRACKER</span>
-          <h2>Gold rate at a glance</h2>
-          <p>Indicative metal value per gram. Final buying value depends on verified purity and evaluation.</p>
+          <h2>{live ? "Today’s Gold Rate" : "Indicative Gold Rate"}</h2>
+          <p>Know the market before you sell.</p>
         </div>
-        <div className="rate-card">
-          <span>24K Gold</span>
-          <strong id="rate-24">{rupees.format(rates[24])}</strong>
-          <small>per gram</small>
+        <div className="rate-values">
+          {[24, 22, 18].map((karat) => (
+            <div className="rate-card" key={karat}>
+              <span>{karat}K Gold</span>
+              <strong id={`rate-${karat}`}>{rupees.format(rates[karat])}</strong>
+              <small>per gram</small>
+            </div>
+          ))}
         </div>
-        <div className="rate-card">
-          <span>22K Gold</span>
-          <strong id="rate-22">{rupees.format(rates[22])}</strong>
-          <small>per gram</small>
-        </div>
-        <div className="rate-card">
-          <span>18K Gold</span>
-          <strong id="rate-18">{rupees.format(rates[18])}</strong>
-          <small>per gram</small>
-        </div>
+        <a className="rate-calculator" href="#calculator">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="9" y="4" width="30" height="40" rx="3"/><path d="M15 11h18v8H15zM16 26h2m6 0h2m6 0h1M16 33h2m6 0h2m6 0h1"/></svg>
+          <span>Calculate Your<br />Gold Value</span>
+          <span className="rate-arrow" aria-hidden="true">→</span>
+        </a>
         <div className="rate-meta">
-          <button id="refresh-rates" disabled={loading} onClick={() => fetchRates()} className="text-button" type="button">↻ Refresh rates</button>
+          <span><b>Note:</b> Online rates are indicative. Final purchase value is determined after physical evaluation and verification.</span>
           <span id="rate-status">{rateStatus}</span>
+          <button id="refresh-rates" disabled={loading} onClick={() => fetchRates()} className="text-button" type="button">Refresh rates</button>
         </div>
       </div>
     </section>
 
-    <section className="section" id="calculator">
-      <div className="container calc-grid">
-        <div className="section-copy reveal">
-          <span className="kicker">FREE GOLD VALUATION</span>
-          <h2>Know what your gold could be worth.</h2>
-          <p>Enter approximate weight and purity to see an instant indicative value using the latest rate available.</p>
-          <ul className="check-list">
-            <li>Published-rate based estimate</li>
-            <li>No obligation to sell</li>
-            <li>Final valuation after purity test</li>
-          </ul>
-          <a className="inline-link" href="#booking">Prefer expert help? Book a valuation →</a>
+    <section className="gold-calc-section" id="calculator" aria-labelledby="gold-calc-title">
+      <div className="container gold-calc-inner">
+        <div className="gold-calc-content">
+          <div className="gold-calc-intro reveal">
+            <h2 id="gold-calc-title">What Could Your<br /><span>Gold Be Worth?</span></h2>
+            <p>Get an indicative estimate before visiting us.</p>
+          </div>
+          <div className="gold-calc-panel reveal delay-1">
+            <label className="gold-calc-label" htmlFor="gold-weight">Enter Gold Weight</label>
+            <div className="gold-calc-weight"><input id="gold-weight" type="number" min="0" step="0.1" value={weight} onChange={(event) => setWeight(event.target.value)} inputMode="decimal" /><span>grams</span></div>
+            <span className="gold-calc-label">Select Purity</span>
+            <div className="gold-calc-purities" role="group" aria-label="Gold purity">
+              {[24, 22, 20, 18].map((karat) => <button key={karat} type="button" aria-pressed={purity === karat} onClick={() => setPurity(karat)}>{karat}K</button>)}
+            </div>
+            <div className="gold-calc-rate"><span>{live && purity !== 20 ? "Current" : "Indicative"} {purity}K Gold Rate</span><strong>{rupees.format(selectedRate)} <small>/ gram</small></strong>{purity === 20 && <small>20K rate estimated from the 24K reference.</small>}</div>
+            <div className="gold-calc-value"><span>Estimated Metal Value</span><AnimatedAmount value={weightNumber * selectedRate} /></div>
+            <a className="gold-calc-button" href="#booking">Get Exact Valuation <span aria-hidden="true">→</span></a>
+          </div>
         </div>
+      </div>
+      <p className="gold-calc-note">Calculator values are indicative estimates. Final purchase value requires physical evaluation.</p>
+    </section>
 
-        <div className="calculator-card reveal delay-1">
-          <div className="calc-head">
-            <div><span className="kicker">VALUE CALCULATOR</span><h3>Estimate your gold value</h3></div>
-            <span className="secure-chip">Indicative</span>
+    <section className="section why-section" id="why-aryan" aria-labelledby="why-aryan-title">
+      <div className="container why-shell">
+        <div className="why-layout">
+          <div className="why-intro reveal">
+            <span className="kicker">Why choose Aryan Gold Buyers?</span>
+            <h2 id="why-aryan-title">A Better Way<br />to Sell Your <span>Gold.</span></h2>
+            <p>At Aryan Gold Buyers, we combine advanced technology, transparent evaluation and professional service to give you a clear and confident experience.</p>
           </div>
-          <div className="field-grid two">
-            <label className="field">
-              <span>Gold weight</span>
-              <div className="input-unit"><input id="gold-weight" type="number" min="0" step="0.1" value={weight} onChange={(event) => setWeight(event.target.value)} inputMode="decimal" /><b>grams</b></div>
-            </label>
-            <label className="field">
-              <span>Purity</span>
-              <select id="gold-purity" value={purity} onChange={(event) => setPurity(Number(event.target.value))}>
-                <option value="24">24K (99.9%)</option>
-                <option value="22">22K (91.6%)</option>
-                <option value="18">18K (75.0%)</option>
-              </select>
-            </label>
+          <div className="why-features">
+            <article className="why-feature reveal"><span className="why-feature-icon tone-teal"><HeroBenefitIcon type="diamond" /></span><h3>Non-Destructive<br />Testing</h3><p>Advanced technology designed to evaluate gold without scratching or cutting.</p></article>
+            <article className="why-feature reveal delay-1"><span className="why-feature-icon tone-gold"><HeroBenefitIcon type="shield" /></span><h3>Transparent<br />Evaluation</h3><p>See and understand how your gold is evaluated.</p></article>
+            <article className="why-feature reveal delay-2"><span className="why-feature-icon tone-red"><HeroBenefitIcon type="chart" /></span><h3>Competitive<br />Gold Rate</h3><p>Highly competitive buying prices based on verified purity and weight.</p></article>
+            <article className="why-feature reveal delay-3"><span className="why-feature-icon tone-gold"><HeroBenefitIcon type="coins" /></span><h3>Clear Service<br />Charges</h3><p>Applicable charges are explained before you decide.</p></article>
+            <article className="why-feature reveal"><span className="why-feature-icon tone-red"><HeroBenefitIcon type="payment" /></span><h3>Quick<br />Payment</h3><p>Fast settlement after verification and completion of formalities.</p></article>
+            <article className="why-feature reveal delay-1"><span className="why-feature-icon tone-teal"><HeroBenefitIcon type="support" /></span><h3>Dedicated<br />Support</h3><p>Our customer team is here to answer your questions and guide you at every step.</p></article>
           </div>
-          <div className="weight-presets" role="group" aria-label="Quick gold weight">
-            <span>Try a weight</span>
-            {[5, 10, 20, 50].map((grams) => <button key={grams} type="button" aria-pressed={weightNumber === grams} onClick={() => setWeight(String(grams))}>{grams} g</button>)}
-          </div>
-          <div className="value-panel">
-            <span>Estimated metal value</span>
-            <AnimatedAmount value={weightNumber * rates[purity]} />
-            <small id="estimate-copy">{`${weightNumber} g × ${purity}K reference rate of ${rupees.format(rates[purity])}/g`}</small>
-          </div>
-          <div className="calc-actions">
-            <a className="btn btn-gold" href="#booking">Book Free Evaluation</a>
-            <a className="btn btn-outline" href="#contact">Talk to an Expert</a>
-          </div>
-          <p className="fine-print">This calculator is for guidance only. Stones, non-gold materials, verified purity and applicable buying terms may affect the final offer.</p>
         </div>
       </div>
     </section>
 
-    <section className="section services-section" id="services">
-      <div className="container">
-        <div className="section-heading center reveal">
-          <span className="kicker">ARYAN GOLD SERVICES</span>
-          <h2>One trusted place for every gold need.</h2>
-          <p>Choose the service that fits your situation. Our team can guide you before you visit or arrange a convenient doorstep appointment.</p>
+    <section className="section services-section" id="services" aria-labelledby="services-title">
+      <div className="container services-shell">
+        <div className="services-heading reveal">
+          <span className="kicker">What can we help you with?</span>
+          <h2 id="services-title">Our Services</h2>
         </div>
-
-        <div className="services-grid">
-          <article className="service-card reveal">
-            <div className="service-icon">₹</div>
-            <span className="service-num">01</span>
-            <h3>Sell Gold for Cash</h3>
-            <p>Convert jewellery, coins or old gold into funds with a clear purity check and market-linked valuation.</p>
-            <ul><li>Transparent evaluation</li><li>Quick settlement</li><li>Branch or doorstep support</li></ul>
-            <a href="#calculator">Check value →</a>
+        <div className="services-layout">
+          <article className="service-offer service-sell reveal">
+            <div className="offer-image"><Image src="/service-sell-gold.webp" alt="Ornate gold necklace and earrings on emerald velvet" fill sizes="(max-width: 700px) 100vw, (max-width: 1200px) 35vw, 20vw" /></div>
+            <div className="offer-content">
+              <span className="offer-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="24" cy="24" r="17"/><path d="M17 15h15M17 21h15M19 15c10 0 10 10 0 10l12 10"/></svg></span>
+              <h3>Sell Gold</h3>
+              <p>Sell your old, unused or unwanted gold with a clear and transparent evaluation process.</p>
+              <a className="offer-button" href="#booking">Get Gold Valuation <span aria-hidden="true">→</span></a>
+            </div>
           </article>
-          <article className="service-card reveal delay-1">
-            <div className="service-icon">◆</div>
-            <span className="service-num">02</span>
-            <h3>Release Pledged Gold</h3>
-            <p>Get assistance to release gold pledged with a bank, NBFC or finance company and understand your next options.</p>
-            <ul><li>Private assistance</li><li>Clear documentation flow</li><li>Guided process</li></ul>
-            <a href="#pledge">Request release help →</a>
-          </article>
-          <article className="service-card reveal delay-2">
-            <div className="service-icon">⌂</div>
-            <span className="service-num">03</span>
-            <h3>Doorstep Gold Service</h3>
-            <p>Request a convenient visit where available, or reserve a time at your preferred Aryan Gold branch.</p>
-            <ul><li>Flexible appointment</li><li>Convenient scheduling</li><li>Fast confirmation</li></ul>
-            <a href="#booking">Book service →</a>
+          <article className="service-offer service-pledged reveal delay-1">
+            <div className="offer-image"><Image src="/service-pledged-gold.webp" alt="Gold necklace on a jewelry case beside a loan document" fill sizes="(max-width: 700px) 100vw, (max-width: 1200px) 35vw, 22vw" /></div>
+            <div className="offer-content">
+              <span className="offer-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 17 24 6l19 11H5ZM8 39h32M11 20v16m8-16v16m10-16v16m8-16v16M5 43h38"/></svg></span>
+              <h3>Release Pledged Gold</h3>
+              <p>Gold pledged with a bank or NBFC? We can assist you in releasing eligible pledged gold and help you understand the settlement.</p>
+              <a className="offer-button" href="#booking">Get Pledged Gold Assistance <span aria-hidden="true">→</span></a>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section className="pledge-section" id="pledge">
-      <div className="container pledge-grid">
-        <div className="pledge-visual reveal" aria-hidden="true">
-          <div className="pledge-ring"></div>
-          <div className="pledge-card small-card-a"><span>STEP 1</span><strong>Share pledge details</strong></div>
-          <div className="pledge-card small-card-b"><span>STEP 2</span><strong>Get release guidance</strong></div>
-          <div className="pledge-center"><span>RELEASE</span><strong>YOUR<br />GOLD</strong><small>with expert support</small></div>
+    <section className="section buy-section" id="what-we-buy" aria-labelledby="buy-title">
+      <div className="container buy-shell">
+        <div className="buy-intro reveal">
+          <span className="kicker">What we buy</span>
+          <h2 id="buy-title">We Buy More Than<br /><span>Just Gold Jewellery.</span></h2>
+          <p>Bring your eligible gold and silver items for a transparent evaluation at Aryan Gold Buyers.</p>
         </div>
-        <div className="section-copy reveal delay-1">
-          <span className="kicker light">PLEDGED GOLD SUPPORT</span>
-          <h2>Don’t let your pledged gold stay locked away.</h2>
-          <p>Tell us where your gold is pledged and the approximate outstanding amount. Our team can explain the release process and available service options.</p>
-          <div className="pledge-points">
-            <div><b>01</b><span><strong>Share basic details</strong><small>No sensitive account credentials required online.</small></span></div>
-            <div><b>02</b><span><strong>Speak with a specialist</strong><small>Understand the steps, documents and estimated timeline.</small></span></div>
-            <div><b>03</b><span><strong>Complete securely</strong><small>Proceed only after you are comfortable with the terms.</small></span></div>
+        <div className="buy-grid">
+          {BUY_ITEMS.map((item, index) => (
+            <article className="buy-card reveal" key={item.title} style={{transitionDelay: `${Math.min(index, 3) * 70}ms`}}>
+              <div className="buy-card-image"><Image src={item.image} alt={item.alt} fill sizes="(max-width: 650px) 47vw, (max-width: 1200px) 31vw, 16vw" /></div>
+              <div className="buy-card-copy"><h3>{item.title}</h3><span aria-hidden="true" /><p>{item.description}</p></div>
+            </article>
+          ))}
+        </div>
+        <a className="buy-cta" href="#booking">Check What We Buy <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <section className="testing-section" id="testing" aria-labelledby="testing-title">
+      <div className="testing-main">
+        <div className="container testing-main-inner">
+          <div className="testing-copy reveal">
+            <span className="testing-kicker">Non-Destructive Testing</span>
+            <h2 id="testing-title">Your Jewellery<br />Should Be Tested.<br /><span>Not Damaged.</span></h2>
+            <p>We use advanced non-destructive testing technology designed to analyse your gold’s purity without scratching, cutting or causing any damage.</p>
+            <div className="testing-benefits">
+              {TESTING_BENEFITS.map((benefit) => (
+                <article className="testing-benefit" key={benefit.title}>
+                  <span className={`testing-benefit-icon ${benefit.tone}`}><TestingIcon type={benefit.icon} /></span>
+                  <h3>{benefit.title}</h3>
+                  <p>{benefit.description}</p>
+                </article>
+              ))}
+            </div>
           </div>
-          <a className="btn btn-gold btn-lg" href="#contact">Request Pledge Release Call</a>
+        </div>
+      </div>
+      <div className="testing-process" id="how-it-works-testing">
+        <div className="container testing-process-inner">
+          <div className="testing-steps-panel reveal">
+            <div className="testing-steps-heading"><span className="testing-kicker">How It Works</span><h3>Gold Testing in 4 Simple Steps</h3></div>
+            <ol className="testing-steps-list">
+              {TESTING_STEPS.map((step) => (
+                <li key={step.title}><span className="testing-step-icon"><TestingIcon type={step.icon} /></span><h4>{step.title}</h4><p>{step.description}</p></li>
+              ))}
+            </ol>
+          </div>
+          <aside className="testing-safe-card reveal delay-1">
+            <span className="testing-safe-icon"><TestingIcon type="shield" /></span>
+            <div><h3>100% Safe for<br />Your Jewellery</h3><p>Your gold remains exactly as it is. No cuts, no scratches, no damage — only accurate purity testing.</p></div>
+          </aside>
         </div>
       </div>
     </section>
 
-    <section className="section" id="how-it-works">
-      <div className="container">
-        <div className="section-heading reveal">
-          <span className="kicker">SIMPLE & TRANSPARENT</span>
-          <h2>From gold to payment in four clear steps.</h2>
+    <section className="valuation-section" id="transparent-valuation" aria-labelledby="valuation-title">
+      <div className="valuation-overview">
+        <div className="container valuation-overview-inner">
+          <div className="valuation-heading reveal">
+            <span className="valuation-kicker">Transparent Valuation</span>
+            <h2 id="valuation-title">See How Your<br /><span>Gold’s Value</span><br />Is Calculated.</h2>
+            <p>We weigh, test and value your gold in front of you with complete transparency, so you know exactly what you are getting.</p>
+          </div>
+          <div className="valuation-factors reveal delay-1">
+            {VALUATION_FACTORS.map((factor) => (
+              <div className="valuation-factor" key={factor.title}>
+                <span className="valuation-factor-icon"><ValuationIcon type={factor.icon} /></span>
+                <div><h3>{factor.title}</h3><p>{factor.description}</p></div>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="steps-grid">
-          <div className="step reveal"><div className="step-top"><span>01</span><StepIcon type="book"/></div><div className="step-line"></div><h3>Book</h3><p>Choose branch or doorstep service and your preferred time.</p></div>
-          <div className="step reveal delay-1"><div className="step-top"><span>02</span><StepIcon type="test"/></div><div className="step-line"></div><h3>Test</h3><p>Your gold is weighed and purity is checked transparently.</p></div>
-          <div className="step reveal delay-2"><div className="step-top"><span>03</span><StepIcon type="value"/></div><div className="step-line"></div><h3>Value</h3><p>Receive a clear market-linked valuation before you decide.</p></div>
-          <div className="step reveal delay-3"><div className="step-top"><span>04</span><StepIcon type="paid"/></div><div className="step-line"></div><h3>Get Paid</h3><p>Accept the offer and complete payment through the available payout mode.</p></div>
-        </div>
+      </div>
+      <div className="container valuation-cards">
+        {VALUATION_STEPS.map((step, index) => (
+          <article className="valuation-card reveal" key={step.title} style={{transitionDelay: `${Math.min(index, 3) * 70}ms`}}>
+            <div className="valuation-card-image">
+              <Image src={step.image} alt={step.alt} fill sizes="(max-width: 700px) 90vw, (max-width: 1050px) 45vw, 24vw" />
+              <span className="valuation-step-number">{index + 1}</span>
+              {step.liveRate && <div className="valuation-live-rate"><span>Today’s 24K Gold Rate</span><strong>{rupees.format(rates[24])}</strong><small>per gram</small></div>}
+            </div>
+            <div className="valuation-card-copy"><h3>{step.title}</h3><p>{step.description}</p></div>
+          </article>
+        ))}
       </div>
     </section>
 
     <BranchLocations />
+    <PaymentSection />
+    <ExperienceSection />
+    <StorySection />
 
-    <section className="booking-section" id="booking">
+    <section className="booking-section booking-refresh" id="booking">
       <div className="container booking-grid">
         <div className="booking-copy reveal">
           <span className="kicker light">BOOK A FREE VALUATION</span>
@@ -487,6 +530,14 @@ export default function GoldHomepage() {
         </div>
 
         <form className="form-card reveal delay-1" id="booking-form" onSubmit={(event) => submitContact(event, "booking")}>
+          <div className="booking-form-intro">
+            <div>
+              <span className="booking-form-kicker">YOUR APPOINTMENT</span>
+              <h3>Let&apos;s plan your visit.</h3>
+              <p>Choose a service and a time that works for you.</p>
+            </div>
+            <span className="booking-form-badge">Free valuation</span>
+          </div>
           <div className="mode-switch" role="group" aria-label="Service mode">
             <button className={serviceMode === "Branch Visit" ? "active" : ""} type="button" aria-pressed={serviceMode === "Branch Visit"} onClick={() => setServiceMode("Branch Visit")}>Branch Visit</button>
             <button className={serviceMode === "Doorstep Service" ? "active" : ""} type="button" aria-pressed={serviceMode === "Doorstep Service"} onClick={() => setServiceMode("Doorstep Service")}>Doorstep Service</button>
@@ -507,57 +558,7 @@ export default function GoldHomepage() {
       </div>
     </section>
 
-    <section className="section why-section">
-      <div className="container why-grid">
-        <div className="section-copy reveal">
-          <span className="kicker">THE ARYAN GOLD PROMISE</span>
-          <h2>Confidence at every step.</h2>
-          <p>Gold is personal. The experience should feel professional, transparent and respectful from the first call to final settlement.</p>
-        </div>
-        <div className="why-cards">
-          <div className="why-card reveal"><b>01</b><h3>Clear valuation</h3><p>Weight, purity and rate are explained before you decide.</p></div>
-          <div className="why-card reveal delay-1"><b>02</b><h3>Secure handling</h3><p>Your gold stays within a controlled evaluation process.</p></div>
-          <div className="why-card reveal delay-2"><b>03</b><h3>Fast service</h3><p>Appointments and callbacks are designed to reduce waiting time.</p></div>
-          <div className="why-card reveal delay-3"><b>04</b><h3>Choice & convenience</h3><p>Use a branch or ask about doorstep service availability.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section className="section faq-section" id="faq">
-      <div className="container faq-grid">
-        <div className="section-copy reveal">
-          <span className="kicker">FAQ</span>
-          <h2>Questions before you sell?</h2>
-          <p>Here are the answers customers usually need first.</p>
-          <a className="btn btn-dark" href="#contact">Ask Aryan Gold</a>
-        </div>
-        <div className="accordion reveal delay-1">
-          <details open><summary>How is my gold value calculated?</summary><p>Your estimated value is based on weight, purity and the current reference rate. The final offer can only be confirmed after physical purity and weight verification.</p></details>
-          <details><summary>Can I sell old or broken jewellery?</summary><p>Yes. Old, broken and unused gold jewellery can be evaluated based on verified gold content, subject to Aryan Gold’s buying policy.</p></details>
-          <details><summary>Can Aryan Gold help release pledged gold?</summary><p>You can request assistance for gold pledged with a bank, NBFC or finance company. The exact process depends on the pledge provider, documents and outstanding amount.</p></details>
-          <details><summary>What documents should I carry?</summary><p>Carry valid government-issued identity and address proof. Additional documents may be requested depending on the transaction and local compliance requirements.</p></details>
-          <details><summary>Is doorstep service available everywhere?</summary><p>Doorstep availability can depend on your service area and appointment slot. Submit a booking request and the team can confirm availability.</p></details>
-        </div>
-      </div>
-    </section>
-
-    <section className="contact-section" id="contact">
-      <div className="container contact-grid">
-        <div className="contact-copy reveal">
-          <span className="kicker light">QUICK CONTACT</span>
-          <h2>Have gold to sell?<br />Start with a 2-minute call.</h2>
-          <p>Leave your number and tell us what you need. An Aryan Gold representative can contact you.</p>
-          <div className="contact-chips"><span>Sell gold</span><span>Release pledge</span><span>Gold rate</span><span>Book visit</span></div>
-        </div>
-        <form className="quick-form reveal delay-1" id="contact-form" onSubmit={(event) => submitContact(event, "contact")}>
-          <label className="field field-dark"><span>Your name</span><input name="name" required minLength="2" maxLength="255" onInput={keepNameCharacters} placeholder="Full name" /></label>
-          <label className="field field-dark"><span>Mobile number</span><input name="mobile" type="tel" required inputMode="numeric" pattern="[0-9]{10}" minLength="10" maxLength="10" onInput={keepTenDigits} placeholder="10-digit mobile number" /></label>
-          <label className="field field-dark"><span>I need help with</span><select name="services"><option>Selling Gold</option><option>Releasing Pledged Gold</option><option>Gold Rate / Valuation</option><option>Branch / Doorstep Appointment</option></select></label>
-          <button className="btn btn-gold btn-block" type="submit" disabled={submitting.contact}>{submitting.contact ? "Submitting…" : "Request Call Back"}</button>
-          <p className="form-message dark-message" id="contact-message" role="status">{messages.contact}</p>
-        </form>
-      </div>
-    </section>
+    <FaqSection />
   </main>
 
   <footer>
@@ -566,15 +567,14 @@ export default function GoldHomepage() {
         <Brand href="#home" className="brand footer-wordmark" />
         <p>Transparent gold buying, pledged-gold assistance and convenient valuation services.</p>
       </div>
-      <div><h4>Services</h4><a href="#services">Sell Gold</a><a href="#pledge">Release Pledged Gold</a><a href="#calculator">Gold Calculator</a><a href="#booking">Book Valuation</a></div>
-      <div><h4>Quick Links</h4><a href="#rates">Gold Rate</a><a href="#branches">Our Branches</a><a href="#how-it-works">How It Works</a><a href="#faq">FAQs</a><a href="#contact">Contact</a></div>
+      <div><h4>Services</h4><a href="#services">Sell Gold</a><a href="#booking">Release Pledged Gold</a><a href="#calculator">Gold Calculator</a><a href="#booking">Book Valuation</a></div>
+      <div><h4>Quick Links</h4><a href="#rates">Gold Rate</a><a href="#branches">Our Branches</a><a href="#how-it-works-testing">How It Works</a><a href="#faq">FAQs</a><a href="#our-story">Our Story</a></div>
       <div><h4>Important</h4><p className="footer-small">Rates shown online are indicative. Final value is confirmed after physical evaluation and applicable compliance checks.</p></div>
     </div>
     <div className="container footer-bottom"><span>© <span id="year">{new Date().getFullYear()}</span> Aryan Gold. All rights reserved.</span></div>
   </footer>
 
   <div className="floating-actions" aria-label="Quick actions">
-    <a href="#contact" className="float-btn" aria-label="Request callback">☎</a>
     <a href="#booking" className="float-btn gold" aria-label="Book valuation">₹</a>
   </div>
   {toast && <div className="contact-toast" role="status" aria-live="polite"><span>✓</span><p>{toast}</p><button type="button" onClick={() => setToast("")} aria-label="Close notification">×</button></div>}

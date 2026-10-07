@@ -21,6 +21,7 @@
   --shadow:0 24px 80px rgba(16,18,21,.09);
   --serif:"Playfair Display", Georgia, serif;
   --sans:"DM Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --page-gutter:clamp(20px,4vw,72px);
 }
 .aryan-home *{box-sizing:border-box}
 .aryan-home{scroll-behavior:smooth}
@@ -85,7 +86,7 @@
 .aryan-home .rate-intro h2{font-family:var(--serif);font-size:clamp(2.5rem,3vw,3rem);margin:8px 0 14px}
 .aryan-home .rate-intro p{font-size:1.15rem;line-height:1.7;margin:0;max-width:520px}
 @media(min-width:1051px){
-  .aryan-home .rate-grid{width:min(1320px,calc(100% - 40px))}
+  .aryan-home .rate-grid{width:calc(100% - 40px)}
 }
 @media(min-width:721px) and (max-width:1050px){
   .aryan-home .rate-strip .rate-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -103,10 +104,6 @@
 
 .aryan-home .services-section{background:#fff}.aryan-home .section-heading{max-width:750px;margin-bottom:48px}.aryan-home .section-heading.center{text-align:center;margin-inline:auto}.aryan-home .section-heading.center p{margin-inline:auto}.aryan-home .section-heading p{font-size:1.04rem}.aryan-home .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.aryan-home .service-card{position:relative;background:#fbfcfd;border:1px solid #eef1f4;border-radius:24px;padding:34px;min-height:425px;display:flex;flex-direction:column}.aryan-home .service-card.featured{background:var(--teal);color:#fff;border-color:#101010}.aryan-home .service-card.featured p,.aryan-home .service-card.featured li{color:#bcbcbc}.aryan-home .service-icon{width:50px;height:50px;border-radius:15px;background:#fafbfd;display:grid;place-items:center;font-family:var(--serif);font-size:1.3rem;font-weight:800;color:#765008;margin-bottom:30px}.aryan-home .featured .service-icon{background:#d8ad38;color:#15181d}.aryan-home .service-num{position:absolute;top:36px;right:34px;font-size:.72rem;color:#8a9098}.aryan-home .service-card h3{font-family:var(--serif);font-size:1.9rem;margin:0 0 15px}.aryan-home .service-card p{line-height:1.65}.aryan-home .service-card ul{padding:0;list-style:none;margin:12px 0 28px}.aryan-home .service-card li{color:#69645a;font-size:.86rem;padding:4px 0}.aryan-home .service-card li:before{content:"—";color:var(--gold-dark);margin-right:8px}.aryan-home .service-card>a{margin-top:auto;font-weight:800;color:var(--gold-dark)}.aryan-home .featured>a{color:#eef2f5}
 
-.aryan-home .pledge-section{background:var(--teal);color:#fff;padding:115px 0;overflow:hidden}.aryan-home .pledge-grid{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:center}.aryan-home .pledge-section .section-copy p{color:#aaa}.aryan-home .pledge-visual{position:relative;min-height:520px;display:grid;place-items:center}.aryan-home .pledge-ring{position:absolute;width:440px;height:440px;border:1px solid #3b321c;border-radius:50%;box-shadow:0 0 0 50px var(--teal),0 0 0 51px var(--teal)}.aryan-home .pledge-center{position:relative;z-index:2;width:270px;height:270px;border-radius:50%;display:grid;place-content:center;text-align:center;background:radial-gradient(circle at 35% 25%,#f0d980,#c49624 52%,#7c5608);color:#111;box-shadow:0 30px 80px #000}.aryan-home .pledge-center span{font-size:.7rem;letter-spacing:.25em;font-weight:900}.aryan-home .pledge-center strong{font-family:var(--serif);font-size:3.1rem;line-height:.95;margin:8px 0}.aryan-home .pledge-center small{font-weight:800}.aryan-home .pledge-card{position:absolute;z-index:3;background:#fff;color:#111;padding:15px 18px;border-radius:14px;box-shadow:0 12px 35px #0007;display:flex;flex-direction:column}.aryan-home .pledge-card span{font-size:.58rem;color:#8a919c;font-weight:900}.aryan-home .pledge-card strong{font-size:.83rem}.aryan-home .small-card-a{left:12px;top:70px}.aryan-home .small-card-b{right:5px;bottom:85px}.aryan-home .pledge-points{margin:32px 0}.aryan-home .pledge-points>div{display:flex;gap:18px;padding:16px 0;border-bottom:1px solid #292929}.aryan-home .pledge-points b{color:#d6dce2;font-size:.72rem}.aryan-home .pledge-points span{display:flex;flex-direction:column}.aryan-home .pledge-points strong{font-size:.93rem}.aryan-home .pledge-points small{color:#999;margin-top:2px}
-
-.aryan-home .steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}.aryan-home .step>span{font-family:var(--serif);font-size:3.2rem;color:#c4cad2}.aryan-home .step-line{height:1px;background:linear-gradient(90deg,#cfa83e,#e5dfd1);margin:15px 0 25px}.aryan-home .step h3{font-family:var(--serif);font-size:1.6rem;margin-bottom:9px}.aryan-home .step p{font-size:.9rem}
-
 .aryan-home .booking-section{background:var(--teal);color:#fff;padding:110px 0}.aryan-home .booking-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:85px;align-items:center}.aryan-home .booking-copy p{color:#aaa;font-size:1.05rem;line-height:1.7}.aryan-home .booking-note{display:flex;gap:13px;margin:24px 0}.aryan-home .booking-note>span{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--teal);color:#e6c75f;font-weight:900;flex:none}.aryan-home .booking-note div{display:flex;flex-direction:column}.aryan-home .booking-note small{color:#8e8e8e}.aryan-home .form-card{background:#fff;color:#111;padding:34px;border-radius:26px}.aryan-home .mode-switch{display:grid;grid-template-columns:1fr 1fr;background:#f5f7fa;padding:5px;border-radius:14px;margin-bottom:24px}.aryan-home .mode-switch button{height:44px;border:0;border-radius:10px;background:transparent;font-weight:800}.aryan-home .mode-switch button.active{background:var(--teal);color:#fff;box-shadow:0 3px 12px #0002}.aryan-home .form-card .field{margin-bottom:16px}.aryan-home .consent{display:flex;gap:10px;align-items:flex-start;margin:6px 0 18px;font-size:.72rem;color:#67635a}.aryan-home .consent input{margin-top:2px}.aryan-home .form-message{min-height:18px;margin:10px 0 0;font-size:.75rem;color:#2f6e37}
 
 .aryan-home .why-section{background:#f6f8fb}.aryan-home .why-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:80px;align-items:start}.aryan-home .why-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.aryan-home .why-card{background:#fff;border:1px solid #e7dfcf;border-radius:20px;padding:27px;min-height:200px}.aryan-home .why-card b{font-size:.68rem;color:#aeb4bc}.aryan-home .why-card h3{font-family:var(--serif);font-size:1.45rem;margin:30px 0 9px}.aryan-home .why-card p{font-size:.83rem;margin:0}
@@ -123,7 +120,10 @@
 
 @media(max-width:1050px){
   .aryan-home .main-nav{display:none;position:absolute;top:82px;left:0;right:0;background:#faf9f6;border-bottom:1px solid #ddd;padding:22px 30px;flex-direction:column;align-items:flex-start}.aryan-home .main-nav.open{display:flex}.aryan-home .menu-toggle{display:block;margin-left:auto}.aryan-home .nav-cta{display:none}
-  .aryan-home .hero-grid,.aryan-home .calc-grid,.aryan-home .pledge-grid,.aryan-home .booking-grid,.aryan-home .contact-grid{grid-template-columns:1fr}.aryan-home .hero-grid{gap:30px}.aryan-home .hero{padding-top:60px}.aryan-home .hero-visual{min-height:520px}.aryan-home .rate-grid{grid-template-columns:1.2fr repeat(3,.8fr)}.aryan-home .rate-meta{grid-column:1/-1;display:flex;gap:10px}.aryan-home .services-grid{grid-template-columns:1fr 1fr}.aryan-home .services-grid article:last-child{grid-column:1/-1}.aryan-home .why-grid,.aryan-home .faq-grid{grid-template-columns:1fr;gap:45px}.aryan-home .footer-grid{grid-template-columns:1fr 1fr}.aryan-home .pledge-grid{gap:45px}.aryan-home .booking-grid{gap:50px}
+  .aryan-home .hero-grid,
+.aryan-home .calc-grid,
+.aryan-home .booking-grid,
+.aryan-home .contact-grid{grid-template-columns:1fr}.aryan-home .hero-grid{gap:30px}.aryan-home .hero{padding-top:60px}.aryan-home .hero-visual{min-height:520px}.aryan-home .rate-grid{grid-template-columns:1.2fr repeat(3,.8fr)}.aryan-home .rate-meta{grid-column:1/-1;display:flex;gap:10px}.aryan-home .services-grid{grid-template-columns:1fr 1fr}.aryan-home .services-grid article:last-child{grid-column:1/-1}.aryan-home .why-grid,.aryan-home .faq-grid{grid-template-columns:1fr;gap:45px}.aryan-home .footer-grid{grid-template-columns:1fr 1fr}.aryan-home .booking-grid{gap:50px}
 }
 
 /* Continuously show the published rates with the service promise between each. */
@@ -140,9 +140,9 @@
 @media(max-width:720px){.aryan-home .topbar-track{animation-duration:32s}.aryan-home .topbar-marquee-pair{gap:22px;padding-right:22px}}
 @media(prefers-reduced-motion:reduce){.aryan-home .topbar-track{animation:none}.aryan-home .topbar-marquee{overflow-x:auto}.aryan-home .topbar-marquee-group[aria-hidden="true"]{display:none}}
 @media(max-width:720px){
-  .aryan-home .container{width:min(100% - 28px,1180px)}.aryan-home .section{padding:78px 0}.aryan-home .topbar-inner{justify-content:center;text-align:center}.aryan-home .topbar-inner>a{display:none}.aryan-home .site-header .nav-wrap{height:72px}.aryan-home .main-nav{top:72px}.aryan-home .brand{min-width:0}.aryan-home .brand-image{max-width:150px}.aryan-home .hero{padding:50px 0 55px;min-height:auto}.aryan-home .hero h1{font-size:clamp(3.25rem,16vw,5rem)}.aryan-home .hero-actions{flex-direction:column}.aryan-home .hero-actions .btn{width:100%}.aryan-home .trust-row{grid-template-columns:1fr;gap:14px}.aryan-home .hero-visual{min-height:430px}.aryan-home .hero-card{padding:24px;min-height:420px}.aryan-home .hero-price-row strong{font-size:2.7rem}.aryan-home .gold-art{height:235px}.aryan-home .gold-orbit{display:none}.aryan-home .coin-a{top:60px}.aryan-home .rate-grid{grid-template-columns:1fr 1fr}.aryan-home .rate-intro{grid-column:1/-1}.aryan-home .rate-card{border-left:0;border-top:1px solid var(--line);padding:15px 0}.aryan-home .rate-card:nth-of-type(4){grid-column:1/-1}.aryan-home .field-grid.two{grid-template-columns:1fr}.aryan-home .calc-grid{gap:45px}.aryan-home .calculator-card{padding:24px}.aryan-home .calc-actions{flex-direction:column}.aryan-home .value-panel strong{font-size:2.35rem}.aryan-home .services-grid{grid-template-columns:1fr}.aryan-home .services-grid article:last-child{grid-column:auto}.aryan-home .service-card{min-height:auto}.aryan-home .pledge-section{padding:80px 0}.aryan-home .pledge-visual{min-height:390px}.aryan-home .pledge-ring{width:330px;height:330px;box-shadow:0 0 0 34px var(--teal),0 0 0 35px var(--teal)}.aryan-home .pledge-center{width:210px;height:210px}.aryan-home .pledge-center strong{font-size:2.4rem}.aryan-home .small-card-a{left:0;top:35px}.aryan-home .small-card-b{right:0;bottom:40px}.aryan-home .steps-grid{grid-template-columns:1fr 1fr}.aryan-home .booking-section{padding:80px 0}.aryan-home .form-card{padding:22px}.aryan-home .why-cards{grid-template-columns:1fr}.aryan-home .contact-grid{gap:50px}.aryan-home .footer-grid{grid-template-columns:1fr}.aryan-home .footer-bottom{flex-direction:column;gap:8px}.aryan-home .floating-actions{right:14px;bottom:14px}.aryan-home .float-btn{width:44px;height:44px}
+  .aryan-home .container{width:min(100% - 28px,1180px)}.aryan-home .section{padding:78px 0}.aryan-home .topbar-inner{justify-content:center;text-align:center}.aryan-home .topbar-inner>a{display:none}.aryan-home .site-header .nav-wrap{height:72px}.aryan-home .main-nav{top:72px}.aryan-home .brand{min-width:0}.aryan-home .brand-image{max-width:150px}.aryan-home .hero{padding:50px 0 55px;min-height:auto}.aryan-home .hero h1{font-size:clamp(3.25rem,16vw,5rem)}.aryan-home .hero-actions{flex-direction:column}.aryan-home .hero-actions .btn{width:100%}.aryan-home .trust-row{grid-template-columns:1fr;gap:14px}.aryan-home .hero-visual{min-height:430px}.aryan-home .hero-card{padding:24px;min-height:420px}.aryan-home .hero-price-row strong{font-size:2.7rem}.aryan-home .gold-art{height:235px}.aryan-home .gold-orbit{display:none}.aryan-home .coin-a{top:60px}.aryan-home .rate-grid{grid-template-columns:1fr 1fr}.aryan-home .rate-intro{grid-column:1/-1}.aryan-home .rate-card{border-left:0;border-top:1px solid var(--line);padding:15px 0}.aryan-home .rate-card:nth-of-type(4){grid-column:1/-1}.aryan-home .field-grid.two{grid-template-columns:1fr}.aryan-home .calc-grid{gap:45px}.aryan-home .calculator-card{padding:24px}.aryan-home .calc-actions{flex-direction:column}.aryan-home .value-panel strong{font-size:2.35rem}.aryan-home .services-grid{grid-template-columns:1fr}.aryan-home .services-grid article:last-child{grid-column:auto}.aryan-home .service-card{min-height:auto}.aryan-home .booking-section{padding:80px 0}.aryan-home .form-card{padding:22px}.aryan-home .why-cards{grid-template-columns:1fr}.aryan-home .contact-grid{gap:50px}.aryan-home .footer-grid{grid-template-columns:1fr}.aryan-home .footer-bottom{flex-direction:column;gap:8px}.aryan-home .floating-actions{right:14px;bottom:14px}.aryan-home .float-btn{width:44px;height:44px}
 }
-@media(max-width:440px){.aryan-home .steps-grid{grid-template-columns:1fr}.aryan-home .hero-card-bottom{align-items:flex-start;gap:6px;flex-direction:column}.aryan-home .pledge-card{display:none}.aryan-home .pledge-visual{min-height:330px}.aryan-home .pledge-ring{width:290px;height:290px}.aryan-home .pledge-center{width:190px;height:190px}.aryan-home .rate-grid{grid-template-columns:1fr}.aryan-home .rate-card:nth-of-type(4){grid-column:auto}.aryan-home .rate-meta{flex-direction:column}}
+@media(max-width:440px){.aryan-home .hero-card-bottom{align-items:flex-start;gap:6px;flex-direction:column}.aryan-home .rate-grid{grid-template-columns:1fr}.aryan-home .rate-card:nth-of-type(4){grid-column:auto}.aryan-home .rate-meta{flex-direction:column}}
 @media(prefers-reduced-motion:reduce){.aryan-home{scroll-behavior:auto}.aryan-home .reveal{opacity:1;transform:none;transition:none}.aryan-home .btn{transition:none}}
 
   
@@ -184,9 +184,6 @@
 .aryan-home .field input:focus,.aryan-home .field select:focus{border-color:#9ca4af;box-shadow:0 0 0 4px rgba(156,164,175,.12)}
 .aryan-home .section-dark,.aryan-home .contact-section,.aryan-home footer{background:var(--teal)}
 .aryan-home .service-card:hover,.aryan-home .why-card:hover,.aryan-home .process-card:hover,.aryan-home .faq details[open]{border-color:#c8ced5;box-shadow:0 16px 44px rgba(115,123,135,.12)}
-.aryan-home .pledge-section{background:var(--teal)}
-.aryan-home .pledge-ring{box-shadow:0 0 0 48px var(--teal),0 0 0 49px var(--teal)}
-.aryan-home .pledge-center{background:radial-gradient(circle at 30% 20%,#f9fbfc,#d6dbe1 52%,#8e97a1 100%);color:#1f242b}
 .aryan-home .float-btn.gold{background:#c5cbd2;color:#111}
 
 
@@ -229,9 +226,6 @@
 .aryan-home .section-dark,.aryan-home .contact-section,.aryan-home footer{background:var(--teal)}
 .aryan-home .service-card:hover,.aryan-home .why-card:hover,.aryan-home .process-card:hover,.aryan-home .faq details[open]{border-color:#d5b159;box-shadow:0 18px 46px rgba(165,122,29,.14)}
 .aryan-home .process-step b,.aryan-home .service-badge{background:linear-gradient(180deg,#f3ead2,#eef1f4);color:#87631a;border:1px solid #ddd3bd}
-.aryan-home .pledge-section{background:var(--teal)}
-.aryan-home .pledge-ring{box-shadow:0 0 0 48px var(--teal),0 0 0 49px rgba(215,178,91,.18)}
-.aryan-home .pledge-center{background:radial-gradient(circle at 30% 20%,#fff9ec 0%,#e9ddb8 28%,#d6dbe2 58%,#8b949e 100%);color:#1d232a}
 .aryan-home .contact-copy p,.aryan-home .footer-brand p,.aryan-home .footer-small,.aryan-home .footer-bottom,.aryan-home .footer-grid a{color:#afb4bb}
 .aryan-home .footer-grid h4{color:#dfc177}
 .aryan-home .footer-grid a:hover{color:#ffffff}
@@ -462,14 +456,19 @@
 }
 
 /* Shared dark surfaces */
-.aryan-home .pledge-section,
 .aryan-home .contact-section,
 .aryan-home footer,
 .aryan-home .service-card.featured,
 .aryan-home .hero-card{
   color:#f2eee6;
 }
-.aryan-home .pledge-section h1,.aryan-home .pledge-section h2,.aryan-home .pledge-section h3,.aryan-home .contact-section h1,.aryan-home .contact-section h2,.aryan-home .contact-section h3,.aryan-home footer h1,.aryan-home footer h2,.aryan-home footer h3,.aryan-home .service-card.featured h3{
+.aryan-home .contact-section h1,
+.aryan-home .contact-section h2,
+.aryan-home .contact-section h3,
+.aryan-home footer h1,
+.aryan-home footer h2,
+.aryan-home footer h3,
+.aryan-home .service-card.featured h3{
   color:#f6f0e5;
 }
 .aryan-home .footer-brand .brand-copy strong{color:#f6f0e5 !important}
@@ -488,7 +487,6 @@
 .aryan-home[data-theme="light"] .rate-intro h2,
 .aryan-home[data-theme="light"] .calculator-card h3,
 .aryan-home[data-theme="light"] .service-card:not(.featured) h3,
-.aryan-home[data-theme="light"] .step h3,
 .aryan-home[data-theme="light"] .why-card h3,
 .aryan-home[data-theme="light"] .accordion summary{
   color:#17191d;
@@ -509,8 +507,7 @@
 .aryan-home[data-theme="light"] .service-card:not(.featured) p,
 .aryan-home[data-theme="light"] .service-card:not(.featured) li,
 .aryan-home[data-theme="light"] .why-card p,
-.aryan-home[data-theme="light"] .accordion details p,
-.aryan-home[data-theme="light"] .step p{
+.aryan-home[data-theme="light"] .accordion details p{
   color:#62676f;
 }
 .aryan-home[data-theme="light"] .service-card:not(.featured)>a,
@@ -535,7 +532,6 @@
 .aryan-home[data-theme="light"] .form-message{color:#2d6a3a}
 
 /* Keep dark sections readable in light mode. */
-.aryan-home[data-theme="light"] .pledge-section p,
 .aryan-home[data-theme="light"] .contact-section p,
 .aryan-home[data-theme="light"] footer p{color:#b7bbc1}
 .aryan-home[data-theme="light"] .contact-chips span{color:#d7dbe0}
@@ -555,7 +551,6 @@
 .aryan-home[data-theme="dark"] .rate-intro h2,
 .aryan-home[data-theme="dark"] .calculator-card h3,
 .aryan-home[data-theme="dark"] .service-card:not(.featured) h3,
-.aryan-home[data-theme="dark"] .step h3,
 .aryan-home[data-theme="dark"] .why-card h3,
 .aryan-home[data-theme="dark"] .accordion summary{
   color:#f2ede4;
@@ -569,8 +564,7 @@
 .aryan-home[data-theme="dark"] .service-card:not(.featured) p,
 .aryan-home[data-theme="dark"] .service-card:not(.featured) li,
 .aryan-home[data-theme="dark"] .why-card p,
-.aryan-home[data-theme="dark"] .accordion details p,
-.aryan-home[data-theme="dark"] .step p{
+.aryan-home[data-theme="dark"] .accordion details p{
   color:#b7bdc6;
 }
 .aryan-home[data-theme="dark"] .rate-card strong{color:#f2ede4}
@@ -628,17 +622,10 @@
 .aryan-home .reveal{opacity:1;transform:none}
 
 /* Keep text readable in sections that retain a dark background in both themes. */
-.aryan-home[data-theme] .pledge-section .section-copy h2{color:#f3eee5}
 .aryan-home[data-theme] .contact-section .field>span{color:#e3c77b}
 
 /* Readable text and controls on the teal surfaces. */
-.aryan-home[data-theme] :is(
-  .value-panel span,.value-panel small,
-  .service-card.featured p,.service-card.featured li,.service-card.featured .service-num,
-  .pledge-section .section-copy p,.pledge-points small,
-  .contact-copy p,.contact-chips span,
-  footer p,.footer-small,.footer-bottom,.footer-grid a
-){color:var(--on-teal)}
+.aryan-home[data-theme] :is(.value-panel span,.value-panel small,.service-card.featured p,.service-card.featured li,.service-card.featured .service-num,.contact-copy p,.contact-chips span,footer p,.footer-small,.footer-bottom,.footer-grid a){color:var(--on-teal)}
 .aryan-home[data-theme] .topbar a{color:var(--on-teal)}
 .aryan-home[data-theme] .field-dark input::placeholder,
 .aryan-home[data-theme="dark"] .field input::placeholder{
@@ -654,31 +641,15 @@
 }
 .aryan-home .quick-form,
 .aryan-home .contact-chips span,
-.aryan-home .pledge-points>div,
 .aryan-home footer,
 .aryan-home .footer-bottom{
   border-color:rgba(253,244,230,.28);
 }
 .aryan-home .service-card.featured{border-color:var(--teal)}
 .aryan-home .btn-outline:hover{border-color:var(--teal)}
-.aryan-home .pledge-ring{
-  border-color:rgba(253,244,230,.28);
-  box-shadow:0 0 0 48px var(--teal),0 0 0 49px rgba(253,244,230,.28);
-}
-.aryan-home[data-theme="dark"] :is(
-  .rate-intro p,.rate-card span,.rate-card small,.rate-meta,.trust-row span,.fine-print,
-  .service-card:not(.featured) p,.service-card:not(.featured) li,
-  .why-card p,.accordion details p,.step p,.booking-copy p,.booking-note small,
-  .input-unit b,.form-card .consent,.service-num
-){color:var(--on-teal)}
 .aryan-home[data-theme="dark"] .mode-switch button:not(.active){color:var(--on-teal)}
 @media(max-width:1050px){
   .aryan-home[data-theme="dark"] .main-nav{background:var(--teal)}
-}
-@media(max-width:720px){
-  .aryan-home .pledge-ring{
-    box-shadow:0 0 0 34px var(--teal),0 0 0 35px rgba(253,244,230,.28);
-  }
 }
 
 /* Cream canvas across the public website's light sections. */
@@ -704,24 +675,6 @@
   --content-black:#FAF7F0;
   --accent-yellow:#F4C84A;
 }
-.aryan-home[data-theme="light"] :where(
-  .site-header .brand-copy strong,.main-nav a,.hero-copy h1,.hero-lead,.eyebrow,
-  .trust-row strong,.trust-row span,.rate-intro h2,.rate-card strong,.rate-card span,.rate-card small,.rate-meta,
-  .calc-grid .section-copy h2,.calculator-card h3,.check-list li,
-  .calculator-card .field>span,.form-card .field>span,.input-unit b,.fine-print,
-  .section-heading h2,.service-card:not(.featured) h3,.service-card:not(.featured) p,.service-card:not(.featured) li,
-  .step h3,.step p,.booking-copy p,.booking-note strong,.booking-note small,
-  .form-card .consent,.form-card .field input,.form-card .field select,.calculator-card .field input,.calculator-card .field select,
-  .mode-switch button:not(.active),.why-section .section-copy h2,.why-card h3,.why-card p,
-  .faq-section .section-copy h2,.accordion summary,.accordion details p,.pledge-card,.pledge-card strong,.pledge-center,
-  .hero-actions .btn-gold,.hero-actions .btn-outline,.calculator-card .btn-gold,.form-card .btn-gold
-){color:var(--content-black)}
-.aryan-home[data-theme="light"] :where(
-  .hero-copy h1 span,.booking-copy h2,.kicker,.booking-copy .kicker.light,
-  .site-header .brand-copy small,.inline-link,.text-button,.service-card:not(.featured)>a,
-  .service-card:not(.featured) .service-icon,.secure-chip,.why-card b,.pledge-card span,
-  .value-panel strong,.contact-section .field>span
-){color:var(--accent-yellow)}
 .aryan-home[data-theme="light"] .accordion summary:after{color:var(--accent-yellow)}
 .aryan-home[data-theme="light"] .hero-actions .btn-outline:hover{color:var(--on-teal)}
 
@@ -791,11 +744,6 @@
 .aryan-home[data-theme="light"] .mode-switch button.active{background:var(--teal);box-shadow:inset 0 -3px var(--accent-yellow)}
 .aryan-home[data-theme="light"] .consent input{accent-color:var(--teal)}
 .aryan-home[data-theme="light"] .why-card b{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--teal);border:1px solid var(--accent-yellow)}
-.aryan-home[data-theme="light"] .pledge-center{background:var(--accent-yellow);border:3px solid var(--brand-red);box-shadow:0 20px 45px rgba(0,106,100,.2)}
-.aryan-home[data-theme="light"] .pledge-card{background:var(--brand-cream);border:1px solid var(--brand-red)}
-.aryan-home[data-theme="light"] .pledge-card span{align-self:flex-start;background:var(--teal);padding:2px 6px;border-radius:4px;margin-bottom:4px}
-.aryan-home[data-theme="light"] .step>span{color:var(--brand-red)}
-.aryan-home[data-theme="light"] .step-line{background:var(--accent-yellow)}
 .aryan-home[data-theme="light"] .accordion details{border-color:rgba(0,106,100,.3)}
 .aryan-home[data-theme="light"] .accordion details[open]{border-top-color:var(--brand-red)}
 .aryan-home[data-theme="light"] .footer-grid h4{color:var(--accent-yellow)}
@@ -807,28 +755,11 @@
 
 /* Post-swap text contrast: cream text on teal, teal text on cream. */
 .aryan-home[data-theme="light"] .topbar{color:#165D58}
-.aryan-home[data-theme="light"] :is(
-  .service-card.featured h3,
-  .service-card.featured p,
-  .service-card.featured li,
-  .service-card.featured .service-num,
-  .service-card.featured>a,
-  .quick-form .field>span,
-  .quick-form .field input,
-  .quick-form .field select,
-  .quick-form .input-unit b,
-  footer,
-  footer p,
-  footer a,
-  footer .brand-copy strong,
-  footer .footer-small,
-  footer .footer-bottom
-){color:#165D58 !important}
+.aryan-home[data-theme="light"] :is(.service-card.featured h3,.service-card.featured p,.service-card.featured li,.service-card.featured .service-num,.service-card.featured>a,.quick-form .field>span,.quick-form .field input,.quick-form .field select,.quick-form .input-unit b,footer,footer p,footer a,footer .brand-copy strong,footer .footer-small,footer .footer-bottom){color:#165D58 !important}
 .aryan-home[data-theme="light"] .quick-form :is(input,select){color:#165D58}
 .aryan-home[data-theme="light"] .quick-form input::placeholder{color:#165D58;opacity:.78}
 .aryan-home[data-theme="light"] .value-panel :is(span,small,strong){color:#165D58}
-.aryan-home[data-theme="light"] :is(.secure-chip,.why-card b,.pledge-card span){color:#165D58}
-.aryan-home[data-theme="light"] .pledge-center{color:#000000}
+.aryan-home[data-theme="light"] :is(.secure-chip,.why-card b){color:#165D58}
 .aryan-home[data-theme="light"] :is(.btn-gold,.service-icon){color:#000000}
 .aryan-home[data-theme="light"] :is(.hero-actions .btn.btn-outline,.calc-actions .btn.btn-outline,.btn.btn-dark){color:#FAF7F0}
 
@@ -838,11 +769,7 @@
 .aryan-home[data-theme="light"] .mode-switch button.active{color:#165D58}
 
 /* Yellow-on-cream labels use teal for accessible contrast. */
-.aryan-home[data-theme="light"] :is(
-  .service-card.featured .kicker,
-  footer .footer-grid h4,
-  footer .brand-copy small
-){color:#165D58 !important}
+.aryan-home[data-theme="light"] :is(.service-card.featured .kicker,footer .footer-grid h4,footer .brand-copy small){color:#165D58 !important}
 
 /* Alternating homepage section rhythm: teal, cream, teal, cream. */
 .aryan-home[data-theme="light"] .topbar{
@@ -854,11 +781,11 @@
 .aryan-home[data-theme="light"] .site-header .brand-copy strong{color:#165D58}
 .aryan-home[data-theme] .site-header .main-nav a{color:#165D58}
 
-.aryan-home[data-theme="light"] :is(.hero,#calculator,.pledge-section,.why-section,.contact-section){
+.aryan-home[data-theme="light"] :is(.hero,#calculator,.why-section,.contact-section){
   background:#165D58;
   color:#FAF7F0;
 }
-.aryan-home[data-theme="light"] :is(.rate-strip,.services-section,#how-it-works,.booking-section,.faq-section,footer){
+.aryan-home[data-theme="light"] :is(.rate-strip,.services-section,.booking-section,.faq-section,footer){
   background:#FAF7F0;
   color:#165D58;
 }
@@ -866,7 +793,6 @@
 /* Text on teal sections. */
 .aryan-home[data-theme="light"] .hero-copy :is(h1,p,.eyebrow,.trust-row strong,.trust-row span),
 .aryan-home[data-theme="light"] #calculator>.container>.section-copy :is(h2,p,li),
-.aryan-home[data-theme="light"] .pledge-section>.container>.section-copy :is(h2,p,.pledge-points strong,.pledge-points small),
 .aryan-home[data-theme="light"] .why-section>.container>.section-copy :is(h2,p),
 .aryan-home[data-theme="light"] .contact-copy :is(h2,p),
 .aryan-home[data-theme="light"] .contact-chips span{
@@ -876,7 +802,6 @@
 /* Text on cream sections. */
 .aryan-home[data-theme="light"] .rate-strip :is(h2,p,strong,span,small,.rate-meta),
 .aryan-home[data-theme="light"] .services-section>.container>.section-heading :is(h2,p),
-.aryan-home[data-theme="light"] #how-it-works>.container h2,
 .aryan-home[data-theme="light"] .booking-copy :is(h2,p,strong,small),
 .aryan-home[data-theme="light"] .faq-section>.container :is(h2,p,summary),
 .aryan-home[data-theme="light"] footer :is(p,a,.footer-small,.footer-bottom,.brand-copy strong,.brand-copy small,h4){
@@ -918,15 +843,7 @@
 }
 
 /* A visible brand border on every card surface. */
-.aryan-home[data-theme] :is(
-  .rate-card,
-  .calculator-card,
-  .service-card,
-  .pledge-card,
-  .form-card,
-  .why-card,
-  .quick-form
-){
+.aryan-home[data-theme] :is(.rate-card,.calculator-card,.service-card,.form-card,.why-card,.quick-form){
   border:2px solid #C54136;
 }
 .aryan-home .rate-card{
@@ -964,87 +881,6 @@
 .aryan-home[data-theme] .services-grid .service-card:is(:hover,:focus-within)>a{color:#165D58}
 
 /* Compact process cards in one connected row. */
-.aryan-home[data-theme] .steps-grid{
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:38px;
-}
-.aryan-home[data-theme] .steps-grid .step{
-  position:relative;
-  text-align:center;
-  background:#165D58;
-  color:#FAF7F0;
-  border:1px solid #F4C84A;
-  border-top-width:3px;
-  border-radius:20px;
-  padding:20px;
-  min-height:245px;
-  box-shadow:0 20px 54px rgba(17,18,20,.06);
-  transition:background-color .25s,color .25s,box-shadow .25s;
-}
-.aryan-home[data-theme] .steps-grid .step-top{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:18px;
-  min-height:56px;
-}
-.aryan-home[data-theme] .steps-grid .step-top>span:first-child{
-  color:#F4C84A;
-  font-family:var(--serif);
-  font-size:2.5rem;
-  line-height:1.1;
-}
-.aryan-home[data-theme] .steps-grid .step-top>.step-icon{
-  width:56px;
-  height:56px;
-  flex:none;
-  display:grid;
-  place-items:center;
-  background:#FAF7F0;
-  color:#165D58;
-  border:2px solid #F4C84A;
-  border-radius:16px;
-  transform:rotate(6deg);
-  box-shadow:6px 6px 0 rgba(244,200,74,.25);
-}
-.aryan-home[data-theme] .steps-grid .step-icon svg{width:36px;height:36px;transform:rotate(-6deg)}
-.aryan-home[data-theme] .steps-grid .step-line{background:#F4C84A;margin:20px 0 18px}
-.aryan-home[data-theme] .steps-grid .step :is(h3,p){color:inherit}
-.aryan-home[data-theme] .steps-grid .step h3{font-size:1.4rem;margin-bottom:7px}
-.aryan-home[data-theme] .steps-grid .step p{font-size:.82rem;line-height:1.45}
-.aryan-home[data-theme] .steps-grid .step:not(:last-child)::after{
-  content:"→";
-  position:absolute;
-  top:50%;
-  right:-33px;
-  transform:translateY(-50%);
-  color:#C54136;
-  font-size:2rem;
-  line-height:1;
-}
-.aryan-home[data-theme] .steps-grid .step:hover{
-  background:#FAF7F0;
-  color:#165D58;
-  box-shadow:0 18px 46px rgba(165,122,29,.14);
-}
-.aryan-home[data-theme] .steps-grid .step:hover .step-icon{background:#F4C84A}
-@media(max-width:900px){
-  .aryan-home[data-theme] .steps-grid{
-    grid-template-columns:1fr;
-    gap:54px;
-    max-width:560px;
-    margin-inline:auto;
-  }
-  .aryan-home[data-theme] .steps-grid .step{min-height:210px}
-  .aryan-home[data-theme] .steps-grid .step:not(:last-child)::after{
-    content:"↓";
-    top:auto;
-    right:auto;
-    bottom:-50px;
-    left:50%;
-    transform:translateX(-50%);
-  }
-}
 
 /* Give the tightly framed Aryan emblem room to remain legible. */
 .aryan-home .site-header .brand{gap:2px}
@@ -1097,7 +933,7 @@
 .aryan-home[data-theme="light"] .site-header .main-nav a{color:var(--ink-teal)}
 .aryan-home[data-theme="light"] .main-nav a:hover{color:var(--gold-dark)}
 .aryan-home[data-theme="light"] .menu-toggle span{background:var(--ink-teal)}
-.aryan-home[data-theme="light"] :is(.rate-strip,.services-section,#how-it-works,.booking-section,.faq-section) .kicker{
+.aryan-home[data-theme="light"] :is(.rate-strip,.services-section,.booking-section,.faq-section) .kicker{
   color:var(--gold-dark) !important;
 }
 .aryan-home[data-theme="light"] .text-button{color:var(--ink-teal)}
@@ -1133,16 +969,9 @@
 .aryan-home[data-theme="light"] :is(.hero-actions,.calc-actions) .btn.btn-outline:is(:hover,:focus-visible){background:#A9322A;border-color:#A9322A;color:#FFFAF6}
 .aryan-home[data-theme="light"] .btn:hover{box-shadow:0 8px 20px rgba(20,55,50,.15)}
 .aryan-home[data-theme="light"] .trust-row div{border-color:rgba(250,247,240,.25);background:rgba(15,65,60,.25)}
-.aryan-home[data-theme="light"] :is(.services-grid .service-card,.steps-grid .step){border:1px solid rgba(244,200,74,.4);box-shadow:0 12px 28px rgba(20,55,50,.08)}
-.aryan-home[data-theme="light"] .steps-grid .step-line{background:rgba(244,200,74,.35)}
-.aryan-home[data-theme="light"] .steps-grid .step-top>span:first-child{color:var(--gold)}
-.aryan-home[data-theme="light"] .steps-grid .step:hover .step-top>span:first-child{color:var(--gold-dark)}
-.aryan-home[data-theme="light"] .steps-grid .step-top>.step-icon{border-color:var(--border-soft);box-shadow:4px 4px 0 rgba(244,200,74,.18)}
+.aryan-home[data-theme="light"] :is(.services-grid .service-card){border:1px solid rgba(244,200,74,.4);box-shadow:0 12px 28px rgba(20,55,50,.08)}
 .aryan-home[data-theme="light"] .services-grid .service-card:is(:hover,:focus-within) li:before{color:var(--gold-dark)}
-.aryan-home[data-theme="light"] .pledge-card{background:var(--surface);border:1px solid var(--border-soft);color:var(--ink-teal)}
-.aryan-home[data-theme="light"] .pledge-card strong{color:var(--ink-teal)}
-.aryan-home[data-theme="light"] .pledge-center{border:1px solid #B59C72;color:#243B32}
-.aryan-home[data-theme="light"] .pledge-points>div,.aryan-home[data-theme="light"] .contact-chips span{border-color:rgba(250,247,240,.25)}
+.aryan-home[data-theme="light"] .contact-chips span{border-color:rgba(250,247,240,.25)}
 .aryan-home[data-theme="light"] .float-btn{border:1px solid rgba(250,247,240,.35);box-shadow:0 6px 20px rgba(20,55,50,.2)}
 .aryan-home[data-theme="light"] .float-btn:not(.gold){background:var(--brand-red);color:#FFFAF6}
 .aryan-home[data-theme="light"] .float-btn.gold{background:var(--gold);color:#243B32}
@@ -1181,7 +1010,8 @@
   .aryan-home .btn:is(:hover,:focus-visible):after{animation:button-shine .65s ease-out}
   .aryan-home .btn:active,.aryan-home .weight-presets button:active{transform:scale(.97)}
   .aryan-home .hero-card{transition:transform .35s ease,box-shadow .35s ease;background-image:radial-gradient(circle at var(--spot-x,50%) var(--spot-y,50%),#ffffff80,transparent 65%)}
-  .aryan-home .service-icon,.aryan-home .step-icon,.aryan-home .why-card b{transition:transform .35s cubic-bezier(.22,1,.36,1)}
+  .aryan-home .service-icon,
+.aryan-home .why-card b{transition:transform .35s cubic-bezier(.22,1,.36,1)}
   .aryan-home .rate-card,.aryan-home .trust-row>div{transition:transform .3s ease,box-shadow .3s ease}
   .aryan-home .weight-presets button,.aryan-home .mode-switch button{transition:background-color .25s,color .25s,border-color .25s,transform .25s}
   .aryan-home .mode-switch button.active{animation:selection-in .3s ease-out}
@@ -1196,9 +1026,8 @@
   .aryan-home .menu-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
   @media(hover:hover) and (pointer:fine){
     .aryan-home .hero-card:hover{transform:perspective(1000px) rotateX(var(--card-rx,0deg)) rotateY(var(--card-ry,0deg));box-shadow:0 24px 55px rgba(10,40,35,.2)}
-    .aryan-home[data-motion="ready"] :is(.service-card,.why-card,.step).visible:hover{transform:translateY(-6px);transition-delay:0s}
+    .aryan-home[data-motion="ready"] :is(.service-card,.why-card).visible:hover{transform:translateY(-6px);transition-delay:0s}
     .aryan-home .service-card:hover .service-icon{transform:translateY(-3px) rotate(-6deg)}
-    .aryan-home .steps-grid .step:hover .step-icon{transform:rotate(0deg) translateY(-3px)}
     .aryan-home .why-card:hover b{transform:scale(1.12)}
     .aryan-home .rate-card:hover,.aryan-home .trust-row>div:hover{transform:translateY(-4px);box-shadow:0 12px 24px rgba(10,40,35,.12)}
   }
@@ -1241,8 +1070,7 @@
 .aryan-home[data-theme="light"] .floating-actions .float-btn:not(.gold){background:#A51C23;color:#fff}
 .aryan-home[data-theme="light"] .floating-actions .float-btn.gold{background:#F7C51B;color:#153B35}
 @media(min-width:1250px){
-  .aryan-home .topbar-inner,.aryan-home .site-header .nav-wrap,.aryan-home .hero-grid{margin-left:30px;margin-right:auto}
-  .aryan-home .hero-grid{width:min(1180px,calc(100% - 60px))}
+  .aryan-home .topbar-inner,.aryan-home .site-header .nav-wrap{margin-left:30px;margin-right:auto}
 }
 @media(max-width:720px){
   .aryan-home[data-theme="light"] .trust-row{gap:12px;text-align:left}
@@ -1254,19 +1082,17 @@
 .aryan-home[data-theme="light"] .rate-strip{--ornament-image:url("/ornaments/rates-waistchain-left.webp")}
 .aryan-home[data-theme="light"] #calculator{--ornament-image:url("/ornaments/calculator-earrings.webp")}
 .aryan-home[data-theme="light"] .services-section{--ornament-image:url("/ornaments/services-bangles-left.webp")}
-.aryan-home[data-theme="light"] .pledge-section{--ornament-image:url("/ornaments/pledge-pendant.webp")}
-.aryan-home[data-theme="light"] #how-it-works{--ornament-image:url("/ornaments/process-maang-tikka-left.webp")}
 .aryan-home[data-theme="light"] .booking-section{--ornament-image:url("/ornaments/booking-nose-ring-left.webp")}
 .aryan-home[data-theme="light"] .why-section{--ornament-image:url("/ornaments/why-anklets.webp")}
 .aryan-home[data-theme="light"] .faq-section{--ornament-image:url("/ornaments/faq-necklace-left.webp")}
 .aryan-home[data-theme="light"] .contact-section{--ornament-image:url("/ornaments/contact-rings.webp")}
-.aryan-home[data-theme="light"] :is(.hero,#calculator,.pledge-section,.why-section,.contact-section){
+.aryan-home[data-theme="light"] :is(.hero,#calculator,.why-section,.contact-section){
   background-image:linear-gradient(90deg,rgba(0,91,85,.97) 0%,rgba(0,96,89,.88) 48%,rgba(0,83,78,.65) 100%),var(--ornament-image) !important;
   background-size:cover,cover;
   background-position:center,right center;
   background-repeat:no-repeat,no-repeat;
 }
-.aryan-home[data-theme="light"] :is(.rate-strip,.services-section,#how-it-works,.booking-section,.faq-section){
+.aryan-home[data-theme="light"] :is(.rate-strip,.services-section,.booking-section,.faq-section){
   background-image:linear-gradient(90deg,rgba(250,247,240,.79) 0%,rgba(250,247,240,.92) 52%,rgba(250,247,240,.98) 100%),var(--ornament-image) !important;
   background-size:cover,cover;
   background-position:center,left center;
@@ -1274,19 +1100,478 @@
 }
 @media(min-width:1051px){
   .aryan-home .topbar-inner,
-  .aryan-home .site-header .nav-wrap,
-  .aryan-home .hero-grid{width:min(1280px,calc(100% - 64px));margin-inline:auto}
+  .aryan-home .site-header .nav-wrap{width:min(1280px,calc(100% - 64px));margin-inline:auto}
   .aryan-home .hero-grid{grid-template-columns:minmax(0,1fr) minmax(420px,.9fr);gap:clamp(48px,6vw,108px)}
   .aryan-home .hero-copy{max-width:600px}
   .aryan-home .hero-visual{min-height:590px}
 }
 @media(max-width:1050px){
-  .aryan-home[data-theme="light"] :is(.hero,#calculator,.pledge-section,.why-section,.contact-section){
+  .aryan-home[data-theme="light"] :is(.hero,#calculator,.why-section,.contact-section){
     background-image:linear-gradient(90deg,rgba(0,91,85,.96),rgba(0,91,85,.84)),var(--ornament-image) !important;
     background-position:center,70% center;
   }
-  .aryan-home[data-theme="light"] :is(.rate-strip,.services-section,#how-it-works,.booking-section,.faq-section){
+  .aryan-home[data-theme="light"] :is(.rate-strip,.services-section,.booking-section,.faq-section){
     background-image:linear-gradient(90deg,rgba(250,247,240,.86),rgba(250,247,240,.97)),var(--ornament-image) !important;
     background-position:center,30% center;
   }
+}
+
+/* Reference-inspired homepage hero and live rate panel. */
+.aryan-home[data-theme="light"] .site-header{background:#fffaf2;border-bottom:1px solid #e9dfca;backdrop-filter:none}
+.aryan-home .site-header .nav-wrap{width:calc(100% - 40px);height:84px;gap:22px}
+.aryan-home .site-header .main-nav{gap:clamp(12px,1.45vw,25px);font-size:.8rem;white-space:nowrap}
+.aryan-home .site-header .main-nav a:first-child:after{right:0;background:#f3bf37}
+.aryan-home[data-theme="light"] .site-header .nav-cta{background:linear-gradient(135deg,#ffdb62,#ffc334);border:1px solid #eab12e;color:#1d2724;box-shadow:0 5px 16px rgba(151,99,13,.13);border-radius:8px;min-height:45px;padding:0 18px;font-size:.78rem;white-space:nowrap}
+.aryan-home[data-theme="light"] .site-header .nav-cta:is(:hover,:focus-visible){background:#ffe17b;border-color:#dba221;color:#1d2724}
+.aryan-home .site-header .nav-cta span{margin-left:8px;font-size:1.2rem;line-height:1}
+
+.aryan-home[data-theme="light"] #hero.hero.section-shell{
+  min-height:calc(80vh - 67.2px);
+  min-height:calc(80svh - 67.2px);
+  padding:54px 0 38px;
+  display:flex;
+  align-items:center;
+  color:#fffaf2;
+  background:#003e3b url("/hero-jewellery-v2.webp") center center / cover no-repeat !important;
+}
+.aryan-home[data-theme="light"] #hero.hero.section-shell:before{background:linear-gradient(90deg,rgba(0,41,40,.26) 0%,rgba(0,52,49,.06) 46%,transparent 73%) !important;mix-blend-mode:normal;opacity:1}
+.aryan-home .hero .hero-grid{width:calc(100% - 40px);display:block;position:relative;margin-inline:auto}
+.aryan-home .hero-copy{position:relative;z-index:2;max-width:785px}
+.aryan-home .hero .eyebrow{display:block;width:max-content;max-width:100%;margin-bottom:20px;color:#f7f5ee;font-size:1rem;font-weight:700;letter-spacing:.09em;line-height:1.4}
+.aryan-home .hero .eyebrow:after{content:"";display:block;width:42px;height:4px;margin-top:8px;background:#f9c846;border-radius:4px}
+.aryan-home .hero h1{font-family:var(--serif);font-size:clamp(3.5rem,5.2vw,5.5rem);font-weight:800;letter-spacing:-.04em;line-height:.96;margin:0 0 20px;white-space:nowrap;text-shadow:0 3px 17px rgba(0,0,0,.18)}
+.aryan-home[data-theme="light"] .hero h1 span{color:#ffd35c !important}
+.aryan-home .hero .hero-lead{max-width:710px;font-size:clamp(1rem,1.25vw,1.22rem);line-height:1.45;margin-bottom:0;color:#f9f7f0 !important;text-shadow:0 2px 10px rgba(0,0,0,.2)}
+.aryan-home .hero .hero-actions{gap:18px;margin:24px 0 40px}
+.aryan-home .hero-actions .btn{min-height:60px;border-radius:8px;padding:0 28px;font-size:1rem;box-shadow:0 8px 22px rgba(0,0,0,.16)}
+.aryan-home .hero-actions .btn span[aria-hidden]{font-size:1.45rem;line-height:1}
+.aryan-home[data-theme="light"] .hero-actions .btn-gold{background:linear-gradient(135deg,#ffe17b,#ffc73b);border:1px solid #efb92e;color:#14201e}
+.aryan-home[data-theme="light"] .hero-actions .btn-outline{background:rgba(0,34,33,.23);border:2px solid #f7f6f2;color:#fff}
+.aryan-home[data-theme="light"] .hero-actions .btn-outline:is(:hover,:focus-visible){background:rgba(255,255,255,.16);border-color:#fff;color:#fff}
+.aryan-home[data-theme="light"] .hero .trust-row{display:flex;align-items:center;gap:0;width:max-content;max-width:100%;padding-top:0;border-top:0;text-align:left}
+.aryan-home[data-theme="light"] .hero .trust-row>div{display:flex;flex-direction:row;align-items:center;gap:12px;min-height:56px;padding:0 18px;background:none;border:0;border-right:1px solid rgba(255,255,255,.53);border-radius:0;box-shadow:none}
+.aryan-home[data-theme="light"] .hero .trust-row>div:first-child{padding-left:0}
+.aryan-home[data-theme="light"] .hero .trust-row>div:last-child{border-right:0;padding-right:0}
+.aryan-home .hero .trust-row svg{width:48px;height:48px;flex:none;color:#f2c63d}
+.aryan-home .hero .trust-row span{margin:0;color:#fff;font-size:.86rem;line-height:1.32;white-space:nowrap}
+.aryan-home .hero-motto{position:absolute;right:4px;top:6px;z-index:2;margin:0;max-width:155px;color:#fff !important;text-transform:uppercase;font-size:1.05rem;font-weight:800;line-height:1.24;letter-spacing:.025em;text-shadow:0 2px 8px rgba(0,0,0,.45)}
+.aryan-home .hero-motto:before,.aryan-home .hero-motto:after{content:"";display:block;width:42px;height:4px;background:#c72133;border-radius:5px}
+.aryan-home .hero-motto:before{margin-bottom:14px}
+.aryan-home .hero-motto:after{margin-top:14px}
+
+.aryan-home[data-theme="light"] #rates.rate-strip{min-height:calc(20vh - 16.8px);min-height:calc(20svh - 16.8px);display:flex;align-items:center;padding:7px 0;background:#fffaf3 !important;background-image:none !important;border:0;border-radius:14px 14px 0 0;position:relative;z-index:3;margin-top:-1px;box-shadow:0 -8px 28px rgba(16,40,37,.08)}
+.aryan-home .rate-strip .rate-grid{width:calc(100% - 40px);display:grid;grid-template-columns:minmax(260px,1.05fr) minmax(490px,2.1fr) minmax(260px,1.05fr);gap:8px 20px;align-items:center}
+.aryan-home .rate-strip .rate-intro{min-width:0}
+.aryan-home .rate-strip .rate-intro:before{content:"";display:block;width:43px;height:4px;border-radius:5px;background:#c81c31;margin-bottom:14px}
+.aryan-home .rate-strip .rate-intro h2{font-family:var(--serif);font-size:clamp(2rem,2.55vw,2.65rem);line-height:1.08;letter-spacing:-.04em;margin:0 0 3px;color:#062e2c !important}
+.aryan-home .rate-strip .rate-intro p{font-size:1.08rem;line-height:1.3;color:#536164 !important}
+.aryan-home .rate-values{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));min-height:104px;background:#fffaf4;border:1px solid #eee6d9;border-radius:12px;box-shadow:0 5px 22px rgba(53,37,14,.035)}
+.aryan-home[data-theme="light"] .rate-values .rate-card{min-height:0;padding:8px 10px;border:0;border-right:1px solid #d8d2c9;border-radius:0;box-shadow:none;background:transparent;transform:none}
+.aryan-home[data-theme="light"] .rate-values .rate-card:last-child{border-right:0}
+.aryan-home[data-theme="light"] .rate-values .rate-card span{font-size:1rem;font-weight:800;text-transform:uppercase;color:#aa1022 !important}
+.aryan-home[data-theme="light"] .rate-values .rate-card strong{font-size:clamp(1.6rem,2.05vw,2.15rem);line-height:1.1;margin:5px 0;color:#a72e0b !important;font-variant-numeric:tabular-nums}
+.aryan-home[data-theme="light"] .rate-values .rate-card:nth-child(3) strong{color:#ae1029 !important}
+.aryan-home[data-theme="light"] .rate-values .rate-card small{font-size:.9rem;color:#546066 !important}
+.aryan-home .rate-calculator{display:flex;align-items:center;gap:18px;min-height:104px;padding:12px 25px;border-radius:11px;background:linear-gradient(120deg,#003d3b,#002f2e);color:#fff !important;box-shadow:0 10px 25px rgba(0,49,46,.12);transition:transform .2s ease,box-shadow .2s ease}
+.aryan-home .rate-calculator:is(:hover,:focus-visible){transform:translateY(-3px);box-shadow:0 15px 30px rgba(0,49,46,.2)}
+.aryan-home .rate-calculator svg{width:49px;height:49px;flex:none;color:#f6c63f}
+.aryan-home[data-theme="light"] #rates .rate-calculator>span:nth-child(2){font-size:1.05rem;font-weight:800;line-height:1.25;color:#fff !important}
+.aryan-home[data-theme="light"] #rates .rate-calculator .rate-arrow{margin-left:auto;font-size:1.8rem;color:#fff !important}
+.aryan-home .rate-strip .rate-meta{grid-column:1/-1;display:flex;justify-content:center;align-items:center;flex-direction:row;gap:14px;min-height:18px;text-align:center;font-size:.73rem;line-height:1.3;color:#56605c !important}
+.aryan-home .rate-strip .rate-meta>span:first-child{color:#56605c !important}
+.aryan-home .rate-strip .rate-meta b{color:#173d39}
+.aryan-home .rate-strip .rate-meta #rate-status{color:#67706d !important}
+.aryan-home .rate-strip .rate-meta .text-button{color:#0b6058;font-size:.73rem;text-decoration:underline;margin:0;white-space:nowrap}
+
+@media(max-width:1190px){
+  .aryan-home .site-header .nav-wrap{width:calc(100% - 40px)}
+  .aryan-home .hero .hero-grid{width:calc(100% - 40px)}
+  .aryan-home .hero-copy{max-width:650px}
+  .aryan-home .hero h1{font-size:clamp(3.2rem,5.8vw,4.7rem)}
+  .aryan-home .hero .trust-row svg{width:39px;height:39px}
+  .aryan-home[data-theme="light"] .hero .trust-row>div{gap:8px;padding:0 11px}
+  .aryan-home .hero .trust-row span{font-size:.76rem}
+  .aryan-home .rate-strip .rate-grid{width:calc(100% - 40px);grid-template-columns:minmax(250px,1fr) minmax(470px,2fr)}
+  .aryan-home .rate-calculator{grid-column:1/-1;min-height:85px;justify-content:center}
+  .aryan-home .rate-calculator>span:nth-child(2) br{display:none}
+  .aryan-home .rate-calculator .rate-arrow{margin-left:0}
+}
+@media(max-width:800px){
+  .aryan-home .site-header .nav-wrap{height:72px}
+  .aryan-home[data-theme="light"] #hero.hero.section-shell{min-height:calc(80vh - 57.6px);min-height:calc(80svh - 57.6px);padding:54px 0 34px;background-position:64% center !important}
+  .aryan-home[data-theme="light"] #rates.rate-strip{min-height:calc(20vh - 14.4px);min-height:calc(20svh - 14.4px)}
+  .aryan-home[data-theme="light"] #hero.hero.section-shell:before{background:linear-gradient(90deg,rgba(0,42,40,.86),rgba(0,46,43,.53)) !important}
+  .aryan-home .hero .hero-grid{width:calc(100% - 40px)}
+  .aryan-home .hero .eyebrow{font-size:.73rem;letter-spacing:.08em;margin-bottom:18px}
+  .aryan-home .hero h1{font-size:clamp(2.75rem,9vw,4.5rem);white-space:normal;line-height:1.01}
+  .aryan-home .hero .hero-lead{font-size:1rem;max-width:610px}
+  .aryan-home .hero-motto{display:none}
+  .aryan-home .hero .hero-actions{margin:25px 0 34px}
+  .aryan-home .hero-actions .btn{width:auto;min-height:53px}
+  .aryan-home[data-theme="light"] .hero .trust-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;gap:12px}
+  .aryan-home[data-theme="light"] .hero .trust-row>div{padding:0;border:0}
+  .aryan-home .hero .trust-row span{font-size:.78rem}
+  .aryan-home .rate-strip .rate-grid{width:calc(100% - 40px);grid-template-columns:1fr;gap:18px}
+  .aryan-home .rate-strip .rate-intro h2{font-size:2.15rem}
+  .aryan-home .rate-values{min-height:116px}
+  .aryan-home .rate-calculator{grid-column:auto}
+  .aryan-home .rate-strip .rate-meta{grid-column:auto;flex-wrap:wrap;gap:5px 14px}
+}
+@media(max-width:460px){
+  .aryan-home .hero h1{font-size:clamp(2.35rem,10.6vw,3.05rem)}
+  .aryan-home .hero .hero-actions{flex-direction:column;gap:10px}
+  .aryan-home .hero-actions .btn{width:100%;padding-inline:16px;font-size:.9rem}
+  .aryan-home .hero .trust-row svg{width:34px;height:34px}
+  .aryan-home .hero .trust-row span{font-size:.68rem}
+  .aryan-home[data-theme="light"] .rate-values .rate-card{padding:12px 3px}
+  .aryan-home[data-theme="light"] .rate-values .rate-card span{font-size:.7rem}
+  .aryan-home[data-theme="light"] .rate-values .rate-card strong{font-size:clamp(1.1rem,5vw,1.5rem)}
+  .aryan-home[data-theme="light"] .rate-values .rate-card small{font-size:.7rem}
+  .aryan-home .rate-strip .rate-meta #rate-status{width:100%}
+}
+
+/* Six-benefit section directly below the rates. */
+.aryan-home[data-theme="light"] #why-aryan.why-section{padding:52px 0 58px;background:#fffaf3 !important;background-image:none !important;color:#173d3b}
+.aryan-home #why-aryan .why-shell{width:calc(100% - 40px);max-width:none}
+.aryan-home #why-aryan .why-layout{display:grid;grid-template-columns:minmax(400px,.9fr) minmax(0,3fr);gap:30px;align-items:stretch}
+.aryan-home #why-aryan .why-intro{display:flex;flex-direction:column;justify-content:center;padding:10px 12px 10px 4px}
+.aryan-home[data-theme="light"] #why-aryan .why-intro .kicker{display:block;color:#a43231 !important;font-size:.9rem;font-weight:800;letter-spacing:.055em;text-transform:uppercase;line-height:1.25;margin-bottom:18px}
+.aryan-home #why-aryan .why-intro .kicker:before{content:"";display:inline-block;vertical-align:middle;width:31px;height:4px;margin-right:13px;border-radius:3px;background:#c81b33}
+.aryan-home #why-aryan .why-intro h2{margin:0 0 18px;font-family:var(--serif);font-size:clamp(3rem,2.8vw,3.5rem);font-weight:800;line-height:1.01;letter-spacing:-.04em;color:#064846}
+.aryan-home #why-aryan .why-intro h2 span{color:#d8a424}
+.aryan-home #why-aryan .why-intro p{max-width:480px;margin:0;color:#535c5c;font-size:1.05rem;line-height:1.5}
+.aryan-home #why-aryan .why-features{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
+.aryan-home #why-aryan .why-feature{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;min-height:310px;padding:25px 16px;text-align:center;background:#fffcf7;border:1px solid #eee7dc;border-radius:14px;box-shadow:0 8px 22px rgba(62,47,24,.035)}
+.aryan-home #why-aryan .why-feature-icon{display:grid;place-items:center;width:82px;height:82px;margin:0 0 19px;border-radius:50%}
+.aryan-home #why-aryan .why-feature-icon svg{width:48px;height:48px;stroke-width:1.8}
+.aryan-home #why-aryan .tone-teal{background:#034c49;color:#e9bc39}
+.aryan-home #why-aryan .tone-gold{background:#ffe4a3;color:#a74327}
+.aryan-home #why-aryan .tone-red{background:#b40426;color:#e9ba38}
+.aryan-home #why-aryan .why-feature h3{margin:0 0 13px;font-family:var(--sans);font-size:clamp(.98rem,1vw,1.18rem);font-weight:800;line-height:1.2;color:#17232b}
+.aryan-home #why-aryan .why-feature p{margin:0;color:#626a6d;font-size:clamp(.8rem,.82vw,.96rem);line-height:1.45}
+@media(max-width:1550px){
+  .aryan-home #why-aryan .why-shell{width:calc(100% - 40px)}
+  .aryan-home #why-aryan .why-layout{grid-template-columns:1fr;gap:24px}
+  .aryan-home #why-aryan .why-intro{display:block;padding:0}
+  .aryan-home #why-aryan .why-intro p{max-width:760px}
+  .aryan-home #why-aryan .why-features{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .aryan-home #why-aryan .why-feature{min-height:250px;padding:20px}
+}
+@media(max-width:600px){
+  .aryan-home[data-theme="light"] #why-aryan.why-section{padding:42px 0 48px}
+  .aryan-home #why-aryan .why-shell{width:calc(100% - 40px)}
+  .aryan-home #why-aryan .why-intro h2{font-size:clamp(2.2rem,9vw,3rem)}
+  .aryan-home #why-aryan .why-features{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .aryan-home #why-aryan .why-feature{min-height:230px;padding:18px 10px}
+  .aryan-home #why-aryan .why-feature-icon{width:68px;height:68px;margin-bottom:13px}
+  .aryan-home #why-aryan .why-feature-icon svg{width:40px;height:40px}
+  .aryan-home #why-aryan .why-feature h3{font-size:.93rem}
+  .aryan-home #why-aryan .why-feature p{font-size:.74rem}
+}
+
+/* Two-panel services section from the supplied reference. */
+.aryan-home[data-theme="light"] #services.services-section{padding:34px 0 58px;background:#fffaf3 !important;background-image:none !important;color:#123c38}
+.aryan-home #services .services-shell{width:calc(100% - 40px);max-width:none}
+.aryan-home #services .services-layout{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;gap:20px;align-items:stretch}
+.aryan-home #services .services-heading{padding:0 0 18px 8px}
+.aryan-home[data-theme="light"] #services .services-heading .kicker{display:block;color:#a43131 !important;font-size:.88rem;font-weight:800;letter-spacing:.065em;text-transform:uppercase;line-height:1.2;margin-bottom:3px}
+.aryan-home #services .services-heading .kicker:before{content:"";display:inline-block;vertical-align:middle;width:29px;height:4px;margin-right:12px;background:#c92132;border-radius:3px}
+.aryan-home #services .services-heading h2{margin:0;color:#054943;font-family:var(--serif);font-size:clamp(2.35rem,3vw,3.3rem);line-height:1.05;letter-spacing:-.04em}
+.aryan-home #services .service-offer{display:grid;min-width:0;height:100%;overflow:hidden;border-radius:12px;box-shadow:0 11px 27px rgba(62,39,19,.09)}
+.aryan-home #services .service-sell{grid-template-columns:38% minmax(0,1fr);min-height:365px;background:#fffbf4;border:1px solid #ece4d7}
+.aryan-home #services .service-pledged{grid-template-columns:36% minmax(0,1fr);min-height:365px;background:#a90520;border:1px solid #970018}
+.aryan-home #services .offer-image{position:relative;min-height:100%;overflow:hidden;background:#14362f}
+.aryan-home #services .offer-image img{object-fit:cover;object-position:center;transition:transform .45s ease}
+.aryan-home #services .service-offer:is(:hover,:focus-within) .offer-image img{transform:scale(1.035)}
+.aryan-home #services .offer-content{display:flex;flex-direction:column;align-items:flex-start;min-width:0;padding:26px 28px}
+.aryan-home #services .service-pledged .offer-content{padding:30px 36px}
+.aryan-home #services .offer-icon{display:grid;place-items:center;width:51px;height:51px;flex:none;border:1px solid #edc358;border-radius:11px;background:#fff1c9;color:#a95825;margin-bottom:13px}
+.aryan-home #services .offer-icon svg{width:31px;height:31px}
+.aryan-home #services .service-pledged .offer-icon{width:58px;height:58px;border:2px solid #e7b82b;background:rgba(255,225,106,.08);color:#f2c33b;margin-bottom:16px}
+.aryan-home #services .service-pledged .offer-icon svg{width:37px;height:37px}
+.aryan-home #services .offer-content h3{margin:0 0 8px;color:#14242a;font-family:var(--sans);font-size:clamp(1.65rem,2vw,2.25rem);font-weight:800;line-height:1.1}
+.aryan-home #services .offer-content p{max-width:430px;margin:0 0 20px;color:#536062;font-size:clamp(.94rem,1.08vw,1.13rem);line-height:1.4}
+.aryan-home #services .service-pledged .offer-content h3{color:#fff8ef;font-family:var(--serif);font-size:clamp(1.9rem,2.3vw,2.7rem)}
+.aryan-home #services .service-pledged .offer-content p{max-width:590px;color:#fff0e8;font-size:clamp(1rem,1.2vw,1.25rem);line-height:1.35}
+.aryan-home #services .offer-button{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;min-height:48px;margin-top:auto;padding:8px 16px;border:1px solid #edbd30;border-radius:7px;background:linear-gradient(135deg,#ffe17e,#ffca3d);box-shadow:0 5px 12px rgba(102,51,0,.12);color:#22251f;font-size:clamp(.81rem,.92vw,1rem);font-weight:800;line-height:1.2;text-align:center;transition:transform .2s ease,background .2s ease,box-shadow .2s ease}
+.aryan-home #services .offer-button span{margin-left:3px;font-size:1.35em;line-height:1}
+.aryan-home #services .offer-button:is(:hover,:focus-visible){background:#ffe797;box-shadow:0 8px 16px rgba(102,51,0,.18);transform:translateY(-2px)}
+@media(max-width:1200px){
+  .aryan-home #services .services-shell{width:calc(100% - 40px)}
+  .aryan-home #services .services-layout{grid-template-columns:1fr;gap:22px}
+  .aryan-home #services .service-sell,.aryan-home #services .service-pledged{min-height:330px;grid-template-columns:35% minmax(0,1fr)}
+}
+@media(max-width:700px){
+  .aryan-home[data-theme="light"] #services.services-section{padding:36px 0 48px}
+  .aryan-home #services .services-shell{width:calc(100% - 40px)}
+  .aryan-home #services .services-heading{padding-left:0}
+  .aryan-home #services .services-heading h2{font-size:2.4rem}
+  .aryan-home #services .service-sell,.aryan-home #services .service-pledged{grid-template-columns:1fr;min-height:0}
+  .aryan-home #services .offer-image{height:225px;min-height:0}
+  .aryan-home #services .offer-content,.aryan-home #services .service-pledged .offer-content{padding:24px}
+  .aryan-home #services .offer-button{margin-top:12px}
+}
+
+/* Product categories below Our Services. */
+.aryan-home[data-theme="light"] #what-we-buy.buy-section{position:relative;isolation:isolate;overflow:hidden;padding:48px 0 70px;background:#fffaf3 !important;background-image:none !important;color:#073f3c}
+.aryan-home #what-we-buy:before{content:"";position:absolute;z-index:-1;inset:0 0 auto 0;height:365px;background:url("/ornaments/services-bangles.webp") right center / cover no-repeat;mask-image:linear-gradient(to bottom,#000 0%,#000 55%,transparent 100%);pointer-events:none}
+.aryan-home #what-we-buy .buy-shell{width:calc(100% - 40px);max-width:none;position:relative}
+.aryan-home #what-we-buy .buy-intro{max-width:850px;margin:0 0 25px 16px}
+.aryan-home[data-theme="light"] #what-we-buy .buy-intro .kicker{display:block;margin-bottom:17px;color:#b3212a !important;font-size:1.08rem;font-weight:800;letter-spacing:.07em;line-height:1.2;text-transform:uppercase}
+.aryan-home #what-we-buy .buy-intro .kicker:before{content:"";display:inline-block;vertical-align:middle;width:50px;height:6px;margin-right:17px;border-radius:5px;background:#c81731}
+.aryan-home #what-we-buy .buy-intro h2{margin:0 0 14px;font-family:var(--serif);font-size:clamp(3.5rem,4.5vw,4.8rem);font-weight:800;line-height:.98;letter-spacing:-.035em;color:#073f3c}
+.aryan-home #what-we-buy .buy-intro h2 span{color:#d99a18}
+.aryan-home #what-we-buy .buy-intro p{max-width:730px;margin:0;color:#51666d;font-size:clamp(1.15rem,1.55vw,1.5rem);line-height:1.35}
+.aryan-home #what-we-buy .buy-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;align-items:stretch}
+.aryan-home #what-we-buy .buy-card{display:flex;flex-direction:column;min-width:0;overflow:hidden;border:1px solid #ece7dd;border-radius:16px;background:#fffaf3;box-shadow:0 5px 18px rgba(57,45,25,.035)}
+.aryan-home #what-we-buy .buy-card-image{position:relative;flex:none;aspect-ratio:1.05;overflow:hidden;background:#033b37}
+.aryan-home #what-we-buy .buy-card-image img{object-fit:cover;transition:transform .35s ease}
+.aryan-home #what-we-buy .buy-card:hover .buy-card-image img{transform:scale(1.045)}
+.aryan-home #what-we-buy .buy-card-copy{display:flex;flex:1;flex-direction:column;align-items:center;min-height:165px;padding:20px 12px 18px;text-align:center}
+.aryan-home #what-we-buy .buy-card-copy h3{margin:0;color:#073f3c;font-family:var(--serif);font-size:clamp(1.22rem,1.6vw,1.7rem);font-weight:800;line-height:1.12;letter-spacing:-.035em}
+.aryan-home #what-we-buy .buy-card-copy>span{display:block;flex:none;width:46px;height:5px;margin:15px 0 14px;border-radius:4px;background:#ffcb3f}
+.aryan-home #what-we-buy .buy-card-copy p{margin:0;color:#52616b;font-size:clamp(.88rem,1.06vw,1.1rem);line-height:1.42}
+.aryan-home #what-we-buy .buy-cta{display:flex;align-items:center;justify-content:center;gap:24px;width:min(445px,100%);min-height:74px;margin:28px auto 0;padding:14px 24px;border:1px solid #efbd31;border-radius:10px;background:linear-gradient(135deg,#ffc83a,#ffd65d);box-shadow:0 7px 17px rgba(110,65,0,.1);color:#152823;font-size:clamp(1.15rem,1.5vw,1.5rem);font-weight:800;transition:transform .2s ease,box-shadow .2s ease}
+.aryan-home #what-we-buy .buy-cta span{font-size:1.45em;font-weight:400;line-height:1}
+.aryan-home #what-we-buy .buy-cta:is(:hover,:focus-visible){transform:translateY(-2px);box-shadow:0 11px 22px rgba(110,65,0,.17)}
+@media(max-width:1200px){
+  .aryan-home #what-we-buy .buy-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .aryan-home #what-we-buy .buy-card-image{aspect-ratio:1.25}
+}
+@media(max-width:650px){
+  .aryan-home[data-theme="light"] #what-we-buy.buy-section{padding:42px 0 54px}
+  .aryan-home #what-we-buy:before{height:310px;background-position:65% center;opacity:.45}
+  .aryan-home #what-we-buy .buy-shell{width:calc(100% - 40px)}
+  .aryan-home #what-we-buy .buy-intro{margin:0 0 25px}
+  .aryan-home[data-theme="light"] #what-we-buy .buy-intro .kicker{font-size:.8rem}
+  .aryan-home #what-we-buy .buy-intro .kicker:before{width:32px;height:4px;margin-right:9px}
+  .aryan-home #what-we-buy .buy-intro h2{font-size:clamp(2.45rem,10vw,4rem)}
+  .aryan-home #what-we-buy .buy-intro p{font-size:1rem}
+  .aryan-home #what-we-buy .buy-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .aryan-home #what-we-buy .buy-card-image{aspect-ratio:1.03}
+  .aryan-home #what-we-buy .buy-card-copy{min-height:145px;padding:15px 7px}
+  .aryan-home #what-we-buy .buy-card-copy h3{font-size:1.2rem}
+  .aryan-home #what-we-buy .buy-card-copy>span{width:37px;height:4px;margin:11px 0}
+  .aryan-home #what-we-buy .buy-card-copy p{font-size:.82rem}
+  .aryan-home #what-we-buy .buy-cta{min-height:62px;margin-top:24px;font-size:1.1rem}
+}
+
+/* Use one responsive side gutter across the full homepage. */
+.aryan-home .container.container{
+  width:calc(100% - var(--page-gutter) - var(--page-gutter));
+  max-width:none;
+  margin-inline:auto;
+}
+.aryan-home #hero .hero-grid,
+.aryan-home #rates .rate-grid,
+.aryan-home #why-aryan .why-shell,
+.aryan-home #services .services-shell,
+.aryan-home #what-we-buy .buy-shell{
+  width:calc(100% - var(--page-gutter) - var(--page-gutter));
+  max-width:none;
+  margin-inline:auto;
+}
+
+/* Non-destructive jewellery testing, immediately after What We Buy. */
+.aryan-home .testing-section{background:#fffaf3;color:#073f3c}
+.aryan-home .testing-main{position:relative;min-height:615px;overflow:hidden;background:#fffaf3 url("/gold-testing-omio-scene.webp") center top / cover no-repeat}
+.aryan-home .testing-main:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,250,243,.34) 0%,rgba(255,250,243,.18) 38%,transparent 58%);pointer-events:none}
+.aryan-home .testing-main-inner{position:relative;z-index:1;min-height:615px}
+.aryan-home .testing-copy{width:min(730px,51%);padding:44px 0 24px}
+.aryan-home .testing-kicker{display:block;color:#b21727;font-size:clamp(.85rem,1.25vw,1.2rem);font-weight:800;letter-spacing:.08em;line-height:1.2;text-transform:uppercase}
+.aryan-home .testing-kicker:before{content:"";display:inline-block;vertical-align:middle;width:50px;height:6px;margin-right:16px;border-radius:5px;background:#bf112b}
+.aryan-home .testing-copy h2{margin:21px 0 16px;color:#053e3b;font-family:var(--serif);font-size:clamp(3.6rem,4.45vw,5.2rem);font-weight:800;line-height:.92;letter-spacing:-.045em}
+.aryan-home .testing-copy h2 span{color:#d79716}
+.aryan-home .testing-copy>p{max-width:680px;margin:0;color:#4e6471;font-size:clamp(1.1rem,1.55vw,1.45rem);line-height:1.3}
+.aryan-home .testing-benefits{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;width:100%;margin-top:28px}
+.aryan-home .testing-benefit{min-width:0;padding:0 12px;text-align:center;border-right:1px solid rgba(21,51,50,.2)}
+.aryan-home .testing-benefit:first-child{padding-left:0}
+.aryan-home .testing-benefit:last-child{border-right:0;padding-right:0}
+.aryan-home .testing-benefit-icon{display:grid;place-items:center;width:74px;height:74px;margin:0 auto 10px;border-radius:50%;color:#efbc32}
+.aryan-home .testing-benefit-icon.teal{background:#034743}
+.aryan-home .testing-benefit-icon.red{background:#a90022}
+.aryan-home .testing-benefit-icon svg{width:43px;height:43px}
+.aryan-home .testing-benefit h3{margin:0 0 6px;color:#073d3a;font-family:var(--sans);font-size:clamp(.9rem,1.05vw,1.1rem);font-weight:800;line-height:1.17}
+.aryan-home .testing-benefit p{max-width:155px;margin:0 auto;color:#536570;font-size:clamp(.81rem,.95vw,.99rem);line-height:1.3}
+.aryan-home .testing-process{position:relative;scroll-margin-top:84px;background:#fffaf3;border-top:1px solid #eee6d8;border-radius:16px 16px 0 0}
+.aryan-home .testing-process-inner{display:grid;grid-template-columns:minmax(0,2.7fr) minmax(330px,1fr);gap:25px;align-items:stretch;padding-top:15px;padding-bottom:28px}
+.aryan-home .testing-steps-panel{min-width:0;padding:8px 0 0}
+.aryan-home .testing-steps-heading .testing-kicker{font-size:.95rem}
+.aryan-home .testing-steps-heading .testing-kicker:before{width:45px;height:5px;margin-right:13px}
+.aryan-home .testing-steps-heading h3{margin:3px 0 0;color:#074441;font-family:var(--serif);font-size:clamp(1.8rem,2.35vw,2.4rem);font-weight:800;line-height:1.1;letter-spacing:-.035em}
+.aryan-home .testing-steps-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;list-style:none;margin:9px 0 0;padding:0}
+.aryan-home .testing-steps-list li{position:relative;min-width:0;padding:0 8px;text-align:center}
+.aryan-home .testing-steps-list li:not(:last-child):after{content:"→";position:absolute;top:24px;right:-20px;color:#b20927;font-size:2.2rem;line-height:1}
+.aryan-home .testing-step-icon{display:grid;place-items:center;width:70px;height:70px;margin:0 auto 9px;border-radius:50%;background:#ffe5a3;color:#a62624}
+.aryan-home .testing-step-icon svg{width:41px;height:41px}
+.aryan-home .testing-steps-list h4{margin:0 0 4px;color:#093f3c;font-size:clamp(.92rem,1.08vw,1.15rem);font-weight:800;line-height:1.2}
+.aryan-home .testing-steps-list p{max-width:210px;margin:0 auto;color:#536572;font-size:clamp(.82rem,.98vw,1.02rem);line-height:1.27}
+.aryan-home .testing-safe-card{display:grid;grid-template-columns:82px minmax(0,1fr);gap:20px;align-items:start;min-height:235px;padding:34px 28px;border-radius:13px;background:linear-gradient(135deg,#003d3a,#00322f);color:#fff;box-shadow:0 8px 24px rgba(0,51,48,.12)}
+.aryan-home .testing-safe-icon{display:block;color:#efc139}
+.aryan-home .testing-safe-icon svg{width:79px;height:79px;stroke-width:1.7}
+.aryan-home .testing-safe-card h3{margin:1px 0 15px;color:#fff;font-family:var(--sans);font-size:clamp(1.2rem,1.55vw,1.55rem);font-weight:800;line-height:1.14}
+.aryan-home .testing-safe-card p{margin:0;color:#e6efea;font-size:clamp(.95rem,1.06vw,1.12rem);line-height:1.35}
+@media(max-width:1200px){
+  .aryan-home .testing-main,.aryan-home .testing-main-inner{min-height:600px}
+  .aryan-home .testing-copy{width:min(660px,56%)}
+  .aryan-home .testing-copy h2{font-size:clamp(3.25rem,5.2vw,4.25rem)}
+  .aryan-home .testing-benefit-icon{width:64px;height:64px}
+  .aryan-home .testing-benefit-icon svg{width:37px;height:37px}
+  .aryan-home .testing-process-inner{grid-template-columns:minmax(0,2fr) minmax(300px,1fr)}
+  .aryan-home .testing-safe-card{grid-template-columns:1fr;gap:8px;padding:24px}
+  .aryan-home .testing-safe-icon svg{width:58px;height:58px}
+}
+@media(max-width:900px){
+  .aryan-home .testing-main{min-height:0;padding-bottom:300px;background-size:auto 410px;background-position:right bottom}
+  .aryan-home .testing-main:before{background:linear-gradient(180deg,#fffaf3 0%,rgba(255,250,243,.97) 44%,rgba(255,250,243,.12) 74%)}
+  .aryan-home .testing-main-inner{min-height:0}
+  .aryan-home .testing-copy{width:100%;max-width:680px;padding:45px 0 20px}
+  .aryan-home .testing-copy h2{font-size:clamp(3rem,7vw,4.3rem)}
+  .aryan-home .testing-process-inner{grid-template-columns:1fr;gap:20px;padding-top:24px}
+  .aryan-home .testing-safe-card{grid-template-columns:70px minmax(0,1fr);min-height:0}
+}
+@media(max-width:600px){
+  .aryan-home .testing-main{padding-bottom:235px;background-size:auto 310px}
+  .aryan-home .testing-copy{padding-top:38px}
+  .aryan-home .testing-kicker{font-size:.8rem}
+  .aryan-home .testing-kicker:before{width:30px;height:4px;margin-right:9px}
+  .aryan-home .testing-copy h2{margin-top:18px;font-size:clamp(2.45rem,9.2vw,3.5rem)}
+  .aryan-home .testing-copy>p{font-size:1rem}
+  .aryan-home .testing-benefits{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 8px;margin-top:25px}
+  .aryan-home .testing-benefit:nth-child(2){border-right:0}
+  .aryan-home .testing-benefit:nth-child(3){padding-left:0}
+  .aryan-home .testing-benefit h3{font-size:.94rem}
+  .aryan-home .testing-benefit p{font-size:.83rem}
+  .aryan-home .testing-steps-heading h3{font-size:1.85rem}
+  .aryan-home .testing-steps-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:25px 12px;margin-top:20px}
+  .aryan-home .testing-steps-list li:nth-child(2):after{display:none}
+  .aryan-home .testing-safe-card{grid-template-columns:55px minmax(0,1fr);gap:12px;padding:22px 18px}
+  .aryan-home .testing-safe-icon svg{width:52px;height:52px}
+  .aryan-home .testing-safe-card h3{font-size:1.15rem}
+  .aryan-home .testing-safe-card p{font-size:.91rem}
+}
+
+/* Transparent valuation follows the testing process. */
+.aryan-home .valuation-section{overflow:hidden;background:#fffaf3;color:#073f3c}
+.aryan-home .valuation-overview{position:relative;min-height:520px;background:#fffaf3 url("/valuation-overview.webp") center top / cover no-repeat}
+.aryan-home .valuation-overview:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,250,243,.55) 0%,rgba(255,250,243,.43) 38%,rgba(255,250,243,.27) 56%,transparent 70%);pointer-events:none}
+.aryan-home .valuation-overview-inner{position:relative;display:grid;grid-template-columns:minmax(0,480px) minmax(0,355px) minmax(0,1fr);gap:32px;min-height:520px}
+.aryan-home .valuation-heading{padding:44px 0 28px}
+.aryan-home .valuation-kicker{display:block;color:#b01626;font-size:clamp(.9rem,1.22vw,1.2rem);font-weight:800;line-height:1.2;letter-spacing:.08em;text-transform:uppercase}
+.aryan-home .valuation-kicker:before{content:"";display:inline-block;vertical-align:middle;width:50px;height:6px;margin-right:16px;border-radius:5px;background:#be122b}
+.aryan-home .valuation-heading h2{margin:22px 0 20px;color:#053e3b;font-family:var(--serif);font-size:clamp(3.25rem,4.35vw,5rem);font-weight:800;line-height:.94;letter-spacing:-.045em}
+.aryan-home .valuation-heading h2 span{color:#d99c20}
+.aryan-home .valuation-heading p{max-width:490px;margin:0;color:#536875;font-size:clamp(1.05rem,1.43vw,1.35rem);line-height:1.37}
+.aryan-home .valuation-factors{display:flex;flex-direction:column;justify-content:center;gap:12px;padding:22px 0}
+.aryan-home .valuation-factor{display:grid;grid-template-columns:73px minmax(0,1fr);gap:17px;align-items:center;min-height:78px}
+.aryan-home .valuation-factor-icon{display:grid;place-items:center;width:73px;height:73px;border-radius:50%;background:#ffe2a0;color:#b31b2b}
+.aryan-home .valuation-factor-icon svg{width:43px;height:43px}
+.aryan-home .valuation-factor h3{margin:0 0 2px;color:#073a38;font-size:clamp(1rem,1.18vw,1.2rem);font-weight:800;line-height:1.2}
+.aryan-home .valuation-factor p{margin:0;color:#536775;font-size:clamp(.88rem,1vw,1.03rem);line-height:1.28}
+.aryan-home .valuation-cards{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;align-items:stretch;padding-bottom:32px}
+.aryan-home .valuation-card{position:relative;min-width:0;overflow:visible;border:1px solid #eee6d8;border-radius:16px;background:#fffaf3;box-shadow:0 4px 18px rgba(57,43,24,.035)}
+.aryan-home .valuation-card:not(:last-child):after{content:"→";position:absolute;z-index:3;top:80px;right:-25px;color:#a80021;font-size:2.4rem;line-height:1;text-shadow:0 2px 5px #fffaf3}
+.aryan-home .valuation-card-image{position:relative;height:clamp(175px,12vw,205px);margin:13px 13px 0;overflow:hidden;border-radius:12px;background:#142a27}
+.aryan-home .valuation-card-image img{object-fit:cover;transition:transform .35s ease}
+.aryan-home .valuation-card:hover .valuation-card-image img{transform:scale(1.035)}
+.aryan-home .valuation-step-number{position:absolute;z-index:2;top:0;left:0;display:grid;place-items:center;width:56px;height:56px;border:3px solid #f4c454;border-radius:50%;background:#004a44;color:#fff;font-size:1.65rem;font-weight:800;line-height:1}
+.aryan-home .valuation-live-rate{position:absolute;z-index:1;top:21%;left:25%;display:flex;flex-direction:column;align-items:flex-start;max-width:65%;color:#fff9e8;text-shadow:0 2px 8px rgba(0,0,0,.85);pointer-events:none}
+.aryan-home .valuation-live-rate span{font-size:clamp(.68rem,.82vw,.9rem);font-weight:700;line-height:1.15}
+.aryan-home .valuation-live-rate strong{color:#ffd56f;font-size:clamp(1.1rem,1.75vw,1.7rem);font-weight:800;line-height:1.25}
+.aryan-home .valuation-live-rate small{font-size:clamp(.64rem,.75vw,.82rem);line-height:1.1}
+.aryan-home .valuation-card-copy{min-height:135px;padding:15px 21px 19px}
+.aryan-home .valuation-card-copy h3{margin:0 0 6px;color:#073e3b;font-family:var(--serif);font-size:clamp(1.23rem,1.6vw,1.7rem);font-weight:800;line-height:1.1;letter-spacing:-.035em}
+.aryan-home .valuation-card-copy p{margin:0;color:#566774;font-size:clamp(.9rem,1.04vw,1.1rem);line-height:1.3}
+@media(max-width:1200px){
+  .aryan-home .valuation-overview-inner{grid-template-columns:minmax(0,1fr) minmax(0,330px) minmax(0,.35fr);gap:24px}
+  .aryan-home .valuation-heading h2{font-size:clamp(3.15rem,5vw,4.2rem)}
+  .aryan-home .valuation-factor{grid-template-columns:63px minmax(0,1fr);gap:11px}
+  .aryan-home .valuation-factor-icon{width:63px;height:63px}
+  .aryan-home .valuation-factor-icon svg{width:37px;height:37px}
+  .aryan-home .valuation-card-copy{padding:14px 15px 18px}
+}
+@media(max-width:1000px){
+  .aryan-home .valuation-overview{background-position:70% top}
+  .aryan-home .valuation-overview:before{background:linear-gradient(90deg,rgba(255,250,243,.97) 0%,rgba(255,250,243,.88) 70%,rgba(255,250,243,.28) 100%)}
+  .aryan-home .valuation-overview-inner{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:25px}
+  .aryan-home .valuation-factors{padding:20px 0}
+  .aryan-home .valuation-cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .aryan-home .valuation-card:after{display:none}
+  .aryan-home .valuation-card-image{height:200px}
+}
+@media(max-width:700px){
+  .aryan-home .valuation-overview{padding-bottom:240px;background-size:auto 320px;background-position:right bottom}
+  .aryan-home .valuation-overview:before{background:linear-gradient(180deg,#fffaf3 0%,#fffaf3 70%,rgba(255,250,243,.1) 100%)}
+  .aryan-home .valuation-overview-inner{display:block;min-height:0}
+  .aryan-home .valuation-heading{padding:38px 0 12px}
+  .aryan-home .valuation-kicker{font-size:.82rem}
+  .aryan-home .valuation-kicker:before{width:31px;height:4px;margin-right:10px}
+  .aryan-home .valuation-heading h2{margin:18px 0 15px;font-size:clamp(2.7rem,9vw,3.8rem)}
+  .aryan-home .valuation-heading p{font-size:1rem}
+  .aryan-home .valuation-factors{gap:10px;padding:15px 0 10px}
+  .aryan-home .valuation-factor{grid-template-columns:55px minmax(0,1fr);min-height:60px}
+  .aryan-home .valuation-factor-icon{width:55px;height:55px}
+  .aryan-home .valuation-factor-icon svg{width:32px;height:32px}
+  .aryan-home .valuation-card-image{height:180px}
+}
+@media(max-width:560px){
+  .aryan-home .valuation-cards{grid-template-columns:1fr}
+  .aryan-home .valuation-card-image{height:220px}
+  .aryan-home .valuation-card-copy{min-height:0;padding:16px 18px 21px}
+  .aryan-home .valuation-live-rate{top:20%;left:27%}
+  .aryan-home .valuation-live-rate span{font-size:.85rem}
+  .aryan-home .valuation-live-rate strong{font-size:1.6rem}
+}
+
+/* Gold value calculator directly after the rate strip. */
+.aryan-home[data-theme="light"] #calculator.gold-calc-section{position:relative;scroll-margin-top:84px;overflow:hidden;padding:0;background:#003d3a url("/calculator-jewellery.webp") center center / cover no-repeat !important;color:#fff}
+.aryan-home #calculator.gold-calc-section:before{content:"";position:absolute;inset:0 0 48px;background:linear-gradient(90deg,rgba(0,54,51,.3) 0%,rgba(0,51,48,.15) 46%,transparent 70%);pointer-events:none}
+.aryan-home .gold-calc-inner{position:relative;z-index:1;display:flex;align-items:center;min-height:690px}
+.aryan-home .gold-calc-content{width:min(620px,49%);padding:52px 0 58px}
+.aryan-home #calculator .gold-calc-intro h2{margin:0 0 8px;color:#fff;font-family:var(--serif);font-size:clamp(2.85rem,3.8vw,4.1rem);font-weight:800;line-height:1.04;letter-spacing:-.04em;text-shadow:0 3px 15px rgba(0,0,0,.17)}
+.aryan-home #calculator .gold-calc-intro h2 span{color:#ffd052}
+.aryan-home #calculator .gold-calc-intro p{margin:0 0 24px;color:#edf7f2;font-size:clamp(1rem,1.22vw,1.2rem);line-height:1.35}
+.aryan-home .gold-calc-panel{width:100%;padding:25px 28px 27px;border:1px solid #e6dfd1;border-radius:13px;background:#fffbf5;box-shadow:0 18px 48px rgba(0,20,20,.24);color:#203735}
+.aryan-home #calculator .gold-calc-label{display:block;margin:0 0 8px;color:#253c39;font-size:1rem;font-weight:800;line-height:1.25}
+.aryan-home .gold-calc-weight{display:flex;align-items:center;height:57px;margin:0 0 20px;overflow:hidden;border:1px solid #d9dfdb;border-radius:7px;background:#fff}
+.aryan-home .gold-calc-weight:focus-within{border-color:#0d625a;box-shadow:0 0 0 3px rgba(0,92,84,.13)}
+.aryan-home .gold-calc-weight input{width:100%;min-width:0;height:100%;padding:0 16px;border:0;outline:none;background:transparent;color:#1d2d2c;font-size:1.25rem;font-weight:800;appearance:textfield}
+.aryan-home .gold-calc-weight input::-webkit-outer-spin-button,.aryan-home .gold-calc-weight input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.aryan-home .gold-calc-weight>span{align-self:stretch;display:grid;place-items:center;min-width:104px;padding:0 16px;border-left:1px solid #e3e5e1;color:#53625f;font-size:.97rem;font-weight:700}
+.aryan-home .gold-calc-purities{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:19px}
+.aryan-home .gold-calc-purities button{min-width:0;min-height:48px;border:1px solid #dfe4df;border-radius:7px;background:#fff;color:#243b38;font-size:1.04rem;font-weight:800;transition:background .2s,color .2s,border-color .2s}
+.aryan-home .gold-calc-purities button:is(:hover,:focus-visible){border-color:#0b645d}
+.aryan-home .gold-calc-purities button[aria-pressed="true"]{border-color:#00554e;background:#00554e;color:#fff;box-shadow:0 3px 10px rgba(0,72,66,.15)}
+.aryan-home .gold-calc-rate{display:flex;flex-direction:column;gap:2px;padding:0 0 15px;border-bottom:1px solid #e7e5de;color:#40534f}
+.aryan-home .gold-calc-rate>span{font-size:.95rem;font-weight:700}
+.aryan-home .gold-calc-rate strong{color:#a93b20;font-size:1.2rem;font-weight:800;line-height:1.3}
+.aryan-home .gold-calc-rate strong small{color:#526660;font-size:.8rem;font-weight:600}
+.aryan-home .gold-calc-rate>small{color:#66746e;font-size:.73rem}
+.aryan-home .gold-calc-value{padding:15px 0 16px;color:#163d39}
+.aryan-home .gold-calc-value>span{display:block;font-size:1.02rem;font-weight:800}
+.aryan-home .gold-calc-value strong{display:block;margin-top:1px;color:#00544d;font-family:var(--sans);font-size:clamp(2rem,2.45vw,2.65rem);font-weight:900;line-height:1.1;font-variant-numeric:tabular-nums}
+.aryan-home .gold-calc-button{display:flex;align-items:center;justify-content:center;gap:16px;min-height:55px;width:100%;padding:10px 18px;border:1px solid #f2bd2c;border-radius:7px;background:linear-gradient(135deg,#ffda65,#ffc53b);box-shadow:0 5px 12px rgba(99,62,0,.12);color:#17322d;font-size:1.03rem;font-weight:800;transition:transform .2s,box-shadow .2s}
+.aryan-home .gold-calc-button span{font-size:1.4em;line-height:1}
+.aryan-home .gold-calc-button:is(:hover,:focus-visible){transform:translateY(-2px);box-shadow:0 9px 17px rgba(99,62,0,.2)}
+.aryan-home #calculator .gold-calc-note{position:relative;z-index:1;margin:0;padding:13px var(--page-gutter);background:#fffaf3;color:#626b69;font-size:.82rem;line-height:1.35;text-align:center}
+@media(max-width:1100px){
+  .aryan-home .gold-calc-content{width:min(600px,58%)}
+  .aryan-home[data-theme="light"] #calculator.gold-calc-section{background-position:60% center !important}
+}
+@media(max-width:760px){
+  .aryan-home[data-theme="light"] #calculator.gold-calc-section{background-position:63% center !important}
+  .aryan-home #calculator.gold-calc-section:before{background:linear-gradient(90deg,rgba(0,47,44,.9),rgba(0,49,46,.66) 80%,rgba(0,49,46,.42))}
+  .aryan-home .gold-calc-inner{min-height:0}
+  .aryan-home .gold-calc-content{width:min(100%,570px);padding:48px 0 52px}
+  .aryan-home #calculator .gold-calc-intro h2{font-size:clamp(2.6rem,7.5vw,3.9rem)}
+}
+@media(max-width:460px){
+  .aryan-home .gold-calc-content{padding:38px 0 40px}
+  .aryan-home #calculator .gold-calc-intro h2{font-size:clamp(2.35rem,9.7vw,2.9rem)}
+  .aryan-home #calculator .gold-calc-intro p{font-size:.92rem;margin-bottom:19px}
+  .aryan-home .gold-calc-panel{padding:20px 18px 22px}
+  .aryan-home .gold-calc-weight>span{min-width:78px;padding-inline:10px;font-size:.85rem}
+  .aryan-home .gold-calc-purities{gap:6px}
+  .aryan-home .gold-calc-purities button{min-height:44px;font-size:.88rem}
+  .aryan-home .gold-calc-button{font-size:.95rem}
 }

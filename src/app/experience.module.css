@@ -1,0 +1,271 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 30px;
+  background: #faf7f0;
+  color: #073e3a;
+}
+
+.hero {
+  position: relative;
+  min-height: 570px;
+  isolation: isolate;
+}
+
+.heroImage {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: #f8f4eb;
+}
+
+.heroImage img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, rgba(250, 247, 240, .94), rgba(250, 247, 240, .78) 34%, rgba(250, 247, 240, 0) 60%);
+  content: "";
+  pointer-events: none;
+}
+
+.heroCopy {
+  width: min(770px, 56vw);
+  padding: 48px 0 58px clamp(25px, 4vw, 72px);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  color: #b20828;
+  font-size: clamp(13px, 1.1vw, 18px);
+  font-weight: 850;
+  letter-spacing: .08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  display: block;
+  width: 48px;
+  height: 6px;
+  flex: none;
+  border-radius: 10px;
+  background: #ba092d;
+  content: "";
+}
+
+.section .heroCopy h2 {
+  margin: 25px 0 13px;
+  color: #053d39;
+  font-family: var(--serif), Georgia, serif;
+  font-size: clamp(47px, 5.2vw, 81px);
+  font-weight: 700;
+  letter-spacing: -.055em;
+  line-height: .99;
+}
+
+.heroCopy h2 span,
+.panelIntro h3 span { color: #d7950b; }
+
+.section .heroCopy p.lead {
+  max-width: 660px;
+  margin: 0;
+  color: #526777;
+  font-size: clamp(17px, 1.42vw, 23px);
+  line-height: 1.38;
+}
+
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: min(720px, 100%);
+  margin-top: 29px;
+}
+
+.benefit {
+  min-width: 0;
+  padding: 0 12px;
+  text-align: center;
+}
+
+.benefit:first-child { padding-left: 0; }
+.benefit + .benefit { border-left: 1px solid rgba(48, 63, 61, .16); }
+
+.benefitIcon,
+.cardIcon {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+
+.benefitIcon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 13px;
+}
+
+.benefitIcon svg { width: 39px; height: 39px; }
+.benefitIcon.gold { background: #ffe2a0; color: #ad0828; }
+.benefitIcon.red { background: #ad0028; color: #fff; }
+
+.section .benefit h3 {
+  margin: 0 0 5px;
+  color: #073d39;
+  font-family: var(--serif), Georgia, serif;
+  font-size: clamp(17px, 1.27vw, 21px);
+  line-height: 1.16;
+}
+
+.section .benefit p {
+  margin: 0;
+  color: #526777;
+  font-size: clamp(12px, .98vw, 15px);
+  line-height: 1.34;
+}
+
+.panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(320px, 1.8fr) minmax(0, 4fr);
+  gap: 18px;
+  width: calc(100% - 28px);
+  margin: -3px auto 0;
+  padding: 17px clamp(24px, 2.7vw, 45px) 23px;
+  border: 1px solid #ede3d1;
+  border-radius: 16px;
+  background: rgba(255, 252, 245, .98);
+  box-shadow: 0 15px 42px rgba(59, 37, 14, .06);
+}
+
+.panelIntro { padding: 12px 12px 0 0; }
+
+.section .panelIntro h3 {
+  margin: 15px 0 10px;
+  color: #073d39;
+  font-family: var(--serif), Georgia, serif;
+  font-size: clamp(40px, 4.2vw, 64px);
+  font-weight: 700;
+  letter-spacing: -.05em;
+  line-height: 1.01;
+}
+
+.section .panelIntro p {
+  max-width: 420px;
+  margin: 0;
+  color: #526777;
+  font-size: clamp(16px, 1.2vw, 19px);
+  line-height: 1.42;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.card {
+  min-width: 0;
+  text-align: center;
+}
+
+.cardImage {
+  position: relative;
+  height: clamp(125px, 10.2vw, 164px);
+  margin-bottom: 30px;
+  border-radius: 10px;
+  background: #e4dbc9;
+}
+
+.cardImage img {
+  border-radius: inherit;
+  object-fit: cover;
+  object-position: center;
+}
+
+.cardIcon {
+  position: absolute;
+  bottom: -22px;
+  left: 12px;
+  z-index: 1;
+  width: 62px;
+  height: 62px;
+  border: 4px solid #fffaf3;
+  background: #ffe3a2;
+  color: #a90828;
+}
+
+.cardIcon svg { width: 31px; height: 31px; }
+
+.section .card h4 {
+  margin: 0 0 5px;
+  color: #073d39;
+  font-family: var(--serif), Georgia, serif;
+  font-size: clamp(17px, 1.35vw, 21px);
+  line-height: 1.2;
+}
+
+.section .card p {
+  max-width: 215px;
+  margin: 0 auto;
+  color: #526777;
+  font-size: clamp(13px, 1vw, 16px);
+  line-height: 1.32;
+}
+
+@media (max-width: 1100px) {
+  .heroCopy { width: min(700px, 66vw); }
+  .hero::after { background: linear-gradient(90deg, rgba(250, 247, 240, .97), rgba(250, 247, 240, .82) 46%, rgba(250, 247, 240, 0) 77%); }
+  .panel { grid-template-columns: 1fr; gap: 24px; }
+  .panelIntro h3 br { display: none; }
+  .cardImage { height: clamp(135px, 18vw, 190px); }
+}
+
+@media (max-width: 760px) {
+  .section { padding-bottom: 18px; }
+  .hero { padding-bottom: 300px; }
+  .heroImage { top: auto; height: 370px; }
+  .heroImage img { object-position: 77% center; }
+  .hero::after { background: linear-gradient(180deg, #faf7f0 0, #faf7f0 53%, rgba(250, 247, 240, .95) 61%, rgba(250, 247, 240, 0) 79%); }
+  .heroCopy { width: 100%; padding: 44px 24px 0; }
+  .section .heroCopy h2 { font-size: clamp(43px, 9.6vw, 68px); }
+  .section .heroCopy p.lead { max-width: 610px; font-size: 17px; }
+  .benefits { gap: 22px 0; }
+  .benefit { padding: 0 9px; }
+  .benefitIcon { width: 59px; height: 59px; margin-bottom: 9px; }
+  .benefitIcon svg { width: 29px; height: 29px; }
+  .section .benefit h3 { font-size: 16px; }
+  .section .benefit p { font-size: 12px; }
+  .panel { margin-top: -6px; }
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 15px; }
+  .cardImage { height: clamp(125px, 28vw, 210px); }
+}
+
+@media (max-width: 520px) {
+  .hero { padding-bottom: 250px; }
+  .heroImage { height: 325px; }
+  .heroCopy { padding-inline: 21px; }
+  .eyebrow { gap: 9px; font-size: 12px; }
+  .eyebrow::before { width: 34px; height: 4px; }
+  .section .heroCopy h2 { margin-top: 18px; font-size: clamp(39px, 10.3vw, 54px); }
+  .section .heroCopy p.lead { font-size: 15px; }
+  .benefits { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .benefit:nth-child(3) { border-left: 0; }
+  .benefit:nth-child(odd) { padding-left: 0; }
+  .benefit:nth-child(even) { padding-right: 0; }
+  .section .benefit h3 { font-size: 17px; }
+  .panel { width: calc(100% - 20px); padding: 25px 17px 28px; }
+  .section .panelIntro h3 { font-size: 40px; }
+  .section .panelIntro p { font-size: 15px; }
+  .cards { gap: 22px 12px; }
+  .cardImage { height: 115px; margin-bottom: 27px; }
+  .cardIcon { bottom: -19px; left: 8px; width: 52px; height: 52px; }
+  .cardIcon svg { width: 25px; height: 25px; }
+  .section .card h4 { font-size: 17px; }
+  .section .card p { font-size: 12px; }
+}

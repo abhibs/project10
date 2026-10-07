@@ -1,33 +1,307 @@
-.section { background-color:#165D58; background-image:linear-gradient(90deg,rgba(0,91,85,.97),rgba(0,91,85,.65)),url("/ornaments/branches-bracelet.webp"); background-size:cover,cover; background-position:center,right center; background-repeat:no-repeat,no-repeat; color: #FAF7F0; scroll-margin-top: 100px; }
-.heading { display: flex; justify-content: space-between; align-items: end; gap: 32px; margin-bottom: 36px; }
-.heading .kicker { color: #FAF7F0; font-size: 11px; font-weight: 800; letter-spacing: .16em; margin: 0 0 14px; }
-.heading h2 { max-width: 640px; margin: 0; font-family: var(--font-aryan-display), Georgia, serif; font-size: clamp(32px, 4vw, 52px); line-height: 1.15; }
-.heading p { margin: 18px 0 0; font-size: 14px; line-height: 1.8; }
-.search { flex-shrink: 0; width: 260px; display: grid; gap: 8px; font-size: 12px; font-weight: 800; }
-.search input { width: 100%; padding: 14px; border: 2px solid #C54136; border-radius: 12px; background: #FAF7F0; color: #165D58; font: inherit; font-weight: 400; }
-.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
-.card { min-width: 0; display: flex; flex-direction: column; overflow: hidden; border: 2px solid #C54136; border-radius: 24px; box-shadow: 0 16px 40px rgba(0,0,0,.12); }
-.image { width: 100%; height: 210px; object-fit: cover; }
-.imageFallback { min-height: 210px; background: #FAF7F0; color: #F4C84A; display: grid; place-content: center; justify-items: center; gap: 16px; }
-.imageFallback img { border-radius: 50%; border: 2px solid #F4C84A; }
-.imageFallback span { font-size: 11px; font-weight: 800; letter-spacing: .08em; }
-.cardBody { flex: 1; display: flex; flex-direction: column; padding: 26px; overflow-wrap: anywhere; }
-.area { color: #FAF7F0; font-size: 11px; font-weight: 800; }
-.card h3 { margin: 12px 0 16px; font-family: var(--font-aryan-display), Georgia, serif; font-size: 26px; line-height: 1.25; }
-.address { margin: 0 0 22px; font-size: 13px; line-height: 1.8; white-space: pre-wrap; }
-.timings { display: grid; gap: 8px; margin: auto 0 0; padding: 16px; border-radius: 12px; background: #FAF7F0; color: #165D58; font-size: 12px; }
-.timings strong { color: #F4C84A; }
-.section .timings span { color: #165D58; }
-.links { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 22px; font-size: 12px; font-weight: 800; }
-.links a { text-decoration: none; }
-.directions { padding: 12px 16px; border-radius: 999px; background: #F4C84A; color: #000; }
-.more { color: #F4C84A; }
-.notice { padding: 28px; border: 1px solid rgba(253,244,230,.55); border-radius: 18px; font-size: 14px; line-height: 1.8; }
-.notice a, .notice button { color: #F4C84A; font-weight: 800; }
-.notice button { margin-left: 8px; background: transparent; border: 0; text-decoration: underline; cursor: pointer; }
-.section :focus-visible { outline: 3px solid #C54136; outline-offset: 3px; }
-@media (max-width: 1000px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .heading { align-items: start; flex-direction: column; } .search { width: min(100%, 400px); } }
-@media (max-width: 600px) { .grid { grid-template-columns: minmax(0, 1fr); } }
-.search input::placeholder { color: rgba(0,106,100,.72); }
+.section {
+  position: relative;
+  padding: 0 0 76px;
+  scroll-margin-top: 84px;
+  background: #f8f4eb;
+  color: #123e3b;
+}
 
-.imageFallback span, .timings strong { color: #165D58; }
+.backdrop {
+  min-height: 470px;
+  padding: 62px 0 134px;
+  background:
+    linear-gradient(90deg, rgba(4, 28, 29, .92) 0%, rgba(4, 28, 29, .76) 39%, rgba(4, 28, 29, .18) 100%),
+    url("/branches-storefront.webp") center 52% / cover no-repeat;
+}
+
+.intro { max-width: 620px; }
+.section .eyebrow {
+  margin: 0 0 16px;
+  color: #ffd561;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .18em;
+}
+.section h2 {
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-aryan-body), Arial, sans-serif;
+  font-size: clamp(35px, 4vw, 57px);
+  font-weight: 850;
+  letter-spacing: -.045em;
+  line-height: 1.07;
+}
+.section h2 span { color: #ffd052; }
+.section .subtitle {
+  margin: 15px 0 27px;
+  color: #f4f3e9;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.cityTabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.cityTab, .cityActive {
+  min-width: 160px;
+  min-height: 50px;
+  padding: 9px 22px;
+  border: 2px solid #fff;
+  border-radius: 9px;
+  background: #fffdfa;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, .11);
+  color: #173f3c;
+  font-size: 16px;
+  font-weight: 800;
+  transition: background .2s, transform .2s;
+}
+.cityTab:hover, .cityActive:hover { transform: translateY(-2px); }
+.cityActive {
+  border-color: #fff;
+  background: #a70f22;
+  color: #fff;
+}
+.search {
+  display: flex;
+  width: min(100%, 540px);
+  height: 58px;
+  overflow: hidden;
+  border-radius: 9px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .18);
+}
+.search input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  padding: 0 20px;
+  border: 0;
+  outline: 0;
+  background: #fff;
+  color: #1e3432;
+  font-size: 15px;
+}
+.search input::placeholder { color: #75817e; opacity: 1; }
+.search button {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  flex: none;
+  border: 0;
+  background: #003e3b;
+  color: #fff;
+}
+.search button:hover { background: #075d55; }
+.search button svg { width: 26px; height: 26px; }
+.results {
+  position: relative;
+  z-index: 1;
+  margin-top: -84px;
+}
+.track {
+  display: flex;
+  width: 100%;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-inline: contain;
+  padding: 3px 3px 22px;
+}
+.track::-webkit-scrollbar { display: none; }
+.slide {
+  flex: 0 0 calc((100% - 18px) / 2);
+  min-width: 0;
+  scroll-snap-align: start;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  min-height: 310px;
+  height: 100%;
+  padding: 26px 28px 25px;
+  border: 1px solid #e9e3d6;
+  border-radius: 19px;
+  background: #fffdf8;
+  color: #173b38;
+  box-shadow: 0 15px 35px rgba(33, 35, 29, .12);
+}
+.cardTop { margin-bottom: 13px; }
+.locationTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #ab1428;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.locationTag svg { width: 15px; height: 15px; }
+.card h3 {
+  margin: 7px 0 0;
+  color: #173b38;
+  font-family: var(--font-aryan-body), Arial, sans-serif;
+  font-size: clamp(19px, 2vw, 25px);
+  font-weight: 850;
+  line-height: 1.2;
+}
+.details {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(150px, .9fr);
+  gap: 22px;
+  align-items: start;
+  margin-bottom: 21px;
+}
+.section .card p.address {
+  margin: 0;
+  color: #3d514d;
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.section .card p.timings {
+  display: flex;
+  gap: 9px;
+  margin: 0;
+  color: #3d514d;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.timings svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  margin-top: 1px;
+  color: #173b38;
+}
+.timings strong {
+  display: block;
+  color: #173b38;
+  font-weight: 800;
+}
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.25fr;
+  gap: 9px;
+  margin-top: auto;
+}
+.actionsTwo { grid-template-columns: 1fr 1.25fr; }
+.actions a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 9px;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  transition: transform .2s, background .2s;
+}
+.actions a:hover { transform: translateY(-2px); }
+.actions svg { width: 16px; height: 16px; flex: none; }
+.actionLight {
+  border: 1px solid #e6eae4;
+  background: #fff;
+  color: #064e49;
+}
+.actionLight svg { color: #af172b; }
+.actionGold {
+  border: 1px solid #e3ac1a;
+  background: #ffd04b;
+  color: #17342e;
+}
+.actionGold:hover { background: #ffdb72; }
+.carouselFooter {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 3px;
+}
+.count { color: #56665e; font-size: 13px; font-weight: 800; }
+.controls { display: flex; gap: 9px; }
+.controls button {
+  width: 43px;
+  height: 43px;
+  border: 1px solid #b6c7bb;
+  border-radius: 50%;
+  background: #fffdf8;
+  color: #064d47;
+  font-size: 22px;
+  line-height: 1;
+}
+.controls button:hover:not(:disabled) { background: #064d47; color: #fff; }
+.controls button:disabled { opacity: .45; cursor: default; }
+.section .notice {
+  min-height: 110px;
+  padding: 28px;
+  border: 1px solid #e9e3d6;
+  border-radius: 16px;
+  background: #fffdf8;
+  box-shadow: 0 12px 30px rgba(33, 35, 29, .1);
+  color: #173b38;
+  font-size: 15px;
+}
+.notice a, .notice button { color: #a70f22; font-weight: 800; }
+.notice button {
+  margin-left: 8px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  text-decoration: underline;
+}
+.section :focus-visible {
+  outline: 3px solid #db9f12;
+  outline-offset: 3px;
+}
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+@media (max-width: 1100px) {
+  .slide { flex-basis: 100%; }
+  .backdrop { background-position: 59% center; }
+}
+@media (max-width: 600px) {
+  .section { padding-bottom: 54px; }
+  .backdrop {
+    min-height: 420px;
+    padding: 46px 0 119px;
+    background-image:
+      linear-gradient(90deg, rgba(4, 28, 29, .88), rgba(4, 28, 29, .5)),
+      url("/branches-storefront.webp");
+    background-position: 57% center;
+  }
+  .section h2 { font-size: clamp(31px, 8vw, 43px); }
+  .section .subtitle { font-size: 13px; }
+  .cityTabs { gap: 8px; }
+  .cityTab, .cityActive { min-width: 0; flex: 1; min-height: 47px; padding: 8px 13px; font-size: 14px; }
+  .search { height: 53px; }
+  .search button { width: 56px; }
+  .results { margin-top: -78px; }
+  .card { min-height: 0; padding: 23px 20px 20px; }
+  .card h3 { font-size: 21px; }
+  .details { grid-template-columns: 1fr; gap: 13px; }
+  .actions { grid-template-columns: 1fr 1fr; }
+  .actionGold { grid-column: 1 / -1; }
+  .actionsTwo .actionGold { grid-column: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cityTab, .cityActive, .actions a { transition: none; }
+}

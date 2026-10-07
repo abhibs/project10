@@ -1,0 +1,248 @@
+.section {
+  position: relative;
+  padding-bottom: 28px;
+  overflow: hidden;
+  background: #faf7f0;
+  color: #073e3a;
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  min-height: 632px;
+  isolation: isolate;
+}
+
+.photo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: #f8f3e9;
+}
+
+.photo img {
+  object-fit: cover;
+  object-position: center center;
+}
+
+.hero::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, rgba(250, 247, 240, .97), rgba(250, 247, 240, .82) 36%, rgba(250, 247, 240, 0) 64%);
+  content: "";
+  pointer-events: none;
+}
+
+.content {
+  width: min(780px, 57vw);
+  padding: clamp(48px, 4.2vw, 78px) 0 66px clamp(25px, 4vw, 76px);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  color: #aa0925;
+  font-size: clamp(13px, 1.15vw, 18px);
+  font-weight: 850;
+  letter-spacing: .09em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  display: block;
+  width: 48px;
+  height: 6px;
+  flex: none;
+  border-radius: 10px;
+  background: #b4082b;
+  content: "";
+}
+
+.section .content h2 {
+  margin: 25px 0 17px;
+  color: #053d39;
+  font-family: var(--serif), Georgia, serif;
+  font-size: clamp(47px, 5.25vw, 81px);
+  font-weight: 700;
+  letter-spacing: -.055em;
+  line-height: .98;
+}
+
+.content h2 span,
+.optionsIntro h3 span {
+  color: #d7950b;
+}
+
+.section .content p.intro {
+  max-width: 650px;
+  margin: 0;
+  color: #526777;
+  font-size: clamp(17px, 1.48vw, 23px);
+  line-height: 1.37;
+}
+
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: min(745px, 100%);
+  margin-top: 39px;
+}
+
+.benefit {
+  min-width: 0;
+  padding: 0 13px;
+  text-align: center;
+}
+
+.benefit:first-child { padding-left: 0; }
+.benefit + .benefit { border-left: 1px solid rgba(48, 63, 61, .16); }
+
+.benefitIcon,
+.methodIcon {
+  display: grid;
+  place-items: center;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 13px;
+  border-radius: 50%;
+}
+
+.benefitIcon svg { width: 38px; height: 38px; }
+.benefitIcon.gold { background: #ffe5a0; color: #a50829; }
+.benefitIcon.red { background: #aa0025; color: #fff; }
+
+.section .benefit h3 {
+  margin: 0 0 5px;
+  color: #073d39;
+  font-family: var(--serif), Georgia, serif;
+  font-size: clamp(17px, 1.32vw, 21px);
+  font-weight: 750;
+  line-height: 1.12;
+}
+
+.section .benefit p {
+  margin: 0;
+  color: #526777;
+  font-size: clamp(12px, .98vw, 15px);
+  line-height: 1.35;
+}
+
+.options {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(300px, 36%) minmax(0, 1fr);
+  gap: 18px;
+  width: calc(100% - 28px);
+  min-height: 258px;
+  margin: -24px auto 0;
+  padding: 28px clamp(25px, 3vw, 48px) 25px;
+  border: 1px solid #ede3d1;
+  border-radius: 16px;
+  background: rgba(255, 252, 245, .97);
+  box-shadow: 0 15px 42px rgba(59, 37, 14, .07);
+}
+
+.section .optionsIntro h3 {
+  margin: 12px 0 9px;
+  color: #073d39;
+  font-family: var(--serif), Georgia, serif;
+  font-size: clamp(31px, 3.2vw, 48px);
+  font-weight: 700;
+  letter-spacing: -.045em;
+  line-height: 1.05;
+}
+
+.section .optionsIntro p {
+  max-width: 420px;
+  margin: 0;
+  color: #526777;
+  font-size: clamp(15px, 1.18vw, 18px);
+  line-height: 1.4;
+}
+
+.methods {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: center;
+}
+
+.method {
+  min-width: 0;
+  height: 100%;
+  padding: 0 12px;
+  text-align: center;
+}
+
+.method + .method { border-left: 1px solid #e9e3d8; }
+.methodIcon { width: 108px; height: 108px; margin-bottom: 8px; background: #ffe6a5; color: #9f0929; }
+.methodIcon svg { width: 49px; height: 49px; }
+
+.section .method h4 {
+  margin: 0 0 2px;
+  color: #073d39;
+  font-family: var(--serif), Georgia, serif;
+  font-size: clamp(18px, 1.35vw, 22px);
+  line-height: 1.2;
+}
+
+.section .method p {
+  margin: 0 auto;
+  max-width: 150px;
+  color: #526777;
+  font-size: clamp(13px, 1vw, 16px);
+  line-height: 1.3;
+}
+
+@media (max-width: 1100px) {
+  .content { width: min(770px, 66vw); }
+  .hero::after { background: linear-gradient(90deg, rgba(250, 247, 240, .99), rgba(250, 247, 240, .87) 47%, rgba(250, 247, 240, 0) 80%); }
+  .options { grid-template-columns: 1fr; gap: 25px; }
+  .optionsIntro h3 br { display: none; }
+  .methodIcon { width: 84px; height: 84px; }
+  .methodIcon svg { width: 40px; height: 40px; }
+}
+
+@media (max-width: 760px) {
+  .section { padding-bottom: 18px; }
+  .hero { display: block; min-height: 0; padding-bottom: 310px; }
+  .photo { top: auto; height: 390px; }
+  .photo img { object-position: 72% center; }
+  .hero::after { background: linear-gradient(180deg, #faf7f0 0, #faf7f0 52%, rgba(250, 247, 240, .96) 60%, rgba(250, 247, 240, 0) 78%); }
+  .content { width: 100%; padding: 45px 24px 0; }
+  .section .content h2 { font-size: clamp(43px, 10vw, 69px); }
+  .section .content p.intro { max-width: 630px; font-size: 17px; }
+  .benefits { gap: 23px 0; margin-top: 31px; }
+  .benefit { padding: 0 9px; }
+  .benefitIcon { width: 58px; height: 58px; margin-bottom: 9px; }
+  .benefitIcon svg { width: 29px; height: 29px; }
+  .section .benefit h3 { font-size: 16px; }
+  .section .benefit p { font-size: 12px; }
+  .options { margin-top: -6px; }
+}
+
+@media (max-width: 520px) {
+  .hero { padding-bottom: 255px; }
+  .photo { height: 330px; }
+  .content { padding-inline: 21px; }
+  .eyebrow { gap: 9px; font-size: 12px; }
+  .eyebrow::before { width: 34px; height: 4px; }
+  .section .content h2 { margin-top: 18px; font-size: clamp(39px, 10.7vw, 55px); }
+  .section .content p.intro { font-size: 15px; }
+  .benefits { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 0; }
+  .benefit:nth-child(3) { border-left: 0; }
+  .benefit:nth-child(odd) { padding-left: 0; }
+  .benefit:nth-child(even) { padding-right: 0; }
+  .section .benefit h3 { font-size: 17px; }
+  .section .benefit p { font-size: 12px; }
+  .options { width: calc(100% - 20px); padding: 26px 17px; }
+  .section .optionsIntro h3 { font-size: 34px; }
+  .section .optionsIntro p { font-size: 15px; }
+  .methods { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 21px 0; }
+  .method:nth-child(3) { border-left: 0; }
+  .methodIcon { width: 78px; height: 78px; }
+  .methodIcon svg { width: 36px; height: 36px; }
+}
