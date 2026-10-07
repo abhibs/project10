@@ -124,7 +124,7 @@
   line-height: 1.12;
 }
 
-.section .benefit p {
+.section .hero .benefit p {
   margin: 0;
   color: #526777;
   font-size: clamp(12px, .98vw, 15px);
@@ -156,7 +156,7 @@
   line-height: 1.05;
 }
 
-.section .optionsIntro p {
+.section .options .optionsIntro p {
   max-width: 420px;
   margin: 0;
   color: #526777;
@@ -189,7 +189,7 @@
   line-height: 1.2;
 }
 
-.section .method p {
+.section .options .method p {
   margin: 0 auto;
   max-width: 150px;
   color: #526777;

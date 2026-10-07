@@ -122,7 +122,7 @@
   line-height: 1.16;
 }
 
-.section .benefit p {
+.section .hero .benefit p {
   margin: 0;
   color: #526777;
   font-size: clamp(12px, .98vw, 15px);
@@ -155,7 +155,7 @@
   line-height: 1.01;
 }
 
-.section .panelIntro p {
+.section .panel .panelIntro p {
   max-width: 420px;
   margin: 0;
   color: #526777;
@@ -210,7 +210,7 @@
   line-height: 1.2;
 }
 
-.section .card p {
+.section .panel .card p {
   max-width: 215px;
   margin: 0 auto;
   color: #526777;
