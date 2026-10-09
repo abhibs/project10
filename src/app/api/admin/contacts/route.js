@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import { ADMIN_SESSION_COOKIE, readAdminSession } from "@/lib/admin-session";
 import { getContacts } from "@/lib/admin-db";
 
-const BUSINESS_TYPES = new Set(["Branch Visit", "Doorstep Service", "Quick Contact"]);
+const BUSINESS_TYPES = new Set(["Branch Visit", "Doorstep Service", "Quick Contact", "Contact Page"]);
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 
 export async function GET(request) {

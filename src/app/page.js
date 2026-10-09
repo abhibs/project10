@@ -2,6 +2,8 @@ import GoldHomepage from "./GoldHomepage";
 import "./home.css";
 import "./booking-refresh.css";
 import { Manrope, Playfair_Display } from "next/font/google";
+import Script from "next/script";
+import GoogleTagManager from "./GoogleTagManager";
 
 const bodyFont = Manrope({
   subsets: ["latin"],
@@ -22,8 +24,35 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <div className={`${bodyFont.variable} ${displayFont.variable}`}>
-      <GoldHomepage />
-    </div>
+    <>
+      <GoogleTagManager />
+      {/* Meta Pixel Code */}
+      <Script id="meta-pixel" strategy="afterInteractive">
+        {`!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2194327534459621');
+fbq('track', 'PageView');`}
+      </Script>
+      <noscript>
+        {/* Keep the tracking request unoptimized and on Meta's domain. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          height="1"
+          width="1"
+          style={{ display: "none" }}
+          src="https://www.facebook.com/tr?id=2194327534459621&ev=PageView&noscript=1"
+          alt=""
+        />
+      </noscript>
+      <div className={`${bodyFont.variable} ${displayFont.variable}`}>
+        <GoldHomepage />
+      </div>
+    </>
   );
 }

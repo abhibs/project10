@@ -1,6 +1,7 @@
 "use client";
 
-import Brand from "./Brand";
+import SiteHeader from "./SiteHeader";
+import SiteFooter from "./SiteFooter";
 import BranchLocations from "./BranchLocations";
 import PaymentSection from "./PaymentSection";
 import ExperienceSection from "./ExperienceSection";
@@ -118,7 +119,6 @@ export default function GoldHomepage() {
   const scrollProgress = useRef(null);
   const pending = useRef(null);
   const submitLock = useRef({booking: false, contact: false});
-  const [menuOpen, setMenuOpen] = useState(false);
   const [rates, setRates] = useState(FALLBACK_RATES);
   const [weight, setWeight] = useState("10");
   const [purity, setPurity] = useState(22);
@@ -277,29 +277,7 @@ export default function GoldHomepage() {
 
   return (
     <div className="aryan-home" data-theme="light" ref={root}>
-  <header className="site-header" id="home">
-    <div className="reading-progress" ref={scrollProgress} aria-hidden="true" />
-    <div className="container nav-wrap">
-      <Brand href="#home" className="brand" />
-
-      <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="main-nav" aria-label={menuOpen ? "Close menu" : "Open menu"}>
-        <span></span><span></span><span></span>
-      </button>
-
-      <nav className={`main-nav${menuOpen ? " open" : ""}`} onClick={() => setMenuOpen(false)} id="main-nav" aria-label="Primary navigation">
-        <a href="#services">Services</a>
-        <a href="#rates">Gold Rate</a>
-        <a href="#calculator">Calculator</a>
-        <a href="#how-it-works-testing">How it works</a>
-        <a href="#branches">Branches</a>
-        <a href="#faq">FAQ</a>
-        <a href="#booking">Book Service</a>
-      </nav>
-
-
-      <a className="btn btn-gold nav-cta" href="#booking">Get Free Gold Valuation <span aria-hidden="true">→</span></a>
-    </div>
-  </header>
+  <SiteHeader progressRef={scrollProgress} />
 
   <main>
     <section className="hero section-shell" id="hero" aria-labelledby="hero-title">
@@ -561,18 +539,7 @@ export default function GoldHomepage() {
 
   </main>
 
-  <footer>
-    <div className="container footer-grid">
-      <div className="footer-brand">
-        <Brand href="#home" className="brand footer-wordmark" />
-        <p>Transparent gold buying, pledged-gold assistance and convenient valuation services.</p>
-      </div>
-      <div><h4>Services</h4><a href="#services">Sell Gold</a><a href="#booking">Release Pledged Gold</a><a href="#calculator">Gold Calculator</a><a href="#booking">Book Valuation</a></div>
-      <div><h4>Quick Links</h4><a href="#rates">Gold Rate</a><a href="#branches">Our Branches</a><a href="#how-it-works-testing">How It Works</a><a href="#faq">FAQs</a><a href="#our-story">Our Story</a></div>
-      <div><h4>Important</h4><p className="footer-small">Rates shown online are indicative. Final value is confirmed after physical evaluation and applicable compliance checks.</p></div>
-    </div>
-    <div className="container footer-bottom"><span>© <span id="year">{new Date().getFullYear()}</span> Aryan Gold. All rights reserved.</span></div>
-  </footer>
+  <SiteFooter homePage />
 
   <div className="floating-actions" aria-label="Quick actions">
     <a href="#booking" className="float-btn gold" aria-label="Book valuation">₹</a>

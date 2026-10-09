@@ -1,7 +1,7 @@
 import { createContact } from "@/lib/admin-db";
 
 const APPOINTMENT_TYPES = new Set(["Branch Visit", "Doorstep Service"]);
-const BUSINESS_TYPES = new Set([...APPOINTMENT_TYPES, "Quick Contact"]);
+const BUSINESS_TYPES = new Set([...APPOINTMENT_TYPES, "Quick Contact", "Contact Page"]);
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 const TIME_PATTERN = /^(?:[01]\d|2[0-3]):[0-5]\d(?:-(?:[01]\d|2[0-3]):[0-5]\d)?$/;
 const MOBILE_PATTERN = /^\d{10}$/;
@@ -46,7 +46,7 @@ export async function POST(request) {
     const id = await createContact({
       name,
       mobile,
-      city: appointment ? city : "",
+      city,
       weight: appointment ? rawWeight : null,
       preferredDate: appointment ? preferredDate : "",
       preferredTime: appointment ? preferredTime : "",

@@ -1120,10 +1120,18 @@
 .aryan-home[data-theme="light"] .site-header{background:#fffaf2;border-bottom:1px solid #e9dfca;backdrop-filter:none}
 .aryan-home .site-header .nav-wrap{width:calc(100% - 40px);height:84px;gap:22px}
 .aryan-home .site-header .main-nav{gap:clamp(12px,1.45vw,25px);font-size:.8rem;white-space:nowrap}
-.aryan-home .site-header .main-nav a:first-child:after{right:0;background:#f3bf37}
+.aryan-home .site-header .main-nav a[aria-current="page"]:after{right:0;background:#f3bf37}
 .aryan-home[data-theme="light"] .site-header .nav-cta{background:linear-gradient(135deg,#ffdb62,#ffc334);border:1px solid #eab12e;color:#1d2724;box-shadow:0 5px 16px rgba(151,99,13,.13);border-radius:8px;min-height:45px;padding:0 18px;font-size:.78rem;white-space:nowrap}
 .aryan-home[data-theme="light"] .site-header .nav-cta:is(:hover,:focus-visible){background:#ffe17b;border-color:#dba221;color:#1d2724}
 .aryan-home .site-header .nav-cta span{margin-left:8px;font-size:1.2rem;line-height:1}
+
+/* Keep the expanded navigation comfortable with the Contact Us link. */
+@media(max-width:1200px){
+  .aryan-home .site-header .main-nav{display:none;position:absolute;top:100%;left:0;right:0;background:#fffaf2;border-bottom:1px solid #e9dfca;padding:22px 30px;flex-direction:column;align-items:flex-start}
+  .aryan-home .site-header .main-nav.open{display:flex}
+  .aryan-home .site-header .menu-toggle{display:block;margin-left:auto}
+  .aryan-home .site-header .nav-cta{display:none}
+}
 
 .aryan-home[data-theme="light"] #hero.hero.section-shell{
   min-height:calc(80vh - 67.2px);

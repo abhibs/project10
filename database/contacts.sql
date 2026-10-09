@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS contacts (
   preffered_date DATE DEFAULT NULL,
   preffered_time VARCHAR(20) DEFAULT NULL COMMENT '24-hour time or time range',
   services VARCHAR(255) NOT NULL,
-  business_type ENUM('Branch Visit', 'Doorstep Service', 'Quick Contact') NOT NULL,
+  business_type ENUM('Branch Visit', 'Doorstep Service', 'Quick Contact', 'Contact Page') NOT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
