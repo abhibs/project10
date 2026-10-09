@@ -1,5 +1,4 @@
 import { Manrope, Playfair_Display } from "next/font/google";
-import GoogleTagManager from "../GoogleTagManager";
 import ContactPage from "./ContactPage";
 import "../home.css";
 
@@ -13,7 +12,6 @@ export const metadata = {
 
 export default function Page() {
   return <>
-    <GoogleTagManager />
     <div className={`${bodyFont.variable} ${displayFont.variable}`}><ContactPage /></div>
   </>;
 }

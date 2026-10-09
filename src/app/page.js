@@ -3,7 +3,6 @@ import "./home.css";
 import "./booking-refresh.css";
 import { Manrope, Playfair_Display } from "next/font/google";
 import Script from "next/script";
-import GoogleTagManager from "./GoogleTagManager";
 
 const bodyFont = Manrope({
   subsets: ["latin"],
@@ -25,7 +24,6 @@ export const metadata = {
 export default function Home() {
   return (
     <>
-      <GoogleTagManager />
       {/* Meta Pixel Code */}
       <Script id="meta-pixel" strategy="afterInteractive">
         {`!function(f,b,e,v,n,t,s)

@@ -1,4 +1,5 @@
 import "./globals.css";
+import GoogleTagManager, { GoogleTagManagerNoScript } from "./GoogleTagManager";
 
 export const metadata = {
   title: "Larkon Admin",
@@ -11,7 +12,13 @@ export default function RootLayout({ children }) {
       lang="en"
       className="h-full antialiased"
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <head>
+        <GoogleTagManager />
+      </head>
+      <body className="min-h-full flex flex-col">
+        <GoogleTagManagerNoScript />
+        {children}
+      </body>
     </html>
   );
 }
