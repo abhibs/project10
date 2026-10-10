@@ -248,10 +248,14 @@
   border-radius: 16px;
   background: #fffdf8;
   box-shadow: 0 12px 30px rgba(33, 35, 29, .1);
-  color: #173b38;
+  color: #173b38 !important;
   font-size: 15px;
 }
-.notice a, .notice button { color: #a70f22; font-weight: 800; }
+.section .notice a, .section .notice button {
+  color: #a70f22 !important;
+  font-weight: 800;
+  text-decoration: underline;
+}
 .notice button {
   margin-left: 8px;
   padding: 0;
