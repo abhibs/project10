@@ -2,13 +2,13 @@ import { cookies } from "next/headers";
 import { ADMIN_SESSION_COOKIE, readAdminSession } from "./admin-session";
 import { findAdminById } from "./admin-db";
 import { BranchError } from "./branch-values.mjs";
+import { isAllowedBranchOrigin } from "./branch-origin.mjs";
 
 export async function authorizeBranchRequest(request) {
   const session = readAdminSession((await cookies()).get(ADMIN_SESSION_COOKIE)?.value);
   if (!session || !await findAdminById(session.id)) throw new BranchError("Please sign in again.", 401);
   if (request && request.method !== "GET") {
-    const origin = request.headers.get("origin");
-    if (request.headers.get("sec-fetch-site") === "cross-site" || (origin && origin !== new URL(request.url).origin)) throw new BranchError("Request origin is not allowed.", 403);
+    if (!isAllowedBranchOrigin(request)) throw new BranchError("Request origin is not allowed.", 403);
   }
 }
 
