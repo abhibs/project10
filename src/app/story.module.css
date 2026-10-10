@@ -33,7 +33,7 @@
 }
 .section .content h2 {
   margin: 0 0 24px;
-  color: #073c39;
+  color: #006A64;
   font-family: var(--font-aryan-body), Arial, sans-serif;
   font-size: clamp(38px, 3.7vw, 60px);
   font-weight: 850;
@@ -43,7 +43,7 @@
 .section .content p.description {
   max-width: 500px;
   margin: 0;
-  color: #40534f;
+  color: #006A64;
   font-size: clamp(15px, 1.16vw, 18px);
   line-height: 1.55;
 }
@@ -58,7 +58,7 @@
   display: flex;
   align-items: center;
   gap: 17px;
-  color: #183f3b;
+  color: #006A64;
   font-size: clamp(16px, 1.18vw, 19px);
   font-weight: 750;
 }
@@ -86,7 +86,7 @@
   border-radius: 8px;
   background: #ffd04d;
   box-shadow: 0 7px 16px rgba(120, 77, 12, .14);
-  color: #173c36;
+  color: #006A64;
   font-size: 16px;
   font-weight: 850;
   text-decoration: none;
@@ -104,7 +104,7 @@
   align-items: center;
   gap: 5px;
   transform: translateX(-50%);
-  color: #004e49;
+  color: #006A64;
   font-family: var(--font-aryan-body), Arial, sans-serif;
   font-size: clamp(18px, 1.8vw, 29px);
   font-weight: 900;

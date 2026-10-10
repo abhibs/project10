@@ -10,17 +10,17 @@
   padding-bottom: 40px;
 }
 .page[data-theme="light"] main a:focus-visible, .page[data-theme="light"] main button:focus-visible { outline: 3px solid #dcb150; outline-offset: 5px; }
-.hero { position: relative; isolation: isolate; min-height: 440px; background: #003e3b; overflow: hidden; }
+.hero { position: relative; isolation: isolate; min-height: 440px; background: #006A64; overflow: hidden; }
 .heroImage { position: absolute; inset: 0 0 0 40%; z-index: -2; }
 .heroImage img { object-fit: cover; object-position: 65% center; }
-.hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #003e3b 0%, #003e3b 34%, #003e3bde 45%, #003e3b22 76%), linear-gradient(0deg, #003e3b55, transparent 70%); }
+.hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #006A64 0%, #006A64 34%, rgba(0, 106, 100, .87) 45%, rgba(0, 106, 100, .13) 76%), linear-gradient(0deg, rgba(0, 106, 100, .33), transparent 70%); }
 .heroInner { width: min(1180px, calc(100% - 80px)); margin: auto; padding: 26px 0 80px; }
 .breadcrumb { display: flex; gap: 12px; color: #e4c8bc; font-size: 11px; margin-bottom: 28px; }
 .page[data-theme="light"] .eyebrow { color: #e7c571; font-size: 10px; font-weight: 700; letter-spacing: .19em; margin-bottom: 12px; }
 .hero h1 { font-size: clamp(48px, 5.8vw, 80px); color: #fff9eb; margin-bottom: 16px; font-weight: 600; }
 .hero h1 span { color: #efc86c; }
 .page[data-theme="light"] .intro { color: #f3e5dc; font-size: clamp(14px, 1.35vw, 18px); line-height: 1.65; margin-bottom: 28px; }
-.contactStrip { display: flex; position: relative; width: fit-content; max-width: 100%; border: 1px solid #b56b4266; border-radius: 12px; background: #003e3be8; box-shadow: 0 8px 25px #00292822; backdrop-filter: blur(10px); padding: 17px 6px; }
+.contactStrip { display: flex; position: relative; width: fit-content; max-width: 100%; border: 1px solid #b56b4266; border-radius: 12px; background: rgba(0, 106, 100, .91); box-shadow: 0 8px 25px #00292822; backdrop-filter: blur(10px); padding: 17px 6px; }
 .contactItem { display: flex; gap: 14px; align-items: center; padding: 0 22px; color: #fff8e9 !important; }
 .contactItem + .contactItem { border-left: 1px solid #b88c6544; }
 .contactItem > span:last-child { display: grid; gap: 3px; }
@@ -28,7 +28,7 @@
 .contactItem > span > span { font-size: 12px; }
 .icon { width: 47px; height: 47px; flex-shrink: 0; display: grid; place-items: center; color: #74241b; border-radius: 50%; background: linear-gradient(130deg, #ffeaa8, #f6cd69); }
 .icon svg { width: 26px; height: 26px; }
-.contactStrip .icon { color: #003e3b; }
+.contactStrip .icon { color: #006A64; }
 .contactPanel { position: relative; display: grid; grid-template-columns: 1.22fr 1fr; width: min(1180px, calc(100% - 80px)); margin: -42px auto 0; border: 1px solid #e9dfcd; border-radius: 15px; background: #fffdf8; box-shadow: 0 15px 50px #5b30100a; overflow: hidden; }
 .formSide { padding: 36px 38px; }
 .sectionLabel { display: block; color: #997526; letter-spacing: .17em; font-size: 9px; font-weight: 800; margin-bottom: 10px; }
@@ -45,7 +45,7 @@
 .phoneInput > span { position: absolute; top: 12px; left: 12px; padding-right: 10px; color: #7b817a; border-right: 1px solid #e2e1d8; font-weight: 400; }
 .phoneInput input { padding-left: 55px; }
 .page[data-theme="light"] .formNote { color: #88887d; font-size: 10px; line-height: 1.6; margin: 19px 0 15px; }
-.sendButton { display: inline-flex; justify-content: center; align-items: center; gap: 25px; min-width: 210px; border: 1px solid #003e3b; border-radius: 6px; padding: 13px 24px; color: #fff8e7; background: #003e3b; box-shadow: 0 4px 12px #003e3b18; font-size: 12px !important; font-weight: 700 !important; transition: background .2s; }
+.sendButton { display: inline-flex; justify-content: center; align-items: center; gap: 25px; min-width: 210px; border: 1px solid #006A64; border-radius: 6px; padding: 13px 24px; color: #fff8e7; background: #006A64; box-shadow: 0 4px 12px #006A6418; font-size: 12px !important; font-weight: 700 !important; transition: background .2s; }
 .sendButton:hover { background: #002e2c; }
 .sendButton:disabled { opacity: .6; cursor: wait; }
 .sendButton svg { width: 19px; height: 19px; }
@@ -81,7 +81,7 @@
 @media (max-width: 700px) {
   .heroInner { padding-top: 22px; padding-bottom: 75px; }
   .heroImage { left: 15%; opacity: .4; }
-  .hero::before { background: linear-gradient(90deg, #003e3bf2 0%, #003e3b99 75%); }
+  .hero::before { background: linear-gradient(90deg, rgba(0, 106, 100, .95) 0%, rgba(0, 106, 100, .6) 75%); }
   .breadcrumb { margin-bottom: 25px; }
   .contactStrip { display: grid; width: 100%; padding: 5px 18px; }
   .contactItem { padding: 12px 0; }

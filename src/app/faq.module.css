@@ -19,7 +19,7 @@
 }
 .section .questions h2 {
   margin: 0 0 28px;
-  color: #073d39;
+  color: #006A64;
   font-family: var(--font-aryan-body), Arial, sans-serif;
   font-size: clamp(38px, 3.5vw, 56px);
   font-weight: 850;
@@ -41,7 +41,7 @@
   align-items: center;
   min-height: 58px;
   padding: 12px 17px;
-  color: #233d3a;
+  color: #006A64;
   cursor: pointer;
   font-size: clamp(14px, 1vw, 17px);
   font-weight: 750;
@@ -88,7 +88,7 @@
 .image img { object-fit: cover; object-position: center; }
 .aside h3 {
   margin: 24px 0 17px;
-  color: #153d39;
+  color: #006A64;
   font-family: var(--font-aryan-body), Arial, sans-serif;
   font-size: clamp(20px, 1.55vw, 26px);
   font-weight: 850;
@@ -103,7 +103,7 @@
   min-height: 52px;
   padding: 10px 18px;
   border-radius: 8px;
-  color: #17362f;
+  color: #006A64;
   font-size: 15px;
   font-weight: 850;
   text-decoration: none;
@@ -112,7 +112,7 @@
 .actions a:hover { transform: translateY(-2px); filter: brightness(1.04); }
 .actions svg { width: 20px; height: 20px; flex: none; }
 .call { border: 1px solid #e4ad23; background: #ffd046; }
-.message { border: 1px solid #004940; background: #005349; }
+.message { border: 1px solid #006A64; background: #006A64; }
 .section .actions a.message { color: #fff; }
 .section :focus-visible { outline: 3px solid #bd801c; outline-offset: 3px; }
 @media (max-width: 1050px) {

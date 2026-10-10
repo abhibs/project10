@@ -64,7 +64,7 @@
 
 .section .content h2 {
   margin: 25px 0 17px;
-  color: #053d39;
+  color: #006A64;
   font-family: var(--serif), Georgia, serif;
   font-size: clamp(47px, 5.25vw, 81px);
   font-weight: 700;
@@ -117,7 +117,7 @@
 
 .section .benefit h3 {
   margin: 0 0 5px;
-  color: #073d39;
+  color: #006A64;
   font-family: var(--serif), Georgia, serif;
   font-size: clamp(17px, 1.32vw, 21px);
   font-weight: 750;
@@ -148,7 +148,7 @@
 
 .section .optionsIntro h3 {
   margin: 12px 0 9px;
-  color: #073d39;
+  color: #006A64;
   font-family: var(--serif), Georgia, serif;
   font-size: clamp(31px, 3.2vw, 48px);
   font-weight: 700;
@@ -183,7 +183,7 @@
 
 .section .method h4 {
   margin: 0 0 2px;
-  color: #073d39;
+  color: #006A64;
   font-family: var(--serif), Georgia, serif;
   font-size: clamp(18px, 1.35vw, 22px);
   line-height: 1.2;

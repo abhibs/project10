@@ -62,7 +62,7 @@
 
 .section .heroCopy h2 {
   margin: 25px 0 13px;
-  color: #053d39;
+  color: #006A64;
   font-family: var(--serif), Georgia, serif;
   font-size: clamp(47px, 5.2vw, 81px);
   font-weight: 700;
@@ -116,7 +116,7 @@
 
 .section .benefit h3 {
   margin: 0 0 5px;
-  color: #073d39;
+  color: #006A64;
   font-family: var(--serif), Georgia, serif;
   font-size: clamp(17px, 1.27vw, 21px);
   line-height: 1.16;
@@ -147,7 +147,7 @@
 
 .section .panelIntro h3 {
   margin: 15px 0 10px;
-  color: #073d39;
+  color: #006A64;
   font-family: var(--serif), Georgia, serif;
   font-size: clamp(40px, 4.2vw, 64px);
   font-weight: 700;
@@ -204,7 +204,7 @@
 
 .section .card h4 {
   margin: 0 0 5px;
-  color: #073d39;
+  color: #006A64;
   font-family: var(--serif), Georgia, serif;
   font-size: clamp(17px, 1.35vw, 21px);
   line-height: 1.2;
