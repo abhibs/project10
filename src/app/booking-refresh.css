@@ -15,6 +15,9 @@
   width: min(1480px, calc(100% - 44px));
 }
 
+.aryan-home #booking .form-card { order: 0; }
+.aryan-home #booking .booking-copy { order: 1; }
+
 .aryan-home #booking .booking-copy {
   position: relative;
   display: flex;

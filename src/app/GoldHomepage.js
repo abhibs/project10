@@ -424,6 +424,9 @@ export default function GoldHomepage() {
     <section className="testing-section" id="testing" aria-labelledby="testing-title">
       <div className="testing-main">
         <div className="container testing-main-inner">
+          <div className="testing-image">
+            <Image src="/gold-testing-omio-scene.webp" alt="Gold jewellery being examined beside a testing machine" width={1672} height={941} sizes="(max-width: 1100px) 100vw, 52vw" />
+          </div>
           <div className="testing-copy reveal">
             <span className="testing-kicker">Non-Destructive Testing</span>
             <h2 id="testing-title">Your Jewellery<br />Should Be Tested.<br /><span>Not Damaged.</span></h2>

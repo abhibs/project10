@@ -34,7 +34,7 @@ export default function PaymentSection() {
   return <section className={styles.section} aria-labelledby="payment-title">
     <div className={styles.hero}>
       <div className={styles.photo}>
-        <Image src="/instant-payment-teal.webp" alt="Gold buyer handing payment to a customer beside a teal jewellery tray" fill sizes="100vw" />
+        <Image src="/instant-payment-teal.webp" alt="Gold buyer handing payment to a customer beside a teal jewellery tray" width={1800} height={771} sizes="(max-width: 1100px) 100vw, 50vw" />
       </div>
       <div className={styles.content}>
         <span className={styles.eyebrow}>Instant Payment</span>

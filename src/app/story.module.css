@@ -22,13 +22,14 @@
   position: absolute;
   z-index: 1;
   inset: 0;
-  background: linear-gradient(90deg, #fffaf3 0%, rgba(255, 250, 243, .98) 27%, rgba(255, 250, 243, .85) 39%, rgba(255, 250, 243, .22) 58%, transparent 72%);
+  background: linear-gradient(270deg, #fffaf3 0%, rgba(255, 250, 243, .98) 27%, rgba(255, 250, 243, .85) 39%, rgba(255, 250, 243, .22) 58%, transparent 72%);
   pointer-events: none;
 }
 .content {
   position: relative;
   z-index: 3;
   width: min(48%, 650px);
+  margin-left: auto;
   padding: clamp(35px, 4.2vw, 75px);
 }
 .section .content h2 {
@@ -98,7 +99,7 @@
   position: absolute;
   z-index: 2;
   top: 19%;
-  left: 69%;
+  left: 31%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -119,15 +120,15 @@
 @media (max-width: 1100px) {
   .shell { min-height: 630px; }
   .content { width: 55%; padding: 48px 40px; }
-  .shell::after { background: linear-gradient(90deg, #fffaf3 0%, rgba(255, 250, 243, .97) 38%, rgba(255, 250, 243, .55) 59%, transparent 80%); }
-  .wallBrand { left: 76%; }
+  .shell::after { background: linear-gradient(270deg, #fffaf3 0%, rgba(255, 250, 243, .97) 38%, rgba(255, 250, 243, .55) 59%, transparent 80%); }
+  .wallBrand { left: 24%; }
 }
 @media (max-width: 760px) {
   .section { padding: 15px 0 64px; }
   .shell { min-height: 0; }
   .photo { object-position: 66% bottom; }
   .shell::after { background: linear-gradient(180deg, #fffaf3 0%, rgba(255, 250, 243, .99) 51%, rgba(255, 250, 243, .8) 69%, rgba(255, 250, 243, .04) 100%); }
-  .content { width: 100%; padding: 36px 28px 315px; }
+  .content { width: 100%; margin-left: 0; padding: 36px 28px 315px; }
   .section .content h2 { font-size: clamp(36px, 8vw, 48px); }
   .section .content p.description { max-width: 590px; font-size: 15px; }
   .values { gap: 13px; margin: 28px 0; }

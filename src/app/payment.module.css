@@ -8,36 +8,43 @@
 
 .hero {
   position: relative;
-  display: flex;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: minmax(0, 50%) minmax(0, 50%);
+  align-items: stretch;
   min-height: 632px;
-  isolation: isolate;
 }
 
 .photo {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
   background: #f8f3e9;
 }
 
 .photo img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: center center;
+  object-position: right center;
 }
 
-.hero::after {
+.photo::after {
   position: absolute;
   inset: 0;
-  z-index: -1;
-  background: linear-gradient(90deg, rgba(250, 247, 240, .97), rgba(250, 247, 240, .82) 36%, rgba(250, 247, 240, 0) 64%);
+  z-index: 2;
+  background: linear-gradient(90deg, rgba(250, 247, 240, 0) 85%, #faf7f0 100%);
   content: "";
   pointer-events: none;
 }
 
 .content {
-  width: min(780px, 57vw);
-  padding: clamp(48px, 4.2vw, 78px) 0 66px clamp(25px, 4vw, 76px);
+  min-width: 0;
+  padding: clamp(48px, 4.2vw, 78px) clamp(25px, 4vw, 76px) 66px clamp(25px, 2.5vw, 48px);
 }
 
 .eyebrow {
@@ -138,7 +145,7 @@
   gap: 18px;
   width: calc(100% - 28px);
   min-height: 258px;
-  margin: -24px auto 0;
+  margin: 0 auto;
   padding: 28px clamp(25px, 3vw, 48px) 25px;
   border: 1px solid #ede3d1;
   border-radius: 16px;
@@ -198,8 +205,11 @@
 }
 
 @media (max-width: 1100px) {
-  .content { width: min(770px, 66vw); }
-  .hero::after { background: linear-gradient(90deg, rgba(250, 247, 240, .99), rgba(250, 247, 240, .87) 47%, rgba(250, 247, 240, 0) 80%); }
+  .hero { grid-template-columns: 1fr; min-height: 0; }
+  .photo { width: 100%; aspect-ratio: 1800 / 771; }
+  .photo img { object-position: center; }
+  .photo::after { background: linear-gradient(180deg, rgba(250, 247, 240, 0) 82%, #faf7f0 100%); }
+  .content { width: 100%; max-width: 880px; padding: 20px clamp(25px, 4vw, 76px) 58px; }
   .options { grid-template-columns: 1fr; gap: 25px; }
   .optionsIntro h3 br { display: none; }
   .methodIcon { width: 84px; height: 84px; }
@@ -208,11 +218,7 @@
 
 @media (max-width: 760px) {
   .section { padding-bottom: 18px; }
-  .hero { display: block; min-height: 0; padding-bottom: 310px; }
-  .photo { top: auto; height: 390px; }
-  .photo img { object-position: 72% center; }
-  .hero::after { background: linear-gradient(180deg, #faf7f0 0, #faf7f0 52%, rgba(250, 247, 240, .96) 60%, rgba(250, 247, 240, 0) 78%); }
-  .content { width: 100%; padding: 45px 24px 0; }
+  .content { padding: 20px 24px 40px; }
   .section .content h2 { font-size: clamp(43px, 10vw, 69px); }
   .section .content p.intro { max-width: 630px; font-size: 17px; }
   .benefits { gap: 23px 0; margin-top: 31px; }
@@ -221,12 +227,10 @@
   .benefitIcon svg { width: 29px; height: 29px; }
   .section .benefit h3 { font-size: 16px; }
   .section .benefit p { font-size: 12px; }
-  .options { margin-top: -6px; }
+  .options { margin-top: 0; }
 }
 
 @media (max-width: 520px) {
-  .hero { padding-bottom: 255px; }
-  .photo { height: 330px; }
   .content { padding-inline: 21px; }
   .eyebrow { gap: 9px; font-size: 12px; }
   .eyebrow::before { width: 34px; height: 4px; }
