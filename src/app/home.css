@@ -1172,7 +1172,7 @@
 .aryan-home .hero-motto:after{margin-top:14px}
 
 .aryan-home[data-theme="light"] #rates.rate-strip{min-height:calc(20vh - 16.8px);min-height:calc(20svh - 16.8px);display:flex;align-items:center;padding:7px 0;background:#fffaf3 !important;background-image:none !important;border:0;border-radius:14px 14px 0 0;position:relative;z-index:3;margin-top:-1px;box-shadow:0 -8px 28px rgba(16,40,37,.08)}
-.aryan-home .rate-strip .rate-grid{width:calc(100% - 40px);display:grid;grid-template-columns:minmax(260px,1.05fr) minmax(490px,2.1fr) minmax(260px,1.05fr);gap:8px 20px;align-items:center}
+.aryan-home .rate-strip .rate-grid{width:calc(100% - 40px);display:grid;grid-template-columns:minmax(260px,.9fr) minmax(490px,2.1fr);gap:8px 20px;align-items:center}
 .aryan-home .rate-strip .rate-intro{min-width:0}
 .aryan-home .rate-strip .rate-intro:before{content:"";display:block;width:43px;height:4px;border-radius:5px;background:#c81c31;margin-bottom:14px}
 .aryan-home .rate-strip .rate-intro h2{font-family:var(--serif);font-size:clamp(2rem,2.55vw,2.65rem);line-height:1.08;letter-spacing:-.04em;margin:0 0 3px;color:#006A64 !important}
@@ -1184,11 +1184,6 @@
 .aryan-home[data-theme="light"] .rate-values .rate-card strong{font-size:clamp(1.6rem,2.05vw,2.15rem);line-height:1.1;margin:5px 0;color:#a72e0b !important;font-variant-numeric:tabular-nums}
 .aryan-home[data-theme="light"] .rate-values .rate-card:nth-child(3) strong{color:#ae1029 !important}
 .aryan-home[data-theme="light"] .rate-values .rate-card small{font-size:.9rem;color:#546066 !important}
-.aryan-home .rate-calculator{display:flex;align-items:center;gap:18px;min-height:104px;padding:12px 25px;border-radius:11px;background:#006A64;color:#fff !important;box-shadow:0 10px 25px rgba(0,49,46,.12);transition:transform .2s ease,box-shadow .2s ease}
-.aryan-home .rate-calculator:is(:hover,:focus-visible){transform:translateY(-3px);box-shadow:0 15px 30px rgba(0,49,46,.2)}
-.aryan-home .rate-calculator svg{width:49px;height:49px;flex:none;color:#f6c63f}
-.aryan-home[data-theme="light"] #rates .rate-calculator>span:nth-child(2){font-size:1.05rem;font-weight:800;line-height:1.25;color:#fff !important}
-.aryan-home[data-theme="light"] #rates .rate-calculator .rate-arrow{margin-left:auto;font-size:1.8rem;color:#fff !important}
 .aryan-home .rate-strip .rate-meta{grid-column:1/-1;display:flex;justify-content:center;align-items:center;flex-direction:row;gap:14px;min-height:18px;text-align:center;font-size:.73rem;line-height:1.3;color:#56605c !important}
 .aryan-home .rate-strip .rate-meta>span:first-child{color:#56605c !important}
 .aryan-home .rate-strip .rate-meta b{color:#173d39}
@@ -1204,9 +1199,6 @@
   .aryan-home[data-theme="light"] .hero .trust-row>div{gap:8px;padding:0 11px}
   .aryan-home .hero .trust-row span{font-size:.76rem}
   .aryan-home .rate-strip .rate-grid{width:calc(100% - 40px);grid-template-columns:minmax(250px,1fr) minmax(470px,2fr)}
-  .aryan-home .rate-calculator{grid-column:1/-1;min-height:85px;justify-content:center}
-  .aryan-home .rate-calculator>span:nth-child(2) br{display:none}
-  .aryan-home .rate-calculator .rate-arrow{margin-left:0}
 }
 @media(max-width:800px){
   .aryan-home .site-header .nav-wrap{height:72px}
@@ -1226,7 +1218,6 @@
   .aryan-home .rate-strip .rate-grid{width:calc(100% - 40px);grid-template-columns:1fr;gap:18px}
   .aryan-home .rate-strip .rate-intro h2{font-size:2.15rem}
   .aryan-home .rate-values{min-height:116px}
-  .aryan-home .rate-calculator{grid-column:auto}
   .aryan-home .rate-strip .rate-meta{grid-column:auto;flex-wrap:wrap;gap:5px 14px}
 }
 @media(max-width:460px){
@@ -1536,10 +1527,12 @@
 }
 
 /* Gold value calculator directly after the rate strip. */
-.aryan-home[data-theme="light"] #calculator.gold-calc-section{position:relative;scroll-margin-top:84px;overflow:hidden;padding:0;background-color:#006A60 !important;background-image:linear-gradient(90deg,#006A60 0%,rgba(0,106,96,.9) 28%,rgba(0,106,96,.35) 52%,transparent 72%),url("/calculator-jewellery.webp") !important;background-position:center center !important;background-size:cover !important;background-repeat:no-repeat !important;color:#fff}
-.aryan-home #calculator.gold-calc-section:before{content:"";position:absolute;inset:0 0 48px;background:linear-gradient(90deg,rgba(0,106,96,.18) 0%,rgba(0,106,96,.08) 46%,transparent 70%);pointer-events:none}
-.aryan-home .gold-calc-inner{position:relative;z-index:1;display:flex;align-items:center;min-height:690px}
-.aryan-home .gold-calc-content{width:min(620px,49%);padding:52px 0 58px}
+.aryan-home[data-theme="light"] #calculator.gold-calc-section{position:relative;scroll-margin-top:84px;overflow:hidden;padding:0;background:#006A60 !important;color:#fff}
+.aryan-home .gold-calc-inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch;min-height:690px;width:100%;max-width:none;margin:0;padding:0}
+.aryan-home .gold-calc-image{position:relative;min-width:0;min-height:600px;overflow:hidden;background:#143d37}
+.aryan-home .gold-calc-image img{object-fit:cover;object-position:right center}
+.aryan-home .gold-calc-image:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 82%,rgba(0,106,96,.45) 94%,#006A60 100%);pointer-events:none}
+.aryan-home .gold-calc-content{align-self:center;justify-self:center;width:min(100%,760px);padding:52px clamp(30px,5vw,90px) 58px}
 .aryan-home #calculator .gold-calc-intro h2{margin:0 0 8px;color:#fff;font-family:var(--serif);font-size:clamp(2.85rem,3.8vw,4.1rem);font-weight:800;line-height:1.04;letter-spacing:-.04em;text-shadow:0 3px 15px rgba(0,0,0,.17)}
 .aryan-home #calculator .gold-calc-intro h2 span{color:#ffd052}
 .aryan-home #calculator .gold-calc-intro p{margin:0 0 24px;color:#edf7f2;font-size:clamp(1rem,1.22vw,1.2rem);line-height:1.35}
@@ -1567,14 +1560,14 @@
 .aryan-home .gold-calc-button:is(:hover,:focus-visible){transform:translateY(-2px);box-shadow:0 9px 17px rgba(99,62,0,.2)}
 .aryan-home #calculator .gold-calc-note{position:relative;z-index:1;margin:0;padding:13px var(--page-gutter);background:#fffaf3;color:#006A60;font-size:.82rem;line-height:1.35;text-align:center}
 @media(max-width:1100px){
-  .aryan-home .gold-calc-content{width:min(600px,58%)}
-  .aryan-home[data-theme="light"] #calculator.gold-calc-section{background-position:60% center !important}
+  .aryan-home .gold-calc-inner{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+  .aryan-home .gold-calc-content{padding-inline:clamp(26px,4vw,56px)}
 }
 @media(max-width:760px){
-  .aryan-home[data-theme="light"] #calculator.gold-calc-section{background-position:63% center !important}
-  .aryan-home #calculator.gold-calc-section:before{background:linear-gradient(90deg,rgba(0,106,96,.9),rgba(0,106,96,.66) 80%,rgba(0,106,96,.42))}
-  .aryan-home .gold-calc-inner{min-height:0}
-  .aryan-home .gold-calc-content{width:min(100%,570px);padding:48px 0 52px}
+  .aryan-home .gold-calc-inner{grid-template-columns:minmax(0,1fr);min-height:0}
+  .aryan-home .gold-calc-image{min-height:clamp(250px,58vw,390px)}
+  .aryan-home .gold-calc-image:after{background:linear-gradient(180deg,transparent 60%,rgba(0,106,96,.45) 83%,#006A60 100%)}
+  .aryan-home .gold-calc-content{width:min(100%,700px);padding:48px var(--page-gutter) 52px}
   .aryan-home #calculator .gold-calc-intro h2{font-size:clamp(2.6rem,7.5vw,3.9rem)}
 }
 @media(max-width:460px){

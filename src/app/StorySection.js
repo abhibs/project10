@@ -23,7 +23,7 @@ export default function StorySection() {
     <div className={"container " + styles.shell}>
       <Image className={styles.photo} src="/story-reception.webp" alt="Warm reception interior with a cream counter and gold accents" fill sizes="(max-width: 760px) 100vw, 92vw" />
       <div className={styles.wallBrand} aria-hidden="true">
-        <Image src="/aryan-mark.png" alt="" width={82} height={82} />
+        <Image src="/aryan-mark.webp" alt="" width={82} height={82} />
         <span>ARYAN GOLD</span>
       </div>
       <div className={styles.content}>

@@ -319,11 +319,6 @@ export default function GoldHomepage() {
             </div>
           ))}
         </div>
-        <a className="rate-calculator" href="#calculator">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="9" y="4" width="30" height="40" rx="3"/><path d="M15 11h18v8H15zM16 26h2m6 0h2m6 0h1M16 33h2m6 0h2m6 0h1"/></svg>
-          <span>Calculate Your<br />Gold Value</span>
-          <span className="rate-arrow" aria-hidden="true">→</span>
-        </a>
         <div className="rate-meta">
           <span><b>Note:</b> Online rates are indicative. Final purchase value is determined after physical evaluation and verification.</span>
           <span id="rate-status">{rateStatus}</span>
@@ -333,7 +328,10 @@ export default function GoldHomepage() {
     </section>
 
     <section className="gold-calc-section" id="calculator" aria-labelledby="gold-calc-title">
-      <div className="container gold-calc-inner">
+      <div className="gold-calc-inner">
+        <div className="gold-calc-image">
+          <Image src="/calculator-jewellery.webp" alt="Gold jewellery beside a digital weighing scale" fill sizes="(max-width: 760px) 100vw, 50vw" />
+        </div>
         <div className="gold-calc-content">
           <div className="gold-calc-intro reveal">
             <h2 id="gold-calc-title">What Could Your<br /><span>Gold Be Worth?</span></h2>
