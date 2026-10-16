@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import { ADMIN_SESSION_COOKIE, readAdminSession } from "@/lib/admin-session";
 import { getContacts } from "@/lib/admin-db";
+import { resolveContactFilters } from "@/lib/contact-filters.mjs";
 
 const BUSINESS_TYPES = new Set(["Branch Visit", "Doorstep Service", "Quick Contact", "Contact Page", "Banner Form"]);
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
@@ -11,9 +12,11 @@ export async function GET(request) {
   if (!admin) return Response.json({ message: "Unauthorized." }, { status: 401 });
 
   const { searchParams } = new URL(request.url);
-  const fromDate = searchParams.get("fromDate") || "";
-  const toDate = searchParams.get("toDate") || "";
-  const businessType = searchParams.get("businessType") || "";
+  const { fromDate, toDate, businessType } = resolveContactFilters({
+    fromDate: searchParams.get("fromDate") || "",
+    toDate: searchParams.get("toDate") || "",
+    businessType: searchParams.get("businessType") || "",
+  });
 
   if ((fromDate && !DATE_PATTERN.test(fromDate)) || (toDate && !DATE_PATTERN.test(toDate))) {
     return Response.json({ message: "Invalid date filter." }, { status: 400 });

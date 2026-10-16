@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { resolveContactFilters } from "@/lib/contact-filters.mjs";
 import styles from "./page.module.css";
-
-const INITIAL_FILTERS = { fromDate: "", toDate: "", businessType: "" };
 
 function displayDate(value) {
   if (!value) return "—";
@@ -24,8 +23,8 @@ function displayTime(value) {
 }
 
 export default function ContactsTable() {
-  const [filters, setFilters] = useState(INITIAL_FILTERS);
-  const [appliedFilters, setAppliedFilters] = useState(INITIAL_FILTERS);
+  const [filters, setFilters] = useState(() => resolveContactFilters());
+  const [appliedFilters, setAppliedFilters] = useState(filters);
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -63,22 +62,25 @@ export default function ContactsTable() {
     }
     setLoading(true);
     setError("");
-    setAppliedFilters({ ...filters });
+    const nextFilters = resolveContactFilters(filters);
+    setFilters(nextFilters);
+    setAppliedFilters(nextFilters);
     setRequestVersion((version) => version + 1);
   }
 
   function clearFilters() {
     setLoading(true);
     setError("");
-    setFilters(INITIAL_FILTERS);
-    setAppliedFilters(INITIAL_FILTERS);
+    const todayFilters = resolveContactFilters();
+    setFilters(todayFilters);
+    setAppliedFilters(todayFilters);
     setRequestVersion((version) => version + 1);
   }
 
   return (
     <article className={styles.contactsPanel}>
       <div className={styles.panelHeading}>
-        <div><h2>Contact requests</h2><p>Branch visits, doorstep requests, quick contacts and contact page enquiries.</p></div>
+        <div><h2>Contact requests</h2><p>Today’s requests are shown by default. Choose a date range and click Filter to view older requests.</p></div>
         <span className={styles.resultCount}>{loading ? "…" : contacts.length} records</span>
       </div>
 
