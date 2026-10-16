@@ -118,13 +118,13 @@ export default function GoldHomepage() {
   const root = useRef(null);
   const scrollProgress = useRef(null);
   const pending = useRef(null);
-  const submitLock = useRef({booking: false, contact: false});
+  const submitLock = useRef({booking: false, contact: false, banner: false});
   const [rates, setRates] = useState(FALLBACK_RATES);
   const [weight, setWeight] = useState("10");
   const [purity, setPurity] = useState(22);
   const [serviceMode, setServiceMode] = useState("Branch Visit");
-  const [messages, setMessages] = useState({booking: "", contact: ""});
-  const [submitting, setSubmitting] = useState({booking: false, contact: false});
+  const [messages, setMessages] = useState({booking: "", contact: "", banner: ""});
+  const [submitting, setSubmitting] = useState({booking: false, contact: false, banner: false});
   const [toast, setToast] = useState("");
   const [minimumDate, setMinimumDate] = useState("");
   const [loading, setLoading] = useState(false);
@@ -245,11 +245,11 @@ export default function GoldHomepage() {
       name: fields.name,
       mobile: fields.mobile,
       city: appointment ? fields.city : "",
-      weight: appointment ? fields.weight : "",
+      weight: appointment || kind === "banner" ? fields.weight : "",
       preferredDate: appointment ? fields.preferredDate : "",
       preferredTime: appointment ? fields.preferredTime : "",
       services: fields.services,
-      businessType: appointment ? serviceMode : "Quick Contact",
+      businessType: appointment ? serviceMode : kind === "banner" ? "Banner Form" : "Quick Contact",
     };
 
     setMessages((previous) => ({...previous, [kind]: ""}));
@@ -263,7 +263,7 @@ export default function GoldHomepage() {
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || "Unable to submit your request.");
 
-      setMessages((previous) => ({...previous, [kind]: ""}));
+      setMessages((previous) => ({...previous, [kind]: kind === "banner" ? data.message : ""}));
       setToast(data.message);
       form.reset();
       if (kind === "booking") setServiceMode("Branch Visit");
@@ -288,7 +288,7 @@ export default function GoldHomepage() {
           <p className="hero-lead">Sell your gold with confidence at Aryan Gold Buyers. Get your gold evaluated in front of you using advanced, non-destructive testing technology — without scratching, cutting or damaging your ornaments.</p>
 
           <div className="hero-actions">
-            <a className="btn btn-gold btn-lg" href="#booking">Get Free Gold Valuation <span aria-hidden="true">→</span></a>
+            <a className="btn btn-gold btn-lg" href="#banner-form">Get Free Gold Valuation <span aria-hidden="true">→</span></a>
             <a className="btn btn-outline btn-lg" href="#branches"><span aria-hidden="true">⌖</span> Find Nearest Branch</a>
           </div>
 
@@ -299,6 +299,27 @@ export default function GoldHomepage() {
             <div><HeroBenefitIcon type="payment" /><span>Quick<br />Payment</span></div>
           </div>
         </div>
+
+        <form className="banner-form" id="banner-form" aria-labelledby="banner-form-title" aria-busy={submitting.banner} onSubmit={(event) => submitContact(event, "banner")}>
+          <span className="banner-form-kicker">FREE GOLD VALUATION</span>
+          <h2 id="banner-form-title">Know your gold’s worth.</h2>
+          <p className="banner-form-intro">Share your details and we’ll call you back.</p>
+          <label className="banner-field" htmlFor="banner-name">
+            <span>Name</span>
+            <input id="banner-name" name="name" autoComplete="name" placeholder="Your full name" minLength={2} maxLength={255} onInput={keepNameCharacters} required />
+          </label>
+          <label className="banner-field" htmlFor="banner-phone">
+            <span>Phone number</span>
+            <input id="banner-phone" name="mobile" type="tel" inputMode="numeric" autoComplete="tel-national" placeholder="10-digit mobile number" pattern="[0-9]{10}" maxLength={10} title="Enter a 10-digit mobile number" onInput={keepTenDigits} required />
+          </label>
+          <label className="banner-field" htmlFor="banner-weight">
+            <span>Gold weight <small>(grams)</small></span>
+            <input id="banner-weight" name="weight" type="number" inputMode="decimal" placeholder="Approx. weight in grams" min="0.01" max="100000" step="0.01" required />
+          </label>
+          <button className="banner-submit" type="submit" disabled={submitting.banner}>{submitting.banner ? "Submitting…" : "Get Free Valuation"}<span aria-hidden="true">→</span></button>
+          <p className="banner-form-note">Free valuation. No obligation to sell.</p>
+          <p className="banner-form-message" role="status" aria-live="polite">{messages.banner}</p>
+        </form>
 
         <p className="hero-motto">Trust today<br />Brighter<br />tomorrows</p>
       </div>

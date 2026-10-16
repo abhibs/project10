@@ -1,0 +1,64 @@
+.aryan-home #hero .hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  align-items: center;
+  gap: 40px;
+}
+
+.aryan-home #hero .hero-copy { min-width: 0; }
+.aryan-home #hero h1 { font-size: clamp(2.7rem, 4vw, 4.4rem); white-space: normal; }
+.aryan-home #hero .hero-actions { flex-wrap: wrap; }
+.aryan-home #hero .hero-actions .btn { padding-inline: 20px; }
+.aryan-home #hero .hero-motto { display: none; }
+.aryan-home[data-theme="light"] #hero .trust-row { flex-wrap: wrap; gap: 16px 0; }
+
+.aryan-home #hero .banner-form {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 30px;
+  border: 1px solid #e6d5ad;
+  border-top: 4px solid #f4c34f;
+  border-radius: 18px;
+  background: #fffaf2;
+  box-shadow: 0 20px 60px rgba(0, 30, 27, .24);
+  color: #164c46;
+  scroll-margin-top: 110px;
+}
+.aryan-home #hero .banner-form-kicker { font-size: .7rem; font-weight: 800; letter-spacing: .13em; color: #995520; }
+.aryan-home #hero .banner-form h2 { margin: 10px 0; font-size: 2rem; line-height: 1.12; color: #006a64; }
+.aryan-home #hero .banner-form-intro { margin-bottom: 22px; font-size: .88rem; color: #61716b; }
+.aryan-home #hero .banner-field { display: grid; gap: 7px; margin-bottom: 16px; font-size: .85rem; font-weight: 700; }
+.aryan-home #hero .banner-field small { font-weight: 400; }
+.aryan-home #hero .banner-field input { width: 100%; min-width: 0; min-height: 48px; padding: 11px 13px; border: 1px solid #d9dfd6; border-radius: 7px; background: #fff; color: #173f38; font-size: 1rem; font-weight: 400; }
+.aryan-home #hero .banner-field input::placeholder { color: #77817b; font-size: .85rem; }
+.aryan-home #hero .banner-field input:focus-visible { outline: 3px solid rgba(0, 106, 100, .2); border-color: #006a64; outline-offset: 1px; }
+.aryan-home #hero .banner-submit { display: flex; align-items: center; justify-content: center; gap: 16px; width: 100%; min-height: 50px; margin-top: 6px; padding: 12px; border: 1px solid #e9b52e; border-radius: 7px; background: linear-gradient(135deg, #ffe17b, #ffc73b); color: #163f35; font-size: .95rem; font-weight: 800; }
+.aryan-home #hero .banner-submit:hover { background: #ffdc70; }
+.aryan-home #hero .banner-submit:focus-visible { outline: 3px solid #006a64; outline-offset: 3px; }
+.aryan-home #hero .banner-submit:disabled { opacity: .65; cursor: wait; }
+.aryan-home #hero .banner-form-note { margin: 13px 0 0; color: #61716b; text-align: center; font-size: .73rem; }
+.aryan-home #hero .banner-form-message { margin: 12px 0 0; color: #164c46; font-size: .85rem; }
+.aryan-home #hero .banner-form-message:empty { display: none; }
+
+@media (min-width: 1500px) {
+  .aryan-home #hero .hero-grid { grid-template-columns: minmax(0, 1.65fr) minmax(360px, 400px) minmax(0, .7fr); gap: 48px; }
+  .aryan-home #hero .hero-motto { display: block; }
+}
+
+@media (min-width: 1001px) and (max-width: 1499px) {
+  .aryan-home[data-theme="light"] #hero .trust-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
+  .aryan-home[data-theme="light"] #hero .trust-row > div { padding: 0; border: 0; }
+}
+
+@media (max-width: 1000px) {
+  .aryan-home #hero .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .aryan-home #hero .hero-copy { max-width: 710px; }
+  .aryan-home #hero h1 { font-size: clamp(2.35rem, 7vw, 4.4rem); }
+  .aryan-home #hero .banner-form { max-width: 440px; justify-self: center; }
+}
+
+@media (max-width: 460px) {
+  .aryan-home #hero .banner-form { padding: 24px 20px; }
+  .aryan-home #hero .banner-form h2 { font-size: 1.8rem; }
+}

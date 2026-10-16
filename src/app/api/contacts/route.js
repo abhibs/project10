@@ -1,7 +1,7 @@
 import { createContact } from "@/lib/admin-db";
 
 const APPOINTMENT_TYPES = new Set(["Branch Visit", "Doorstep Service"]);
-const BUSINESS_TYPES = new Set([...APPOINTMENT_TYPES, "Quick Contact", "Contact Page"]);
+const BUSINESS_TYPES = new Set([...APPOINTMENT_TYPES, "Quick Contact", "Contact Page", "Banner Form"]);
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 const TIME_PATTERN = /^(?:[01]\d|2[0-3]):[0-5]\d(?:-(?:[01]\d|2[0-3]):[0-5]\d)?$/;
 const MOBILE_PATTERN = /^\d{10}$/;
@@ -24,22 +24,23 @@ export async function POST(request) {
     const name = clean(body.name);
     const mobile = clean(body.mobile, 20);
     const businessType = clean(body.businessType, 30);
-    const services = clean(body.services);
+    const services = businessType === "Banner Form" ? "" : clean(body.services);
     const city = clean(body.city);
     const preferredDate = clean(body.preferredDate, 10);
     const preferredTime = clean(body.preferredTime, 20);
     const appointment = APPOINTMENT_TYPES.has(businessType);
+    const banner = businessType === "Banner Form";
     const rawWeight = body.weight === "" || body.weight === null || body.weight === undefined
       ? null
       : Number(body.weight);
 
-    if (name.length < 2 || !NAME_PATTERN.test(name) || !MOBILE_PATTERN.test(mobile) || !services || !BUSINESS_TYPES.has(businessType)) {
+    if (name.length < 2 || !NAME_PATTERN.test(name) || !MOBILE_PATTERN.test(mobile) || (!banner && !services) || !BUSINESS_TYPES.has(businessType)) {
       return Response.json({ message: "Please enter valid contact details." }, { status: 400 });
     }
     if (appointment && (!city || !isRealDate(preferredDate) || !TIME_PATTERN.test(preferredTime))) {
       return Response.json({ message: "Please complete the appointment details." }, { status: 400 });
     }
-    if (rawWeight !== null && (!Number.isFinite(rawWeight) || rawWeight <= 0 || rawWeight > 100000)) {
+    if ((banner && rawWeight === null) || (rawWeight !== null && (!Number.isFinite(rawWeight) || rawWeight <= 0 || rawWeight > 100000))) {
       return Response.json({ message: "Please enter a valid gold weight." }, { status: 400 });
     }
 
@@ -47,7 +48,7 @@ export async function POST(request) {
       name,
       mobile,
       city,
-      weight: appointment ? rawWeight : null,
+      weight: appointment || banner ? rawWeight : null,
       preferredDate: appointment ? preferredDate : "",
       preferredTime: appointment ? preferredTime : "",
       services,

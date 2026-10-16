@@ -1,6 +1,7 @@
 import GoldHomepage from "./GoldHomepage";
 import "./home.css";
 import "./booking-refresh.css";
+import "./banner-form.css";
 import { Manrope, Playfair_Display } from "next/font/google";
 import Script from "next/script";
 
