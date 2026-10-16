@@ -46,38 +46,6 @@ const VALUATION_STEPS = [
   {title: "Clear Final Offer", description: "You get a complete breakup and the final offer before you decide.", image: "/valuation-offer.webp", alt: "Valuation sheet with gold jewellery"},
 ];
 
-function AnimatedAmount({ value }) {
-  const number = useRef(null);
-  const displayed = useRef(value);
-
-  useEffect(() => {
-    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const from = displayed.current;
-    let frame;
-    const finish = () => {
-      cancelAnimationFrame(frame);
-      displayed.current = value;
-      number.current.textContent = rupees.format(value);
-    };
-    const start = performance.now();
-    const tick = (now) => {
-      const progress = Math.min((now - start) / 420, 1);
-      displayed.current = from + (value - from) * (1 - Math.pow(1 - progress, 3));
-      number.current.textContent = rupees.format(displayed.current);
-      if (progress < 1) frame = requestAnimationFrame(tick);
-    };
-    if (motion.matches || from === value) finish();
-    else frame = requestAnimationFrame(tick);
-    motion.addEventListener("change", finish);
-    return () => {
-      cancelAnimationFrame(frame);
-      motion.removeEventListener("change", finish);
-    };
-  }, [value]);
-
-  return <strong id="estimate-value"><span ref={number} aria-hidden="true">{rupees.format(value)}</span><span className="amount-accessible">{rupees.format(value)}</span></strong>;
-}
-
 function HeroBenefitIcon({type}) {
   const paths = {
     diamond: <><path d="M4 16 12 5h24l8 11-20 27L4 16Z"/><path d="M4 16h40M12 5l6 11 6 27 6-27 6-11"/></>,
@@ -120,8 +88,6 @@ export default function GoldHomepage() {
   const pending = useRef(null);
   const submitLock = useRef({booking: false, contact: false, banner: false});
   const [rates, setRates] = useState(FALLBACK_RATES);
-  const [weight, setWeight] = useState("10");
-  const [purity, setPurity] = useState(22);
   const [serviceMode, setServiceMode] = useState("Branch Visit");
   const [messages, setMessages] = useState({booking: "", contact: "", banner: ""});
   const [submitting, setSubmitting] = useState({booking: false, contact: false, banner: false});
@@ -130,8 +96,6 @@ export default function GoldHomepage() {
   const [loading, setLoading] = useState(false);
   const [live, setLive] = useState(false);
   const [rateStatus, setRateStatus] = useState("Loading published gold rates…");
-  const weightNumber = Math.max(0, Number(weight) || 0);
-  const selectedRate = purity === 20 ? (Number(rates[20]) || Math.round(rates[24] * 20 / 24)) : rates[purity];
 
   const fetchRates = useCallback(async () => {
     pending.current?.abort();
@@ -332,13 +296,11 @@ export default function GoldHomepage() {
           <p>Know the market before you sell.</p>
         </div>
         <div className="rate-values">
-          {[24, 22, 18].map((karat) => (
-            <div className="rate-card" key={karat}>
-              <span>{karat}K Gold</span>
-              <strong id={`rate-${karat}`}>{rupees.format(rates[karat])}</strong>
-              <small>per gram</small>
-            </div>
-          ))}
+          <div className="rate-card">
+            <span>24K Gold</span>
+            <strong id="rate-24">{rupees.format(rates[24])}</strong>
+            <small>per gram</small>
+          </div>
         </div>
         <div className="rate-meta">
           <span><b>Note:</b> Online rates are indicative. Final purchase value is determined after physical evaluation and verification.</span>
@@ -346,32 +308,6 @@ export default function GoldHomepage() {
           <button id="refresh-rates" disabled={loading} onClick={() => fetchRates()} className="text-button" type="button">Refresh rates</button>
         </div>
       </div>
-    </section>
-
-    <section className="gold-calc-section" id="calculator" aria-labelledby="gold-calc-title">
-      <div className="gold-calc-inner">
-        <div className="gold-calc-image">
-          <Image src="/calculator-jewellery.webp" alt="Gold jewellery beside a digital weighing scale" fill sizes="(max-width: 760px) 100vw, 50vw" />
-        </div>
-        <div className="gold-calc-content">
-          <div className="gold-calc-intro reveal">
-            <h2 id="gold-calc-title">What Could Your<br /><span>Gold Be Worth?</span></h2>
-            <p>Get an indicative estimate before visiting us.</p>
-          </div>
-          <div className="gold-calc-panel reveal delay-1">
-            <label className="gold-calc-label" htmlFor="gold-weight">Enter Gold Weight</label>
-            <div className="gold-calc-weight"><input id="gold-weight" type="number" min="0" step="0.1" value={weight} onChange={(event) => setWeight(event.target.value)} inputMode="decimal" /><span>grams</span></div>
-            <span className="gold-calc-label">Select Purity</span>
-            <div className="gold-calc-purities" role="group" aria-label="Gold purity">
-              {[24, 22, 20, 18].map((karat) => <button key={karat} type="button" aria-pressed={purity === karat} onClick={() => setPurity(karat)}>{karat}K</button>)}
-            </div>
-            <div className="gold-calc-rate"><span>{live && purity !== 20 ? "Current" : "Indicative"} {purity}K Gold Rate</span><strong>{rupees.format(selectedRate)} <small>/ gram</small></strong>{purity === 20 && <small>20K rate estimated from the 24K reference.</small>}</div>
-            <div className="gold-calc-value"><span>Estimated Metal Value</span><AnimatedAmount value={weightNumber * selectedRate} /></div>
-            <a className="gold-calc-button" href="#booking">Get Exact Valuation <span aria-hidden="true">→</span></a>
-          </div>
-        </div>
-      </div>
-      <p className="gold-calc-note">Calculator values are indicative estimates. Final purchase value requires physical evaluation.</p>
     </section>
 
     <section className="section why-section" id="why-aryan" aria-labelledby="why-aryan-title">
@@ -386,7 +322,6 @@ export default function GoldHomepage() {
             <article className="why-feature reveal"><span className="why-feature-icon tone-teal"><HeroBenefitIcon type="diamond" /></span><h3>Non-Destructive<br />Testing</h3><p>Advanced technology designed to evaluate gold without scratching or cutting.</p></article>
             <article className="why-feature reveal delay-1"><span className="why-feature-icon tone-gold"><HeroBenefitIcon type="shield" /></span><h3>Transparent<br />Evaluation</h3><p>See and understand how your gold is evaluated.</p></article>
             <article className="why-feature reveal delay-2"><span className="why-feature-icon tone-red"><HeroBenefitIcon type="chart" /></span><h3>Competitive<br />Gold Rate</h3><p>Highly competitive buying prices based on verified purity and weight.</p></article>
-            <article className="why-feature reveal delay-3"><span className="why-feature-icon tone-gold"><HeroBenefitIcon type="coins" /></span><h3>Clear Service<br />Charges</h3><p>Applicable charges are explained before you decide.</p></article>
             <article className="why-feature reveal"><span className="why-feature-icon tone-red"><HeroBenefitIcon type="payment" /></span><h3>Quick<br />Payment</h3><p>Fast settlement after verification and completion of formalities.</p></article>
             <article className="why-feature reveal delay-1"><span className="why-feature-icon tone-teal"><HeroBenefitIcon type="support" /></span><h3>Dedicated<br />Support</h3><p>Our customer team is here to answer your questions and guide you at every step.</p></article>
           </div>

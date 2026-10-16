@@ -4,22 +4,23 @@ import { useState } from "react";
 import Link from "next/link";
 import Brand from "./Brand";
 
-export default function SiteHeader({ contactPage = false, progressRef }) {
+export default function SiteHeader({ contactPage = false, calculatorPage = false, progressRef }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const home = contactPage ? "/" : "";
+  const innerPage = contactPage || calculatorPage;
+  const home = innerPage ? "/" : "";
 
   return (
     <header className="site-header" id="home">
-      {!contactPage && <div className="reading-progress" ref={progressRef} aria-hidden="true" />}
+      {!innerPage && <div className="reading-progress" ref={progressRef} aria-hidden="true" />}
       <div className="container nav-wrap">
-        <Brand href={contactPage ? "/" : "#home"} className="brand" />
+        <Brand href={innerPage ? "/" : "#home"} className="brand" />
         <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="main-nav" aria-label={menuOpen ? "Close menu" : "Open menu"}>
           <span /><span /><span />
         </button>
         <nav className={`main-nav${menuOpen ? " open" : ""}`} onClick={() => setMenuOpen(false)} onKeyDown={(event) => { if (event.key === "Escape") setMenuOpen(false); }} id="main-nav" aria-label="Primary navigation">
           <a href={`${home}#services`}>Services</a>
           <a href={`${home}#rates`}>Gold Rate</a>
-          <a href={`${home}#calculator`}>Calculator</a>
+          <Link href="/calculator" aria-current={calculatorPage ? "page" : undefined}>Calculator</Link>
           <a href={`${home}#how-it-works-testing`}>How it works</a>
           <a href={`${home}#branches`}>Branches</a>
           <a href={`${home}#faq`}>FAQ</a>
