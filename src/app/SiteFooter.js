@@ -22,7 +22,7 @@ export default function SiteFooter({ homePage = false }) {
           <h4>Quick Links</h4>
           <Link href={`${home}#rates`}>Gold Rate</Link>
           <Link href={`${home}#branches`}>Our Branches</Link>
-          <Link href={`${home}#how-it-works-testing`}>How It Works</Link>
+          <Link href={`${home}#testing`}>How It Works</Link>
           <Link href={`${home}#faq`}>FAQs</Link>
           <Link href={`${home}#our-story`}>Our Story</Link>
           <Link href="/contact-us">Contact Us</Link>

@@ -1172,8 +1172,8 @@
 .aryan-home .hero-motto:after{margin-top:14px}
 
 .aryan-home[data-theme="light"] #rates.rate-strip{min-height:calc(20vh - 16.8px);min-height:calc(20svh - 16.8px);display:flex;align-items:center;padding:7px 0;background:#fffaf3 !important;background-image:none !important;border:0;border-radius:14px 14px 0 0;position:relative;z-index:3;margin-top:-1px;box-shadow:0 -8px 28px rgba(16,40,37,.08)}
-.aryan-home .rate-strip .rate-grid{width:calc(100% - 40px);display:grid;grid-template-columns:minmax(260px,.9fr) minmax(490px,2.1fr);gap:8px 20px;align-items:center}
-.aryan-home .rate-strip .rate-intro{min-width:0}
+.aryan-home .rate-strip .rate-grid{width:calc(100% - 40px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:center}
+.aryan-home .rate-strip .rate-intro{min-width:0;grid-column:auto}
 .aryan-home .rate-strip .rate-intro:before{content:"";display:block;width:43px;height:4px;border-radius:5px;background:#c81c31;margin-bottom:14px}
 .aryan-home .rate-strip .rate-intro h2{font-family:var(--serif);font-size:clamp(2rem,2.55vw,2.65rem);line-height:1.08;letter-spacing:-.04em;margin:0 0 3px;color:#006A64 !important}
 .aryan-home .rate-strip .rate-intro p{font-size:1.08rem;line-height:1.3;color:#006A64 !important}
@@ -1184,7 +1184,7 @@
 .aryan-home[data-theme="light"] .rate-values .rate-card strong{font-size:clamp(1.6rem,2.05vw,2.15rem);line-height:1.1;margin:5px 0;color:#a72e0b !important;font-variant-numeric:tabular-nums}
 .aryan-home[data-theme="light"] .rate-values .rate-card:nth-child(3) strong{color:#ae1029 !important}
 .aryan-home[data-theme="light"] .rate-values .rate-card small{font-size:.9rem;color:#546066 !important}
-.aryan-home .rate-strip .rate-meta{grid-column:1/-1;display:flex;justify-content:center;align-items:center;flex-direction:row;gap:14px;min-height:18px;text-align:center;font-size:.73rem;line-height:1.3;color:#56605c !important}
+.aryan-home .rate-strip .rate-meta{grid-column:auto;min-width:0;display:flex;justify-content:center;align-items:flex-start;flex-direction:column;gap:8px;min-height:18px;text-align:left;font-size:.73rem;line-height:1.5;color:#56605c !important}
 .aryan-home .rate-strip .rate-meta>span:first-child{color:#56605c !important}
 .aryan-home .rate-strip .rate-meta b{color:#173d39}
 .aryan-home .rate-strip .rate-meta #rate-status{color:#67706d !important}
@@ -1198,7 +1198,6 @@
   .aryan-home .hero .trust-row svg{width:39px;height:39px}
   .aryan-home[data-theme="light"] .hero .trust-row>div{gap:8px;padding:0 11px}
   .aryan-home .hero .trust-row span{font-size:.76rem}
-  .aryan-home .rate-strip .rate-grid{width:calc(100% - 40px);grid-template-columns:minmax(250px,1fr) minmax(470px,2fr)}
 }
 @media(max-width:800px){
   .aryan-home .site-header .nav-wrap{height:72px}
@@ -1218,7 +1217,7 @@
   .aryan-home .rate-strip .rate-grid{width:calc(100% - 40px);grid-template-columns:1fr;gap:18px}
   .aryan-home .rate-strip .rate-intro h2{font-size:2.15rem}
   .aryan-home .rate-values{min-height:116px}
-  .aryan-home .rate-strip .rate-meta{grid-column:auto;flex-wrap:wrap;gap:5px 14px}
+  .aryan-home .rate-strip .rate-meta{align-items:center;text-align:center;gap:8px}
 }
 @media(max-width:460px){
   .aryan-home .hero h1{font-size:clamp(2.35rem,10.6vw,3.05rem)}
@@ -1272,59 +1271,64 @@
   .aryan-home #why-aryan .why-feature p{font-size:.74rem}
 }
 
-/* Two-panel services section from the supplied reference. */
+/* Three service cards with responsive image and content layouts. */
 .aryan-home[data-theme="light"] #services.services-section{padding:34px 0 58px;background:#fffaf3 !important;background-image:none !important;color:#123c38}
 .aryan-home #services .services-shell{width:calc(100% - 40px);max-width:none}
-.aryan-home #services .services-layout{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;gap:20px;align-items:stretch}
+.aryan-home #services .services-layout{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:1fr;gap:20px;align-items:stretch}
 .aryan-home #services .services-heading{padding:0 0 18px 8px}
 .aryan-home[data-theme="light"] #services .services-heading .kicker{display:block;color:#a43131 !important;font-size:.88rem;font-weight:800;letter-spacing:.065em;text-transform:uppercase;line-height:1.2;margin-bottom:3px}
 .aryan-home #services .services-heading .kicker:before{content:"";display:inline-block;vertical-align:middle;width:29px;height:4px;margin-right:12px;background:#c92132;border-radius:3px}
 .aryan-home #services .services-heading h2{margin:0;color:#006A64;font-family:var(--serif);font-size:clamp(2.35rem,3vw,3.3rem);line-height:1.05;letter-spacing:-.04em}
-.aryan-home #services .service-offer{display:grid;min-width:0;height:100%;overflow:hidden;border-radius:12px;box-shadow:0 11px 27px rgba(62,39,19,.09)}
-.aryan-home #services .service-sell{grid-template-columns:38% minmax(0,1fr);min-height:365px;background:#fffbf4;border:1px solid #ece4d7}
-.aryan-home #services .service-pledged{grid-template-columns:36% minmax(0,1fr);min-height:365px;background:#a90520;border:1px solid #970018}
+.aryan-home #services .service-offer{display:grid;grid-template-columns:38% minmax(0,1fr);grid-template-rows:1fr;min-width:0;min-height:365px;height:100%;overflow:hidden;border-radius:12px;box-shadow:0 11px 27px rgba(62,39,19,.09)}
+.aryan-home #services .service-sell{background:#fffbf4;border:1px solid #ece4d7}
+.aryan-home #services .service-pledged{background:#a90520;border:1px solid #970018}
+.aryan-home #services .service-doorstep{background:#006a64;border:1px solid #005b56}
 .aryan-home #services .offer-image{position:relative;min-height:100%;overflow:hidden;background:#14362f}
-.aryan-home #services .offer-image img{object-fit:cover;object-position:center;transition:transform .45s ease}
-.aryan-home #services .service-offer:is(:hover,:focus-within) .offer-image img{transform:scale(1.035)}
+.aryan-home #services .offer-image img{object-fit:cover;object-position:center}
 .aryan-home #services .offer-content{display:flex;flex-direction:column;align-items:flex-start;min-width:0;padding:26px 28px}
-.aryan-home #services .service-pledged .offer-content{padding:30px 36px}
 .aryan-home #services .offer-icon{display:grid;place-items:center;width:51px;height:51px;flex:none;border:1px solid #edc358;border-radius:11px;background:#fff1c9;color:#a95825;margin-bottom:13px}
 .aryan-home #services .offer-icon svg{width:31px;height:31px}
-.aryan-home #services .service-pledged .offer-icon{width:58px;height:58px;border:2px solid #e7b82b;background:rgba(255,225,106,.08);color:#f2c33b;margin-bottom:16px}
-.aryan-home #services .service-pledged .offer-icon svg{width:37px;height:37px}
+.aryan-home #services :is(.service-pledged,.service-doorstep) .offer-icon{border-color:#e7b82b;background:rgba(255,225,106,.08);color:#f2c33b}
 .aryan-home #services .offer-content h3{margin:0 0 8px;color:#14242a;font-family:var(--sans);font-size:clamp(1.65rem,2vw,2.25rem);font-weight:800;line-height:1.1}
 .aryan-home #services .offer-content p{max-width:430px;margin:0 0 20px;color:#536062;font-size:clamp(.94rem,1.08vw,1.13rem);line-height:1.4}
-.aryan-home #services .service-pledged .offer-content h3{color:#fff8ef;font-family:var(--serif);font-size:clamp(1.9rem,2.3vw,2.7rem)}
-.aryan-home #services .service-pledged .offer-content p{max-width:590px;color:#fff0e8;font-size:clamp(1rem,1.2vw,1.25rem);line-height:1.35}
+.aryan-home #services :is(.service-pledged,.service-doorstep) .offer-content h3{color:#fff8ef;font-family:var(--serif);font-size:clamp(1.9rem,2.3vw,2.7rem)}
+.aryan-home #services :is(.service-pledged,.service-doorstep) .offer-content p{color:#fff0e8}
 .aryan-home #services .offer-button{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;min-height:48px;margin-top:auto;padding:8px 16px;border:1px solid #edbd30;border-radius:7px;background:linear-gradient(135deg,#ffe17e,#ffca3d);box-shadow:0 5px 12px rgba(102,51,0,.12);color:#22251f;font-size:clamp(.81rem,.92vw,1rem);font-weight:800;line-height:1.2;text-align:center;transition:transform .2s ease,background .2s ease,box-shadow .2s ease}
 .aryan-home #services .offer-button span{margin-left:3px;font-size:1.35em;line-height:1}
 .aryan-home #services .offer-button:is(:hover,:focus-visible){background:#ffe797;box-shadow:0 8px 16px rgba(102,51,0,.18);transform:translateY(-2px)}
+@media(min-width:1201px){
+  .aryan-home #services .offer-content{padding:22px clamp(16px,1.3vw,24px)}
+  .aryan-home #services .offer-content h3{font-size:clamp(1.3rem,1.6vw,1.8rem)}
+  .aryan-home #services :is(.service-pledged,.service-doorstep) .offer-content h3{font-size:clamp(1.5rem,1.7vw,2rem)}
+  .aryan-home #services .offer-content p{font-size:clamp(.9rem,.9vw,1rem)}
+}
 @media(max-width:1200px){
   .aryan-home #services .services-shell{width:calc(100% - 40px)}
   .aryan-home #services .services-layout{grid-template-columns:1fr;gap:22px}
-  .aryan-home #services .service-sell,.aryan-home #services .service-pledged{min-height:330px;grid-template-columns:35% minmax(0,1fr)}
+  .aryan-home #services .service-offer{min-height:330px;grid-template-columns:35% minmax(0,1fr);grid-template-rows:1fr}
 }
 @media(max-width:700px){
   .aryan-home[data-theme="light"] #services.services-section{padding:36px 0 48px}
   .aryan-home #services .services-shell{width:calc(100% - 40px)}
   .aryan-home #services .services-heading{padding-left:0}
   .aryan-home #services .services-heading h2{font-size:2.4rem}
-  .aryan-home #services .service-sell,.aryan-home #services .service-pledged{grid-template-columns:1fr;min-height:0}
+  .aryan-home #services .service-offer{grid-template-columns:minmax(0,1fr);grid-template-rows:225px 1fr;min-height:0}
   .aryan-home #services .offer-image{height:225px;min-height:0}
-  .aryan-home #services .offer-content,.aryan-home #services .service-pledged .offer-content{padding:24px}
+  .aryan-home #services .offer-image img{object-fit:contain}
+  .aryan-home #services .offer-content{padding:24px}
   .aryan-home #services .offer-button{margin-top:12px}
 }
 
 /* Product categories below Our Services. */
-.aryan-home[data-theme="light"] #what-we-buy.buy-section{position:relative;isolation:isolate;overflow:hidden;padding:48px 0 70px;background:#fffaf3 !important;background-image:none !important;color:#006A64}
-.aryan-home #what-we-buy:before{content:"";position:absolute;z-index:-1;inset:0 0 auto 0;height:365px;background:url("/ornaments/services-bangles.webp") right center / cover no-repeat;mask-image:linear-gradient(to bottom,#000 0%,#000 55%,transparent 100%);pointer-events:none}
+.aryan-home[data-theme="light"] #what-we-buy.buy-section{position:relative;isolation:isolate;overflow:hidden;padding:48px 0 70px;background:#006A64 !important;background-image:none !important;color:#fffaf2}
+.aryan-home #what-we-buy:before{content:"";position:absolute;z-index:-1;inset:0 0 auto 0;height:365px;background:linear-gradient(90deg,#006A64 0%,rgba(0,106,100,.95) 28%,rgba(0,106,100,.55) 48%,transparent 72%),url("/ornaments/services-bangles.webp") right center / cover no-repeat;mask-image:linear-gradient(to bottom,#000 0%,#000 55%,transparent 100%);pointer-events:none}
 .aryan-home #what-we-buy .buy-shell{width:calc(100% - 40px);max-width:none;position:relative}
 .aryan-home #what-we-buy .buy-intro{max-width:850px;margin:0 0 25px 16px}
-.aryan-home[data-theme="light"] #what-we-buy .buy-intro .kicker{display:block;margin-bottom:17px;color:#b3212a !important;font-size:1.08rem;font-weight:800;letter-spacing:.07em;line-height:1.2;text-transform:uppercase}
-.aryan-home #what-we-buy .buy-intro .kicker:before{content:"";display:inline-block;vertical-align:middle;width:50px;height:6px;margin-right:17px;border-radius:5px;background:#c81731}
-.aryan-home #what-we-buy .buy-intro h2{margin:0 0 14px;font-family:var(--serif);font-size:clamp(3.5rem,4.5vw,4.8rem);font-weight:800;line-height:.98;letter-spacing:-.035em;color:#006A64}
-.aryan-home #what-we-buy .buy-intro h2 span{color:#d99a18}
-.aryan-home #what-we-buy .buy-intro p{max-width:730px;margin:0;color:#51666d;font-size:clamp(1.15rem,1.55vw,1.5rem);line-height:1.35}
+.aryan-home[data-theme="light"] #what-we-buy .buy-intro .kicker{display:block;margin-bottom:17px;color:#fffaf2 !important;font-size:1.08rem;font-weight:800;letter-spacing:.07em;line-height:1.2;text-transform:uppercase}
+.aryan-home #what-we-buy .buy-intro .kicker:before{content:"";display:inline-block;vertical-align:middle;width:50px;height:6px;margin-right:17px;border-radius:5px;background:#ffd35c}
+.aryan-home #what-we-buy .buy-intro h2{margin:0 0 14px;font-family:var(--serif);font-size:clamp(3.5rem,4.5vw,4.8rem);font-weight:800;line-height:.98;letter-spacing:-.035em;color:#fffaf2}
+.aryan-home #what-we-buy .buy-intro h2 span{color:#ffd35c}
+.aryan-home #what-we-buy .buy-intro p{max-width:730px;margin:0;color:#f9f7f0;font-size:clamp(1.15rem,1.55vw,1.5rem);line-height:1.35}
 .aryan-home #what-we-buy .buy-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;align-items:stretch}
 .aryan-home #what-we-buy .buy-card{display:flex;flex-direction:column;min-width:0;overflow:hidden;border:1px solid #ece7dd;border-radius:16px;background:#fffaf3;box-shadow:0 5px 18px rgba(57,45,25,.035)}
 .aryan-home #what-we-buy .buy-card-image{position:relative;flex:none;aspect-ratio:1.05;overflow:hidden;background:#033b37}
@@ -1375,42 +1379,31 @@
   margin-inline:auto;
 }
 
-/* Non-destructive jewellery testing, immediately after What We Buy. */
-.aryan-home .testing-section{background:#fffaf3;color:#006A64}
-.aryan-home .testing-main{overflow:hidden;background:#fffaf3}
+/* Non-destructive jewellery testing after the experience section. */
+.aryan-home .testing-section{scroll-margin-top:84px;background:#fffaf3;color:#006A64}
+.aryan-home .testing-main{overflow:hidden;background:#006A64}
 .aryan-home .container.testing-main-inner{display:grid;grid-template-columns:minmax(0,52%) minmax(0,48%);align-items:center;width:100%;max-width:none;margin-inline:0}
 .aryan-home .testing-image{position:relative;min-width:0;align-self:stretch;overflow:hidden}
 .aryan-home .testing-image img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:right top;transform:scale(1.3);transform-origin:right top}
-.aryan-home .testing-image:after{content:"";position:absolute;inset:0 0 0 auto;width:14%;background:linear-gradient(90deg,transparent,#fffaf3);pointer-events:none}
+.aryan-home .testing-image:after{content:"";position:absolute;inset:0;background:linear-gradient(270deg,#006A64 0%,rgba(0,106,100,.95) 12%,rgba(0,106,100,.55) 30%,transparent 56%);pointer-events:none}
 .aryan-home .testing-copy{min-width:0;padding:44px var(--page-gutter) 32px 0}
 .aryan-home .testing-kicker{display:block;color:#b21727;font-size:clamp(.85rem,1.25vw,1.2rem);font-weight:800;letter-spacing:.08em;line-height:1.2;text-transform:uppercase}
 .aryan-home .testing-kicker:before{content:"";display:inline-block;vertical-align:middle;width:50px;height:6px;margin-right:16px;border-radius:5px;background:#bf112b}
-.aryan-home .testing-copy h2{margin:21px 0 16px;color:#006A64;font-family:var(--serif);font-size:clamp(3.6rem,4.45vw,5.2rem);font-weight:800;line-height:.92;letter-spacing:-.045em}
-.aryan-home .testing-copy h2 span{color:#d79716}
-.aryan-home .testing-copy>p{max-width:680px;margin:0;color:#4e6471;font-size:clamp(1.1rem,1.55vw,1.45rem);line-height:1.3}
+.aryan-home .testing-copy .testing-kicker{color:#fffaf2}
+.aryan-home .testing-copy .testing-kicker:before{background:#ffd35c}
+.aryan-home .testing-copy h2{margin:21px 0 16px;color:#fffaf2;font-family:var(--serif);font-size:clamp(3.6rem,4.45vw,5.2rem);font-weight:800;line-height:.92;letter-spacing:-.045em}
+.aryan-home .testing-copy h2 span{color:#ffd35c}
+.aryan-home .testing-copy>p{max-width:680px;margin:0;color:#f9f7f0;font-size:clamp(1.1rem,1.55vw,1.45rem);line-height:1.3}
 .aryan-home .testing-benefits{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;width:100%;margin-top:28px}
-.aryan-home .testing-benefit{min-width:0;padding:0 12px;text-align:center;border-right:1px solid rgba(21,51,50,.2)}
+.aryan-home .testing-benefit{min-width:0;padding:0 12px;text-align:center;border-right:1px solid rgba(255,255,255,.35)}
 .aryan-home .testing-benefit:first-child{padding-left:0}
 .aryan-home .testing-benefit:last-child{border-right:0;padding-right:0}
 .aryan-home .testing-benefit-icon{display:grid;place-items:center;width:74px;height:74px;margin:0 auto 10px;border-radius:50%;color:#efbc32}
-.aryan-home .testing-benefit-icon.teal{background:#006A64}
+.aryan-home .testing-benefit-icon.teal{background:#ffe2a0;color:#ad0828}
 .aryan-home .testing-benefit-icon.red{background:#a90022}
 .aryan-home .testing-benefit-icon svg{width:43px;height:43px}
-.aryan-home .testing-benefit h3{margin:0 0 6px;color:#006A64;font-family:var(--sans);font-size:clamp(.9rem,1.05vw,1.1rem);font-weight:800;line-height:1.17}
-.aryan-home .testing-benefit p{max-width:155px;margin:0 auto;color:#536570;font-size:clamp(.81rem,.95vw,.99rem);line-height:1.3}
-.aryan-home .testing-process{position:relative;scroll-margin-top:84px;background:#fffaf3;border-top:1px solid #eee6d8;border-radius:16px 16px 0 0}
-.aryan-home .testing-process-inner{display:grid;grid-template-columns:minmax(0,2.7fr) minmax(330px,1fr);gap:25px;align-items:stretch;padding-top:15px;padding-bottom:28px}
-.aryan-home .testing-steps-panel{min-width:0;padding:8px 0 0}
-.aryan-home .testing-steps-heading .testing-kicker{font-size:.95rem}
-.aryan-home .testing-steps-heading .testing-kicker:before{width:45px;height:5px;margin-right:13px}
-.aryan-home .testing-steps-heading h3{margin:3px 0 0;color:#006A64;font-family:var(--serif);font-size:clamp(1.8rem,2.35vw,2.4rem);font-weight:800;line-height:1.1;letter-spacing:-.035em}
-.aryan-home .testing-steps-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;list-style:none;margin:9px 0 0;padding:0}
-.aryan-home .testing-steps-list li{position:relative;min-width:0;padding:0 8px;text-align:center}
-.aryan-home .testing-steps-list li:not(:last-child):after{content:"→";position:absolute;top:24px;right:-20px;color:#b20927;font-size:2.2rem;line-height:1}
-.aryan-home .testing-step-icon{display:grid;place-items:center;width:70px;height:70px;margin:0 auto 9px;border-radius:50%;background:#ffe5a3;color:#a62624}
-.aryan-home .testing-step-icon svg{width:41px;height:41px}
-.aryan-home .testing-steps-list h4{margin:0 0 4px;color:#006A64;font-size:clamp(.92rem,1.08vw,1.15rem);font-weight:800;line-height:1.2}
-.aryan-home .testing-steps-list p{max-width:210px;margin:0 auto;color:#536572;font-size:clamp(.82rem,.98vw,1.02rem);line-height:1.27}
+.aryan-home .testing-benefit h3{margin:0 0 6px;color:#fffaf2;font-family:var(--sans);font-size:clamp(.9rem,1.05vw,1.1rem);font-weight:800;line-height:1.17}
+.aryan-home .testing-benefit p{max-width:155px;margin:0 auto;color:#f9f7f0;font-size:clamp(.81rem,.95vw,.99rem);line-height:1.3}
 .aryan-home .testing-safe-card{display:grid;grid-template-columns:82px minmax(0,1fr);gap:20px;align-items:start;min-height:235px;padding:34px 28px;border-radius:13px;background:#006A64;color:#fff;box-shadow:0 8px 24px rgba(0,51,48,.12)}
 .aryan-home .testing-safe-icon{display:block;color:#efc139}
 .aryan-home .testing-safe-icon svg{width:79px;height:79px;stroke-width:1.7}
@@ -1420,7 +1413,6 @@
   .aryan-home .testing-copy h2{font-size:clamp(3rem,4.6vw,4.25rem)}
   .aryan-home .testing-benefit-icon{width:64px;height:64px}
   .aryan-home .testing-benefit-icon svg{width:37px;height:37px}
-  .aryan-home .testing-process-inner{grid-template-columns:minmax(0,2fr) minmax(300px,1fr)}
   .aryan-home .testing-safe-card{grid-template-columns:1fr;gap:8px;padding:24px}
   .aryan-home .testing-safe-icon svg{width:58px;height:58px}
 }
@@ -1428,12 +1420,11 @@
   .aryan-home .container.testing-main-inner{grid-template-columns:1fr}
   .aryan-home .testing-image{width:100%;aspect-ratio:1672/941}
   .aryan-home .testing-image img{transform:none}
-  .aryan-home .testing-image:after{inset:auto 0 0;width:auto;height:18%;background:linear-gradient(180deg,transparent,#fffaf3)}
+  .aryan-home .testing-image:after{inset:auto 0 0;height:24%;background:linear-gradient(180deg,transparent,#006A64)}
   .aryan-home .testing-copy{width:100%;max-width:820px;padding:18px var(--page-gutter) 48px}
 }
 @media(max-width:900px){
   .aryan-home .testing-copy h2{font-size:clamp(3rem,7vw,4.3rem)}
-  .aryan-home .testing-process-inner{grid-template-columns:1fr;gap:20px;padding-top:24px}
   .aryan-home .testing-safe-card{grid-template-columns:70px minmax(0,1fr);min-height:0}
 }
 @media(max-width:600px){
@@ -1447,9 +1438,6 @@
   .aryan-home .testing-benefit:nth-child(3){padding-left:0}
   .aryan-home .testing-benefit h3{font-size:.94rem}
   .aryan-home .testing-benefit p{font-size:.83rem}
-  .aryan-home .testing-steps-heading h3{font-size:1.85rem}
-  .aryan-home .testing-steps-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:25px 12px;margin-top:20px}
-  .aryan-home .testing-steps-list li:nth-child(2):after{display:none}
   .aryan-home .testing-safe-card{grid-template-columns:55px minmax(0,1fr);gap:12px;padding:22px 18px}
   .aryan-home .testing-safe-icon svg{width:52px;height:52px}
   .aryan-home .testing-safe-card h3{font-size:1.15rem}
@@ -1530,11 +1518,11 @@
 
 /* Gold value calculator directly after the rate strip. */
 .aryan-home[data-theme="light"] #calculator.gold-calc-section{position:relative;scroll-margin-top:84px;overflow:hidden;padding:0;background:#006A60 !important;color:#fff}
-.aryan-home .gold-calc-inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch;min-height:690px;width:100%;max-width:none;margin:0;padding:0}
-.aryan-home .gold-calc-image{position:relative;min-width:0;min-height:600px;overflow:hidden;background:#143d37}
-.aryan-home .gold-calc-image img{object-fit:cover;object-position:right center}
-.aryan-home .gold-calc-image:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 82%,rgba(0,106,96,.45) 94%,#006A60 100%);pointer-events:none}
-.aryan-home .gold-calc-content{align-self:center;justify-self:center;width:min(100%,760px);padding:52px clamp(30px,5vw,90px) 58px}
+.aryan-home .gold-calc-inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"image content";align-items:stretch;min-height:690px;width:100%;max-width:none;margin:0;padding:0}
+.aryan-home .gold-calc-image{grid-area:image;position:relative;align-self:center;min-width:0;width:100%;aspect-ratio:1672/941;background:#143d37}
+.aryan-home .gold-calc-image img{object-fit:contain;object-position:center}
+.aryan-home .gold-calc-image:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent 85%,rgba(0,106,96,.15) 92%,rgba(0,106,96,.5) 97%,#006A60 100%)}
+.aryan-home .gold-calc-content{grid-area:content;align-self:center;justify-self:center;width:min(100%,760px);padding:52px clamp(30px,5vw,90px) 58px}
 .aryan-home #calculator .gold-calc-intro :is(h1,h2){margin:0 0 8px;color:#fff;font-family:var(--serif);font-size:clamp(2.85rem,3.8vw,4.1rem);font-weight:800;line-height:1.04;letter-spacing:-.04em;text-shadow:0 3px 15px rgba(0,0,0,.17)}
 .aryan-home #calculator .gold-calc-intro :is(h1,h2) span{color:#ffd052}
 .aryan-home #calculator .gold-calc-intro p{margin:0 0 24px;color:#edf7f2;font-size:clamp(1rem,1.22vw,1.2rem);line-height:1.35}
@@ -1562,9 +1550,8 @@
   .aryan-home .gold-calc-content{padding-inline:clamp(26px,4vw,56px)}
 }
 @media(max-width:760px){
-  .aryan-home .gold-calc-inner{grid-template-columns:minmax(0,1fr);min-height:0}
-  .aryan-home .gold-calc-image{min-height:clamp(250px,58vw,390px)}
-  .aryan-home .gold-calc-image:after{background:linear-gradient(180deg,transparent 60%,rgba(0,106,96,.45) 83%,#006A60 100%)}
+  .aryan-home .gold-calc-inner{grid-template-columns:minmax(0,1fr);grid-template-areas:"image" "content";min-height:0}
+  .aryan-home .gold-calc-image:after{background:linear-gradient(180deg,transparent 85%,rgba(0,106,96,.15) 92%,rgba(0,106,96,.5) 97%,#006A60 100%)}
   .aryan-home .gold-calc-content{width:min(100%,700px);padding:48px var(--page-gutter) 52px}
   .aryan-home #calculator .gold-calc-intro :is(h1,h2){font-size:clamp(2.6rem,7.5vw,3.9rem)}
 }

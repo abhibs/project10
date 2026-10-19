@@ -1,12 +1,12 @@
 .aryan-home #hero .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 360px;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 360px) minmax(0, 1fr);
   align-items: center;
   gap: 40px;
 }
 
 .aryan-home #hero .hero-copy { min-width: 0; }
-.aryan-home #hero h1 { font-size: clamp(2.7rem, 4vw, 4.4rem); white-space: normal; }
+.aryan-home #hero h1 { font-size: clamp(2.35rem, 3.4vw, 4.4rem); white-space: normal; }
 .aryan-home #hero .hero-actions { flex-wrap: wrap; }
 .aryan-home #hero .hero-actions .btn { padding-inline: 20px; }
 .aryan-home #hero .hero-motto { display: none; }
@@ -42,16 +42,16 @@
 .aryan-home #hero .banner-form-message:empty { display: none; }
 
 @media (min-width: 1500px) {
-  .aryan-home #hero .hero-grid { grid-template-columns: minmax(0, 1.65fr) minmax(360px, 400px) minmax(0, .7fr); gap: 48px; }
+  .aryan-home #hero .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(360px, 400px) minmax(0, 1fr); gap: 48px; }
   .aryan-home #hero .hero-motto { display: block; }
 }
 
-@media (min-width: 1001px) and (max-width: 1499px) {
+@media (min-width: 1201px) and (max-width: 1499px) {
   .aryan-home[data-theme="light"] #hero .trust-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
   .aryan-home[data-theme="light"] #hero .trust-row > div { padding: 0; border: 0; }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
   .aryan-home #hero .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   .aryan-home #hero .hero-copy { max-width: 710px; }
   .aryan-home #hero h1 { font-size: clamp(2.35rem, 7vw, 4.4rem); }

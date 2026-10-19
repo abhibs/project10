@@ -27,7 +27,7 @@ export default function StorySection() {
         <span>ARYAN GOLD</span>
       </div>
       <div className={styles.content}>
-        <h2 id="story-title">A New Approach<br />To Gold Buying.</h2>
+        <h2 id="story-title">A New Approach<br /><span>To Gold Buying.</span></h2>
         <p className={styles.description}>Aryan Gold Buyers puts your trust first. Our clear process, modern testing and personal service help you make a confident decision about your gold.</p>
         <ul className={styles.values}>
           {values.map(value => <li key={value.label}><span className={styles.icon}><ValueIcon name={value.icon} /></span><span>{value.label}</span></li>)}

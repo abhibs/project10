@@ -1,15 +1,15 @@
 .section {
   padding: 26px 0 88px;
-  background: #f8f4eb;
+  background: #006A64;
   scroll-margin-top: 84px;
 }
 .shell {
   position: relative;
   min-height: 660px;
   overflow: hidden;
-  border: 1px solid #e6ded0;
+  border: 1px solid rgba(255, 255, 255, .2);
   border-radius: 18px;
-  background: #e6d1b5;
+  background: #006A64;
   box-shadow: 0 18px 48px rgba(64, 48, 29, .08);
 }
 .photo {
@@ -22,7 +22,7 @@
   position: absolute;
   z-index: 1;
   inset: 0;
-  background: linear-gradient(270deg, #fffaf3 0%, rgba(255, 250, 243, .98) 27%, rgba(255, 250, 243, .85) 39%, rgba(255, 250, 243, .22) 58%, transparent 72%);
+  background: linear-gradient(270deg, #006A64 0%, rgba(0, 106, 100, .95) 28%, rgba(0, 106, 100, .55) 48%, transparent 72%);
   pointer-events: none;
 }
 .content {
@@ -34,17 +34,18 @@
 }
 .section .content h2 {
   margin: 0 0 24px;
-  color: #006A64;
+  color: #fffaf2;
   font-family: var(--font-aryan-body), Arial, sans-serif;
   font-size: clamp(38px, 3.7vw, 60px);
   font-weight: 850;
   letter-spacing: -.055em;
   line-height: 1.06;
 }
+.section .content h2 span { color: #ffd35c; }
 .section .content p.description {
   max-width: 500px;
   margin: 0;
-  color: #006A64;
+  color: #f9f7f0;
   font-size: clamp(15px, 1.16vw, 18px);
   line-height: 1.55;
 }
@@ -59,7 +60,7 @@
   display: flex;
   align-items: center;
   gap: 17px;
-  color: #006A64;
+  color: #fffaf2;
   font-size: clamp(16px, 1.18vw, 19px);
   font-weight: 750;
 }
@@ -69,10 +70,10 @@
   width: 47px;
   height: 47px;
   flex: none;
-  border: 2px solid #ca9135;
+  border: 2px solid #ffd35c;
   border-radius: 50%;
-  background: rgba(255, 249, 237, .83);
-  color: #b77a24;
+  background: rgba(255, 211, 92, .08);
+  color: #ffd35c;
 }
 .icon svg { width: 26px; height: 26px; }
 .section .button {
@@ -116,19 +117,19 @@
   pointer-events: none;
 }
 .wallBrand img { width: 82px; height: 82px; object-fit: contain; mix-blend-mode: multiply; }
-.section :focus-visible { outline: 3px solid #b8771d; outline-offset: 4px; }
+.section :focus-visible { outline: 3px solid #fffaf2; outline-offset: 4px; }
 @media (max-width: 1100px) {
   .shell { min-height: 630px; }
   .content { width: 55%; padding: 48px 40px; }
-  .shell::after { background: linear-gradient(270deg, #fffaf3 0%, rgba(255, 250, 243, .97) 38%, rgba(255, 250, 243, .55) 59%, transparent 80%); }
+  .shell::after { background: linear-gradient(270deg, #006A64 0%, rgba(0, 106, 100, .97) 38%, rgba(0, 106, 100, .55) 59%, transparent 80%); }
   .wallBrand { left: 24%; }
 }
 @media (max-width: 760px) {
   .section { padding: 15px 0 64px; }
-  .shell { min-height: 0; }
+  .shell { --story-photo-space: 315px; min-height: 0; }
   .photo { object-position: 66% bottom; }
-  .shell::after { background: linear-gradient(180deg, #fffaf3 0%, rgba(255, 250, 243, .99) 51%, rgba(255, 250, 243, .8) 69%, rgba(255, 250, 243, .04) 100%); }
-  .content { width: 100%; margin-left: 0; padding: 36px 28px 315px; }
+  .shell::after { background: linear-gradient(180deg, #006A64 0%, #006A64 calc(100% - var(--story-photo-space)), rgba(0, 106, 100, .8) calc(100% - var(--story-photo-space) + 80px), transparent 100%); }
+  .content { width: 100%; margin-left: 0; padding: 36px 28px var(--story-photo-space); }
   .section .content h2 { font-size: clamp(36px, 8vw, 48px); }
   .section .content p.description { max-width: 590px; font-size: 15px; }
   .values { gap: 13px; margin: 28px 0; }
@@ -138,7 +139,8 @@
   .wallBrand { display: none; }
 }
 @media (max-width: 420px) {
-  .content { padding: 32px 22px 270px; }
+  .shell { --story-photo-space: 270px; }
+  .content { padding: 32px 22px var(--story-photo-space); }
   .section .content h2 { font-size: 34px; }
   .section .button { width: 100%; }
 }

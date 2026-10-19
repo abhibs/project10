@@ -7,6 +7,7 @@ import PaymentSection from "./PaymentSection";
 import ExperienceSection from "./ExperienceSection";
 import StorySection from "./StorySection";
 import FaqSection from "./FaqSection";
+import GoldCalculator from "./GoldCalculator";
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -26,17 +27,10 @@ const TESTING_BENEFITS = [
   {title: "Accurate Purity Check", description: "Advanced XRF technology", icon: "search", tone: "teal"},
   {title: "Transparent Results", description: "See the purity details clearly", icon: "check", tone: "red"},
 ];
-const TESTING_STEPS = [
-  {title: "Place Your Item", description: "Keep your gold item on the testing machine.", icon: "bangle"},
-  {title: "XRF Analysis", description: "Advanced technology analyses purity instantly.", icon: "scan"},
-  {title: "View Results", description: "See the purity details on screen.", icon: "report"},
-  {title: "Get Valuation", description: "We offer a fair price based on verified purity.", icon: "check"},
-];
 const VALUATION_FACTORS = [
   {title: "Weight", description: "Verified weight on a digital machine.", icon: "scale"},
   {title: "Purity", description: "Measured using advanced XRF technology.", icon: "gem"},
   {title: "Current Gold Rate", description: "Applicable live market rate at the time of evaluation.", icon: "chart"},
-  {title: "Service Charges", description: "Clearly explained before you decide.", icon: "report"},
   {title: "Your Final Offer", description: "Based on verified weight, purity and live rate.", icon: "rupee"},
 ];
 const VALUATION_STEPS = [
@@ -310,24 +304,7 @@ export default function GoldHomepage() {
       </div>
     </section>
 
-    <section className="section why-section" id="why-aryan" aria-labelledby="why-aryan-title">
-      <div className="container why-shell">
-        <div className="why-layout">
-          <div className="why-intro reveal">
-            <span className="kicker">Why choose Aryan Gold Buyers?</span>
-            <h2 id="why-aryan-title">A Better Way<br />to Sell Your <span>Gold.</span></h2>
-            <p>At Aryan Gold Buyers, we combine advanced technology, transparent evaluation and professional service to give you a clear and confident experience.</p>
-          </div>
-          <div className="why-features">
-            <article className="why-feature reveal"><span className="why-feature-icon tone-teal"><HeroBenefitIcon type="diamond" /></span><h3>Non-Destructive<br />Testing</h3><p>Advanced technology designed to evaluate gold without scratching or cutting.</p></article>
-            <article className="why-feature reveal delay-1"><span className="why-feature-icon tone-gold"><HeroBenefitIcon type="shield" /></span><h3>Transparent<br />Evaluation</h3><p>See and understand how your gold is evaluated.</p></article>
-            <article className="why-feature reveal delay-2"><span className="why-feature-icon tone-red"><HeroBenefitIcon type="chart" /></span><h3>Competitive<br />Gold Rate</h3><p>Highly competitive buying prices based on verified purity and weight.</p></article>
-            <article className="why-feature reveal"><span className="why-feature-icon tone-red"><HeroBenefitIcon type="payment" /></span><h3>Quick<br />Payment</h3><p>Fast settlement after verification and completion of formalities.</p></article>
-            <article className="why-feature reveal delay-1"><span className="why-feature-icon tone-teal"><HeroBenefitIcon type="support" /></span><h3>Dedicated<br />Support</h3><p>Our customer team is here to answer your questions and guide you at every step.</p></article>
-          </div>
-        </div>
-      </div>
-    </section>
+    <GoldCalculator rate={rates[24]} live={live} />
 
     <section className="section services-section" id="services" aria-labelledby="services-title">
       <div className="container services-shell">
@@ -337,7 +314,7 @@ export default function GoldHomepage() {
         </div>
         <div className="services-layout">
           <article className="service-offer service-sell reveal">
-            <div className="offer-image"><Image src="/service-sell-gold.webp" alt="Ornate gold necklace and earrings on emerald velvet" fill sizes="(max-width: 700px) 100vw, (max-width: 1200px) 35vw, 20vw" /></div>
+            <div className="offer-image"><Image src="/service-sell-gold.webp" alt="Ornate gold necklace and earrings on emerald velvet" fill sizes="(max-width: 700px) 100vw, (max-width: 1200px) 35vw, 33vw" /></div>
             <div className="offer-content">
               <span className="offer-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="24" cy="24" r="17"/><path d="M17 15h15M17 21h15M19 15c10 0 10 10 0 10l12 10"/></svg></span>
               <h3>Sell Gold</h3>
@@ -346,7 +323,7 @@ export default function GoldHomepage() {
             </div>
           </article>
           <article className="service-offer service-pledged reveal delay-1">
-            <div className="offer-image"><Image src="/service-pledged-gold.webp" alt="Gold necklace on a jewelry case beside a loan document" fill sizes="(max-width: 700px) 100vw, (max-width: 1200px) 35vw, 22vw" /></div>
+            <div className="offer-image"><Image src="/service-pledged-gold.webp" alt="Gold necklace on a jewelry case beside a loan document" fill sizes="(max-width: 700px) 100vw, (max-width: 1200px) 35vw, 33vw" /></div>
             <div className="offer-content">
               <span className="offer-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 17 24 6l19 11H5ZM8 39h32M11 20v16m8-16v16m10-16v16m8-16v16M5 43h38"/></svg></span>
               <h3>Release Pledged Gold</h3>
@@ -354,28 +331,20 @@ export default function GoldHomepage() {
               <a className="offer-button" href="#booking">Get Pledged Gold Assistance <span aria-hidden="true">→</span></a>
             </div>
           </article>
+          <article className="service-offer service-doorstep reveal delay-2">
+            <div className="offer-image"><Image src="/valuation-weight.webp" alt="Gold jewellery on a digital weighing scale" fill sizes="(max-width: 700px) 100vw, (max-width: 1200px) 35vw, 33vw" /></div>
+            <div className="offer-content">
+              <span className="offer-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 22 24 6l19 16M10 19v23h28V19M19 42V28h10v14"/><path d="M31 9V5h7v10"/></svg></span>
+              <h3>Doorstep Valuation</h3>
+              <p>Request a gold valuation from the comfort of your home. Our team will confirm availability in your area and arrange a convenient visit.</p>
+              <a className="offer-button" href="#booking" onClick={() => setServiceMode("Doorstep Service")}>Book Doorstep Valuation <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section className="section buy-section" id="what-we-buy" aria-labelledby="buy-title">
-      <div className="container buy-shell">
-        <div className="buy-intro reveal">
-          <span className="kicker">What we buy</span>
-          <h2 id="buy-title">We Buy More Than<br /><span>Just Gold Jewellery.</span></h2>
-          <p>Bring your eligible gold and silver items for a transparent evaluation at Aryan Gold Buyers.</p>
-        </div>
-        <div className="buy-grid">
-          {BUY_ITEMS.map((item, index) => (
-            <article className="buy-card reveal" key={item.title} style={{transitionDelay: `${Math.min(index, 3) * 70}ms`}}>
-              <div className="buy-card-image"><Image src={item.image} alt={item.alt} fill sizes="(max-width: 650px) 47vw, (max-width: 1200px) 31vw, 16vw" /></div>
-              <div className="buy-card-copy"><h3>{item.title}</h3><span aria-hidden="true" /><p>{item.description}</p></div>
-            </article>
-          ))}
-        </div>
-        <a className="buy-cta" href="#booking">Check What We Buy <span aria-hidden="true">→</span></a>
-      </div>
-    </section>
+    <ExperienceSection />
 
     <section className="testing-section" id="testing" aria-labelledby="testing-title">
       <div className="testing-main">
@@ -399,20 +368,41 @@ export default function GoldHomepage() {
           </div>
         </div>
       </div>
-      <div className="testing-process" id="how-it-works-testing">
-        <div className="container testing-process-inner">
-          <div className="testing-steps-panel reveal">
-            <div className="testing-steps-heading"><span className="testing-kicker">How It Works</span><h3>Gold Testing in 4 Simple Steps</h3></div>
-            <ol className="testing-steps-list">
-              {TESTING_STEPS.map((step) => (
-                <li key={step.title}><span className="testing-step-icon"><TestingIcon type={step.icon} /></span><h4>{step.title}</h4><p>{step.description}</p></li>
-              ))}
-            </ol>
+    </section>
+
+    <section className="section why-section" id="why-aryan" aria-labelledby="why-aryan-title">
+      <div className="container why-shell">
+        <div className="why-layout">
+          <div className="why-intro reveal">
+            <span className="kicker">Why choose Aryan Gold Buyers?</span>
+            <h2 id="why-aryan-title">A Better Way<br />to Sell Your <span>Gold.</span></h2>
+            <p>At Aryan Gold Buyers, we combine advanced technology, transparent evaluation and professional service to give you a clear and confident experience.</p>
           </div>
-          <aside className="testing-safe-card reveal delay-1">
-            <span className="testing-safe-icon"><TestingIcon type="shield" /></span>
-            <div><h3>100% Safe for<br />Your Jewellery</h3><p>Your gold remains exactly as it is. No cuts, no scratches, no damage — only accurate purity testing.</p></div>
-          </aside>
+          <div className="why-features">
+            <article className="why-feature reveal"><span className="why-feature-icon tone-teal"><HeroBenefitIcon type="diamond" /></span><h3>Non-Destructive<br />Testing</h3><p>Advanced technology designed to evaluate gold without scratching or cutting.</p></article>
+            <article className="why-feature reveal delay-1"><span className="why-feature-icon tone-gold"><HeroBenefitIcon type="shield" /></span><h3>Transparent<br />Evaluation</h3><p>See and understand how your gold is evaluated.</p></article>
+            <article className="why-feature reveal delay-2"><span className="why-feature-icon tone-red"><HeroBenefitIcon type="chart" /></span><h3>Competitive<br />Gold Rate</h3><p>Highly competitive buying prices based on verified purity and weight.</p></article>
+            <article className="why-feature reveal"><span className="why-feature-icon tone-red"><HeroBenefitIcon type="payment" /></span><h3>Quick<br />Payment</h3><p>Fast settlement after verification and completion of formalities.</p></article>
+            <article className="why-feature reveal delay-1"><span className="why-feature-icon tone-teal"><HeroBenefitIcon type="support" /></span><h3>Dedicated<br />Support</h3><p>Our customer team is here to answer your questions and guide you at every step.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section className="section buy-section" id="what-we-buy" aria-labelledby="buy-title">
+      <div className="container buy-shell">
+        <div className="buy-intro reveal">
+          <span className="kicker">What we buy</span>
+          <h2 id="buy-title">We Buy More Than<br /><span>Just Gold Jewellery.</span></h2>
+          <p>Bring your eligible gold and silver items for a transparent evaluation at Aryan Gold Buyers.</p>
+        </div>
+        <div className="buy-grid">
+          {BUY_ITEMS.map((item, index) => (
+            <article className="buy-card reveal" key={item.title} style={{transitionDelay: `${Math.min(index, 3) * 70}ms`}}>
+              <div className="buy-card-image"><Image src={item.image} alt={item.alt} fill sizes="(max-width: 650px) 47vw, (max-width: 1200px) 31vw, 16vw" /></div>
+              <div className="buy-card-copy"><h3>{item.title}</h3><span aria-hidden="true" /><p>{item.description}</p></div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -449,9 +439,8 @@ export default function GoldHomepage() {
       </div>
     </section>
 
-    <BranchLocations />
     <PaymentSection />
-    <ExperienceSection />
+    <BranchLocations />
     <StorySection />
     <FaqSection />
 

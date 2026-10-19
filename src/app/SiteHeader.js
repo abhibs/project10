@@ -21,7 +21,7 @@ export default function SiteHeader({ contactPage = false, calculatorPage = false
           <a href={`${home}#services`}>Services</a>
           <a href={`${home}#rates`}>Gold Rate</a>
           <Link href="/calculator" aria-current={calculatorPage ? "page" : undefined}>Calculator</Link>
-          <a href={`${home}#how-it-works-testing`}>How it works</a>
+          <a href={`${home}#testing`}>How it works</a>
           <a href={`${home}#branches`}>Branches</a>
           <a href={`${home}#faq`}>FAQ</a>
           <a href={`${home}#booking`}>Book Service</a>

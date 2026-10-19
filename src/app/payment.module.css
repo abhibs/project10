@@ -2,7 +2,7 @@
   position: relative;
   padding-bottom: 28px;
   overflow: hidden;
-  background: #faf7f0;
+  background: #006A64;
   color: #073e3a;
 }
 
@@ -18,7 +18,7 @@
   position: relative;
   min-width: 0;
   overflow: hidden;
-  background: #f8f3e9;
+  background: #006A64;
 }
 
 .photo img {
@@ -37,7 +37,7 @@
   position: absolute;
   inset: 0;
   z-index: 2;
-  background: linear-gradient(90deg, rgba(250, 247, 240, 0) 85%, #faf7f0 100%);
+  background: linear-gradient(270deg, #006A64 0%, rgba(0, 106, 100, .95) 12%, rgba(0, 106, 100, .55) 30%, transparent 56%);
   content: "";
   pointer-events: none;
 }
@@ -71,7 +71,7 @@
 
 .section .content h2 {
   margin: 25px 0 17px;
-  color: #006A64;
+  color: #fffaf2;
   font-family: var(--serif), Georgia, serif;
   font-size: clamp(47px, 5.25vw, 81px);
   font-weight: 700;
@@ -79,7 +79,9 @@
   line-height: .98;
 }
 
-.content h2 span,
+.content .eyebrow { color: #fffaf2; }
+.content .eyebrow::before { background: #ffd35c; }
+.content h2 span { color: #ffd35c; }
 .optionsIntro h3 span {
   color: #d7950b;
 }
@@ -87,7 +89,7 @@
 .section .content p.intro {
   max-width: 650px;
   margin: 0;
-  color: #526777;
+  color: #f9f7f0;
   font-size: clamp(17px, 1.48vw, 23px);
   line-height: 1.37;
 }
@@ -106,7 +108,7 @@
 }
 
 .benefit:first-child { padding-left: 0; }
-.benefit + .benefit { border-left: 1px solid rgba(48, 63, 61, .16); }
+.benefit + .benefit { border-left: 1px solid rgba(255, 255, 255, .35); }
 
 .benefitIcon,
 .methodIcon {
@@ -124,7 +126,7 @@
 
 .section .benefit h3 {
   margin: 0 0 5px;
-  color: #006A64;
+  color: #fffaf2;
   font-family: var(--serif), Georgia, serif;
   font-size: clamp(17px, 1.32vw, 21px);
   font-weight: 750;
@@ -133,7 +135,7 @@
 
 .section .hero .benefit p {
   margin: 0;
-  color: #526777;
+  color: #f9f7f0;
   font-size: clamp(12px, .98vw, 15px);
   line-height: 1.35;
 }
@@ -208,7 +210,7 @@
   .hero { grid-template-columns: 1fr; min-height: 0; }
   .photo { width: 100%; aspect-ratio: 1800 / 771; }
   .photo img { object-position: center; }
-  .photo::after { background: linear-gradient(180deg, rgba(250, 247, 240, 0) 82%, #faf7f0 100%); }
+  .photo::after { background: linear-gradient(180deg, transparent 76%, #006A64 100%); }
   .content { width: 100%; max-width: 880px; padding: 20px clamp(25px, 4vw, 76px) 58px; }
   .options { grid-template-columns: 1fr; gap: 25px; }
   .optionsIntro h3 br { display: none; }
