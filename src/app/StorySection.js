@@ -20,12 +20,8 @@ function ValueIcon({ name }) {
 
 export default function StorySection() {
   return <section className={styles.section} id="our-story" aria-labelledby="story-title">
-    <div className={"container " + styles.shell}>
-      <Image className={styles.photo} src="/story-reception.webp" alt="Warm reception interior with a cream counter and gold accents" fill sizes="(max-width: 760px) 100vw, 92vw" />
-      <div className={styles.wallBrand} aria-hidden="true">
-        <Image src="/aryan-mark.webp" alt="" width={82} height={82} />
-        <span>ARYAN GOLD</span>
-      </div>
+    <div className={styles.shell}>
+      <Image className={styles.photo} src="/story-reception.webp" alt="Warm reception interior with a cream counter and gold accents" fill sizes="100vw" />
       <div className={styles.content}>
         <h2 id="story-title">A New Approach<br /><span>To Gold Buying.</span></h2>
         <p className={styles.description}>Aryan Gold Buyers puts your trust first. Our clear process, modern testing and personal service help you make a confident decision about your gold.</p>

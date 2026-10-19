@@ -8,12 +8,6 @@ const benefits = [
   { title: "Trusted Process", detail: "A clear process at every branch.", icon: "handshake", tone: "red" },
 ];
 
-const comforts = [
-  { title: "Comfortable Branches", detail: "Clean, secure and customer-friendly spaces.", image: "/experience-branches.webp", alt: "Comfortable teal chairs in a welcoming jewellery showroom", icon: "chair" },
-  { title: "Customer Hospitality", detail: "A warm and comfortable experience.", image: "/experience-hospitality.webp", alt: "Fresh chai served at a jewellery consultation table", icon: "cup" },
-  { title: "Secure Environment", detail: "CCTV-monitored premises for your safety.", image: "/experience-security.webp", alt: "Security camera inside a jewellery showroom", icon: "shield" },
-  { title: "Proper Documentation", detail: "Clear paperwork for your transaction.", image: "/experience-documentation.webp", alt: "Transaction document on a teal folder beside gold jewellery", icon: "document" },
-];
 
 function ExperienceIcon({ name }) {
   const paths = {
@@ -47,23 +41,6 @@ export default function ExperienceSection() {
             <p>{detail}</p>
           </div>)}
         </div>
-      </div>
-    </div>
-    <div className={styles.panel}>
-      <div className={styles.panelIntro}>
-        <span className={styles.eyebrow}>A Comfortable &amp; Trusted Process</span>
-        <h3>Designed<br /><span>Around You.</span></h3>
-        <p>From a comfortable branch environment to professional support, we make your experience smooth and reassuring.</p>
-      </div>
-      <div className={styles.cards}>
-        {comforts.map(({ title, detail, image, alt, icon }) => <article className={styles.card} key={title}>
-          <div className={styles.cardImage}>
-            <Image src={image} alt={alt} fill sizes="(max-width: 520px) 44vw, (max-width: 900px) 42vw, 22vw" />
-            <span className={styles.cardIcon}><ExperienceIcon name={icon} /></span>
-          </div>
-          <h4>{title}</h4>
-          <p>{detail}</p>
-        </article>)}
       </div>
     </div>
   </section>;

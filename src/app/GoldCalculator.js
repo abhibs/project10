@@ -46,7 +46,7 @@ export default function GoldCalculator({ rate, live = false, standalone = false 
     <section className="gold-calc-section" id="calculator" aria-labelledby="gold-calc-title">
       <div className="gold-calc-inner">
         <div className="gold-calc-image">
-          <Image src="/calculator-jewellery.webp" alt="Gold jewellery beside a digital weighing scale" fill priority={standalone} sizes="(max-width: 760px) 100vw, 50vw" />
+          <Image src="/buy-gold-bars.webp" alt="Gold bars stacked on deep green velvet" fill priority={standalone} sizes="(max-width: 760px) 100vw, 50vw" />
         </div>
         <div className="gold-calc-content">
           <div className="gold-calc-intro reveal">
@@ -59,10 +59,10 @@ export default function GoldCalculator({ rate, live = false, standalone = false 
             <div className="gold-calc-rate"><span>{live ? "Current" : "Indicative"} 24K Gold Rate</span><strong>{rupees.format(rate)} <small>/ gram</small></strong></div>
             <div className="gold-calc-value"><span>Estimated Metal Value</span><AnimatedAmount value={weightNumber * rate} /></div>
             <a className="gold-calc-button" href={standalone ? "/#booking" : "#booking"}>Get Exact Valuation <span aria-hidden="true">→</span></a>
+            <p className="gold-calc-note"><b>* Calculator values are indicative estimates. Final purchase value requires physical evaluation.*</b></p>
           </div>
         </div>
       </div>
-      <p className="gold-calc-note">Calculator values are indicative estimates. Final purchase value requires physical evaluation.</p>
     </section>
   );
 }

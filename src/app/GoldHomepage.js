@@ -33,12 +33,6 @@ const VALUATION_FACTORS = [
   {title: "Current Gold Rate", description: "Applicable live market rate at the time of evaluation.", icon: "chart"},
   {title: "Your Final Offer", description: "Based on verified weight, purity and live rate.", icon: "rupee"},
 ];
-const VALUATION_STEPS = [
-  {title: "Accurate Weight Check", description: "Your gold is weighed on a calibrated digital machine in front of you.", image: "/valuation-weight.webp", alt: "Gold jewellery on a digital weighing scale"},
-  {title: "Purity Testing", description: "We use advanced XRF technology to check the purity without damaging your item.", image: "/valuation-purity.webp", alt: "Jeweller testing a gold bangle with an XRF scanner"},
-  {title: "Live Gold Rate", description: "We apply the current market rate at the time of evaluation.", image: "/valuation-rate.webp", alt: "Gold rate display beside gold bars", liveRate: true},
-  {title: "Clear Final Offer", description: "You get a complete breakup and the final offer before you decide.", image: "/valuation-offer.webp", alt: "Valuation sheet with gold jewellery"},
-];
 
 function HeroBenefitIcon({type}) {
   const paths = {
@@ -274,6 +268,10 @@ export default function GoldHomepage() {
             <span>Gold weight <small>(grams)</small></span>
             <input id="banner-weight" name="weight" type="number" inputMode="decimal" placeholder="Approx. weight in grams" min="0.01" max="100000" step="0.01" required />
           </label>
+          <label className="banner-consent" htmlFor="banner-consent">
+            <input id="banner-consent" name="consent" type="checkbox" defaultChecked required />
+            <span>I authorise Aryan Gold to contact me.</span>
+          </label>
           <button className="banner-submit" type="submit" disabled={submitting.banner}>{submitting.banner ? "Submitting…" : "Get Free Valuation"}<span aria-hidden="true">→</span></button>
           <p className="banner-form-note">Free valuation. No obligation to sell.</p>
           <p className="banner-form-message" role="status" aria-live="polite">{messages.banner}</p>
@@ -424,18 +422,6 @@ export default function GoldHomepage() {
             ))}
           </div>
         </div>
-      </div>
-      <div className="container valuation-cards">
-        {VALUATION_STEPS.map((step, index) => (
-          <article className="valuation-card reveal" key={step.title} style={{transitionDelay: `${Math.min(index, 3) * 70}ms`}}>
-            <div className="valuation-card-image">
-              <Image src={step.image} alt={step.alt} fill sizes="(max-width: 700px) 90vw, (max-width: 1050px) 45vw, 24vw" />
-              <span className="valuation-step-number">{index + 1}</span>
-              {step.liveRate && <div className="valuation-live-rate"><span>Today’s 24K Gold Rate</span><strong>{rupees.format(rates[24])}</strong><small>per gram</small></div>}
-            </div>
-            <div className="valuation-card-copy"><h3>{step.title}</h3><p>{step.description}</p></div>
-          </article>
-        ))}
       </div>
     </section>
 

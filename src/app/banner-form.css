@@ -34,6 +34,9 @@
 .aryan-home #hero .banner-field input::placeholder { color: #77817b; font-size: .85rem; }
 .aryan-home #hero .banner-field input:focus-visible { outline: 3px solid rgba(0, 106, 100, .2); border-color: #006a64; outline-offset: 1px; }
 .aryan-home #hero .banner-submit { display: flex; align-items: center; justify-content: center; gap: 16px; width: 100%; min-height: 50px; margin-top: 6px; padding: 12px; border: 1px solid #e9b52e; border-radius: 7px; background: linear-gradient(135deg, #ffe17b, #ffc73b); color: #163f35; font-size: .95rem; font-weight: 800; }
+.aryan-home #hero .banner-consent { display: flex; align-items: flex-start; gap: 9px; margin: 4px 0 16px; color: #164c46; font-size: .8rem; line-height: 1.5; cursor: pointer; }
+.aryan-home #hero .banner-consent input { flex: none; width: 17px; height: 17px; margin: 2px 0 0; accent-color: #006a64; cursor: pointer; }
+.aryan-home #hero .banner-consent input:focus-visible { outline: 3px solid rgba(0, 106, 100, .3); outline-offset: 3px; }
 .aryan-home #hero .banner-submit:hover { background: #ffdc70; }
 .aryan-home #hero .banner-submit:focus-visible { outline: 3px solid #006a64; outline-offset: 3px; }
 .aryan-home #hero .banner-submit:disabled { opacity: .65; cursor: wait; }
@@ -61,4 +64,26 @@
 @media (max-width: 460px) {
   .aryan-home #hero .banner-form { padding: 24px 20px; }
   .aryan-home #hero .banner-form h2 { font-size: 1.8rem; }
+}
+
+/* Keep the four hero benefits in a consistent two-by-two grid. */
+.aryan-home[data-theme] #hero .trust-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 16px;
+  width: 100%;
+}
+.aryan-home[data-theme] #hero .trust-row > div {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Full viewport hero; allow taller content to remain accessible on small screens. */
+.aryan-home[data-theme] #hero.hero.section-shell {
+  min-height:100vh;
+  min-height:100svh;
+  box-sizing:border-box;
 }

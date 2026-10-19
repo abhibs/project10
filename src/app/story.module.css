@@ -1,16 +1,18 @@
 .section {
-  padding: 26px 0 88px;
+  padding: 0;
   background: #006A64;
   scroll-margin-top: 84px;
 }
 .shell {
   position: relative;
-  min-height: 660px;
+  display: flex;
+  align-items: center;
+  min-height: 780px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, .2);
-  border-radius: 18px;
+  width: 100%;
+  border: 0;
+  border-radius: 0;
   background: #006A64;
-  box-shadow: 0 18px 48px rgba(64, 48, 29, .08);
 }
 .photo {
   z-index: 0;
@@ -30,7 +32,7 @@
   z-index: 3;
   width: min(48%, 650px);
   margin-left: auto;
-  padding: clamp(35px, 4.2vw, 75px);
+  padding: 76px clamp(35px, 4.2vw, 75px);
 }
 .section .content h2 {
   margin: 0 0 24px;
@@ -51,6 +53,7 @@
 }
 .values {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 17px;
   margin: 36px 0 34px;
   padding: 0;
@@ -99,7 +102,7 @@
 .wallBrand {
   position: absolute;
   z-index: 2;
-  top: 19%;
+  top: 16%;
   left: 31%;
   display: flex;
   flex-direction: column;
@@ -120,16 +123,16 @@
 .section :focus-visible { outline: 3px solid #fffaf2; outline-offset: 4px; }
 @media (max-width: 1100px) {
   .shell { min-height: 630px; }
-  .content { width: 55%; padding: 48px 40px; }
+  .content { width: 55%; padding: 90px 40px; }
   .shell::after { background: linear-gradient(270deg, #006A64 0%, rgba(0, 106, 100, .97) 38%, rgba(0, 106, 100, .55) 59%, transparent 80%); }
   .wallBrand { left: 24%; }
 }
 @media (max-width: 760px) {
-  .section { padding: 15px 0 64px; }
+  .section { padding: 0; }
   .shell { --story-photo-space: 315px; min-height: 0; }
   .photo { object-position: 66% bottom; }
   .shell::after { background: linear-gradient(180deg, #006A64 0%, #006A64 calc(100% - var(--story-photo-space)), rgba(0, 106, 100, .8) calc(100% - var(--story-photo-space) + 80px), transparent 100%); }
-  .content { width: 100%; margin-left: 0; padding: 36px 28px var(--story-photo-space); }
+  .content { width: 100%; margin-left: 0; padding: 72px 28px calc(var(--story-photo-space) + 36px); }
   .section .content h2 { font-size: clamp(36px, 8vw, 48px); }
   .section .content p.description { max-width: 590px; font-size: 15px; }
   .values { gap: 13px; margin: 28px 0; }
@@ -140,10 +143,50 @@
 }
 @media (max-width: 420px) {
   .shell { --story-photo-space: 270px; }
-  .content { padding: 32px 22px var(--story-photo-space); }
+  .content { padding: 64px 22px calc(var(--story-photo-space) + 32px); }
   .section .content h2 { font-size: 34px; }
   .section .button { width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
   .button { transition: none; }
 }
+
+/* Cream split story layout with unobscured reception photography. */
+.section { background: #fffaf3; }
+.shell { display: grid; grid-template-columns: 43% 57%; align-items: stretch; min-height: 760px; background: #fffaf3; }
+.shell::after { display: none; }
+.shell .photo { left: 43% !important; top: 32px !important; width: 57% !important; height: calc(100% - 64px) !important; object-position: center; }
+.content { grid-column: 1; width: 100%; margin: 0; padding: 48px clamp(24px, 4vw, 80px); }
+.brand { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 28px; color: #006A64; font-size: 24px; font-weight: 850; }
+.brand img { width: 78px; height: 78px; object-fit: contain; margin-left: 35px; }
+.section .content h2 { color: #006A64; font-size: clamp(38px, 4vw, 76px); }
+.section .content p.description { color: #006A64; font-size: clamp(16px, 1.3vw, 24px); }
+.values { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 16px; margin: 30px 0; }
+.values li { color: #006A64; font-size: clamp(14px, 1.1vw, 20px); gap: 12px; }
+.icon { color: #e6ad25; border-color: #e6ad25; background: transparent; }
+@media(max-width:1100px){
+  .shell { grid-template-columns: 50% 50%; }
+  .shell .photo { left: 50% !important; width: 50% !important; }
+  .content { width: 100%; padding: 48px 28px; }
+  .values { grid-template-columns: 1fr; }
+}
+@media(max-width:760px){
+  .shell { display: flex; flex-direction: column; }
+  .shell .photo { position: relative !important; left: auto !important; top: auto !important; width: 100% !important; height: 340px !important; order: 2; }
+  .content { padding: 48px 24px; }
+  .values { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .section .content h2 { font-size: clamp(36px, 7vw, 52px); }
+}
+@media(max-width:420px){
+  .values { grid-template-columns: 1fr; }
+}
+
+/* Match the top banner's teal and gold palette. */
+.section,
+.shell { background: #006A62; }
+.section .content h2 { color: #fffaf2; }
+.section .content h2 span { color: #ffd35c; }
+.section .content p.description,
+.values li { color: #fffaf2; }
+.icon { color: #ffd35c; border-color: #ffd35c; }
+.section .button { color: #006A62; }

@@ -1519,10 +1519,10 @@
 /* Gold value calculator directly after the rate strip. */
 .aryan-home[data-theme="light"] #calculator.gold-calc-section{position:relative;scroll-margin-top:84px;overflow:hidden;padding:0;background:#006A60 !important;color:#fff}
 .aryan-home .gold-calc-inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"image content";align-items:stretch;min-height:690px;width:100%;max-width:none;margin:0;padding:0}
-.aryan-home .gold-calc-image{grid-area:image;position:relative;align-self:center;min-width:0;width:100%;aspect-ratio:1672/941;background:#143d37}
-.aryan-home .gold-calc-image img{object-fit:contain;object-position:center}
+.aryan-home .gold-calc-image{grid-area:image;position:relative;align-self:stretch;min-width:0;width:100%;background:#143d37}
+.aryan-home .gold-calc-image img{object-fit:cover;object-position:center}
 .aryan-home .gold-calc-image:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent 85%,rgba(0,106,96,.15) 92%,rgba(0,106,96,.5) 97%,#006A60 100%)}
-.aryan-home .gold-calc-content{grid-area:content;align-self:center;justify-self:center;width:min(100%,760px);padding:52px clamp(30px,5vw,90px) 58px}
+.aryan-home .gold-calc-content{grid-area:content;align-self:center;justify-self:center;width:min(100%,760px);padding:100px clamp(30px,5vw,90px)}
 .aryan-home #calculator .gold-calc-intro :is(h1,h2){margin:0 0 8px;color:#fff;font-family:var(--serif);font-size:clamp(2.85rem,3.8vw,4.1rem);font-weight:800;line-height:1.04;letter-spacing:-.04em;text-shadow:0 3px 15px rgba(0,0,0,.17)}
 .aryan-home #calculator .gold-calc-intro :is(h1,h2) span{color:#ffd052}
 .aryan-home #calculator .gold-calc-intro p{margin:0 0 24px;color:#edf7f2;font-size:clamp(1rem,1.22vw,1.2rem);line-height:1.35}
@@ -1551,6 +1551,7 @@
 }
 @media(max-width:760px){
   .aryan-home .gold-calc-inner{grid-template-columns:minmax(0,1fr);grid-template-areas:"image" "content";min-height:0}
+  .aryan-home .gold-calc-image{aspect-ratio:1672/941}
   .aryan-home .gold-calc-image:after{background:linear-gradient(180deg,transparent 85%,rgba(0,106,96,.15) 92%,rgba(0,106,96,.5) 97%,#006A60 100%)}
   .aryan-home .gold-calc-content{width:min(100%,700px);padding:48px var(--page-gutter) 52px}
   .aryan-home #calculator .gold-calc-intro :is(h1,h2){font-size:clamp(2.6rem,7.5vw,3.9rem)}
@@ -1562,4 +1563,87 @@
   .aryan-home .gold-calc-panel{padding:20px 18px 22px}
   .aryan-home .gold-calc-weight>span{min-width:78px;padding-inline:10px;font-size:.85rem}
   .aryan-home .gold-calc-button{font-size:.95rem}
+}
+
+/* More breathing room between homepage sections. Keep image panels full bleed. */
+.aryan-home[data-theme] main > section:is(#hero,#services,#why-aryan,#what-we-buy,#testing,#transparent-valuation,#faq,#branches,#booking){padding-block:120px}
+.aryan-home[data-theme] main > #rates.rate-strip{padding-block:40px}
+@media(max-width:760px){
+  .aryan-home[data-theme] main > section:is(#hero,#services,#why-aryan,#what-we-buy,#testing,#transparent-valuation,#faq,#branches,#booking){padding-block:72px}
+  .aryan-home[data-theme] main > #rates.rate-strip{padding-block:28px}
+  .aryan-home #calculator .gold-calc-content{padding-block:72px}
+}
+
+/* Valuation reference: compact cream banner with photography on the right. */
+.aryan-home[data-theme] main > #transparent-valuation.valuation-section{padding-block:32px 40px}
+.aryan-home #transparent-valuation .valuation-overview{min-height:520px}
+.aryan-home #transparent-valuation .valuation-overview-inner{min-height:520px;grid-template-columns:minmax(0,480px) minmax(0,355px) minmax(0,1fr);gap:32px}
+.aryan-home #transparent-valuation .valuation-heading{padding-top:44px;padding-bottom:28px}
+.aryan-home #transparent-valuation .valuation-heading h2{font-size:clamp(3.25rem,4.35vw,5rem)}
+@media(max-width:1200px){
+  .aryan-home #transparent-valuation .valuation-overview-inner{grid-template-columns:minmax(0,1fr) minmax(0,330px) minmax(0,.35fr);gap:24px}
+  .aryan-home #transparent-valuation .valuation-heading h2{font-size:clamp(3.15rem,5vw,4.2rem)}
+}
+@media(max-width:1000px){
+  .aryan-home #transparent-valuation .valuation-overview-inner{grid-template-columns:repeat(2,minmax(0,1fr));gap:25px}
+}
+@media(max-width:700px){
+  .aryan-home[data-theme] main > #transparent-valuation.valuation-section{padding-block:24px}
+  .aryan-home #transparent-valuation .valuation-overview-inner{display:block;min-height:0}
+  .aryan-home #transparent-valuation .valuation-heading{padding-top:28px;padding-bottom:12px}
+  .aryan-home #transparent-valuation .valuation-heading h2{font-size:clamp(2.7rem,9vw,3.8rem)}
+}
+
+/* Fit the photograph to the content height without creating empty space below it. */
+.aryan-home #transparent-valuation .valuation-overview{
+  aspect-ratio:auto;
+  background-size:auto 100%;
+  background-position:right center;
+}
+@media(max-width:700px){
+  .aryan-home #transparent-valuation .valuation-overview{
+    aspect-ratio:auto;
+    padding-bottom:56.28vw;
+    background-size:100% auto;
+    background-position:center bottom;
+  }
+}
+
+/* White background for the non-destructive testing section. */
+.aryan-home #testing,
+.aryan-home #testing .testing-main{background:#fff;color:#006A64}
+.aryan-home #testing .testing-image:after{background:linear-gradient(270deg,#fff 0%,rgba(255,255,255,.95) 12%,rgba(255,255,255,.55) 30%,transparent 56%)}
+.aryan-home #testing .testing-kicker{color:#b21727}
+.aryan-home #testing .testing-kicker:before{background:#bf112b}
+.aryan-home #testing .testing-copy h2,
+.aryan-home #testing .testing-benefit h3{color:#006A64}
+.aryan-home #testing .testing-copy h2 span{color:#cb941a}
+.aryan-home #testing .testing-copy>p,
+.aryan-home #testing .testing-benefit p{color:#536875}
+.aryan-home #testing .testing-benefit{border-right-color:#dce5e1}
+@media(max-width:1100px){
+  .aryan-home #testing .testing-image:after{background:linear-gradient(180deg,transparent,#fff)}
+}
+
+/* Shared vertical spacing for every homepage section. */
+.aryan-home[data-theme] main > section:is(#hero,#rates,#services,#calculator,#testing,#why-aryan,#what-we-buy,#transparent-valuation,#branches,#our-story,#faq,#booking,[aria-labelledby]) {
+  /* Override the older section-specific padding shorthands consistently. */
+  padding-block:80px !important;
+}
+@media(max-width:760px){
+  .aryan-home[data-theme] main > section:is(#hero,#rates,#services,#calculator,#testing,#why-aryan,#what-we-buy,#transparent-valuation,#branches,#our-story,#faq,#booking,[aria-labelledby]) {
+    padding-block:48px !important;
+  }
+}
+
+.aryan-home #calculator .gold-calc-panel .gold-calc-note{margin:14px 0 0;padding:0;background:transparent;color:#536875;font-size:.75rem;line-height:1.5;text-align:left}
+
+/* Keep payment photography flush with the section edges; content owns its spacing. */
+.aryan-home[data-theme] main > section[aria-labelledby="payment-title"]:is(#payment,[aria-labelledby]) {
+  padding-block:0 !important;
+}
+
+/* Calculator photography reaches the top and bottom section edges. */
+.aryan-home[data-theme] main > #calculator.gold-calc-section {
+  padding-block:0 !important;
 }

@@ -1,7 +1,7 @@
 .section {
   position: relative;
   overflow: hidden;
-  padding-bottom: 30px;
+  padding-bottom: 0;
   background: #faf7f0;
   color: #073e3a;
 }
@@ -36,7 +36,7 @@
 
 .heroCopy {
   width: min(770px, 56vw);
-  padding: 48px 0 58px clamp(25px, 4vw, 72px);
+  padding: 96px 0 100px clamp(25px, 4vw, 72px);
 }
 
 .eyebrow {
@@ -235,7 +235,7 @@
   .heroImage { top: auto; height: 370px; }
   .heroImage img { object-position: 77% center; }
   .hero::after { background: linear-gradient(180deg, #006A64 0%, #006A64 calc(100% - 250px), rgba(0, 106, 100, .95) calc(100% - 200px), transparent calc(100% - 140px)); }
-  .heroCopy { width: 100%; padding: 44px 24px 0; }
+  .heroCopy { width: 100%; padding: 72px 24px 0; }
   .section .heroCopy h2 { font-size: clamp(43px, 9.6vw, 68px); }
   .section .heroCopy p.lead { max-width: 610px; font-size: 17px; }
   .benefits { gap: 22px 0; }

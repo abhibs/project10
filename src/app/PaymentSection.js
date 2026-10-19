@@ -8,12 +8,6 @@ const benefits = [
   { title: "GST Bill", detail: "Get a bill for your transaction.", icon: "receipt", tone: "red" },
 ];
 
-const methods = [
-  { title: "Cash", detail: "Payment at the branch.", icon: "cash" },
-  { title: "IMPS", detail: "Direct bank transfer.", icon: "phone" },
-  { title: "RTGS", detail: "Direct bank transfer.", icon: "bank" },
-  { title: "Bank Transfer", detail: "Payment to your account.", icon: "card" },
-];
 
 function PaymentIcon({ name }) {
   const paths = {
@@ -47,20 +41,6 @@ export default function PaymentSection() {
             <p>{detail}</p>
           </div>)}
         </div>
-      </div>
-    </div>
-    <div className={styles.options}>
-      <div className={styles.optionsIntro}>
-        <span className={styles.eyebrow}>Payment Options</span>
-        <h3>Choose Your<br /><span>Preferred Method.</span></h3>
-        <p>We offer convenient payment options for your gold sale.</p>
-      </div>
-      <div className={styles.methods}>
-        {methods.map(({ title, detail, icon }) => <div className={styles.method} key={title}>
-          <span className={styles.methodIcon}><PaymentIcon name={icon} /></span>
-          <h4>{title}</h4>
-          <p>{detail}</p>
-        </div>)}
       </div>
     </div>
   </section>;

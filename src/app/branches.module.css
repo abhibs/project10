@@ -2,7 +2,7 @@
   position: relative;
   padding: 0 0 76px;
   scroll-margin-top: 84px;
-  background: #f8f4eb;
+  background: #fff;
   color: #123e3b;
 }
 
@@ -10,31 +10,31 @@
   min-height: 470px;
   padding: 62px 0 134px;
   background:
-    linear-gradient(90deg, #006A64 0%, rgba(0, 106, 100, .86) 39%, rgba(0, 106, 100, .12) 100%),
+    linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, .96) 39%, rgba(255, 255, 255, .12) 100%),
     url("/branches-storefront.webp") center 52% / cover no-repeat;
 }
 
 .intro { max-width: 620px; }
 .section .eyebrow {
   margin: 0 0 16px;
-  color: #ffd561;
+  color: #a70f22;
   font-size: 12px;
   font-weight: 800;
   letter-spacing: .18em;
 }
 .section h2 {
   margin: 0;
-  color: #fff;
+  color: #006A64;
   font-family: var(--font-aryan-body), Arial, sans-serif;
   font-size: clamp(35px, 4vw, 57px);
   font-weight: 850;
   letter-spacing: -.045em;
   line-height: 1.07;
 }
-.section h2 span { color: #ffd052; }
+.section h2 span { color: #be8814; }
 .section .subtitle {
   margin: 15px 0 27px;
-  color: #f4f3e9;
+  color: #536875;
   font-size: 15px;
   line-height: 1.5;
 }
