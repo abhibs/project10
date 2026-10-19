@@ -1647,3 +1647,9 @@
 .aryan-home[data-theme] main > #calculator.gold-calc-section {
   padding-block:0 !important;
 }
+
+.aryan-home footer .footer-bottom {
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
