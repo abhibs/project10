@@ -37,7 +37,7 @@ function AnimatedAmount({ value }) {
   return <strong id="estimate-value"><span ref={number} aria-hidden="true">{rupees.format(value)}</span><span className="amount-accessible">{rupees.format(value)}</span></strong>;
 }
 
-export default function GoldCalculator({ rate, live = false, standalone = false }) {
+export default function GoldCalculator({ rate, live = false, standalone = false, bookingHref = standalone ? "/#booking" : "#booking" }) {
   const [weight, setWeight] = useState("10");
   const weightNumber = Math.max(0, Number(weight) || 0);
   const Heading = standalone ? "h1" : "h2";
@@ -58,7 +58,7 @@ export default function GoldCalculator({ rate, live = false, standalone = false 
             <div className="gold-calc-weight"><input id="gold-weight" type="number" min="0" step="0.1" value={weight} onChange={(event) => setWeight(event.target.value)} inputMode="decimal" /><span>grams</span></div>
             <div className="gold-calc-rate"><span>{live ? "Current" : "Indicative"} 24K Gold Rate</span><strong>{rupees.format(rate)} <small>/ gram</small></strong></div>
             <div className="gold-calc-value"><span>Estimated Metal Value</span><AnimatedAmount value={weightNumber * rate} /></div>
-            <a className="gold-calc-button" href={standalone ? "/#booking" : "#booking"}>Get Exact Valuation <span aria-hidden="true">→</span></a>
+            <a className="gold-calc-button" href={bookingHref}>Get Exact Valuation <span aria-hidden="true">→</span></a>
             <p className="gold-calc-note"><b>* Calculator values are indicative estimates. Final purchase value requires physical evaluation.*</b></p>
           </div>
         </div>

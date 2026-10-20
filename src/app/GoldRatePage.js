@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import GoldRateSection from "./GoldRateSection";
+import GoldCalculator from "./GoldCalculator";
 export default function GoldRatePage() {
   const [rate, setRate] = useState(14250);
   const [live, setLive] = useState(false);
@@ -37,7 +38,12 @@ export default function GoldRatePage() {
     const interval = setInterval(refresh, 60000);
     return () => { disposed = true; controller?.abort(); clearInterval(interval); };
   }, [attempt]);
-  return <GoldRateSection standalone rates={{24: rate}} live={live} loading={loading}
-    rateStatus={loading ? "Loading published gold rates..." : live ? "Published gold rates" : "Published rates unavailable - showing demo fallback rates"}
-    fetchRates={() => setAttempt(value => value + 1)} />;
+  return (
+    <>
+      <GoldRateSection standalone rates={{24: rate}} live={live} loading={loading}
+        rateStatus={loading ? "Loading published gold rates..." : live ? "Published gold rates" : "Published rates unavailable - showing demo fallback rates"}
+        fetchRates={() => setAttempt(value => value + 1)} />
+      <GoldCalculator rate={rate} live={live} bookingHref="/#booking" />
+    </>
+  );
 }

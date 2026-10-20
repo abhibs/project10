@@ -23,7 +23,6 @@ export default function SiteHeader({ progressRef }) {
           {[
             ["/about-us", "About Us"],
             ["/gold-rate", "Gold Rate"],
-            ["/gold-rate-calculation", "Gold Rate Calculation"],
             ["/services", "Services"],
             ["/branches", "Branches"],
             ["/contact-us", "Contact Us"],
