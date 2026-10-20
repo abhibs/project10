@@ -324,8 +324,8 @@ export default function GoldHomepage() {
           </div>
           <div className="why-features">
             <article className="why-feature reveal"><span className="why-feature-icon tone-teal"><HeroBenefitIcon type="diamond" /></span><h3>Non-Destructive<br />Testing</h3><p>Advanced technology designed to evaluate gold without scratching or cutting.</p></article>
-            <article className="why-feature reveal delay-1"><span className="why-feature-icon tone-gold"><HeroBenefitIcon type="shield" /></span><h3>Transparent<br />Evaluation</h3><p>See and understand how your gold is evaluated.</p></article>
-            <article className="why-feature reveal delay-2"><span className="why-feature-icon tone-red"><HeroBenefitIcon type="chart" /></span><h3>Competitive<br />Gold Rate</h3><p>Highly competitive buying prices based on verified purity and weight.</p></article>
+            <article className="why-feature reveal delay-1"><span className="why-feature-icon tone-red"><HeroBenefitIcon type="shield" /></span><h3>Transparent<br />Evaluation</h3><p>See and understand how your gold is evaluated.</p></article>
+            <article className="why-feature reveal delay-2"><span className="why-feature-icon tone-teal"><HeroBenefitIcon type="chart" /></span><h3>Competitive<br />Gold Rate</h3><p>Highly competitive buying prices based on verified purity and weight.</p></article>
             <article className="why-feature reveal"><span className="why-feature-icon tone-red"><HeroBenefitIcon type="payment" /></span><h3>Quick<br />Payment</h3><p>Fast settlement after verification and completion of formalities.</p></article>
             <article className="why-feature reveal delay-1"><span className="why-feature-icon tone-teal"><HeroBenefitIcon type="support" /></span><h3>Dedicated<br />Support</h3><p>Our customer team is here to answer your questions and guide you at every step.</p></article>
           </div>

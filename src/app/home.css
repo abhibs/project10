@@ -1247,7 +1247,6 @@
 .aryan-home #why-aryan .why-feature-icon{display:grid;place-items:center;width:82px;height:82px;margin:0 0 19px;border-radius:50%}
 .aryan-home #why-aryan .why-feature-icon svg{width:48px;height:48px;stroke-width:1.8}
 .aryan-home #why-aryan .tone-teal{background:#006A64;color:#e9bc39}
-.aryan-home #why-aryan .tone-gold{background:#ffe4a3;color:#a74327}
 .aryan-home #why-aryan .tone-red{background:#b40426;color:#e9ba38}
 .aryan-home #why-aryan .why-feature h3{margin:0 0 13px;font-family:var(--sans);font-size:clamp(.98rem,1vw,1.18rem);font-weight:800;line-height:1.2;color:#17232b}
 .aryan-home #why-aryan .why-feature p{margin:0;color:#626a6d;font-size:clamp(.8rem,.82vw,.96rem);line-height:1.45}
@@ -1314,7 +1313,6 @@
   .aryan-home #services .services-heading :is(h1,h2){font-size:2.4rem}
   .aryan-home #services .service-offer{grid-template-columns:minmax(0,1fr);grid-template-rows:225px 1fr;min-height:0}
   .aryan-home #services .offer-image{height:225px;min-height:0}
-  .aryan-home #services .offer-image img{object-fit:contain}
   .aryan-home #services .offer-content{padding:24px}
   .aryan-home #services .offer-button{margin-top:12px}
 }
@@ -1599,6 +1597,16 @@
   aspect-ratio:auto;
   background-size:auto 100%;
   background-position:right center;
+}
+@media(min-width:1001px){
+  .aryan-home #transparent-valuation .valuation-overview:before{
+    left:auto;
+    width:auto;
+    height:100%;
+    max-width:100%;
+    aspect-ratio:1672 / 941;
+    background:linear-gradient(90deg,#fffaf3 0%,rgba(255,250,243,.96) 12%,rgba(255,250,243,.72) 28%,rgba(255,250,243,.3) 46%,transparent 68%);
+  }
 }
 @media(max-width:700px){
   .aryan-home #transparent-valuation .valuation-overview{
