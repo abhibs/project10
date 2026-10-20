@@ -83,7 +83,7 @@
 .aryan-home .rate-grid{display:grid;grid-template-columns:2fr repeat(3,.8fr) .9fr;gap:18px;align-items:stretch}
 .aryan-home .rate-intro{display:flex;flex-direction:column;justify-content:center}
 .aryan-home .rate-intro .kicker{font-size:1.1rem}
-.aryan-home .rate-intro h2{font-family:var(--serif);font-size:clamp(2.5rem,3vw,3rem);margin:8px 0 14px}
+.aryan-home .rate-intro :is(h1,h2){font-family:var(--serif);font-size:clamp(2.5rem,3vw,3rem);margin:8px 0 14px}
 .aryan-home .rate-intro p{font-size:1.15rem;line-height:1.7;margin:0;max-width:520px}
 @media(min-width:1051px){
   .aryan-home .rate-grid{width:calc(100% - 40px)}
@@ -484,7 +484,7 @@
 .aryan-home[data-theme="light"] .theme-option.active{color:#15171a}
 .aryan-home[data-theme="light"] .section-heading h2,
 .aryan-home[data-theme="light"] .section-copy h2,
-.aryan-home[data-theme="light"] .rate-intro h2,
+.aryan-home[data-theme="light"] .rate-intro :is(h1,h2),
 .aryan-home[data-theme="light"] .calculator-card h3,
 .aryan-home[data-theme="light"] .service-card:not(.featured) h3,
 .aryan-home[data-theme="light"] .why-card h3,
@@ -548,7 +548,7 @@
 .aryan-home[data-theme="dark"] .theme-option.active{background:#e5c778;color:#17191d}
 .aryan-home[data-theme="dark"] .section-heading h2,
 .aryan-home[data-theme="dark"] .section-copy h2,
-.aryan-home[data-theme="dark"] .rate-intro h2,
+.aryan-home[data-theme="dark"] .rate-intro :is(h1,h2),
 .aryan-home[data-theme="dark"] .calculator-card h3,
 .aryan-home[data-theme="dark"] .service-card:not(.featured) h3,
 .aryan-home[data-theme="dark"] .why-card h3,
@@ -1175,7 +1175,7 @@
 .aryan-home .rate-strip .rate-grid{width:calc(100% - 40px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:center}
 .aryan-home .rate-strip .rate-intro{min-width:0;grid-column:auto}
 .aryan-home .rate-strip .rate-intro:before{content:"";display:block;width:43px;height:4px;border-radius:5px;background:#c81c31;margin-bottom:14px}
-.aryan-home .rate-strip .rate-intro h2{font-family:var(--serif);font-size:clamp(2rem,2.55vw,2.65rem);line-height:1.08;letter-spacing:-.04em;margin:0 0 3px;color:#006A64 !important}
+.aryan-home .rate-strip .rate-intro :is(h1,h2){font-family:var(--serif);font-size:clamp(2rem,2.55vw,2.65rem);line-height:1.08;letter-spacing:-.04em;margin:0 0 3px;color:#006A64 !important}
 .aryan-home .rate-strip .rate-intro p{font-size:1.08rem;line-height:1.3;color:#006A64 !important}
 .aryan-home .rate-values{display:grid;grid-template-columns:minmax(0,1fr);min-height:104px;background:#fffaf4;border:1px solid #eee6d9;border-radius:12px;box-shadow:0 5px 22px rgba(53,37,14,.035)}
 .aryan-home[data-theme="light"] .rate-values .rate-card{min-height:0;padding:8px 10px;border:0;border-right:1px solid #d8d2c9;border-radius:0;box-shadow:none;background:transparent;transform:none}
@@ -1215,7 +1215,7 @@
   .aryan-home[data-theme="light"] .hero .trust-row>div{padding:0;border:0}
   .aryan-home .hero .trust-row span{font-size:.78rem}
   .aryan-home .rate-strip .rate-grid{width:calc(100% - 40px);grid-template-columns:1fr;gap:18px}
-  .aryan-home .rate-strip .rate-intro h2{font-size:2.15rem}
+  .aryan-home .rate-strip .rate-intro :is(h1,h2){font-size:2.15rem}
   .aryan-home .rate-values{min-height:116px}
   .aryan-home .rate-strip .rate-meta{align-items:center;text-align:center;gap:8px}
 }
@@ -1278,7 +1278,7 @@
 .aryan-home #services .services-heading{padding:0 0 18px 8px}
 .aryan-home[data-theme="light"] #services .services-heading .kicker{display:block;color:#a43131 !important;font-size:.88rem;font-weight:800;letter-spacing:.065em;text-transform:uppercase;line-height:1.2;margin-bottom:3px}
 .aryan-home #services .services-heading .kicker:before{content:"";display:inline-block;vertical-align:middle;width:29px;height:4px;margin-right:12px;background:#c92132;border-radius:3px}
-.aryan-home #services .services-heading h2{margin:0;color:#006A64;font-family:var(--serif);font-size:clamp(2.35rem,3vw,3.3rem);line-height:1.05;letter-spacing:-.04em}
+.aryan-home #services .services-heading :is(h1,h2){margin:0;color:#006A64;font-family:var(--serif);font-size:clamp(2.35rem,3vw,3.3rem);line-height:1.05;letter-spacing:-.04em}
 .aryan-home #services .service-offer{display:grid;grid-template-columns:38% minmax(0,1fr);grid-template-rows:1fr;min-width:0;min-height:365px;height:100%;overflow:hidden;border-radius:12px;box-shadow:0 11px 27px rgba(62,39,19,.09)}
 .aryan-home #services .service-sell{background:#fffbf4;border:1px solid #ece4d7}
 .aryan-home #services .service-pledged{background:#a90520;border:1px solid #970018}
@@ -1311,7 +1311,7 @@
   .aryan-home[data-theme="light"] #services.services-section{padding:36px 0 48px}
   .aryan-home #services .services-shell{width:calc(100% - 40px)}
   .aryan-home #services .services-heading{padding-left:0}
-  .aryan-home #services .services-heading h2{font-size:2.4rem}
+  .aryan-home #services .services-heading :is(h1,h2){font-size:2.4rem}
   .aryan-home #services .service-offer{grid-template-columns:minmax(0,1fr);grid-template-rows:225px 1fr;min-height:0}
   .aryan-home #services .offer-image{height:225px;min-height:0}
   .aryan-home #services .offer-image img{object-fit:contain}

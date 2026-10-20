@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import styles from "./branches.module.css";
@@ -46,12 +47,12 @@ function BranchCard({ branch }) {
     <div className={`${styles.actions}${branch.phone ? "" : ` ${styles.actionsTwo}`}`}>
       <a className={styles.actionLight} href={directions} target="_blank" rel="noopener noreferrer"><Icon name="pin" /> Directions</a>
       {branch.phone && <a className={styles.actionLight} href={`tel:${branch.phone}`}><Icon name="phone" /> Call Branch</a>}
-      <a className={styles.actionGold} href="#booking"><Icon name="calendar" /> Book Appointment</a>
+      <Link className={styles.actionGold} href="/#booking"><Icon name="calendar" /> Book Appointment</Link>
     </div>
   </article>;
 }
 
-export default function BranchLocations() {
+export default function BranchLocations({ standalone = false }) {
   const [branches, setBranches] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -145,12 +146,13 @@ export default function BranchLocations() {
     trackRef.current?.scrollTo({ left: 0, behavior: "instant" });
   }
 
+  const Heading = standalone ? "h1" : "h2";
   return <section className={styles.section} id="branches" aria-labelledby="branches-title">
     <div className={styles.backdrop}>
       <div className="container">
         <div className={styles.intro}>
           <p className={styles.eyebrow}>OUR LOCATIONS</p>
-          <h2 id="branches-title">Find Aryan Gold Buyers<br /><span>Near You</span></h2>
+          <Heading id="branches-title">Find Aryan Gold Buyers<br /><span>Near You</span></Heading>
           <p className={styles.subtitle}>Find a nearby branch for a personal gold valuation.</p>
           <div className={styles.cityTabs} aria-label="Choose a city">
             {cities.map(option => <button key={option} type="button" className={option === city ? styles.cityActive : styles.cityTab} onClick={() => selectCity(option)} aria-pressed={option === city}>{option}</button>)}
@@ -169,8 +171,8 @@ export default function BranchLocations() {
       onFocusCapture={() => setAutoScrollPaused(true)}
       onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget)) setAutoScrollPaused(false); }}>
       {loading ? <p className={styles.notice} role="status">Loading branch locations...</p> : error ? <div className={styles.notice} role="status">Branch locations are temporarily unavailable. <button type="button" onClick={() => { setLoading(true); setAttempt(value => value + 1); }}>Try again</button></div> :
-        !branches.length ? <p className={styles.notice}>Branch locations will be listed here soon. <a href="#booking">Book a valuation</a> for assistance.</p> :
-        !visibleBranches.length ? <div className={styles.notice} role="status">{searchQuery ? <>No branches found for “{searchQuery}” in {city}. <button type="button" onClick={() => { setSearchDraft(""); setSearchQuery(""); }}>Clear search</button></> : <>No branches are currently listed in {city}. <a href="#booking">Book a valuation</a> for assistance.</>}</div> :
+        !branches.length ? <p className={styles.notice}>Branch locations will be listed here soon. <Link href="/#booking">Book a valuation</Link> for assistance.</p> :
+        !visibleBranches.length ? <div className={styles.notice} role="status">{searchQuery ? <>No branches found for “{searchQuery}” in {city}. <button type="button" onClick={() => { setSearchDraft(""); setSearchQuery(""); }}>Clear search</button></> : <>No branches are currently listed in {city}. <Link href="/#booking">Book a valuation</Link> for assistance.</>}</div> :
         <>
           <div className={styles.track} ref={trackRef} role="region" aria-roledescription="carousel" aria-label={`${city} branch locations`} tabIndex={0}
             onScroll={event => {

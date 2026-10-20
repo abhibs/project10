@@ -7,34 +7,40 @@
 }
 
 .backdrop {
+  position: relative;
   min-height: 470px;
   padding: 62px 0 134px;
-  background:
-    linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, .96) 39%, rgba(255, 255, 255, .12) 100%),
-    url("/branches-storefront.webp") center 52% / cover no-repeat;
+  background-color: #fff;
+  background-image:
+    linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, .98) 30%, rgba(255, 255, 255, .86) 47%, rgba(255, 255, 255, .24) 72%, rgba(255, 255, 255, .08) 100%),
+    linear-gradient(0deg, #fff 0%, rgba(255, 255, 255, 0) 24%),
+    url("/branches-storefront.webp");
+  background-position: center, center, center 52%;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .intro { max-width: 620px; }
-.section .eyebrow {
+.section .intro .eyebrow {
   margin: 0 0 16px;
-  color: #a70f22;
+  color: #006a64;
   font-size: 12px;
   font-weight: 800;
   letter-spacing: .18em;
 }
-.section h2 {
+.section .intro :is(h1, h2) {
   margin: 0;
-  color: #006A64;
-  font-family: var(--font-aryan-body), Arial, sans-serif;
-  font-size: clamp(35px, 4vw, 57px);
+  color: #006a64;
+  font-family: var(--font-aryan-display), Georgia, serif;
+  font-size: clamp(35px, 4vw, 72px);
   font-weight: 850;
   letter-spacing: -.045em;
   line-height: 1.07;
 }
-.section h2 span { color: #be8814; }
-.section .subtitle {
+.section .intro :is(h1, h2) span { color: #946a13; }
+.section .intro .subtitle {
   margin: 15px 0 27px;
-  color: #536875;
+  color: #006a64;
   font-size: 15px;
   line-height: 1.5;
 }
@@ -280,7 +286,6 @@
 }
 @media (max-width: 1100px) {
   .slide { flex-basis: 100%; }
-  .backdrop { background-position: 59% center; }
 }
 @media (max-width: 600px) {
   .section { padding-bottom: 54px; }
@@ -288,12 +293,12 @@
     min-height: 420px;
     padding: 46px 0 119px;
     background-image:
-      linear-gradient(90deg, rgba(0, 106, 100, .94), rgba(0, 106, 100, .56)),
+      linear-gradient(90deg, rgba(255, 255, 255, .97), rgba(255, 255, 255, .88)),
+      linear-gradient(0deg, #fff, rgba(255, 255, 255, 0) 35%),
       url("/branches-storefront.webp");
-    background-position: 57% center;
   }
-  .section h2 { font-size: clamp(31px, 8vw, 43px); }
-  .section .subtitle { font-size: 13px; }
+  .section .intro :is(h1, h2) { font-size: clamp(31px, 8vw, 43px); }
+  .section .intro .subtitle { font-size: 13px; }
   .cityTabs { gap: 8px; }
   .cityTab, .cityActive { min-width: 0; flex: 1; min-height: 47px; padding: 8px 13px; font-size: 14px; }
   .search { height: 53px; }

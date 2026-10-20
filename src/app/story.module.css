@@ -1,192 +1,86 @@
 .section {
   padding: 0;
-  background: #006A64;
+  background: #006a62;
   scroll-margin-top: 84px;
 }
 .shell {
   position: relative;
-  display: flex;
-  align-items: center;
-  min-height: 780px;
+  display: grid;
+  grid-template-columns: 43% 57%;
+  align-items: stretch;
+  min-height: 760px;
   overflow: hidden;
   width: 100%;
-  border: 0;
-  border-radius: 0;
-  background: #006A64;
+  background: #006a62;
 }
-.photo {
-  z-index: 0;
-  object-fit: cover;
-  object-position: center;
-}
-.shell::after {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  inset: 0;
-  background: linear-gradient(270deg, #006A64 0%, rgba(0, 106, 100, .95) 28%, rgba(0, 106, 100, .55) 48%, transparent 72%);
-  pointer-events: none;
-}
-.content {
+.photoPanel {
   position: relative;
-  z-index: 3;
-  width: min(48%, 650px);
-  margin-left: auto;
-  padding: 76px clamp(35px, 4.2vw, 75px);
+  grid-column: 2;
+  grid-row: 1;
+  margin-block: 32px;
+  overflow: hidden;
 }
-.section .content h2 {
-  margin: 0 0 24px;
-  color: #fffaf2;
-  font-family: var(--font-aryan-body), Arial, sans-serif;
-  font-size: clamp(38px, 3.7vw, 60px);
-  font-weight: 850;
-  letter-spacing: -.055em;
-  line-height: 1.06;
+/* Keep the wall sign attached to the same point when the photo is cropped. */
+.scene {
+  position: absolute;
+  top: 0;
+  left: 68%;
+  height: 100%;
+  min-width: 100%;
+  aspect-ratio: 1800 / 771;
+  transform: translateX(-68%);
 }
-.section .content h2 span { color: #ffd35c; }
-.section .content p.description {
-  max-width: 500px;
-  margin: 0;
-  color: #f9f7f0;
-  font-size: clamp(15px, 1.16vw, 18px);
-  line-height: 1.55;
-}
-.values {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 17px;
-  margin: 36px 0 34px;
-  padding: 0;
-  list-style: none;
-}
-.values li {
-  display: flex;
-  align-items: center;
-  gap: 17px;
-  color: #fffaf2;
-  font-size: clamp(16px, 1.18vw, 19px);
-  font-weight: 750;
-}
-.icon {
-  display: grid;
-  place-items: center;
-  width: 47px;
-  height: 47px;
-  flex: none;
-  border: 2px solid #ffd35c;
-  border-radius: 50%;
-  background: rgba(255, 211, 92, .08);
-  color: #ffd35c;
-}
-.icon svg { width: 26px; height: 26px; }
-.section .button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  min-width: 190px;
-  min-height: 54px;
-  padding: 12px 24px;
-  border: 1px solid #efb827;
-  border-radius: 8px;
-  background: #ffd04d;
-  box-shadow: 0 7px 16px rgba(120, 77, 12, .14);
-  color: #006A64;
-  font-size: 16px;
-  font-weight: 850;
-  text-decoration: none;
-  transition: transform .2s, background .2s;
-}
-.button:hover { transform: translateY(-2px); background: #ffdc74; }
-.button span { font-size: 23px; line-height: 1; }
+.photo { object-fit: cover; }
 .wallBrand {
   position: absolute;
-  z-index: 2;
-  top: 16%;
-  left: 31%;
+  top: 24%;
+  left: 68%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
-  transform: translateX(-50%);
-  color: #006A64;
-  font-family: var(--font-aryan-body), Arial, sans-serif;
-  font-size: clamp(18px, 1.8vw, 29px);
-  font-weight: 900;
-  letter-spacing: -.045em;
-  line-height: 1;
+  gap: 12px;
+  transform: translate(-50%, -50%);
+  color: #006a62;
   white-space: nowrap;
-  text-shadow: 0 2px 5px rgba(255, 250, 243, .5);
-  pointer-events: none;
+  text-shadow: 0 1px 1px rgba(255, 250, 242, .7), 0 2px 3px rgba(69, 40, 3, .2);
 }
-.wallBrand img { width: 82px; height: 82px; object-fit: contain; mix-blend-mode: multiply; }
+.wallLogo { display: flex; align-items: center; gap: 12px; }
+.wallLogo img { width: clamp(40px, 4.3vw, 82px); height: auto; object-fit: contain; }
+.wallWordmark { display: flex; flex-direction: column; align-items: center; gap: 2px; font-family: var(--font-aryan-display), Georgia, serif; }
+.wallWordmark strong { font-size: clamp(22px, 2.4vw, 46px); line-height: 1; letter-spacing: -.025em; }
+.wallWordmark > span { color: #725015; font-size: clamp(14px, 1.4vw, 27px); line-height: 1.1; font-weight: 700; }
+.section .wallBrand .tagline { margin: 0; color: #064e49; font-family: var(--font-aryan-body), Arial, sans-serif; font-size: clamp(10px, .95vw, 18px); font-weight: 750; letter-spacing: .025em; line-height: 1.4; }
+.content { position: relative; grid-column: 1; grid-row: 1; min-width: 0; padding: 48px clamp(24px, 4vw, 80px); }
+.section .content :is(h1, h2) { margin: 0 0 24px; color: #fffaf2; font-family: var(--font-aryan-body), Arial, sans-serif; font-size: clamp(38px, 4vw, 76px); font-weight: 850; letter-spacing: -.055em; line-height: 1.06; }
+.section .content :is(h1, h2) span { color: #ffd35c; }
+.section .content p.description { max-width: 500px; margin: 0; color: #fffaf2; font-size: clamp(16px, 1.3vw, 24px); line-height: 1.55; }
+.values { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 16px; margin: 30px 0; padding: 0; list-style: none; }
+.values li { display: flex; align-items: center; gap: 12px; color: #fffaf2; font-size: clamp(14px, 1.1vw, 20px); font-weight: 750; }
+.icon { display: grid; place-items: center; width: 47px; height: 47px; flex: none; border: 2px solid #ffd35c; border-radius: 50%; color: #ffd35c; }
+.icon svg { width: 26px; height: 26px; }
+.section .button { display: inline-flex; align-items: center; justify-content: center; gap: 18px; min-width: 190px; min-height: 54px; padding: 12px 24px; border: 1px solid #efb827; border-radius: 8px; background: #ffd04d; box-shadow: 0 7px 16px rgba(120, 77, 12, .14); color: #006a62; font-size: 16px; font-weight: 850; text-decoration: none; transition: transform .2s, background .2s; }
+.button:hover { transform: translateY(-2px); background: #ffdc74; }
+.button span { font-size: 23px; line-height: 1; }
 .section :focus-visible { outline: 3px solid #fffaf2; outline-offset: 4px; }
 @media (max-width: 1100px) {
-  .shell { min-height: 630px; }
-  .content { width: 55%; padding: 90px 40px; }
-  .shell::after { background: linear-gradient(270deg, #006A64 0%, rgba(0, 106, 100, .97) 38%, rgba(0, 106, 100, .55) 59%, transparent 80%); }
-  .wallBrand { left: 24%; }
+  .shell { grid-template-columns: 50% 50%; min-height: 630px; }
+  .content { padding: 48px 28px; }
+  .values { grid-template-columns: 1fr; }
 }
 @media (max-width: 760px) {
-  .section { padding: 0; }
-  .shell { --story-photo-space: 315px; min-height: 0; }
-  .photo { object-position: 66% bottom; }
-  .shell::after { background: linear-gradient(180deg, #006A64 0%, #006A64 calc(100% - var(--story-photo-space)), rgba(0, 106, 100, .8) calc(100% - var(--story-photo-space) + 80px), transparent 100%); }
-  .content { width: 100%; margin-left: 0; padding: 72px 28px calc(var(--story-photo-space) + 36px); }
-  .section .content h2 { font-size: clamp(36px, 8vw, 48px); }
-  .section .content p.description { max-width: 590px; font-size: 15px; }
-  .values { gap: 13px; margin: 28px 0; }
+  .shell { display: flex; flex-direction: column; min-height: 0; }
+  .content { padding: 48px 24px; }
+  .photoPanel { flex: none; width: 100%; height: 340px; margin: 0; }
+  .section .content :is(h1, h2) { font-size: clamp(36px, 7vw, 52px); }
+  .values { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .values li { font-size: 16px; }
   .icon { width: 43px; height: 43px; }
   .icon svg { width: 24px; height: 24px; }
-  .wallBrand { display: none; }
+  .wallBrand { gap: 6px; }
+  .wallLogo { gap: 7px; }
 }
 @media (max-width: 420px) {
-  .shell { --story-photo-space: 270px; }
-  .content { padding: 64px 22px calc(var(--story-photo-space) + 32px); }
-  .section .content h2 { font-size: 34px; }
+  .values { grid-template-columns: 1fr; }
   .section .button { width: 100%; }
 }
-@media (prefers-reduced-motion: reduce) {
-  .button { transition: none; }
-}
-
-/* Cream split story layout with unobscured reception photography. */
-.section { background: #fffaf3; }
-.shell { display: grid; grid-template-columns: 43% 57%; align-items: stretch; min-height: 760px; background: #fffaf3; }
-.shell::after { display: none; }
-.shell .photo { left: 43% !important; top: 32px !important; width: 57% !important; height: calc(100% - 64px) !important; object-position: center; }
-.content { grid-column: 1; width: 100%; margin: 0; padding: 48px clamp(24px, 4vw, 80px); }
-.brand { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 28px; color: #006A64; font-size: 24px; font-weight: 850; }
-.brand img { width: 78px; height: 78px; object-fit: contain; margin-left: 35px; }
-.section .content h2 { color: #006A64; font-size: clamp(38px, 4vw, 76px); }
-.section .content p.description { color: #006A64; font-size: clamp(16px, 1.3vw, 24px); }
-.values { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 16px; margin: 30px 0; }
-.values li { color: #006A64; font-size: clamp(14px, 1.1vw, 20px); gap: 12px; }
-.icon { color: #e6ad25; border-color: #e6ad25; background: transparent; }
-@media(max-width:1100px){
-  .shell { grid-template-columns: 50% 50%; }
-  .shell .photo { left: 50% !important; width: 50% !important; }
-  .content { width: 100%; padding: 48px 28px; }
-  .values { grid-template-columns: 1fr; }
-}
-@media(max-width:760px){
-  .shell { display: flex; flex-direction: column; }
-  .shell .photo { position: relative !important; left: auto !important; top: auto !important; width: 100% !important; height: 340px !important; order: 2; }
-  .content { padding: 48px 24px; }
-  .values { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .section .content h2 { font-size: clamp(36px, 7vw, 52px); }
-}
-@media(max-width:420px){
-  .values { grid-template-columns: 1fr; }
-}
-
-/* Match the top banner's teal and gold palette. */
-.section,
-.shell { background: #006A62; }
-.section .content h2 { color: #fffaf2; }
-.section .content h2 span { color: #ffd35c; }
-.section .content p.description,
-.values li { color: #fffaf2; }
-.icon { color: #ffd35c; border-color: #ffd35c; }
-.section .button { color: #006A62; }
+@media (prefers-reduced-motion: reduce) { .button { transition: none; } }

@@ -18,17 +18,29 @@ function ValueIcon({ name }) {
   return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{drawing[name]}</svg>;
 }
 
-export default function StorySection() {
+export default function StorySection({ standalone = false }) {
+  const Heading = standalone ? "h1" : "h2";
   return <section className={styles.section} id="our-story" aria-labelledby="story-title">
     <div className={styles.shell}>
-      <Image className={styles.photo} src="/story-reception.webp" alt="Warm reception interior with a cream counter and gold accents" fill sizes="100vw" />
+      <div className={styles.photoPanel}>
+        <div className={styles.scene}>
+          <Image className={styles.photo} src="/story-reception.webp" alt="Warm reception interior with a cream counter and gold accents" fill sizes="(max-width: 760px) 100vw, 75vw" />
+          <div className={styles.wallBrand}>
+            <div className={styles.wallLogo}>
+              <Image src="/aryan-mark.webp" width={82} height={82} alt="" />
+              <span className={styles.wallWordmark}><strong>ARYAN</strong><span>Gold Buyers</span></span>
+            </div>
+            <p className={styles.tagline}>Trust &bull; Transparency &bull; Value</p>
+          </div>
+        </div>
+      </div>
       <div className={styles.content}>
-        <h2 id="story-title">A New Approach<br /><span>To Gold Buying.</span></h2>
+        <Heading id="story-title">A New Approach<br /><span>To Gold Buying.</span></Heading>
         <p className={styles.description}>Aryan Gold Buyers puts your trust first. Our clear process, modern testing and personal service help you make a confident decision about your gold.</p>
         <ul className={styles.values}>
           {values.map(value => <li key={value.label}><span className={styles.icon}><ValueIcon name={value.icon} /></span><span>{value.label}</span></li>)}
         </ul>
-        <a className={styles.button} href="#why-aryan">Our Story <span aria-hidden="true">→</span></a>
+        <a className={styles.button} href={standalone ? "/#why-aryan" : "/about-us"}>Our Story <span aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>;

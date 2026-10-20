@@ -1,5 +1,7 @@
 "use client";
 
+import ServicesSection from "./ServicesSection";
+import GoldRateSection from "./GoldRateSection";
 import SiteHeader from "./SiteHeader";
 import SiteFooter from "./SiteFooter";
 import BranchLocations from "./BranchLocations";
@@ -12,7 +14,6 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const FALLBACK_RATES = {24: 14250, 22: 13062, 18: 10688};
-const rupees = new Intl.NumberFormat("en-IN", {style: "currency", currency: "INR", maximumFractionDigits: 0});
 const BUY_ITEMS = [
   {title: "Gold Jewellery", description: "Chains, rings, bangles and more", image: "/buy-gold-jewellery.webp", alt: "Traditional gold jewellery on emerald velvet"},
   {title: "Old Gold", description: "Unused and outdated jewellery", image: "/buy-old-gold.webp", alt: "Collection of old gold chains and rings"},
@@ -281,66 +282,11 @@ export default function GoldHomepage() {
       </div>
     </section>
 
-    <section className="rate-strip" id="rates">
-      <div className="container rate-grid">
-        <div className="rate-intro">
-          <h2>{live ? "Today’s Gold Rate" : "Indicative Gold Rate"}</h2>
-          <p>Know the market before you sell.</p>
-        </div>
-        <div className="rate-values">
-          <div className="rate-card">
-            <span>24K Gold</span>
-            <strong id="rate-24">{rupees.format(rates[24])}</strong>
-            <small>per gram</small>
-          </div>
-        </div>
-        <div className="rate-meta">
-          <span><b>Note:</b> Online rates are indicative. Final purchase value is determined after physical evaluation and verification.</span>
-          <span id="rate-status">{rateStatus}</span>
-          <button id="refresh-rates" disabled={loading} onClick={() => fetchRates()} className="text-button" type="button">Refresh rates</button>
-        </div>
-      </div>
-    </section>
+    <GoldRateSection rates={rates} live={live} rateStatus={rateStatus} loading={loading} fetchRates={fetchRates} />
 
     <GoldCalculator rate={rates[24]} live={live} />
 
-    <section className="section services-section" id="services" aria-labelledby="services-title">
-      <div className="container services-shell">
-        <div className="services-heading reveal">
-          <span className="kicker">What can we help you with?</span>
-          <h2 id="services-title">Our Services</h2>
-        </div>
-        <div className="services-layout">
-          <article className="service-offer service-sell reveal">
-            <div className="offer-image"><Image src="/service-sell-gold.webp" alt="Ornate gold necklace and earrings on emerald velvet" fill sizes="(max-width: 700px) 100vw, (max-width: 1200px) 35vw, 33vw" /></div>
-            <div className="offer-content">
-              <span className="offer-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="24" cy="24" r="17"/><path d="M17 15h15M17 21h15M19 15c10 0 10 10 0 10l12 10"/></svg></span>
-              <h3>Sell Gold</h3>
-              <p>Sell your old, unused or unwanted gold with a clear and transparent evaluation process.</p>
-              <a className="offer-button" href="#booking">Get Gold Valuation <span aria-hidden="true">→</span></a>
-            </div>
-          </article>
-          <article className="service-offer service-pledged reveal delay-1">
-            <div className="offer-image"><Image src="/service-pledged-gold.webp" alt="Gold necklace on a jewelry case beside a loan document" fill sizes="(max-width: 700px) 100vw, (max-width: 1200px) 35vw, 33vw" /></div>
-            <div className="offer-content">
-              <span className="offer-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 17 24 6l19 11H5ZM8 39h32M11 20v16m8-16v16m10-16v16m8-16v16M5 43h38"/></svg></span>
-              <h3>Release Pledged Gold</h3>
-              <p>Gold pledged with a bank or NBFC? We can assist you in releasing eligible pledged gold and help you understand the settlement.</p>
-              <a className="offer-button" href="#booking">Get Pledged Gold Assistance <span aria-hidden="true">→</span></a>
-            </div>
-          </article>
-          <article className="service-offer service-doorstep reveal delay-2">
-            <div className="offer-image"><Image src="/valuation-weight.webp" alt="Gold jewellery on a digital weighing scale" fill sizes="(max-width: 700px) 100vw, (max-width: 1200px) 35vw, 33vw" /></div>
-            <div className="offer-content">
-              <span className="offer-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 22 24 6l19 16M10 19v23h28V19M19 42V28h10v14"/><path d="M31 9V5h7v10"/></svg></span>
-              <h3>Doorstep Valuation</h3>
-              <p>Request a gold valuation from the comfort of your home. Our team will confirm availability in your area and arrange a convenient visit.</p>
-              <a className="offer-button" href="#booking" onClick={() => setServiceMode("Doorstep Service")}>Book Doorstep Valuation <span aria-hidden="true">→</span></a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
+    <ServicesSection onDoorstep={() => setServiceMode("Doorstep Service")} />
 
     <ExperienceSection />
 

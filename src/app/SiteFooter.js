@@ -8,23 +8,23 @@ export default function SiteFooter({ homePage = false }) {
     <footer>
       <div className="container footer-grid">
         <div className="footer-brand">
-          <Brand href={homePage ? "#home" : "/"} className="brand footer-wordmark" />
+          <Brand href="/" className="brand footer-wordmark" />
           <p>Transparent gold buying, pledged-gold assistance and convenient valuation services.</p>
         </div>
         <div>
           <h4>Services</h4>
-          <Link href={`${home}#services`}>Sell Gold</Link>
+          <Link href="/services">Sell Gold</Link>
           <Link href={`${home}#booking`}>Release Pledged Gold</Link>
-          <Link href="/calculator">Gold Calculator</Link>
+          <Link href="/gold-rate-calculation">Gold Calculator</Link>
           <Link href={`${home}#booking`}>Book Valuation</Link>
         </div>
         <div>
           <h4>Quick Links</h4>
-          <Link href={`${home}#rates`}>Gold Rate</Link>
-          <Link href={`${home}#branches`}>Our Branches</Link>
+          <Link href="/gold-rate">Gold Rate</Link>
+          <Link href="/branches">Our Branches</Link>
           <Link href={`${home}#testing`}>How It Works</Link>
           <Link href={`${home}#faq`}>FAQs</Link>
-          <Link href={`${home}#our-story`}>Our Story</Link>
+          <Link href="/about-us">Our Story</Link>
           <Link href="/contact-us">Contact Us</Link>
         </div>
         <div>
