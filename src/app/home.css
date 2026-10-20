@@ -1285,7 +1285,7 @@
 .aryan-home #services .service-doorstep{background:#006a64;border:1px solid #005b56}
 .aryan-home #services .offer-image{position:relative;min-height:100%;overflow:hidden;background:#14362f}
 .aryan-home #services .offer-image img{object-fit:cover;object-position:center}
-.aryan-home #services .offer-content{display:flex;flex-direction:column;align-items:flex-start;min-width:0;padding:26px 28px}
+.aryan-home #services .offer-content{display:flex;flex-direction:column;align-items:center;min-width:0;padding:26px 28px;text-align:center}
 .aryan-home #services .offer-icon{display:grid;place-items:center;width:51px;height:51px;flex:none;border:1px solid #edc358;border-radius:11px;background:#fff1c9;color:#a95825;margin-bottom:13px}
 .aryan-home #services .offer-icon svg{width:31px;height:31px}
 .aryan-home #services :is(.service-pledged,.service-doorstep) .offer-icon{border-color:#e7b82b;background:rgba(255,225,106,.08);color:#f2c33b}
