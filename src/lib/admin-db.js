@@ -70,10 +70,10 @@ export async function deleteBranch(id) {
 }
 
 let pool;
+let contactPool;
 
-function getPool() {
-  if (!pool) {
-    pool = mysql.createPool({
+function createPool() {
+  return mysql.createPool({
       host: process.env.DB_HOST || "127.0.0.1",
       port: Number(process.env.DB_PORT || 3306),
       user: process.env.DB_USER || "root",
@@ -82,9 +82,24 @@ function getPool() {
       waitForConnections: true,
       connectionLimit: 10,
     });
-  }
+}
 
+function getPool() {
+  if (!pool) pool = createPool();
   return pool;
+}
+
+async function executeContactQuery(sql, values) {
+  // TIMESTAMP values and date filters must use the same business timezone.
+  // Keep these sessions separate from queries that deserialize dates in JS.
+  if (!contactPool) contactPool = createPool();
+  const connection = await contactPool.getConnection();
+  try {
+    await connection.query("SET SESSION time_zone = '+05:30'");
+    return await connection.execute(sql, values);
+  } finally {
+    connection.release();
+  }
 }
 
 export async function findAdminByEmail(email) {
@@ -150,7 +165,7 @@ export async function createContact({
   services,
   businessType,
 }) {
-  const [result] = await getPool().execute(
+  const [result] = await executeContactQuery(
     `INSERT INTO contacts
       (name, mobile, city, weight, preffered_date, preffered_time, services, business_type)
      VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -187,7 +202,7 @@ export async function getContacts({ fromDate = "", toDate = "", businessType = "
   }
 
   const where = conditions.length ? `WHERE ${conditions.join(" AND ")}` : "";
-  const [rows] = await getPool().execute(
+  const [rows] = await executeContactQuery(
     `SELECT id, name, mobile, city, weight,
        DATE_FORMAT(preffered_date, '%Y-%m-%d') AS preferredDate,
        preffered_time AS preferredTime, services, business_type AS businessType,
