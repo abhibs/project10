@@ -1166,8 +1166,8 @@
 .aryan-home[data-theme="light"] .hero .trust-row>div:last-child{border-right:0;padding-right:0}
 .aryan-home .hero .trust-row svg{width:48px;height:48px;flex:none;color:#f2c63d}
 .aryan-home .hero .trust-row span{margin:0;color:#fff;font-size:.86rem;line-height:1.32;white-space:nowrap}
-.aryan-home .hero-motto{position:absolute;right:4px;top:6px;z-index:2;margin:0;max-width:155px;color:#fff !important;text-transform:uppercase;font-size:1.05rem;font-weight:800;line-height:1.24;letter-spacing:.025em;text-shadow:0 2px 8px rgba(0,0,0,.45)}
-.aryan-home .hero-motto:before,.aryan-home .hero-motto:after{content:"";display:block;width:42px;height:4px;background:#c72133;border-radius:5px}
+.aryan-home .hero-motto{position:absolute;right:4px;top:6px;z-index:2;margin:0;max-width:240px;color:#fff !important;text-align:center;text-transform:uppercase;font-size:clamp(1.3rem,1.6vw,1.75rem);font-weight:800;line-height:1.3;letter-spacing:.025em;text-shadow:0 2px 8px rgba(0,0,0,.45)}
+.aryan-home .hero-motto:before,.aryan-home .hero-motto:after{content:"";display:block;width:42px;height:4px;margin-inline:auto;background:#c72133;border-radius:5px}
 .aryan-home .hero-motto:before{margin-bottom:14px}
 .aryan-home .hero-motto:after{margin-top:14px}
 
