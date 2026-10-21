@@ -1,3 +1,4 @@
+import { getPageSeoMetadata } from "@/lib/seo-metadata";
 import GoldHomepage from "./GoldHomepage";
 import "./home.css";
 import "./booking-refresh.css";
@@ -17,10 +18,14 @@ const displayFont = Playfair_Display({
   display: "swap",
 });
 
-export const metadata = {
+const defaultMetadata = {
   title: "Aryan Gold | Sell Gold for Instant Cash",
   description: "Aryan Gold — cash for gold, pledged gold release and doorstep valuation services.",
 };
+
+export async function generateMetadata() {
+  return getPageSeoMetadata("/", defaultMetadata);
+}
 
 export default function Home() {
   return (

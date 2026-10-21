@@ -1,4 +1,24 @@
 import mysql from "mysql2/promise";
+import { SEO_FIELDS } from "./seo-fields.mjs";
+
+export async function getSeoPages() {
+  const [rows] = await getPool().execute("SELECT * FROM seo_pages ORDER BY route_path <> '*', id");
+  return rows.map((row) => ({ ...row, structured_data: row.structured_data == null ? "" : typeof row.structured_data === "string" ? row.structured_data : JSON.stringify(row.structured_data, null, 2) }));
+}
+
+export async function saveSeoPage(id, values) {
+  const fields = ["page_label", "route_path", ...SEO_FIELDS];
+  const params = fields.map((field) => values[field] ?? null);
+  if (id) {
+    await getPool().execute(`UPDATE seo_pages SET ${fields.map((field) => `\`${field}\` = ?`).join(", ")} WHERE id = ?`, [...params, id]);
+  } else {
+    await getPool().execute(`INSERT INTO seo_pages (${fields.map((field) => `\`${field}\``).join(", ")}) VALUES (${fields.map(() => "?").join(", ")})`, params);
+  }
+}
+
+export async function deleteSeoPage(id) {
+  await getPool().execute("DELETE FROM seo_pages WHERE id = ?", [id]);
+}
 const BRANCH_COLUMNS = `id, branch_id AS branchId, name, slug, image, area, city, state,
   pincode, timings, latitude, longitude, url, status, address`;
 

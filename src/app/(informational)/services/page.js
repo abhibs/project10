@@ -1,3 +1,8 @@
+import { getPageSeoMetadata } from "@/lib/seo-metadata";
 import ServicesSection from "../../ServicesSection";
-export const metadata = { title: "Services | Aryan Gold Buyers" };
+const defaultMetadata = { title: "Services | Aryan Gold Buyers" };
+
+export async function generateMetadata() {
+  return getPageSeoMetadata("/services", defaultMetadata);
+}
 export default function Page() { return <ServicesSection standalone />; }

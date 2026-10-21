@@ -6,6 +6,7 @@ import Link from "next/link";
 import RateForm from "./RateForm";
 import ContactsTable from "./ContactsTable";
 import BranchManager from "../branches/BranchManager";
+import SeoManager from "../seo/SeoManager";
 import AdminBrand from "../AdminBrand";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
@@ -128,7 +129,7 @@ export default function DashboardClient({ admin, section = "dashboard" }) {
   }
 
   const avatar = imagePreview || (profile.image ? `/admin/${profile.image}` : "");
-  const sectionTitle = section === "branches" ? "Branches" : section === "rate" ? "Gold rates" : section === "contact" ? "Contact requests" : "Dashboard";
+  const sectionTitle = section === "seo" ? "SEO Control Center" : section === "branches" ? "Branches" : section === "rate" ? "Gold rates" : section === "contact" ? "Contact requests" : "Dashboard";
 
   return (
     <main className={styles.dashboard}>
@@ -140,6 +141,7 @@ export default function DashboardClient({ admin, section = "dashboard" }) {
           <Link className={section === "branches" ? styles.active : undefined} aria-current={section === "branches" ? "page" : undefined} href="/admin/branches"><span aria-hidden="true">⌂</span> Branches</Link>
           <Link className={section === "contact" ? styles.active : undefined} aria-current={section === "contact" ? "page" : undefined} href="/admin/contact/index"><span aria-hidden="true">☏</span> Contacts</Link>
           <Link className={section === "rate" ? styles.active : undefined} aria-current={section === "rate" ? "page" : undefined} href="/admin/rate"><span aria-hidden="true">₹</span> Gold rates</Link>
+          <Link className={section === "seo" ? styles.active : undefined} aria-current={section === "seo" ? "page" : undefined} href="/admin/seo"><span aria-hidden="true">&#8981;</span> SEO</Link>
         </nav>
         <div className={styles.sidebarFoot}><span>ARYAN GOLD</span><p>Trust today.<br />Brighter tomorrows.</p><Link href="/">View website →</Link></div>
       </aside>
@@ -158,7 +160,7 @@ export default function DashboardClient({ admin, section = "dashboard" }) {
             </div>}
           </div>
         </header>
-        {section === "branches" ? <BranchManager /> : section === "rate" ? <RateForm /> : section === "contact" ? <ContactsTable /> : <>
+        {section === "seo" ? <SeoManager /> : section === "branches" ? <BranchManager /> : section === "rate" ? <RateForm /> : section === "contact" ? <ContactsTable /> : <>
           <article className={styles.welcome}>
             <p className={styles.eyebrow}>YOUR ARYAN GOLD WORKSPACE</p>
             <h2>Welcome back, {profile.name}.</h2>
