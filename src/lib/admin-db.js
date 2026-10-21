@@ -164,11 +164,13 @@ export async function createContact({
   preferredTime,
   services,
   businessType,
+  gclid, utmSource, utmCampaign, keyword, adgroupId,
 }) {
   const [result] = await executeContactQuery(
     `INSERT INTO contacts
-      (name, mobile, city, weight, preffered_date, preffered_time, services, business_type)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      (name, mobile, city, weight, preffered_date, preffered_time, services, business_type,
+       gclid, utm_source, utm_campaign, keyword, adgroup_id)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     [
       name,
       mobile,
@@ -178,6 +180,7 @@ export async function createContact({
       preferredTime || null,
       services,
       businessType,
+      gclid || null, utmSource || null, utmCampaign || null, keyword || null, adgroupId || null,
     ]
   );
 
@@ -206,6 +209,7 @@ export async function getContacts({ fromDate = "", toDate = "", businessType = "
     `SELECT id, name, mobile, city, weight,
        DATE_FORMAT(preffered_date, '%Y-%m-%d') AS preferredDate,
        preffered_time AS preferredTime, services, business_type AS businessType,
+       gclid, utm_source AS utmSource, utm_campaign AS utmCampaign, keyword, adgroup_id AS adgroupId,
        DATE_FORMAT(created_at, '%Y-%m-%d') AS submittedDate,
        DATE_FORMAT(created_at, '%H:%i:%s') AS submittedTime
      FROM contacts ${where}

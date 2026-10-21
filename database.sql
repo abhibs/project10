@@ -98,6 +98,11 @@ CREATE TABLE `contacts` (
   `preffered_time` varchar(20) DEFAULT NULL COMMENT '24-hour time or time range',
   `services` varchar(255) NOT NULL,
   `business_type` enum('Branch Visit','Doorstep Service','Quick Contact','Contact Page','Banner Form') NOT NULL,
+  `gclid` varchar(255) DEFAULT NULL,
+  `utm_source` varchar(255) DEFAULT NULL,
+  `utm_campaign` varchar(255) DEFAULT NULL,
+  `keyword` varchar(255) DEFAULT NULL,
+  `adgroup_id` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -1,5 +1,7 @@
 "use client";
 
+import { getContactAttribution } from "@/lib/contact-attribution.mjs";
+
 import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -40,7 +42,7 @@ export default function ContactPage() {
       const response = await fetch("/api/contacts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: fields.name.trim(), mobile: fields.mobile, city: fields.city.trim(), weight: fields.weight, preferredDate: fields.preferredDate, preferredTime: fields.preferredTime, businessType: "Contact Page" }),
+        body: JSON.stringify({ ...getContactAttribution(), name: fields.name.trim(), mobile: fields.mobile, city: fields.city.trim(), weight: fields.weight, preferredDate: fields.preferredDate, preferredTime: fields.preferredTime, businessType: "Contact Page" }),
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || "Unable to send your message. Please try again.");

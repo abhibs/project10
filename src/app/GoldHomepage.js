@@ -1,5 +1,7 @@
 "use client";
 
+import { getContactAttribution } from "@/lib/contact-attribution.mjs";
+
 import ServicesSection from "./ServicesSection";
 import GoldRateSection from "./GoldRateSection";
 import SiteHeader from "./SiteHeader";
@@ -195,6 +197,7 @@ export default function GoldHomepage() {
     const fields = Object.fromEntries(new FormData(form));
     const appointment = kind === "booking";
     const payload = {
+      ...getContactAttribution(),
       name: fields.name,
       mobile: fields.mobile,
       city: appointment ? fields.city : "",

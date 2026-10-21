@@ -55,6 +55,11 @@ export async function POST(request) {
       preferredTime: scheduled ? preferredTime : "",
       services,
       businessType,
+      gclid: clean(body.gclid),
+      utmSource: clean(body.utmSource ?? body.utm_source),
+      utmCampaign: clean(body.utmCampaign ?? body.utm_campaign),
+      keyword: clean(body.keyword ?? body.utm_term),
+      adgroupId: clean(body.adgroupId ?? body.adgroup_id ?? body.adgroupid),
     });
 
     return Response.json({ id, message: appointment ? "Appointment request received." : "Callback request received." }, { status: 201 });

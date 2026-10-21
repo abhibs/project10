@@ -92,9 +92,9 @@ export default function ContactsTable() {
       {error && <p className={styles.tableError} role="alert">{error}</p>}
       <div className={styles.tableWrap}>
         <table className={styles.contactsTable}>
-          <thead><tr><th>#</th><th>Date</th><th>Time (IST)</th><th>Form type</th><th>Name</th><th>Mobile</th><th>City</th><th>Weight</th><th>Preferred date</th><th>Preferred time</th><th>Service / Help with</th></tr></thead>
+          <thead><tr><th>#</th><th>Date</th><th>Time (IST)</th><th>Form type</th><th>Name</th><th>Mobile</th><th>City</th><th>Weight</th><th>Preferred date</th><th>Preferred time</th><th>Service / Help with</th><th>GCLID</th><th>UTM Source</th><th>UTM Campaign</th><th>Keyword</th><th>Adgroup ID</th></tr></thead>
           <tbody>
-            {loading ? <tr><td className={styles.tableStatus} colSpan="11">Loading contact requests…</td></tr> : contacts.length === 0 ? <tr><td className={styles.tableStatus} colSpan="11">No contact requests found.</td></tr> : contacts.map((contact, index) => (
+            {loading ? <tr><td className={styles.tableStatus} colSpan="16">Loading contact requests…</td></tr> : contacts.length === 0 ? <tr><td className={styles.tableStatus} colSpan="16">No contact requests found.</td></tr> : contacts.map((contact, index) => (
               <tr key={contact.id}>
                 <td>{index + 1}</td>
                 <td className={styles.noWrap}>{displayDate(contact.submittedDate)}</td>
@@ -102,6 +102,7 @@ export default function ContactsTable() {
                 <td><span className={`${styles.typeBadge} ${["Quick Contact", "Contact Page", "Banner Form"].includes(contact.businessType) ? styles.quickBadge : ""}`}>{contact.businessType}</span></td>
                 <td>{contact.name}</td><td className={styles.noWrap}>{contact.mobile}</td><td>{contact.city || "—"}</td>
                 <td className={styles.noWrap}>{contact.weight ? `${contact.weight} g` : "—"}</td><td className={styles.noWrap}>{displayDate(contact.preferredDate)}</td><td className={styles.noWrap}>{displayTime(contact.preferredTime)}</td><td>{contact.businessType === "Banner Form" ? "—" : contact.services || "—"}</td>
+                {["gclid", "utmSource", "utmCampaign", "keyword", "adgroupId"].map((field) => <td key={field}>{contact[field] || "-"}</td>)}
               </tr>
             ))}
           </tbody>
