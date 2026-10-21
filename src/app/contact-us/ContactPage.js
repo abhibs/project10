@@ -70,7 +70,7 @@ export default function ContactPage() {
             <h1 id="contact-title">Contact <span>Us</span></h1>
             <p className={styles.intro}>We are here to help. Reach out to us for any<br className={styles.desktopBreak} /> queries, branch information or assistance.</p>
             <div className={styles.contactStrip}>
-              <a href="tel:+918880300300" className={styles.contactItem}><span className={styles.icon}><Icon name="phone" /></span><span><strong>Call Us</strong><span>8880 300 300</span></span></a>
+              <a href="tel:+919117125555" className={styles.contactItem}><span className={styles.icon}><Icon name="phone" /></span><span><strong>Call Us</strong><span>9117 125 555</span></span></a>
               <a href="#office-address" className={styles.contactItem}><span className={styles.icon}><Icon name="pin" /></span><span><strong>Head Office</strong><span>Bengaluru, Karnataka</span></span></a>
               <Link href="/" className={styles.contactItem}><span className={styles.icon}><Icon name="globe" /></span><span><strong>Our Website</strong><span>www.aryangoldbuyers.com</span></span></Link>
             </div>
