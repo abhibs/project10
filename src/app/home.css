@@ -1240,7 +1240,7 @@
 .aryan-home[data-theme="light"] #why-aryan .why-intro .kicker{display:block;color:#a43231 !important;font-size:.9rem;font-weight:800;letter-spacing:.055em;text-transform:uppercase;line-height:1.25;margin-bottom:18px}
 .aryan-home #why-aryan .why-intro .kicker:before{content:"";display:inline-block;vertical-align:middle;width:31px;height:4px;margin-right:13px;border-radius:3px;background:#c81b33}
 .aryan-home #why-aryan .why-intro h2{margin:0 0 18px;font-family:var(--serif);font-size:clamp(3rem,2.8vw,3.5rem);font-weight:800;line-height:1.01;letter-spacing:-.04em;color:#006A64}
-.aryan-home #why-aryan .why-intro h2 span{color:#d8a424}
+.aryan-home #why-aryan .why-intro h2 span{color:#ffd35c}
 .aryan-home #why-aryan .why-intro p{max-width:480px;margin:0;color:#535c5c;font-size:1.05rem;line-height:1.5}
 .aryan-home #why-aryan .why-features{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
 .aryan-home #why-aryan .why-feature{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;min-height:310px;padding:25px 16px;text-align:center;background:#fffcf7;border:1px solid #eee7dc;border-radius:14px;box-shadow:0 8px 22px rgba(62,47,24,.035)}
@@ -1451,7 +1451,7 @@
 .aryan-home .valuation-kicker{display:block;color:#b01626;font-size:clamp(.9rem,1.22vw,1.2rem);font-weight:800;line-height:1.2;letter-spacing:.08em;text-transform:uppercase}
 .aryan-home .valuation-kicker:before{content:"";display:inline-block;vertical-align:middle;width:50px;height:6px;margin-right:16px;border-radius:5px;background:#be122b}
 .aryan-home .valuation-heading h2{margin:22px 0 20px;color:#006A64;font-family:var(--serif);font-size:clamp(3.25rem,4.35vw,5rem);font-weight:800;line-height:.94;letter-spacing:-.045em}
-.aryan-home .valuation-heading h2 span{color:#d99c20}
+.aryan-home .valuation-heading h2 span{color:#ffd35c}
 .aryan-home .valuation-heading p{max-width:490px;margin:0;color:#536875;font-size:clamp(1.05rem,1.43vw,1.35rem);line-height:1.37}
 .aryan-home .valuation-factors{display:flex;flex-direction:column;justify-content:center;gap:12px;padding:22px 0}
 .aryan-home .valuation-factor{display:grid;grid-template-columns:73px minmax(0,1fr);gap:17px;align-items:center;min-height:78px}
@@ -1625,7 +1625,7 @@
 .aryan-home #testing .testing-kicker:before{background:#bf112b}
 .aryan-home #testing .testing-copy h2,
 .aryan-home #testing .testing-benefit h3{color:#006A64}
-.aryan-home #testing .testing-copy h2 span{color:#cb941a}
+.aryan-home #testing .testing-copy h2 span{color:#ffd35c}
 .aryan-home #testing .testing-copy>p,
 .aryan-home #testing .testing-benefit p{color:#536875}
 .aryan-home #testing .testing-benefit{border-right-color:#dce5e1}

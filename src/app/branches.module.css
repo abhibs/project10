@@ -37,7 +37,7 @@
   letter-spacing: -.045em;
   line-height: 1.07;
 }
-.section .intro :is(h1, h2) span { color: #946a13; }
+.section .intro :is(h1, h2) span { color: #ffd35c; }
 .section .intro .subtitle {
   margin: 15px 0 27px;
   color: #006a64;
