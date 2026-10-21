@@ -30,14 +30,16 @@ export async function POST(request) {
     const preferredTime = clean(body.preferredTime, 20);
     const appointment = APPOINTMENT_TYPES.has(businessType);
     const banner = businessType === "Banner Form";
+    const contactPage = businessType === "Contact Page";
+    const scheduled = appointment || contactPage;
     const rawWeight = body.weight === "" || body.weight === null || body.weight === undefined
       ? null
       : Number(body.weight);
 
-    if (name.length < 2 || !NAME_PATTERN.test(name) || !MOBILE_PATTERN.test(mobile) || (!banner && !services) || !BUSINESS_TYPES.has(businessType)) {
+    if (name.length < 2 || !NAME_PATTERN.test(name) || !MOBILE_PATTERN.test(mobile) || (!banner && !contactPage && !services) || !BUSINESS_TYPES.has(businessType)) {
       return Response.json({ message: "Please enter valid contact details." }, { status: 400 });
     }
-    if (appointment && (!city || !isRealDate(preferredDate) || !TIME_PATTERN.test(preferredTime))) {
+    if (scheduled && (!city || !isRealDate(preferredDate) || !TIME_PATTERN.test(preferredTime))) {
       return Response.json({ message: "Please complete the appointment details." }, { status: 400 });
     }
     if ((banner && rawWeight === null) || (rawWeight !== null && (!Number.isFinite(rawWeight) || rawWeight <= 0 || rawWeight > 100000))) {
@@ -48,9 +50,9 @@ export async function POST(request) {
       name,
       mobile,
       city,
-      weight: appointment || banner ? rawWeight : null,
-      preferredDate: appointment ? preferredDate : "",
-      preferredTime: appointment ? preferredTime : "",
+      weight: scheduled || banner ? rawWeight : null,
+      preferredDate: scheduled ? preferredDate : "",
+      preferredTime: scheduled ? preferredTime : "",
       services,
       businessType,
     });

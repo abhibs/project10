@@ -33,11 +33,6 @@ export default function ContactPage() {
       form.elements.name.focus();
       return;
     }
-    if (!fields.message.trim()) {
-      setFeedback({ error: true, message: "Please tell us how we can help." });
-      form.elements.message.focus();
-      return;
-    }
     pending.current = true;
     setSubmitting(true);
     setFeedback(null);
@@ -45,7 +40,7 @@ export default function ContactPage() {
       const response = await fetch("/api/contacts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: fields.name.trim(), mobile: fields.mobile, city: fields.city, services: fields.message.trim(), businessType: "Contact Page" }),
+        body: JSON.stringify({ name: fields.name.trim(), mobile: fields.mobile, city: fields.city.trim(), weight: fields.weight, preferredDate: fields.preferredDate, preferredTime: fields.preferredTime, businessType: "Contact Page" }),
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || "Unable to send your message. Please try again.");
@@ -89,8 +84,10 @@ export default function ContactPage() {
               <div className={styles.fields}>
                 <label className={styles.field}><span>Name <b>*</b></span><input name="name" autoComplete="name" minLength={2} maxLength={255} placeholder="Your name" required /></label>
                 <label className={styles.field}><span>Phone Number <b>*</b></span><span className={styles.phoneInput}><span>+91</span><input name="mobile" type="tel" autoComplete="tel-national" inputMode="numeric" pattern="[0-9]{10}" maxLength={10} onInput={(event) => { event.currentTarget.value = event.currentTarget.value.replace(/\D/g, "").slice(0, 10); }} title="Enter your 10-digit mobile number" placeholder="Mobile number" required /></span></label>
-                <label className={styles.field}><span>City <b>*</b></span><select name="city" autoComplete="address-level2" defaultValue="" required><option value="" disabled>Select your city</option><option>Bengaluru</option><option>Chennai</option><option>Other</option></select></label>
-                <label className={styles.field}><span>Message <b>*</b></span><textarea name="message" maxLength={255} rows={4} placeholder="How can we help you?" required /></label>
+                <label className={styles.field}><span>Service city / area</span><input name="city" autoComplete="address-level2" maxLength={255} placeholder="e.g. Bengaluru, Jayanagar" required /></label>
+                <label className={styles.field}><span>Approx. gold weight</span><span className={styles.weightInput}><input name="weight" type="number" min="0.1" max="100000" step="0.1" placeholder="Optional" /><span>grams</span></span></label>
+                <label className={styles.field}><span>Preferred date</span><input name="preferredDate" type="date" required /></label>
+                <label className={styles.field}><span>Preferred time</span><select name="preferredTime" defaultValue="" required><option value="" disabled>Choose a time</option><option value="09:00-12:00">09:00 ? 12:00</option><option value="12:00-15:00">12:00 ? 15:00</option><option value="15:00-18:00">15:00 ? 18:00</option></select></label>
               </div>
               <p className={styles.formNote}>By sending this message, you agree to be contacted about your enquiry.</p>
               <button className={styles.sendButton} type="submit" disabled={submitting}>{submitting ? "Sending…" : "Send Message"}<Icon name="arrow" /></button>
@@ -99,7 +96,7 @@ export default function ContactPage() {
           </div>
 
           <aside className={styles.officeSide} aria-label="Office information">
-            <div className={styles.officeDetail} id="office-address"><span className={styles.icon}><Icon name="pin" /></span><div><h3>Our Office Address</h3><address><strong>Aryan Gold Buyers</strong><br />#123, 2nd Floor, XYZ Towers,<br />Rajajinagar, Bengaluru – 560010<br />Karnataka, India</address><Link href="/#branches" className={styles.textLink}>Explore our branches <span aria-hidden="true">↗</span></Link></div></div>
+            <div className={styles.officeDetail} id="office-address"><span className={styles.icon}><Icon name="pin" /></span><div><h3>Our Office Address</h3><address><strong>Aryan Gold Buyers</strong><br />1, 2, 18th Cross Rd, opposite CET Cell,<br />Malleshwaram, Bengaluru,<br />Karnataka 560003</address><Link href="/#branches" className={styles.textLink}>Explore our branches <span aria-hidden="true">↗</span></Link></div></div>
             <div className={styles.officeDetail}><span className={styles.icon}><Icon name="clock" /></span><div><h3>Business Hours</h3><dl className={styles.hours}><dt>Monday – Saturday</dt><dd>10:00 AM – 7:00 PM</dd><dt>Sunday</dt><dd>10:00 AM – 5:00 PM</dd></dl></div></div>
             <div className={styles.visitCard}><Icon name="pin" /><span>A friendly face, close to you.<small>Visit a branch for a personal gold valuation.</small></span></div>
           </aside>
