@@ -90,6 +90,19 @@
 .filterActions button { height: 44px; padding: 0 16px; border: 1px solid var(--admin-border); border-radius: 999px; color: var(--admin-teal); background: var(--admin-cream); cursor: pointer; font-size: 12px; font-weight: 800; }
 .filterActions .filterButton { border-color: var(--admin-red); color: var(--admin-cream); background: var(--admin-red); }
 .tableWrap { width: 100%; overflow-x: auto; }
+.contactSummary { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; padding: 0 26px 22px; }
+.summaryCard { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; gap: 8px; padding: 16px; border: 1px solid var(--admin-border); border-top: 3px solid var(--admin-gold); border-radius: 12px; color: var(--admin-teal); background: var(--admin-cream); text-align: left; cursor: pointer; }
+.summaryCard > span { font-size: 11px; font-weight: 800; }
+.summaryCard strong { font-size: 28px; line-height: 1.1; }
+.summaryCard small { font-size: 10px; }
+.summaryCard > .summaryWeight { display: flex; flex-wrap: wrap; gap: 4px 8px; width: 100%; margin-top: 4px; padding-top: 10px; border-top: 1px solid var(--admin-border); font-size: 11px; font-weight: 400; }
+.summaryWeight b { font-weight: 800; }
+.summaryCard:hover:not(:disabled) { background: var(--admin-tint); }
+.summarySelected { border-color: var(--admin-teal); background: var(--admin-tint); box-shadow: inset 0 0 0 1px var(--admin-teal); }
+.summaryCard:focus-visible { outline: 2px solid var(--admin-red); outline-offset: 3px; }
+.summaryCard:disabled { opacity: .65; cursor: wait; }
+@media (max-width: 1150px) { .contactSummary { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .contactSummary { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0 22px 22px; } }
 .gclidButton { padding: 8px 12px; border: 1px solid var(--admin-border); border-radius: 8px; color: var(--admin-teal); background: var(--admin-cream); font-size: 11px; font-weight: 700; white-space: nowrap; cursor: pointer; }
 .gclidButton:hover { background: var(--admin-tint); }
 .gclidDialog { width: min(560px, calc(100vw - 32px)); max-height: calc(100dvh - 48px); margin: auto; padding: 0; overflow-y: auto; border: 1px solid var(--admin-border); border-top: 3px solid var(--admin-red); border-radius: 20px; color: var(--admin-ink); background: var(--admin-cream); box-shadow: var(--admin-shadow); }

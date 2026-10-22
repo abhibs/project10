@@ -3,8 +3,9 @@ import { ADMIN_SESSION_COOKIE, readAdminSession } from "@/lib/admin-session";
 import { getContacts, updateContact } from "@/lib/admin-db";
 import { resolveContactFilters } from "@/lib/contact-filters.mjs";
 import { isAllowedBranchOrigin } from "@/lib/branch-origin.mjs";
+import { CONTACT_FORM_TYPES, countContactTypes, sumContactWeights } from "@/lib/contact-summary.mjs";
 
-const BUSINESS_TYPES = new Set(["Branch Visit", "Doorstep Service", "Quick Contact", "Contact Page", "Banner Form", "Sell Gold", "Release Pledged Gold", "Doorstep Valuation"]);
+const BUSINESS_TYPES = new Set(CONTACT_FORM_TYPES);
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 
 export async function PATCH(request) {
@@ -60,7 +61,12 @@ export async function GET(request) {
   }
 
   try {
-    return Response.json({ contacts: await getContacts({ fromDate, toDate, businessType }) });
+    const allContacts = await getContacts({ fromDate, toDate });
+    return Response.json({
+      contacts: businessType ? allContacts.filter((contact) => contact.businessType === businessType) : allContacts,
+      counts: countContactTypes(allContacts), total: allContacts.length,
+      ...sumContactWeights(allContacts),
+    });
   } catch (error) {
     console.error("Unable to load contacts:", error);
     return Response.json({ message: "Unable to load contacts." }, { status: 500 });

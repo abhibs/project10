@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { resolveContactFilters } from "@/lib/contact-filters.mjs";
+import { CONTACT_FORM_TYPES } from "@/lib/contact-summary.mjs";
 import styles from "./page.module.css";
 
 function displayService(contact) {
@@ -95,6 +96,7 @@ export default function ContactsTable() {
   const [filters, setFilters] = useState(() => resolveContactFilters());
   const [appliedFilters, setAppliedFilters] = useState(filters);
   const [contacts, setContacts] = useState([]);
+  const [summary, setSummary] = useState({ counts: {}, total: 0, weights: {}, totalWeight: 0 });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [requestVersion, setRequestVersion] = useState(0);
@@ -173,7 +175,10 @@ export default function ContactsTable() {
         if (!response.ok) throw new Error(data.message || "Unable to load contacts.");
         return data;
       })
-      .then((data) => setContacts(data.contacts))
+      .then((data) => {
+        setContacts(data.contacts);
+        setSummary({ counts: data.counts, total: data.total, weights: data.weights, totalWeight: data.totalWeight });
+      })
       .catch((loadError) => {
         if (loadError.name !== "AbortError") setError(loadError.message || "Unable to load contacts.");
       })
@@ -207,6 +212,15 @@ export default function ContactsTable() {
     setRequestVersion((version) => version + 1);
   }
 
+  function selectFormType(businessType) {
+    const nextFilters = { ...appliedFilters, businessType };
+    setFilters(nextFilters);
+    setAppliedFilters(nextFilters);
+    setLoading(true);
+    setError("");
+    setRequestVersion((version) => version + 1);
+  }
+
   return (
     <article className={styles.contactsPanel}>
       <div className={styles.panelHeading}>
@@ -221,6 +235,12 @@ export default function ContactsTable() {
         <div className={styles.filterActions}><button className={styles.filterButton} type="submit">Filter</button><button type="button" onClick={clearFilters}>Clear</button></div>
       </form>
 
+      <div className={styles.contactSummary} role="group" aria-label="Lead counts by form type for the selected dates">
+        {[["", "All form types"], ...CONTACT_FORM_TYPES.map((type) => [type, type])].map(([type, label]) => <button key={type} type="button" className={`${styles.summaryCard} ${appliedFilters.businessType === type ? styles.summarySelected : ""}`} aria-pressed={appliedFilters.businessType === type} disabled={loading} onClick={() => selectFormType(type)}>
+          <span>{label}</span><strong>{loading ? "…" : type ? summary.counts[type] || 0 : summary.total}</strong><small>{type ? "leads" : "total leads"}</small>
+          <span className={styles.summaryWeight}>Total weight <b>{loading ? "…" : `${Number(type ? summary.weights?.[type] || 0 : summary.totalWeight || 0).toLocaleString("en-IN", { maximumFractionDigits: 2 })} g`}</b></span>
+        </button>)}
+      </div>
       {error && <p className={styles.tableError} role="alert">{error}</p>}
       <div className={styles.exportToolbar}>
         <div className={styles.exportButtons} role="group" aria-label="Export contact requests">
