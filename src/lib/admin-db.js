@@ -1,5 +1,6 @@
 import mysql from "mysql2/promise";
 import { SEO_FIELDS } from "./seo-fields.mjs";
+import { uniqueDailyContacts } from "./contact-leads.mjs";
 
 export async function getSeoPages() {
   const [rows] = await getPool().execute("SELECT * FROM seo_pages ORDER BY route_path <> '*', id");
@@ -237,7 +238,7 @@ export async function getContacts({ fromDate = "", toDate = "", businessType = "
     values
   );
 
-  return rows.map((row) => ({
+  return uniqueDailyContacts(rows).map((row) => ({
     ...row,
     weight: row.weight === null ? null : Number(row.weight),
   }));

@@ -103,6 +103,9 @@
 .contactsTable tbody tr:hover { background: var(--admin-tint); }
 .contactsTable tbody .commentedRow { background: #edf1eb; }
 .contactsTable tbody .commentedRow:hover { background: #e3eade; }
+.completionCheckbox { display: inline-flex; align-items: center; gap: 8px; padding: 5px 0; color: var(--admin-teal); font-weight: 700; white-space: nowrap; cursor: pointer; }
+.completionCheckbox input { width: 17px; height: 17px; accent-color: var(--admin-teal); cursor: pointer; }
+.completionCheckbox input:disabled { cursor: wait; }
 .statusToggle { display: inline-flex; align-items: center; gap: 8px; padding: 5px 0; border: 0; color: var(--admin-teal); background: transparent; cursor: pointer; font: inherit; font-weight: 700; white-space: nowrap; }
 .switchTrack { display: flex; align-items: center; width: 34px; height: 20px; padding: 3px; border-radius: 20px; background: #87968f; }
 .switchTrack > span { width: 14px; height: 14px; border-radius: 50%; background: white; transition: transform .15s; }

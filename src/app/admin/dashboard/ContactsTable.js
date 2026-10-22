@@ -48,9 +48,10 @@ function ContactControls({ contact, onSaved }) {
 
   return <>
     <td>
-      <button type="button" role="switch" aria-checked={active} aria-label={`Active status for ${contact.name}`} className={`${styles.statusToggle} ${active ? styles.statusActive : ""}`} disabled={saving} onClick={() => save({ status: active ? "inactive" : "active" })}>
-        <span className={styles.switchTrack} aria-hidden="true"><span /></span>{active ? "Active" : "Inactive"}
-      </button>
+      <label className={styles.completionCheckbox}>
+        <input type="checkbox" checked={active} aria-label={`Completed for ${contact.name}`} disabled={saving} onChange={(event) => save({ status: event.target.checked ? "active" : "inactive" })} />
+        <span>{active ? "Completed" : "Pending"}</span>
+      </label>
     </td>
     <td className={styles.commentCell}>
       <form onSubmit={(event) => { event.preventDefault(); save({ comment: draft }); }}>
@@ -85,7 +86,7 @@ export default function ContactsTable() {
       contact.weight ? `${contact.weight} g` : "—", displayDate(contact.preferredDate),
       displayTime(contact.preferredTime), contact.businessType === "Banner Form" ? "—" : contact.services || "—",
       ...["gclid", "utmSource", "utmCampaign", "keyword", "adgroupId"].map((field) => contact[field] || "-"),
-      contact.status === "active" ? "Active" : "Inactive", contact.comment || "",
+      contact.status === "active" ? "Completed" : "Pending", contact.comment || "",
     ]);
     // Prevent user-entered values from becoming spreadsheet formulas.
     const safeText = (value) => {
