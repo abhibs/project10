@@ -1,7 +1,9 @@
 import { createContact } from "@/lib/admin-db";
+import { SERVICE_PAGES } from "@/lib/service-pages.mjs";
 
 const APPOINTMENT_TYPES = new Set(["Branch Visit", "Doorstep Service"]);
-const BUSINESS_TYPES = new Set([...APPOINTMENT_TYPES, "Quick Contact", "Contact Page", "Banner Form"]);
+const SERVICE_TYPES = new Set(Object.values(SERVICE_PAGES).map((service) => service.title));
+const BUSINESS_TYPES = new Set([...APPOINTMENT_TYPES, ...SERVICE_TYPES, "Quick Contact", "Contact Page", "Banner Form"]);
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 const TIME_PATTERN = /^(?:[01]\d|2[0-3]):[0-5]\d(?:-(?:[01]\d|2[0-3]):[0-5]\d)?$/;
 const MOBILE_PATTERN = /^\d{10}$/;
@@ -32,6 +34,10 @@ export async function POST(request) {
     const banner = businessType === "Banner Form";
     const contactPage = businessType === "Contact Page";
     const scheduled = appointment || contactPage;
+    const servicePage = SERVICE_TYPES.has(businessType);
+    const pledged = businessType === "Release Pledged Gold";
+    const releaseBank = pledged ? clean(body.releaseBank) : "";
+    const releasePlace = pledged ? clean(body.releasePlace) : "";
     const rawWeight = body.weight === "" || body.weight === null || body.weight === undefined
       ? null
       : Number(body.weight);
@@ -42,15 +48,19 @@ export async function POST(request) {
     if (scheduled && (!city || !isRealDate(preferredDate) || !TIME_PATTERN.test(preferredTime))) {
       return Response.json({ message: "Please complete the appointment details." }, { status: 400 });
     }
-    if ((banner && rawWeight === null) || (rawWeight !== null && (!Number.isFinite(rawWeight) || rawWeight <= 0 || rawWeight > 100000))) {
+    if (((banner || servicePage) && rawWeight === null) || (rawWeight !== null && (!Number.isFinite(rawWeight) || rawWeight <= 0 || rawWeight > 100000))) {
       return Response.json({ message: "Please enter a valid gold weight." }, { status: 400 });
+    }
+    if (pledged && (!releaseBank || !releasePlace)) {
+      return Response.json({ message: "Please enter the release bank and place." }, { status: 400 });
     }
 
     const id = await createContact({
       name,
       mobile,
       city,
-      weight: scheduled || banner ? rawWeight : null,
+      weight: scheduled || banner || servicePage ? rawWeight : null,
+      releaseBank, releasePlace,
       preferredDate: scheduled ? preferredDate : "",
       preferredTime: scheduled ? preferredTime : "",
       services,

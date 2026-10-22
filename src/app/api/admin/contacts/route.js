@@ -4,7 +4,7 @@ import { getContacts, updateContact } from "@/lib/admin-db";
 import { resolveContactFilters } from "@/lib/contact-filters.mjs";
 import { isAllowedBranchOrigin } from "@/lib/branch-origin.mjs";
 
-const BUSINESS_TYPES = new Set(["Branch Visit", "Doorstep Service", "Quick Contact", "Contact Page", "Banner Form"]);
+const BUSINESS_TYPES = new Set(["Branch Visit", "Doorstep Service", "Quick Contact", "Contact Page", "Banner Form", "Sell Gold", "Release Pledged Gold", "Doorstep Valuation"]);
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 
 export async function PATCH(request) {

@@ -186,12 +186,13 @@ export async function createContact({
   services,
   businessType,
   gclid, utmSource, utmCampaign, keyword, adgroupId,
+  releaseBank = "", releasePlace = "",
 }) {
   const [result] = await executeContactQuery(
     `INSERT INTO contacts
       (name, mobile, city, weight, preffered_date, preffered_time, services, business_type,
-       gclid, utm_source, utm_campaign, keyword, adgroup_id)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+       gclid, utm_source, utm_campaign, keyword, adgroup_id, release_bank, release_place)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     [
       name,
       mobile,
@@ -202,6 +203,7 @@ export async function createContact({
       services,
       businessType,
       gclid || null, utmSource || null, utmCampaign || null, keyword || null, adgroupId || null,
+      releaseBank || null, releasePlace || null,
     ]
   );
 
@@ -227,7 +229,7 @@ export async function getContacts({ fromDate = "", toDate = "", businessType = "
 
   const where = conditions.length ? `WHERE ${conditions.join(" AND ")}` : "";
   const [rows] = await executeContactQuery(
-    `SELECT id, name, mobile, city, weight, status, comment,
+    `SELECT id, name, mobile, city, weight, status, comment, release_bank AS releaseBank, release_place AS releasePlace,
        DATE_FORMAT(preffered_date, '%Y-%m-%d') AS preferredDate,
        preffered_time AS preferredTime, services, business_type AS businessType,
        gclid, utm_source AS utmSource, utm_campaign AS utmCampaign, keyword, adgroup_id AS adgroupId,

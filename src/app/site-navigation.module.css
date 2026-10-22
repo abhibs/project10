@@ -5,7 +5,7 @@
 .parentLink button:focus-visible { outline: 2px solid #d7a82a; outline-offset: 2px; border-radius: 4px; }
 .submenu { position: absolute; top: 100%; left: -14px; min-width: 215px; padding: 15px 14px; border: 1px solid #e9dfca; border-radius: 8px; background: #fffaf2; box-shadow: 0 10px 24px #14373222; z-index: 20; }
 .submenu[hidden] { display: none; }
-.submenu a { display: block; padding: 5px 0; }
+.submenu a { display: block; padding: 10px 0; }
 @media (max-width: 1050px) {
   .dropdown { width: 100%; }
   .parentLink { justify-content: space-between; }

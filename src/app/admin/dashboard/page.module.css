@@ -90,6 +90,12 @@
 .filterActions button { height: 44px; padding: 0 16px; border: 1px solid var(--admin-border); border-radius: 999px; color: var(--admin-teal); background: var(--admin-cream); cursor: pointer; font-size: 12px; font-weight: 800; }
 .filterActions .filterButton { border-color: var(--admin-red); color: var(--admin-cream); background: var(--admin-red); }
 .tableWrap { width: 100%; overflow-x: auto; }
+.gclidButton { padding: 8px 12px; border: 1px solid var(--admin-border); border-radius: 8px; color: var(--admin-teal); background: var(--admin-cream); font-size: 11px; font-weight: 700; white-space: nowrap; cursor: pointer; }
+.gclidButton:hover { background: var(--admin-tint); }
+.gclidDialog { width: min(560px, calc(100vw - 32px)); max-height: calc(100dvh - 48px); margin: auto; padding: 0; overflow-y: auto; border: 1px solid var(--admin-border); border-top: 3px solid var(--admin-red); border-radius: 20px; color: var(--admin-ink); background: var(--admin-cream); box-shadow: var(--admin-shadow); }
+.gclidDialog::backdrop { background: rgba(0, 60, 56, .55); backdrop-filter: blur(3px); }
+.gclidContent { padding: 26px; }
+.gclidValue { padding: 16px; border: 1px solid var(--admin-border); border-radius: 10px; background: var(--admin-tint); font: 13px/1.8 monospace; overflow-wrap: anywhere; user-select: text; }
 .exportToolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; padding: 0 26px 20px; }
 .exportButtons { display: flex; gap: 8px; }
 .exportButtons button { padding: 10px 18px; border: 1px solid var(--admin-teal); border-radius: 8px; color: var(--admin-teal); background: var(--admin-cream); cursor: pointer; font-size: 12px; font-weight: 800; }

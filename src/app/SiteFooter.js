@@ -13,8 +13,9 @@ export default function SiteFooter({ homePage = false }) {
         </div>
         <div>
           <h4>Services</h4>
-          <Link href="/services">Sell Gold</Link>
-          <Link href={`${home}#booking`}>Release Pledged Gold</Link>
+          <Link href="/services/sell-gold">Sell Gold</Link>
+          <Link href="/services/release-pledged-gold">Release Pledged Gold</Link>
+          <Link href="/services/doorstep-valuation">Doorstep Valuation</Link>
           <Link href="/gold-rate-calculation">Gold Calculator</Link>
           <Link href={`${home}#booking`}>Book Valuation</Link>
         </div>

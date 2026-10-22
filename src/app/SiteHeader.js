@@ -5,10 +5,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Brand from "./Brand";
 import styles from "./site-navigation.module.css";
+import { SERVICE_PAGES } from "@/lib/service-pages.mjs";
 
 export default function SiteHeader({ progressRef }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [goldMenuOpen, setGoldMenuOpen] = useState(false);
+  const [openSubmenu, setOpenSubmenu] = useState(null);
   const pathname = usePathname();
   const innerPage = pathname !== "/";
   const home = innerPage ? "/" : "";
@@ -21,7 +22,7 @@ export default function SiteHeader({ progressRef }) {
         <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="main-nav" aria-label={menuOpen ? "Close menu" : "Open menu"}>
           <span /><span /><span />
         </button>
-        <nav className={`main-nav${menuOpen ? " open" : ""}`} onClick={(event) => { if (event.target.closest("a")) { setMenuOpen(false); setGoldMenuOpen(false); } }} onKeyDown={(event) => { if (event.key === "Escape") { setMenuOpen(false); setGoldMenuOpen(false); } }} id="main-nav" aria-label="Primary navigation">
+        <nav className={`main-nav${menuOpen ? " open" : ""}`} onClick={(event) => { if (event.target.closest("a")) { setMenuOpen(false); setOpenSubmenu(null); } }} onKeyDown={(event) => { if (event.key === "Escape") { setMenuOpen(false); setOpenSubmenu(null); } }} id="main-nav" aria-label="Primary navigation">
           {[
             ["/about-us", "About Us"],
             ["/gold-rate", "Gold Rate"],
@@ -29,13 +30,13 @@ export default function SiteHeader({ progressRef }) {
             ["/branches", "Branches"],
             ["/contact-us", "Contact Us"],
           ].map(([href, label]) => (
-            href === "/gold-rate" ? <div key={href} className={styles.dropdown} onMouseEnter={() => setGoldMenuOpen(true)} onMouseLeave={() => setGoldMenuOpen(false)} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setGoldMenuOpen(false); }}>
+            ["/gold-rate", "/services"].includes(href) ? <div key={href} className={styles.dropdown} onMouseEnter={() => setOpenSubmenu(href)} onMouseLeave={() => setOpenSubmenu(null)} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setOpenSubmenu(null); }}>
               <div className={styles.parentLink}>
                 <Link href={href} aria-current={pathname === href ? "page" : undefined}>{label}</Link>
-                <button type="button" aria-label="Gold Rate submenu" aria-expanded={goldMenuOpen} aria-controls="gold-rate-submenu" onClick={() => setGoldMenuOpen((open) => !open)}><span aria-hidden="true">⌄</span></button>
+                <button type="button" aria-label={`${label} submenu`} aria-expanded={openSubmenu === href} aria-controls={`${href.slice(1)}-submenu`} onClick={() => setOpenSubmenu((open) => open === href ? null : href)}><span aria-hidden="true">⌄</span></button>
               </div>
-              <div id="gold-rate-submenu" className={styles.submenu} hidden={!goldMenuOpen}>
-                <Link href="/gold-rate-calculation" aria-current={pathname === "/gold-rate-calculation" ? "page" : undefined}>Gold Rate Calculation</Link>
+              <div id={`${href.slice(1)}-submenu`} className={styles.submenu} hidden={openSubmenu !== href}>
+                {(href === "/services" ? Object.entries(SERVICE_PAGES).map(([slug, service]) => [`/services/${slug}`, service.title]) : [["/gold-rate-calculation", "Gold Rate Calculation"]]).map(([url, title]) => <Link key={url} href={url} aria-current={pathname === url ? "page" : undefined}>{title}</Link>)}
               </div>
             </div> : <Link key={href} href={href} aria-current={pathname === href ? "page" : undefined}>{label}</Link>
           ))}
