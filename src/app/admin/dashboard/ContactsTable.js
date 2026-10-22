@@ -27,6 +27,62 @@ export default function ContactsTable() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [requestVersion, setRequestVersion] = useState(0);
+  const [exporting, setExporting] = useState(false);
+  const [exportMessage, setExportMessage] = useState("");
+
+  async function exportContacts(format) {
+    setExporting(true);
+    setExportMessage("");
+    const headers = ["#", "Date", "Time (IST)", "Form type", "Name", "Mobile", "City", "Weight", "Preferred date", "Preferred time", "Service / Help with", "GCLID", "UTM Source", "UTM Campaign", "Keyword", "Adgroup ID"];
+    const rows = contacts.map((contact, index) => [
+      index + 1, displayDate(contact.submittedDate), displayTime(contact.submittedTime),
+      contact.businessType, contact.name, contact.mobile, contact.city || "—",
+      contact.weight ? `${contact.weight} g` : "—", displayDate(contact.preferredDate),
+      displayTime(contact.preferredTime), contact.businessType === "Banner Form" ? "—" : contact.services || "—",
+      ...["gclid", "utmSource", "utmCampaign", "keyword", "adgroupId"].map((field) => contact[field] || "-"),
+    ]);
+    // Prevent user-entered values from becoming spreadsheet formulas.
+    const safeText = (value) => {
+      const text = String(value ?? "");
+      return /^[\s]*[=+@-]/.test(text) ? `'${text}` : text;
+    };
+    try {
+      if (format === "copy") {
+        const text = [headers, ...rows].map((row) => row.map((value) => safeText(value).replace(/[\t\r\n]+/g, " ")).join("\t")).join("\r\n");
+        await navigator.clipboard.writeText(text);
+        setExportMessage(`${contacts.length} records copied to clipboard.`);
+        return;
+      }
+      let blob;
+      if (format === "csv") {
+        const csv = [headers, ...rows].map((row) => row.map((value) => `"${safeText(value).replace(/"/g, '""')}"`).join(",")).join("\r\n");
+        blob = new Blob(["\uFEFF", csv], { type: "text/csv;charset=utf-8" });
+      } else {
+        const { default: ExcelJS } = await import("exceljs");
+        const workbook = new ExcelJS.Workbook();
+        const sheet = workbook.addWorksheet("Contact requests");
+        sheet.addRows([headers, ...rows.map((row) => row.map((value) => String(value ?? "")))]);
+        sheet.getRow(1).font = { bold: true };
+        sheet.columns.forEach((column, index) => { column.width = index === 11 ? 50 : 22; });
+        sheet.views = [{ state: "frozen", ySplit: 1 }];
+        sheet.autoFilter = { from: "A1", to: "P1" };
+        blob = new Blob([await workbook.xlsx.writeBuffer()], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+      }
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `contact-requests-${appliedFilters.fromDate}-${appliedFilters.toDate}.${format === "csv" ? "csv" : "xlsx"}`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      setExportMessage(`${format === "csv" ? "CSV" : "Excel"} download ready: ${contacts.length} records.`);
+    } catch {
+      setExportMessage(format === "copy" ? "Unable to copy. Check clipboard permissions or download CSV or Excel instead." : "Unable to export contacts. Please try again.");
+    } finally {
+      setExporting(false);
+    }
+  }
 
   useEffect(() => {
     const controller = new AbortController();
@@ -90,6 +146,14 @@ export default function ContactsTable() {
       </form>
 
       {error && <p className={styles.tableError} role="alert">{error}</p>}
+      <div className={styles.exportToolbar}>
+        <div className={styles.exportButtons} role="group" aria-label="Export contact requests">
+          <button type="button" disabled={loading || exporting || !contacts.length} onClick={() => exportContacts("copy")}>Copy</button>
+          <button type="button" disabled={loading || exporting || !contacts.length} onClick={() => exportContacts("csv")}>CSV</button>
+          <button type="button" disabled={loading || exporting || !contacts.length} onClick={() => exportContacts("excel")}>Excel</button>
+        </div>
+        <span className={styles.exportStatus} role="status">{exporting ? "Preparing export…" : exportMessage}</span>
+      </div>
       <div className={styles.tableWrap}>
         <table className={styles.contactsTable}>
           <thead><tr><th>#</th><th>Date</th><th>Time (IST)</th><th>Form type</th><th>Name</th><th>Mobile</th><th>City</th><th>Weight</th><th>Preferred date</th><th>Preferred time</th><th>Service / Help with</th><th>GCLID</th><th>UTM Source</th><th>UTM Campaign</th><th>Keyword</th><th>Adgroup ID</th></tr></thead>

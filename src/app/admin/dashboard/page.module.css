@@ -90,6 +90,13 @@
 .filterActions button { height: 44px; padding: 0 16px; border: 1px solid var(--admin-border); border-radius: 999px; color: var(--admin-teal); background: var(--admin-cream); cursor: pointer; font-size: 12px; font-weight: 800; }
 .filterActions .filterButton { border-color: var(--admin-red); color: var(--admin-cream); background: var(--admin-red); }
 .tableWrap { width: 100%; overflow-x: auto; }
+.exportToolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; padding: 0 26px 20px; }
+.exportButtons { display: flex; gap: 8px; }
+.exportButtons button { padding: 10px 18px; border: 1px solid var(--admin-teal); border-radius: 8px; color: var(--admin-teal); background: var(--admin-cream); cursor: pointer; font-size: 12px; font-weight: 800; }
+.exportButtons button:hover:not(:disabled) { color: var(--admin-cream); background: var(--admin-teal); }
+.exportButtons button:focus-visible { outline: 2px solid var(--admin-red); outline-offset: 3px; }
+.exportButtons button:disabled { opacity: .45; cursor: not-allowed; }
+.exportStatus { color: var(--admin-teal); font-size: 12px; }
 .contactsTable { width: 100%; min-width: 1240px; border-collapse: collapse; font-size: 12px; }
 .contactsTable th { padding: 16px 12px; border-bottom: 1px solid var(--admin-gold); color: var(--admin-cream); background: var(--admin-teal); font-size: 10px; letter-spacing: .04em; text-align: left; text-transform: uppercase; white-space: nowrap; }
 .contactsTable td { padding: 16px 12px; border-bottom: 1px solid var(--admin-border); vertical-align: top; }
