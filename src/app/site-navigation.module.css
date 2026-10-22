@@ -1,0 +1,13 @@
+.dropdown { position: relative; }
+.parentLink { display: flex; align-items: center; gap: 3px; }
+.parentLink button { display: grid; place-items: center; width: 26px; height: 30px; padding: 0; border: 0; color: #165d58; background: transparent; cursor: pointer; font-size: 19px; }
+.parentLink button > span { display: block; width: 7px; height: 7px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; font-size: 0; transform: translateY(-2px) rotate(45deg); }
+.parentLink button:focus-visible { outline: 2px solid #d7a82a; outline-offset: 2px; border-radius: 4px; }
+.submenu { position: absolute; top: 100%; left: -14px; min-width: 215px; padding: 15px 14px; border: 1px solid #e9dfca; border-radius: 8px; background: #fffaf2; box-shadow: 0 10px 24px #14373222; z-index: 20; }
+.submenu[hidden] { display: none; }
+.submenu a { display: block; padding: 5px 0; }
+@media (max-width: 1050px) {
+  .dropdown { width: 100%; }
+  .parentLink { justify-content: space-between; }
+  .submenu { position: static; margin-top: 10px; padding: 10px 16px; box-shadow: none; }
+}

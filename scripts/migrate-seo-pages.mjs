@@ -13,8 +13,7 @@ const pages = [
   ["Contact us", "/contact-us", "src/app/contact-us/page.js"],
   ["Branches", "/branches", "src/app/(informational)/branches/page.js"],
   ["Gold rate", "/gold-rate", "src/app/(informational)/gold-rate/page.js"],
-  ["Gold calculator", "/calculator", "src/app/calculator/page.js"],
-  ["Gold rate calculation", "/gold-rate-calculation", "src/app/calculator/page.js"],
+  ["Gold rate calculation", "/gold-rate-calculation", "src/app/gold-rate-calculation/page.js"],
 ];
 
 let connection;

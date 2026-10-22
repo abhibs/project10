@@ -6,6 +6,5 @@ export const SEO_KEYWORDS = {
   "/contact-us": "contact Aryan Gold Buyers, Aryan Gold Buyers corporate office, Aryan Gold Buyers Malleshwaram, gold buyers Malleshwaram, gold valuation appointment, gold buyers contact number",
   "/branches": "Aryan Gold Buyers near me, gold buyers near me, nearest gold buyers, Aryan Gold Buyers branches, gold buyers Bengaluru, gold buyers Malleshwaram, gold buying company near me",
   "/gold-rate": "gold rate today, gold price today Bengaluru, 24 karat gold rate, 22 karat gold rate, 18 karat gold rate, gold selling price today, Aryan Gold Buyers gold rate",
-  "/calculator": "gold value calculator, gold price calculator, gold weight calculator, gold selling price calculator, calculate gold value, 24 karat gold calculator, Aryan Gold Buyers calculator",
   "/gold-rate-calculation": "gold rate calculation, how to calculate gold value, gold purity calculation, gold price per gram, gold valuation calculator, gold selling value calculation",
 };
