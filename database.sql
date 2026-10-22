@@ -103,6 +103,8 @@ CREATE TABLE `contacts` (
   `utm_campaign` varchar(255) DEFAULT NULL,
   `keyword` varchar(255) DEFAULT NULL,
   `adgroup_id` varchar(255) DEFAULT NULL,
+  `status` enum('active','inactive') NOT NULL DEFAULT 'inactive',
+  `comment` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

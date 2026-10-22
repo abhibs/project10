@@ -2,6 +2,10 @@
 
 import { getContactAttribution } from "@/lib/contact-attribution.mjs";
 
+import FormToast from "./FormToast";
+import SubmitLabel from "./SubmitLabel";
+import { submitContactRequest } from "@/lib/submit-contact.mjs";
+
 import ServicesSection from "./ServicesSection";
 import GoldRateSection from "./GoldRateSection";
 import SiteHeader from "./SiteHeader";
@@ -82,7 +86,8 @@ export default function GoldHomepage() {
   const [serviceMode, setServiceMode] = useState("Branch Visit");
   const [messages, setMessages] = useState({booking: "", contact: "", banner: ""});
   const [submitting, setSubmitting] = useState({booking: false, contact: false, banner: false});
-  const [toast, setToast] = useState("");
+  const [toast, setToast] = useState(null);
+  const closeToast = useCallback(() => setToast(null), []);
   const [minimumDate, setMinimumDate] = useState("");
   const [loading, setLoading] = useState(false);
   const [live, setLive] = useState(false);
@@ -173,11 +178,6 @@ export default function GoldHomepage() {
     };
   }, []);
 
-  useEffect(() => {
-    if (!toast) return;
-    const timer = setTimeout(() => setToast(""), 5000);
-    return () => clearTimeout(timer);
-  }, [toast]);
 
   function keepNameCharacters(event) {
     event.currentTarget.value = event.currentTarget.value.replace(/[^\p{L}\s]/gu, "");
@@ -211,19 +211,14 @@ export default function GoldHomepage() {
     setMessages((previous) => ({...previous, [kind]: ""}));
     setSubmitting((previous) => ({...previous, [kind]: true}));
     try {
-      const response = await fetch("/api/contacts", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(payload),
-      });
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.message || "Unable to submit your request.");
+      const data = await submitContactRequest(payload);
 
-      setMessages((previous) => ({...previous, [kind]: kind === "banner" ? data.message : ""}));
-      setToast(data.message);
+      setMessages((previous) => ({...previous, [kind]: data.message}));
+      setToast({ message: data.message, error: false });
       form.reset();
       if (kind === "booking") setServiceMode("Branch Visit");
     } catch (error) {
+      setToast({ message: error.message || "Unable to submit your request. Please try again.", error: true });
       setMessages((previous) => ({...previous, [kind]: error.message || "Unable to submit your request. Please try again."}));
     } finally {
       submitLock.current[kind] = false;
@@ -276,7 +271,7 @@ export default function GoldHomepage() {
             <input id="banner-consent" name="consent" type="checkbox" defaultChecked required />
             <span>I authorise Aryan Gold to contact me.</span>
           </label>
-          <button className="banner-submit" type="submit" disabled={submitting.banner}>{submitting.banner ? "Submitting…" : "Get Free Valuation"}<span aria-hidden="true">→</span></button>
+          <button className="banner-submit" type="submit" disabled={submitting.banner}><SubmitLabel loading={submitting.banner}>Get Free Valuation</SubmitLabel><span aria-hidden="true">→</span></button>
           <p className="banner-form-note">Free valuation. No obligation to sell.</p>
           <p className="banner-form-message" role="status" aria-live="polite">{messages.banner}</p>
         </form>
@@ -389,7 +384,7 @@ export default function GoldHomepage() {
           <div className="booking-note"><span>✓</span><div><strong>Your privacy matters</strong><small>Use only the details needed to arrange your appointment.</small></div></div>
         </div>
 
-        <form className="form-card reveal delay-1" id="booking-form" onSubmit={(event) => submitContact(event, "booking")}>
+        <form className="form-card reveal delay-1" id="booking-form" aria-busy={submitting.booking} onSubmit={(event) => submitContact(event, "booking")}>
           <div className="booking-form-intro">
             <div>
               <span className="booking-form-kicker">YOUR APPOINTMENT</span>
@@ -412,7 +407,7 @@ export default function GoldHomepage() {
           </div>
           <label className="field"><span>Service required</span><select name="services" required><option>Sell Gold for Cash</option><option>Release Pledged Gold</option><option>Gold Valuation Only</option><option>Other / Need Guidance</option></select></label>
           <label className="consent"><input type="checkbox" required /><span>I agree to be contacted by Aryan Gold regarding this request.</span></label>
-          <button className="btn btn-gold btn-block" type="submit" disabled={submitting.booking}>{submitting.booking ? "Submitting…" : "Request Appointment"}</button>
+          <button className="btn btn-gold btn-block" type="submit" disabled={submitting.booking}><SubmitLabel loading={submitting.booking}>Request Appointment</SubmitLabel></button>
           <p className="form-message" id="booking-message" role="status">{messages.booking}</p>
         </form>
       </div>
@@ -425,7 +420,7 @@ export default function GoldHomepage() {
   <div className="floating-actions" aria-label="Quick actions">
     <a href="#booking" className="float-btn gold" aria-label="Book valuation">₹</a>
   </div>
-  {toast && <div className="contact-toast" role="status" aria-live="polite"><span>✓</span><p>{toast}</p><button type="button" onClick={() => setToast("")} aria-label="Close notification">×</button></div>}
+  <FormToast notification={toast} onClose={closeToast} />
     </div>
   );
 }

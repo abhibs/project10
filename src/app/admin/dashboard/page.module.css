@@ -101,6 +101,21 @@
 .contactsTable th { padding: 16px 12px; border-bottom: 1px solid var(--admin-gold); color: var(--admin-cream); background: var(--admin-teal); font-size: 10px; letter-spacing: .04em; text-align: left; text-transform: uppercase; white-space: nowrap; }
 .contactsTable td { padding: 16px 12px; border-bottom: 1px solid var(--admin-border); vertical-align: top; }
 .contactsTable tbody tr:hover { background: var(--admin-tint); }
+.contactsTable tbody .commentedRow { background: #edf1eb; }
+.contactsTable tbody .commentedRow:hover { background: #e3eade; }
+.statusToggle { display: inline-flex; align-items: center; gap: 8px; padding: 5px 0; border: 0; color: var(--admin-teal); background: transparent; cursor: pointer; font: inherit; font-weight: 700; white-space: nowrap; }
+.switchTrack { display: flex; align-items: center; width: 34px; height: 20px; padding: 3px; border-radius: 20px; background: #87968f; }
+.switchTrack > span { width: 14px; height: 14px; border-radius: 50%; background: white; transition: transform .15s; }
+.statusActive .switchTrack { background: var(--admin-teal); }
+.statusActive .switchTrack > span { transform: translateX(14px); }
+.statusToggle:focus-visible { outline: 2px solid var(--admin-red); outline-offset: 4px; }
+.statusToggle:disabled { opacity: .6; cursor: wait; }
+.commentCell { min-width: 260px; }
+.commentCell textarea { display: block; width: 100%; min-width: 230px; padding: 8px; border: 1px solid var(--admin-border); border-radius: 8px; color: var(--admin-ink); background: var(--admin-cream); font: inherit; resize: vertical; }
+.commentCell form > div { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.commentCell button { padding: 6px 10px; border: 1px solid var(--admin-border); border-radius: 8px; color: var(--admin-teal); background: var(--admin-cream); cursor: pointer; font-size: 11px; font-weight: 700; }
+.commentCell button:disabled { opacity: .5; cursor: default; }
+.commentCell form > div > span { max-width: 240px; font-size: 11px; }
 .noWrap { white-space: nowrap; }
 .typeBadge { display: inline-block; padding: 6px 9px; border-radius: 999px; color: var(--admin-cream); background: var(--admin-teal); font-size: 10px; font-weight: 700; white-space: nowrap; }
 .quickBadge { color: var(--admin-ink); background: var(--admin-gold); }

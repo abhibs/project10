@@ -226,7 +226,7 @@ export async function getContacts({ fromDate = "", toDate = "", businessType = "
 
   const where = conditions.length ? `WHERE ${conditions.join(" AND ")}` : "";
   const [rows] = await executeContactQuery(
-    `SELECT id, name, mobile, city, weight,
+    `SELECT id, name, mobile, city, weight, status, comment,
        DATE_FORMAT(preffered_date, '%Y-%m-%d') AS preferredDate,
        preffered_time AS preferredTime, services, business_type AS businessType,
        gclid, utm_source AS utmSource, utm_campaign AS utmCampaign, keyword, adgroup_id AS adgroupId,
@@ -241,4 +241,13 @@ export async function getContacts({ fromDate = "", toDate = "", businessType = "
     ...row,
     weight: row.weight === null ? null : Number(row.weight),
   }));
+}
+
+export async function updateContact(id, changes) {
+  const fields = Object.keys(changes);
+  const [result] = await executeContactQuery(
+    `UPDATE contacts SET ${fields.map((field) => `\`${field}\` = ?`).join(", ")} WHERE id = ?`,
+    [...fields.map((field) => changes[field]), id],
+  );
+  return result.affectedRows > 0;
 }

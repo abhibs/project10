@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { resolveContactFilters } from "@/lib/contact-filters.mjs";
 import styles from "./page.module.css";
 
@@ -20,6 +20,47 @@ function displayTime(value) {
   }).join(" – ");
 }
 
+function ContactControls({ contact, onSaved }) {
+  const [draft, setDraft] = useState(contact.comment || "");
+  const [saving, setSaving] = useState(false);
+  const [message, setMessage] = useState("");
+  const lock = useRef(false);
+  const active = contact.status === "active";
+
+  async function save(changes) {
+    if (lock.current) return;
+    lock.current = true;
+    setSaving(true);
+    setMessage("");
+    try {
+      const response = await fetch("/api/admin/contacts", {
+        method: "PATCH", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: Number(contact.id), ...changes }),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || "Unable to save changes.");
+      onSaved(contact.id, data.changes);
+      if (changes.comment !== undefined) setDraft(data.changes.comment);
+      setMessage("Saved.");
+    } catch (error) { setMessage(error.message || "Unable to save changes."); }
+    finally { lock.current = false; setSaving(false); }
+  }
+
+  return <>
+    <td>
+      <button type="button" role="switch" aria-checked={active} aria-label={`Active status for ${contact.name}`} className={`${styles.statusToggle} ${active ? styles.statusActive : ""}`} disabled={saving} onClick={() => save({ status: active ? "inactive" : "active" })}>
+        <span className={styles.switchTrack} aria-hidden="true"><span /></span>{active ? "Active" : "Inactive"}
+      </button>
+    </td>
+    <td className={styles.commentCell}>
+      <form onSubmit={(event) => { event.preventDefault(); save({ comment: draft }); }}>
+        <textarea aria-label={`Comment for ${contact.name}`} placeholder="Add a comment…" maxLength={2000} rows={2} value={draft} disabled={saving} onChange={(event) => { setDraft(event.target.value); setMessage(""); }} />
+        <div><button type="submit" disabled={saving || draft === (contact.comment || "")}>{saving ? "Saving…" : "Save comment"}</button><span role="status">{message}</span></div>
+      </form>
+    </td>
+  </>;
+}
+
 export default function ContactsTable() {
   const [filters, setFilters] = useState(() => resolveContactFilters());
   const [appliedFilters, setAppliedFilters] = useState(filters);
@@ -30,16 +71,21 @@ export default function ContactsTable() {
   const [exporting, setExporting] = useState(false);
   const [exportMessage, setExportMessage] = useState("");
 
+  function updateRow(id, changes) {
+    setContacts((previous) => previous.map((contact) => contact.id === id ? { ...contact, ...changes } : contact));
+  }
+
   async function exportContacts(format) {
     setExporting(true);
     setExportMessage("");
-    const headers = ["#", "Date", "Time (IST)", "Form type", "Name", "Mobile", "City", "Weight", "Preferred date", "Preferred time", "Service / Help with", "GCLID", "UTM Source", "UTM Campaign", "Keyword", "Adgroup ID"];
+    const headers = ["#", "Date", "Time (IST)", "Form type", "Name", "Mobile", "City", "Weight", "Preferred date", "Preferred time", "Service / Help with", "GCLID", "UTM Source", "UTM Campaign", "Keyword", "Adgroup ID", "Status", "Comment"];
     const rows = contacts.map((contact, index) => [
       index + 1, displayDate(contact.submittedDate), displayTime(contact.submittedTime),
       contact.businessType, contact.name, contact.mobile, contact.city || "—",
       contact.weight ? `${contact.weight} g` : "—", displayDate(contact.preferredDate),
       displayTime(contact.preferredTime), contact.businessType === "Banner Form" ? "—" : contact.services || "—",
       ...["gclid", "utmSource", "utmCampaign", "keyword", "adgroupId"].map((field) => contact[field] || "-"),
+      contact.status === "active" ? "Active" : "Inactive", contact.comment || "",
     ]);
     // Prevent user-entered values from becoming spreadsheet formulas.
     const safeText = (value) => {
@@ -65,7 +111,7 @@ export default function ContactsTable() {
         sheet.getRow(1).font = { bold: true };
         sheet.columns.forEach((column, index) => { column.width = index === 11 ? 50 : 22; });
         sheet.views = [{ state: "frozen", ySplit: 1 }];
-        sheet.autoFilter = { from: "A1", to: "P1" };
+        sheet.autoFilter = { from: "A1", to: "R1" };
         blob = new Blob([await workbook.xlsx.writeBuffer()], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
       }
       const url = URL.createObjectURL(blob);
@@ -156,10 +202,10 @@ export default function ContactsTable() {
       </div>
       <div className={styles.tableWrap}>
         <table className={styles.contactsTable}>
-          <thead><tr><th>#</th><th>Date</th><th>Time (IST)</th><th>Form type</th><th>Name</th><th>Mobile</th><th>City</th><th>Weight</th><th>Preferred date</th><th>Preferred time</th><th>Service / Help with</th><th>GCLID</th><th>UTM Source</th><th>UTM Campaign</th><th>Keyword</th><th>Adgroup ID</th></tr></thead>
+          <thead><tr><th>#</th><th>Date</th><th>Time (IST)</th><th>Form type</th><th>Name</th><th>Mobile</th><th>City</th><th>Weight</th><th>Preferred date</th><th>Preferred time</th><th>Service / Help with</th><th>GCLID</th><th>UTM Source</th><th>UTM Campaign</th><th>Keyword</th><th>Adgroup ID</th><th>Status</th><th>Comment</th></tr></thead>
           <tbody>
-            {loading ? <tr><td className={styles.tableStatus} colSpan="16">Loading contact requests…</td></tr> : contacts.length === 0 ? <tr><td className={styles.tableStatus} colSpan="16">No contact requests found.</td></tr> : contacts.map((contact, index) => (
-              <tr key={contact.id}>
+            {loading ? <tr><td className={styles.tableStatus} colSpan="18">Loading contact requests…</td></tr> : contacts.length === 0 ? <tr><td className={styles.tableStatus} colSpan="18">No contact requests found.</td></tr> : contacts.map((contact, index) => (
+              <tr key={contact.id} className={contact.comment?.trim() ? styles.commentedRow : undefined}>
                 <td>{index + 1}</td>
                 <td className={styles.noWrap}>{displayDate(contact.submittedDate)}</td>
                 <td className={styles.noWrap}>{displayTime(contact.submittedTime)}</td>
@@ -167,6 +213,7 @@ export default function ContactsTable() {
                 <td>{contact.name}</td><td className={styles.noWrap}>{contact.mobile}</td><td>{contact.city || "—"}</td>
                 <td className={styles.noWrap}>{contact.weight ? `${contact.weight} g` : "—"}</td><td className={styles.noWrap}>{displayDate(contact.preferredDate)}</td><td className={styles.noWrap}>{displayTime(contact.preferredTime)}</td><td>{contact.businessType === "Banner Form" ? "—" : contact.services || "—"}</td>
                 {["gclid", "utmSource", "utmCampaign", "keyword", "adgroupId"].map((field) => <td key={field}>{contact[field] || "-"}</td>)}
+                <ContactControls contact={contact} onSaved={updateRow} />
               </tr>
             ))}
           </tbody>

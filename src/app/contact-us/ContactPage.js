@@ -2,7 +2,11 @@
 
 import { getContactAttribution } from "@/lib/contact-attribution.mjs";
 
-import { useRef, useState } from "react";
+import FormToast from "../FormToast";
+import SubmitLabel from "../SubmitLabel";
+import { submitContactRequest } from "@/lib/submit-contact.mjs";
+
+import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "../SiteHeader";
@@ -24,6 +28,12 @@ export default function ContactPage() {
   const pending = useRef(false);
   const [submitting, setSubmitting] = useState(false);
   const [feedback, setFeedback] = useState(null);
+  const [toast, setToast] = useState(null);
+  const closeToast = useCallback(() => setToast(null), []);
+  function showFeedback(value) {
+    setFeedback(value);
+    setToast(value);
+  }
 
   async function submit(event) {
     event.preventDefault();
@@ -31,7 +41,7 @@ export default function ContactPage() {
     if (pending.current || !form.reportValidity()) return;
     const fields = Object.fromEntries(new FormData(form));
     if (!/^[\p{L}\s]+$/u.test(fields.name.trim()) || fields.name.trim().length < 2) {
-      setFeedback({ error: true, message: "Please enter your name using at least two letters." });
+      showFeedback({ error: true, message: "Please enter your name using at least two letters." });
       form.elements.name.focus();
       return;
     }
@@ -39,17 +49,11 @@ export default function ContactPage() {
     setSubmitting(true);
     setFeedback(null);
     try {
-      const response = await fetch("/api/contacts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...getContactAttribution(), name: fields.name.trim(), mobile: fields.mobile, city: fields.city.trim(), weight: fields.weight, preferredDate: fields.preferredDate, preferredTime: fields.preferredTime, businessType: "Contact Page" }),
-      });
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.message || "Unable to send your message. Please try again.");
-      setFeedback({ error: false, message: "Thank you! Your message has been received. Our team will get back to you shortly." });
+      await submitContactRequest({ ...getContactAttribution(), name: fields.name.trim(), mobile: fields.mobile, city: fields.city.trim(), weight: fields.weight, preferredDate: fields.preferredDate, preferredTime: fields.preferredTime, businessType: "Contact Page" });
+      showFeedback({ error: false, message: "Thank you! Your message has been received. Our team will get back to you shortly." });
       form.reset();
     } catch (error) {
-      setFeedback({ error: true, message: error.message || "Unable to send your message. Please try again." });
+      showFeedback({ error: true, message: error.message || "Unable to send your message. Please try again." });
     } finally {
       pending.current = false;
       setSubmitting(false);
@@ -92,7 +96,7 @@ export default function ContactPage() {
                 <label className={styles.field}><span>Preferred time</span><select name="preferredTime" defaultValue="" required><option value="" disabled>Choose a time</option><option value="09:00-12:00">09:00 ? 12:00</option><option value="12:00-15:00">12:00 ? 15:00</option><option value="15:00-18:00">15:00 ? 18:00</option></select></label>
               </div>
               <p className={styles.formNote}>By sending this message, you agree to be contacted about your enquiry.</p>
-              <button className={styles.sendButton} type="submit" disabled={submitting}>{submitting ? "Sending…" : "Send Message"}<Icon name="arrow" /></button>
+              <button className={styles.sendButton} type="submit" disabled={submitting}><SubmitLabel loading={submitting}>Send Message</SubmitLabel><Icon name="arrow" /></button>
               {feedback && <p className={`${styles.feedback} ${feedback.error ? styles.error : styles.success}`} role={feedback.error ? "alert" : "status"}>{feedback.message}</p>}
             </form>
           </div>
@@ -105,6 +109,7 @@ export default function ContactPage() {
         </section>
       </main>
       <SiteFooter />
+      <FormToast notification={toast} onClose={closeToast} />
     </div>
   );
 }
