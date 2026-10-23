@@ -10,7 +10,7 @@ try {
     database: process.env.DB_NAME || "project10", connectTimeout: 5000,
   });
   const [columns] = await connection.query("SHOW COLUMNS FROM contacts");
-  const types = ["Branch Visit", "Doorstep Service", "Quick Contact", "Contact Page", "Banner Form", "Sell Gold", "Release Pledged Gold", "Doorstep Valuation"];
+  const types = ["Branch Visit", "Doorstep Service", "Quick Contact", "Contact Page", "Banner Form", "Sell Gold", "Release Pledged Gold", "Doorstep Valuation", "googlelead-lp"];
   const existingType = columns.find((column) => column.Field === "business_type")?.Type;
   if (!existingType?.startsWith("enum(")) throw new Error("Unexpected contact business type schema.");
   const existingValues = [...existingType.matchAll(/'([^']+)'/g)].map((match) => match[1]);

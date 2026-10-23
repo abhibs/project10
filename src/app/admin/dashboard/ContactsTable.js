@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { resolveContactFilters } from "@/lib/contact-filters.mjs";
-import { CONTACT_FORM_TYPES } from "@/lib/contact-summary.mjs";
+import { CONTACT_FORM_TYPES, GOOGLE_LEAD_TYPE, getContactFormLabel } from "@/lib/contact-summary.mjs";
 import styles from "./page.module.css";
 
 function displayService(contact) {
@@ -12,37 +12,49 @@ function displayService(contact) {
 function ContactDetails({ contact }) {
   const dialog = useRef(null);
   const [message, setMessage] = useState("");
-  const fields = [
-    ["Date", displayDate(contact.submittedDate)], ["Time (IST)", displayTime(contact.submittedTime)],
-    ["Form type", contact.businessType], ["Name", contact.name], ["Mobile", contact.mobile],
-    ["City", contact.city], ["Weight", contact.weight ? contact.weight + " g" : "-"],
-    ["Release bank", contact.releaseBank], ["Release place", contact.releasePlace],
-    ["Preferred date", displayDate(contact.preferredDate)], ["Preferred time", displayTime(contact.preferredTime)],
-    ["Service / Help with", displayService(contact)], ["GCLID", contact.gclid],
-    ["UTM Source", contact.utmSource], ["UTM Campaign", contact.utmCampaign],
-    ["Keyword", contact.keyword], ["Adgroup ID", contact.adgroupId],
-    ["Status", contact.status === "active" ? "Completed" : "Pending"], ["Comment", contact.comment],
+  const standard = [
+    ["GCLID", contact.gclid], ["UTM source", contact.utmSource], ["UTM campaign", contact.utmCampaign],
+    ["Keyword", contact.keyword], ["Ad group ID", contact.adgroupId],
   ];
+  const standardKeys = new Set(["gclid", "utm_source", "utm_campaign", "keyword", "utm_term", "adgroup_id", "adgroupid"]);
+  const extra = Object.entries(contact.trackingData || {}).filter(([key]) => !standardKeys.has(key)).map(([key, value]) => [key, value]);
+  const context = [["Landing page", contact.landingPage], ["Referrer", contact.referrer]];
+  const rows = [
+    ["Date", displayDate(contact.submittedDate)],
+    ["Time (IST)", displayTime(contact.submittedTime)],
+    ["Form type", getContactFormLabel(contact.businessType)],
+    ["Name", contact.name], ["Mobile", contact.mobile], ["City", contact.city],
+    ["Weight", contact.weight ? `${contact.weight} g` : "-"],
+    ["Release bank", contact.releaseBank], ["Release place", contact.releasePlace],
+    ["Preferred date", displayDate(contact.preferredDate)],
+    ["Preferred time", displayTime(contact.preferredTime)],
+    ["Service / Help with", displayService(contact)],
+    ...standard, ...extra, ...context,
+    ["Status", contact.status === "active" ? "Completed" : "Pending"],
+    ["Comment", contact.comment],
+  ].map(([label, value]) => [label,
+    value == null || value === "" ? "-" : typeof value === "object" ? JSON.stringify(value) : String(value),
+  ]);
 
-  async function copyGclid() {
+  async function copyDetails() {
     try {
-      await navigator.clipboard.writeText(contact.gclid);
-      setMessage("GCLID copied.");
+      await navigator.clipboard.writeText(rows.map(([label, value]) => `${label}: ${value}`).join("\n"));
+      setMessage("Contact details copied.");
     } catch { setMessage("Unable to copy. Select the value and copy it manually."); }
   }
 
   return <>
     <button type="button" className={styles.gclidButton} aria-haspopup="dialog" aria-label={`View details for ${contact.name}`} onClick={() => { setMessage(""); dialog.current.showModal(); }}>View details</button>
-    <dialog ref={dialog} className={styles.gclidDialog} aria-labelledby={`gclid-title-${contact.id}`} onClick={(event) => { if (event.target === event.currentTarget) dialog.current.close(); }}>
+    <dialog ref={dialog} className={styles.gclidDialog} aria-labelledby={`attribution-title-${contact.id}`} onClick={(event) => { if (event.target === event.currentTarget) dialog.current.close(); }}>
       <div className={styles.gclidContent}>
-        <div className={styles.modalHead}><div><h2 id={`gclid-title-${contact.id}`}>Contact details</h2><p>{contact.name} · {contact.mobile}</p></div><button type="button" aria-label="Close contact details" onClick={() => dialog.current.close()}>×</button></div>
+        <div className={styles.modalHead}><div><h2 id={`attribution-title-${contact.id}`}>Contact details</h2><p>{contact.name} · {contact.mobile}</p></div><button type="button" aria-label="Close contact details" onClick={() => dialog.current.close()}>×</button></div>
         <table className={styles.detailsTable}>
           <caption className={styles.detailsCaption}>Details for {contact.name}</caption>
           <thead><tr><th scope="col">Field</th><th scope="col">Value</th></tr></thead>
-          <tbody>{fields.map(([label, value]) => <tr key={label}><th scope="row">{label}</th><td>{value || "-"}</td></tr>)}</tbody>
+          <tbody>{rows.map(([label, value], index) => <tr key={index}><th scope="row">{label}</th><td>{value}</td></tr>)}</tbody>
         </table>
         <p className={styles.exportStatus} role="status">{message}</p>
-        <div className={styles.modalActions}>{contact.gclid && <button type="button" onClick={copyGclid}>Copy GCLID</button>}<button type="button" onClick={() => dialog.current.close()}>Close</button></div>
+        <div className={styles.modalActions}><button type="button" onClick={copyDetails}>Copy details</button><button type="button" onClick={() => dialog.current.close()}>Close</button></div>
       </div>
     </dialog>
   </>;
@@ -124,13 +136,14 @@ export default function ContactsTable() {
   async function exportContacts(format) {
     setExporting(true);
     setExportMessage("");
-    const headers = ["#", "Date", "Time (IST)", "Form type", "Name", "Mobile", "City", "Weight", "Release bank", "Release place", "Preferred date", "Preferred time", "Service / Help with", "GCLID", "UTM Source", "UTM Campaign", "Keyword", "Adgroup ID", "Status", "Comment"];
+    const headers = ["#", "Date", "Time (IST)", "Form type", "Name", "Mobile", "City", "Weight", "Release bank", "Release place", "Preferred date", "Preferred time", "Service / Help with", "GCLID", "UTM Source", "UTM Campaign", "Keyword", "Adgroup ID", "Landing page", "Referrer", "Tracking data", "Status", "Comment"];
     const rows = contacts.map((contact, index) => [
       index + 1, displayDate(contact.submittedDate), displayTime(contact.submittedTime),
-      contact.businessType, contact.name, contact.mobile, contact.city || "—",
+      getContactFormLabel(contact.businessType), contact.name, contact.mobile, contact.city || "—",
       contact.weight ? `${contact.weight} g` : "—", contact.releaseBank || "", contact.releasePlace || "", displayDate(contact.preferredDate),
       displayTime(contact.preferredTime), displayService(contact),
       ...["gclid", "utmSource", "utmCampaign", "keyword", "adgroupId"].map((field) => contact[field] || "-"),
+      contact.landingPage || "", contact.referrer || "", JSON.stringify(contact.trackingData || {}),
       contact.status === "active" ? "Completed" : "Pending", contact.comment || "",
     ]);
     // Prevent user-entered values from becoming spreadsheet formulas.
@@ -157,7 +170,7 @@ export default function ContactsTable() {
         sheet.getRow(1).font = { bold: true };
         sheet.columns.forEach((column, index) => { column.width = index === 13 ? 50 : 22; });
         sheet.views = [{ state: "frozen", ySplit: 1 }];
-        sheet.autoFilter = { from: "A1", to: "T1" };
+        sheet.autoFilter = { from: "A1", to: "W1" };
         blob = new Blob([await workbook.xlsx.writeBuffer()], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
       }
       const url = URL.createObjectURL(blob);
@@ -245,12 +258,12 @@ export default function ContactsTable() {
       <form className={styles.filters} onSubmit={applyFilters}>
         <label><span>From date</span><input type="date" value={filters.fromDate} onChange={(event) => setFilters({...filters, fromDate: event.target.value})} /></label>
         <label><span>To date</span><input type="date" min={filters.fromDate || undefined} value={filters.toDate} onChange={(event) => setFilters({...filters, toDate: event.target.value})} /></label>
-        <label><span>Form type</span><select value={filters.businessType} onChange={(event) => setFilters({...filters, businessType: event.target.value})}><option value="">All form types</option><option>Branch Visit</option><option>Doorstep Service</option><option>Quick Contact</option><option>Contact Page</option><option>Banner Form</option><option>Sell Gold</option><option>Release Pledged Gold</option><option>Doorstep Valuation</option></select></label>
+        <label><span>Form type</span><select value={filters.businessType} onChange={(event) => setFilters({...filters, businessType: event.target.value})}><option value="">All form types</option>{CONTACT_FORM_TYPES.map((type) => <option key={type} value={type}>{getContactFormLabel(type)}</option>)}</select></label>
         <div className={styles.filterActions}><button className={styles.filterButton} type="submit">Filter</button><button type="button" onClick={clearFilters}>Clear</button></div>
       </form>
 
       <div className={styles.contactSummary} role="group" aria-label="Lead counts by form type for the selected dates">
-        {[["", "All form types"], ...CONTACT_FORM_TYPES.map((type) => [type, type])].map(([type, label]) => <button key={type} type="button" className={`${styles.summaryCard} ${appliedFilters.businessType === type ? styles.summarySelected : ""}`} aria-pressed={appliedFilters.businessType === type} disabled={loading} onClick={() => selectFormType(type)}>
+        {[["", "All form types"], ...CONTACT_FORM_TYPES.map((type) => [type, getContactFormLabel(type)])].map(([type, label]) => <button key={type} type="button" className={`${styles.summaryCard} ${appliedFilters.businessType === type ? styles.summarySelected : ""}`} aria-pressed={appliedFilters.businessType === type} disabled={loading} onClick={() => selectFormType(type)}>
           <span>{label}</span><strong>{loading ? "…" : type ? summary.counts[type] || 0 : summary.total}</strong><small>{type ? "leads" : "total leads"}</small>
           <span className={styles.summaryWeight}>Total weight <b>{loading ? "…" : `${Number(type ? summary.weights?.[type] || 0 : summary.totalWeight || 0).toLocaleString("en-IN", { maximumFractionDigits: 2 })} g`}</b></span>
         </button>)}
@@ -273,7 +286,7 @@ export default function ContactsTable() {
                 <td>{index + 1}</td>
                 <td className={styles.noWrap}>{displayDate(contact.submittedDate)}</td>
                 <td className={styles.noWrap}>{displayTime(contact.submittedTime)}</td>
-                <td><span className={`${styles.typeBadge} ${["Quick Contact", "Contact Page", "Banner Form"].includes(contact.businessType) ? styles.quickBadge : ""}`}>{contact.businessType}</span></td>
+                <td><span className={`${styles.typeBadge} ${["Quick Contact", "Contact Page", "Banner Form", GOOGLE_LEAD_TYPE].includes(contact.businessType) ? styles.quickBadge : ""}`}>{getContactFormLabel(contact.businessType)}</span></td>
                 <td>{contact.name}</td><td className={styles.noWrap}>{contact.mobile}</td><td>{contact.city || "—"}</td>
                 <td className={styles.noWrap}>{contact.weight ? `${contact.weight} g` : "—"}</td><td><ContactDetails contact={contact} /></td>
                 <ContactControls contact={contact} onSaved={updateRow} />

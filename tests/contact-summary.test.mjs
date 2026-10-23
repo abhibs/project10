@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { CONTACT_FORM_TYPES, countContactTypes, sumContactWeights } from "../src/lib/contact-summary.mjs";
+import { CONTACT_FORM_TYPES, countContactTypes, getContactFormLabel, sumContactWeights } from "../src/lib/contact-summary.mjs";
 import { uniqueDailyContacts } from "../src/lib/contact-leads.mjs";
 
 test("counts every form type including zero counts after daily deduplication", () => {
@@ -13,6 +13,8 @@ test("counts every form type including zero counts after daily deduplication", (
   assert.equal(counts["Sell Gold"], 1);
   assert.equal(counts["Banner Form"], 1);
   assert.equal(counts["Contact Page"], 0);
+  assert.equal(counts["googlelead-lp"], 0);
+  assert.equal(getContactFormLabel("googlelead-lp"), "Google Lead");
   assert.equal(Object.keys(counts).length, CONTACT_FORM_TYPES.length);
   assert.equal(Object.values(counts).reduce((a, b) => a + b, 0), rows.length);
   assert.ok(Object.values(countContactTypes([])).every((count) => count === 0));

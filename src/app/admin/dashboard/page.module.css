@@ -109,6 +109,8 @@
 .gclidDialog::backdrop { background: rgba(0, 60, 56, .55); backdrop-filter: blur(3px); }
 .gclidContent { padding: 26px; }
 .gclidValue { padding: 16px; border: 1px solid var(--admin-border); border-radius: 10px; background: var(--admin-tint); font: 13px/1.8 monospace; overflow-wrap: anywhere; user-select: text; }
+.gclidValue + .gclidValue { margin-top: 10px; }
+.gclidValue strong { font-family: var(--font-admin-body), Arial, sans-serif; }
 .exportToolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; padding: 0 26px 20px; }
 .exportButtons { display: flex; gap: 8px; }
 .exportButtons button { padding: 10px 18px; border: 1px solid var(--admin-teal); border-radius: 8px; color: var(--admin-teal); background: var(--admin-cream); cursor: pointer; font-size: 12px; font-weight: 800; }
