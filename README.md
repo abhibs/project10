@@ -75,3 +75,11 @@ Replaced/deleted images are retained on disk to avoid breaking in-flight readers
 they are not referenced by the branch feed. Failed new uploads are cleaned up.
 
 Validation tests: `node --test tests/branch-values.test.mjs`.
+
+## Google Ads landing page
+
+Run `node scripts/migrate-google-leads.mjs` once per database, then open
+`/googleleads`. Submissions are stored in `contacts` with the exact form type
+`googlelead-lp` and appear as **Google Lead** in the admin contact dashboard.
+The form retains the existing GCLID, UTM campaign, keyword and ad-group fields,
+plus common campaign query parameters, the landing-page URL and referrer.

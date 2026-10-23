@@ -1,9 +1,11 @@
 import { createContact } from "@/lib/admin-db";
+import { sanitizeTrackingData } from "@/lib/contact-attribution.mjs";
+import { GOOGLE_LEAD_TYPE } from "@/lib/contact-summary.mjs";
 import { SERVICE_PAGES } from "@/lib/service-pages.mjs";
 
 const APPOINTMENT_TYPES = new Set(["Branch Visit", "Doorstep Service"]);
 const SERVICE_TYPES = new Set(Object.values(SERVICE_PAGES).map((service) => service.title));
-const BUSINESS_TYPES = new Set([...APPOINTMENT_TYPES, ...SERVICE_TYPES, "Quick Contact", "Contact Page", "Banner Form"]);
+const BUSINESS_TYPES = new Set([...APPOINTMENT_TYPES, ...SERVICE_TYPES, "Quick Contact", "Contact Page", "Banner Form", GOOGLE_LEAD_TYPE]);
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 const TIME_PATTERN = /^(?:[01]\d|2[0-3]):[0-5]\d(?:-(?:[01]\d|2[0-3]):[0-5]\d)?$/;
 const MOBILE_PATTERN = /^\d{10}$/;
@@ -33,6 +35,7 @@ export async function POST(request) {
     const appointment = APPOINTMENT_TYPES.has(businessType);
     const banner = businessType === "Banner Form";
     const contactPage = businessType === "Contact Page";
+    const googleLead = businessType === GOOGLE_LEAD_TYPE;
     const scheduled = appointment || contactPage;
     const servicePage = SERVICE_TYPES.has(businessType);
     const pledged = businessType === "Release Pledged Gold";
@@ -48,6 +51,9 @@ export async function POST(request) {
     if (scheduled && (!city || !isRealDate(preferredDate) || !TIME_PATTERN.test(preferredTime))) {
       return Response.json({ message: "Please complete the appointment details." }, { status: 400 });
     }
+    if (googleLead && !city) {
+      return Response.json({ message: "Please enter your city or area." }, { status: 400 });
+    }
     if (((banner || servicePage) && rawWeight === null) || (rawWeight !== null && (!Number.isFinite(rawWeight) || rawWeight <= 0 || rawWeight > 100000))) {
       return Response.json({ message: "Please enter a valid gold weight." }, { status: 400 });
     }
@@ -59,7 +65,7 @@ export async function POST(request) {
       name,
       mobile,
       city,
-      weight: scheduled || banner || servicePage ? rawWeight : null,
+      weight: scheduled || banner || servicePage || googleLead ? rawWeight : null,
       releaseBank, releasePlace,
       preferredDate: scheduled ? preferredDate : "",
       preferredTime: scheduled ? preferredTime : "",
@@ -70,9 +76,12 @@ export async function POST(request) {
       utmCampaign: clean(body.utmCampaign ?? body.utm_campaign),
       keyword: clean(body.keyword ?? body.utm_term),
       adgroupId: clean(body.adgroupId ?? body.adgroup_id ?? body.adgroupid),
+      trackingData: sanitizeTrackingData(body.trackingData ?? body.tracking_data),
+      landingPage: clean(body.landingPage ?? body.landing_page, 2048),
+      referrer: clean(body.referrer, 2048),
     });
 
-    return Response.json({ id, message: appointment ? "Appointment request received." : "Callback request received." }, { status: 201 });
+    return Response.json({ id, message: appointment ? "Appointment request received." : googleLead ? "Thank you. Our gold expert will call you shortly." : "Callback request received." }, { status: 201 });
   } catch (error) {
     console.error("Unable to save contact request:", error);
     return Response.json({ message: "Unable to submit your request right now. Please try again." }, { status: 500 });

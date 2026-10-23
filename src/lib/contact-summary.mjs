@@ -1,4 +1,9 @@
-export const CONTACT_FORM_TYPES = ["Branch Visit", "Doorstep Service", "Quick Contact", "Contact Page", "Banner Form", "Sell Gold", "Release Pledged Gold", "Doorstep Valuation"];
+export const GOOGLE_LEAD_TYPE = "googlelead-lp";
+export const CONTACT_FORM_TYPES = ["Branch Visit", "Doorstep Service", "Quick Contact", "Contact Page", "Banner Form", "Sell Gold", "Release Pledged Gold", "Doorstep Valuation", GOOGLE_LEAD_TYPE];
+
+export function getContactFormLabel(type) {
+  return type === GOOGLE_LEAD_TYPE ? "Google Lead" : type;
+}
 
 export function countContactTypes(contacts) {
   const counts = Object.fromEntries(CONTACT_FORM_TYPES.map((type) => [type, 0]));

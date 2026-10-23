@@ -186,13 +186,15 @@ export async function createContact({
   services,
   businessType,
   gclid, utmSource, utmCampaign, keyword, adgroupId,
+  trackingData = {}, landingPage = "", referrer = "",
   releaseBank = "", releasePlace = "",
 }) {
   const [result] = await executeContactQuery(
     `INSERT INTO contacts
       (name, mobile, city, weight, preffered_date, preffered_time, services, business_type,
-       gclid, utm_source, utm_campaign, keyword, adgroup_id, release_bank, release_place)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+       gclid, utm_source, utm_campaign, keyword, adgroup_id, tracking_data, landing_page, referrer,
+       release_bank, release_place)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     [
       name,
       mobile,
@@ -203,6 +205,8 @@ export async function createContact({
       services,
       businessType,
       gclid || null, utmSource || null, utmCampaign || null, keyword || null, adgroupId || null,
+      Object.keys(trackingData).length ? JSON.stringify(trackingData) : null,
+      landingPage || null, referrer || null,
       releaseBank || null, releasePlace || null,
     ]
   );
@@ -233,6 +237,7 @@ export async function getContacts({ fromDate = "", toDate = "", businessType = "
        DATE_FORMAT(preffered_date, '%Y-%m-%d') AS preferredDate,
        preffered_time AS preferredTime, services, business_type AS businessType,
        gclid, utm_source AS utmSource, utm_campaign AS utmCampaign, keyword, adgroup_id AS adgroupId,
+       tracking_data AS trackingData, landing_page AS landingPage, referrer,
        DATE_FORMAT(created_at, '%Y-%m-%d') AS submittedDate,
        DATE_FORMAT(created_at, '%H:%i:%s') AS submittedTime
      FROM contacts ${where}
@@ -243,6 +248,11 @@ export async function getContacts({ fromDate = "", toDate = "", businessType = "
   return uniqueDailyContacts(rows).map((row) => ({
     ...row,
     weight: row.weight === null ? null : Number(row.weight),
+    trackingData: (() => {
+      if (!row.trackingData) return {};
+      if (typeof row.trackingData === "object") return row.trackingData;
+      try { return JSON.parse(row.trackingData); } catch { return {}; }
+    })(),
   }));
 }
 

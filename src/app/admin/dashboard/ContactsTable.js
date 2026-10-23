@@ -2,33 +2,41 @@
 
 import { useEffect, useRef, useState } from "react";
 import { resolveContactFilters } from "@/lib/contact-filters.mjs";
-import { CONTACT_FORM_TYPES } from "@/lib/contact-summary.mjs";
+import { CONTACT_FORM_TYPES, GOOGLE_LEAD_TYPE, getContactFormLabel } from "@/lib/contact-summary.mjs";
 import styles from "./page.module.css";
 
 function displayService(contact) {
   return ["Banner Form", "Sell Gold", "Release Pledged Gold"].includes(contact.businessType) ? "—" : contact.services || "—";
 }
 
-function GclidDetails({ contact }) {
+function AttributionDetails({ contact }) {
   const dialog = useRef(null);
   const [message, setMessage] = useState("");
-  if (!contact.gclid) return "-";
+  const standard = [
+    ["GCLID", contact.gclid], ["UTM source", contact.utmSource], ["UTM campaign", contact.utmCampaign],
+    ["Keyword", contact.keyword], ["Ad group ID", contact.adgroupId],
+  ];
+  const standardKeys = new Set(["gclid", "utm_source", "utm_campaign", "keyword", "utm_term", "adgroup_id", "adgroupid"]);
+  const extra = Object.entries(contact.trackingData || {}).filter(([key]) => !standardKeys.has(key)).map(([key, value]) => [key, value]);
+  const context = [["Landing page", contact.landingPage], ["Referrer", contact.referrer]];
+  const rows = [...standard, ...extra, ...context].filter(([, value]) => value);
+  if (!rows.length) return "-";
 
-  async function copyGclid() {
+  async function copyAttribution() {
     try {
-      await navigator.clipboard.writeText(contact.gclid);
-      setMessage("GCLID copied.");
+      await navigator.clipboard.writeText(rows.map(([label, value]) => `${label}: ${value}`).join("\n"));
+      setMessage("Attribution details copied.");
     } catch { setMessage("Unable to copy. Select the value and copy it manually."); }
   }
 
   return <>
-    <button type="button" className={styles.gclidButton} aria-haspopup="dialog" aria-label={`View GCLID for ${contact.name}`} onClick={() => { setMessage(""); dialog.current.showModal(); }}>View GCLID</button>
-    <dialog ref={dialog} className={styles.gclidDialog} aria-labelledby={`gclid-title-${contact.id}`} onClick={(event) => { if (event.target === event.currentTarget) dialog.current.close(); }}>
+    <button type="button" className={styles.gclidButton} aria-haspopup="dialog" aria-label={`View attribution for ${contact.name}`} onClick={() => { setMessage(""); dialog.current.showModal(); }}>View details</button>
+    <dialog ref={dialog} className={styles.gclidDialog} aria-labelledby={`attribution-title-${contact.id}`} onClick={(event) => { if (event.target === event.currentTarget) dialog.current.close(); }}>
       <div className={styles.gclidContent}>
-        <div className={styles.modalHead}><div><h2 id={`gclid-title-${contact.id}`}>GCLID details</h2><p>{contact.name} · {contact.mobile}</p></div><button type="button" aria-label="Close GCLID details" onClick={() => dialog.current.close()}>×</button></div>
-        <div className={styles.gclidValue}>{contact.gclid}</div>
+        <div className={styles.modalHead}><div><h2 id={`attribution-title-${contact.id}`}>Attribution details</h2><p>{contact.name} · {contact.mobile}</p></div><button type="button" aria-label="Close attribution details" onClick={() => dialog.current.close()}>×</button></div>
+        {rows.map(([label, value], index) => <div className={styles.gclidValue} key={`${label}-${index}`}><strong>{label}</strong><br />{value}</div>)}
         <p className={styles.exportStatus} role="status">{message}</p>
-        <div className={styles.modalActions}><button type="button" onClick={copyGclid}>Copy GCLID</button><button type="button" onClick={() => dialog.current.close()}>Close</button></div>
+        <div className={styles.modalActions}><button type="button" onClick={copyAttribution}>Copy details</button><button type="button" onClick={() => dialog.current.close()}>Close</button></div>
       </div>
     </dialog>
   </>;
@@ -110,13 +118,14 @@ export default function ContactsTable() {
   async function exportContacts(format) {
     setExporting(true);
     setExportMessage("");
-    const headers = ["#", "Date", "Time (IST)", "Form type", "Name", "Mobile", "City", "Weight", "Release bank", "Release place", "Preferred date", "Preferred time", "Service / Help with", "GCLID", "UTM Source", "UTM Campaign", "Keyword", "Adgroup ID", "Status", "Comment"];
+    const headers = ["#", "Date", "Time (IST)", "Form type", "Name", "Mobile", "City", "Weight", "Release bank", "Release place", "Preferred date", "Preferred time", "Service / Help with", "GCLID", "UTM Source", "UTM Campaign", "Keyword", "Adgroup ID", "Landing page", "Referrer", "Tracking data", "Status", "Comment"];
     const rows = contacts.map((contact, index) => [
       index + 1, displayDate(contact.submittedDate), displayTime(contact.submittedTime),
-      contact.businessType, contact.name, contact.mobile, contact.city || "—",
+      getContactFormLabel(contact.businessType), contact.name, contact.mobile, contact.city || "—",
       contact.weight ? `${contact.weight} g` : "—", contact.releaseBank || "", contact.releasePlace || "", displayDate(contact.preferredDate),
       displayTime(contact.preferredTime), displayService(contact),
       ...["gclid", "utmSource", "utmCampaign", "keyword", "adgroupId"].map((field) => contact[field] || "-"),
+      contact.landingPage || "", contact.referrer || "", JSON.stringify(contact.trackingData || {}),
       contact.status === "active" ? "Completed" : "Pending", contact.comment || "",
     ]);
     // Prevent user-entered values from becoming spreadsheet formulas.
@@ -143,7 +152,7 @@ export default function ContactsTable() {
         sheet.getRow(1).font = { bold: true };
         sheet.columns.forEach((column, index) => { column.width = index === 13 ? 50 : 22; });
         sheet.views = [{ state: "frozen", ySplit: 1 }];
-        sheet.autoFilter = { from: "A1", to: "T1" };
+        sheet.autoFilter = { from: "A1", to: "W1" };
         blob = new Blob([await workbook.xlsx.writeBuffer()], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
       }
       const url = URL.createObjectURL(blob);
@@ -231,12 +240,12 @@ export default function ContactsTable() {
       <form className={styles.filters} onSubmit={applyFilters}>
         <label><span>From date</span><input type="date" value={filters.fromDate} onChange={(event) => setFilters({...filters, fromDate: event.target.value})} /></label>
         <label><span>To date</span><input type="date" min={filters.fromDate || undefined} value={filters.toDate} onChange={(event) => setFilters({...filters, toDate: event.target.value})} /></label>
-        <label><span>Form type</span><select value={filters.businessType} onChange={(event) => setFilters({...filters, businessType: event.target.value})}><option value="">All form types</option><option>Branch Visit</option><option>Doorstep Service</option><option>Quick Contact</option><option>Contact Page</option><option>Banner Form</option><option>Sell Gold</option><option>Release Pledged Gold</option><option>Doorstep Valuation</option></select></label>
+        <label><span>Form type</span><select value={filters.businessType} onChange={(event) => setFilters({...filters, businessType: event.target.value})}><option value="">All form types</option>{CONTACT_FORM_TYPES.map((type) => <option key={type} value={type}>{getContactFormLabel(type)}</option>)}</select></label>
         <div className={styles.filterActions}><button className={styles.filterButton} type="submit">Filter</button><button type="button" onClick={clearFilters}>Clear</button></div>
       </form>
 
       <div className={styles.contactSummary} role="group" aria-label="Lead counts by form type for the selected dates">
-        {[["", "All form types"], ...CONTACT_FORM_TYPES.map((type) => [type, type])].map(([type, label]) => <button key={type} type="button" className={`${styles.summaryCard} ${appliedFilters.businessType === type ? styles.summarySelected : ""}`} aria-pressed={appliedFilters.businessType === type} disabled={loading} onClick={() => selectFormType(type)}>
+        {[["", "All form types"], ...CONTACT_FORM_TYPES.map((type) => [type, getContactFormLabel(type)])].map(([type, label]) => <button key={type} type="button" className={`${styles.summaryCard} ${appliedFilters.businessType === type ? styles.summarySelected : ""}`} aria-pressed={appliedFilters.businessType === type} disabled={loading} onClick={() => selectFormType(type)}>
           <span>{label}</span><strong>{loading ? "…" : type ? summary.counts[type] || 0 : summary.total}</strong><small>{type ? "leads" : "total leads"}</small>
           <span className={styles.summaryWeight}>Total weight <b>{loading ? "…" : `${Number(type ? summary.weights?.[type] || 0 : summary.totalWeight || 0).toLocaleString("en-IN", { maximumFractionDigits: 2 })} g`}</b></span>
         </button>)}
@@ -252,17 +261,17 @@ export default function ContactsTable() {
       </div>
       <div className={styles.tableWrap}>
         <table className={styles.contactsTable}>
-          <thead><tr><th>#</th><th>Date</th><th>Time (IST)</th><th>Form type</th><th>Name</th><th>Mobile</th><th>City</th><th>Weight</th><th>Release bank</th><th>Release place</th><th>Preferred date</th><th>Preferred time</th><th>Service / Help with</th><th>GCLID</th><th>UTM Source</th><th>UTM Campaign</th><th>Keyword</th><th>Adgroup ID</th><th>Status</th><th>Comment</th></tr></thead>
+          <thead><tr><th>#</th><th>Date</th><th>Time (IST)</th><th>Form type</th><th>Name</th><th>Mobile</th><th>City</th><th>Weight</th><th>Release bank</th><th>Release place</th><th>Preferred date</th><th>Preferred time</th><th>Service / Help with</th><th>Attribution</th><th>UTM Source</th><th>UTM Campaign</th><th>Keyword</th><th>Adgroup ID</th><th>Status</th><th>Comment</th></tr></thead>
           <tbody>
             {loading ? <tr><td className={styles.tableStatus} colSpan="20">Loading contact requests…</td></tr> : contacts.length === 0 ? <tr><td className={styles.tableStatus} colSpan="20">No contact requests found.</td></tr> : contacts.map((contact, index) => (
               <tr key={contact.id} className={contact.comment?.trim() ? styles.commentedRow : undefined}>
                 <td>{index + 1}</td>
                 <td className={styles.noWrap}>{displayDate(contact.submittedDate)}</td>
                 <td className={styles.noWrap}>{displayTime(contact.submittedTime)}</td>
-                <td><span className={`${styles.typeBadge} ${["Quick Contact", "Contact Page", "Banner Form"].includes(contact.businessType) ? styles.quickBadge : ""}`}>{contact.businessType}</span></td>
+                <td><span className={`${styles.typeBadge} ${["Quick Contact", "Contact Page", "Banner Form", GOOGLE_LEAD_TYPE].includes(contact.businessType) ? styles.quickBadge : ""}`}>{getContactFormLabel(contact.businessType)}</span></td>
                 <td>{contact.name}</td><td className={styles.noWrap}>{contact.mobile}</td><td>{contact.city || "—"}</td>
                 <td className={styles.noWrap}>{contact.weight ? `${contact.weight} g` : "—"}</td><td>{contact.releaseBank || "-"}</td><td>{contact.releasePlace || "-"}</td><td className={styles.noWrap}>{displayDate(contact.preferredDate)}</td><td className={styles.noWrap}>{displayTime(contact.preferredTime)}</td><td>{displayService(contact)}</td>
-                <td><GclidDetails contact={contact} /></td>
+                <td><AttributionDetails contact={contact} /></td>
                 {["utmSource", "utmCampaign", "keyword", "adgroupId"].map((field) => <td key={field}>{contact[field] || "-"}</td>)}
                 <ContactControls contact={contact} onSaved={updateRow} />
               </tr>
