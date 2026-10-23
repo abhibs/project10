@@ -232,6 +232,12 @@ export default function GoldHomepage() {
 
   <main>
     <section className="hero section-shell" id="hero" aria-labelledby="hero-title">
+      <div className="hero-gold-flow" aria-hidden="true">
+        <Image className="hero-gold-pile" src="/hero-gold-cutout.webp" alt="" width={600} height={400} sizes="40vw" />
+        <div className="hero-gold-right">
+          <Image src="/buy-gold-jewellery.webp" alt="" width={1254} height={1254} sizes="(max-width: 1200px) 440px, 42vw" />
+        </div>
+      </div>
       <div className="container hero-grid">
         <div className="hero-copy reveal">
           <div className="eyebrow">Gold buyers in Bangalore &amp; Chennai</div>
@@ -249,6 +255,31 @@ export default function GoldHomepage() {
             <div><HeroBenefitIcon type="chart" /><span>Competitive<br />Gold Rate</span></div>
             <div><HeroBenefitIcon type="payment" /><span>Quick<br />Payment</span></div>
           </div>
+        </div>
+
+
+
+        <div className="hero-siddhi">
+          <svg className="hero-mandala" viewBox="0 0 600 600" fill="none" stroke="currentColor" aria-hidden="true" focusable="false">
+            <defs>
+              <g id="hero-mandala-petal">
+                <path d="M300 272C258 236 260 182 300 144C340 182 342 236 300 272Z" />
+                <path d="M300 154C246 112 267 56 300 24C333 56 354 112 300 154Z" />
+                <path d="M300 147C275 112 281 76 300 50C319 76 325 112 300 147Z" />
+                <path d="M288 48L300 9L312 48" />
+                <circle cx="300" cy="126" r="5" />
+              </g>
+            </defs>
+            <g strokeWidth="1.3">
+              {Array.from({ length: 24 }, (_, index) => <use key={index} href="#hero-mandala-petal" transform={`rotate(${index * 15} 300 300)`} />)}
+              <circle cx="300" cy="300" r="58" />
+              <circle cx="300" cy="300" r="150" />
+              <circle cx="300" cy="300" r="158" />
+              <circle cx="300" cy="300" r="270" />
+              <circle cx="300" cy="300" r="280" strokeDasharray="2 7" />
+            </g>
+          </svg>
+          <Image src="/siddhi.png" alt="Siddhi welcoming you to Aryan Gold" width={1024} height={1536} sizes="(max-width: 1200px) 80vw, 32vw" preload />
         </div>
 
         <form className="banner-form" id="banner-form" aria-labelledby="banner-form-title" aria-busy={submitting.banner} onSubmit={(event) => submitContact(event, "banner")}>
@@ -275,8 +306,6 @@ export default function GoldHomepage() {
           <p className="banner-form-note">Free valuation. No obligation to sell.</p>
           <p className="banner-form-message" role="status" aria-live="polite">{messages.banner}</p>
         </form>
-
-        <p className="hero-motto">Trust today<br />Brighter<br />tomorrows</p>
       </div>
     </section>
 
