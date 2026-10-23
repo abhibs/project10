@@ -177,3 +177,9 @@
 .detailsTable th:first-child { width: 38%; }
 .detailsTable tbody th { color: #fff; background: var(--admin-teal); font-weight: 700; }
 .detailsCaption { margin-bottom: 12px; text-align: left; color: var(--admin-teal); }
+.pagination { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding: 20px 26px; border-top: 1px solid var(--admin-border); color: var(--admin-teal); font-size: 12px; }
+.pagination > div { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+.pagination button, .pagination select { padding: 9px 12px; border: 1px solid var(--admin-border); border-radius: 8px; color: var(--admin-teal); background: var(--admin-cream); font: inherit; }
+.pagination button { cursor: pointer; font-weight: 700; }
+.pagination button:disabled { opacity: .45; cursor: default; }
+.pagination select { margin-inline: 5px; }

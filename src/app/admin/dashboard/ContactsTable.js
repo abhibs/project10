@@ -28,7 +28,6 @@ function ContactDetails({ contact }) {
     ["Release bank", contact.releaseBank], ["Release place", contact.releasePlace],
     ["Preferred date", displayDate(contact.preferredDate)],
     ["Preferred time", displayTime(contact.preferredTime)],
-    ["Service / Help with", displayService(contact)],
     ...standard, ...extra, ...context,
     ["Status", contact.status === "active" ? "Completed" : "Pending"],
     ["Comment", contact.comment],
@@ -122,6 +121,12 @@ export default function ContactsTable() {
   const [filters, setFilters] = useState(() => resolveContactFilters());
   const [appliedFilters, setAppliedFilters] = useState(filters);
   const [contacts, setContacts] = useState([]);
+  const [page, setPage] = useState(1);
+  const pageSize = 10;
+  const totalPages = Math.max(1, Math.ceil(contacts.length / pageSize));
+  const currentPage = Math.min(page, totalPages);
+  const pageStart = (currentPage - 1) * pageSize;
+  const visibleContacts = contacts.slice(pageStart, pageStart + pageSize);
   const [summary, setSummary] = useState({ counts: {}, total: 0, weights: {}, totalWeight: 0 });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -204,6 +209,7 @@ export default function ContactsTable() {
       })
       .then((data) => {
         setContacts(data.contacts);
+        setPage(1);
         setSummary({ counts: data.counts, total: data.total, weights: data.weights, totalWeight: data.totalWeight });
       })
       .catch((loadError) => {
@@ -279,22 +285,32 @@ export default function ContactsTable() {
       </div>
       <div className={styles.tableWrap}>
         <table className={styles.contactsTable}>
-          <thead><tr><th>#</th><th>Date</th><th>Time (IST)</th><th>Form type</th><th>Name</th><th>Mobile</th><th>City</th><th>Weight</th><th>Details</th><th>Status</th><th>Comment</th></tr></thead>
+          <thead><tr><th>#</th><th>Date</th><th>Time (IST)</th><th>Form type</th><th>Name</th><th>Mobile</th><th>City</th><th>Weight</th><th>Service / Help with</th><th>Details</th><th>Status</th><th>Comment</th></tr></thead>
           <tbody>
-            {loading ? <tr><td className={styles.tableStatus} colSpan="11">Loading contact requests…</td></tr> : contacts.length === 0 ? <tr><td className={styles.tableStatus} colSpan="11">No contact requests found.</td></tr> : contacts.map((contact, index) => (
+            {loading ? <tr><td className={styles.tableStatus} colSpan="12">Loading contact requests…</td></tr> : contacts.length === 0 ? <tr><td className={styles.tableStatus} colSpan="12">No contact requests found.</td></tr> : visibleContacts.map((contact, index) => (
               <tr key={contact.id} className={contact.comment?.trim() ? styles.commentedRow : undefined}>
-                <td>{index + 1}</td>
+                <td>{pageStart + index + 1}</td>
                 <td className={styles.noWrap}>{displayDate(contact.submittedDate)}</td>
                 <td className={styles.noWrap}>{displayTime(contact.submittedTime)}</td>
                 <td><span className={`${styles.typeBadge} ${["Quick Contact", "Contact Page", "Banner Form", GOOGLE_LEAD_TYPE].includes(contact.businessType) ? styles.quickBadge : ""}`}>{getContactFormLabel(contact.businessType)}</span></td>
                 <td>{contact.name}</td><td className={styles.noWrap}>{contact.mobile}</td><td>{contact.city || "—"}</td>
-                <td className={styles.noWrap}>{contact.weight ? `${contact.weight} g` : "—"}</td><td><ContactDetails contact={contact} /></td>
+                <td className={styles.noWrap}>{contact.weight ? `${contact.weight} g` : "—"}</td><td>{displayService(contact)}</td><td><ContactDetails contact={contact} /></td>
                 <ContactControls contact={contact} onSaved={updateRow} />
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      <nav className={styles.pagination} aria-label="Contact pages">
+        <span role="status">{loading ? "Loading…" : `Showing ${contacts.length ? pageStart + 1 : 0}–${Math.min(pageStart + pageSize, contacts.length)} of ${contacts.length} contacts`}</span>
+        <div>
+          <button type="button" disabled={loading || currentPage === 1} onClick={() => setPage(currentPage - 1)}>Previous</button>
+          <label>Page <select aria-label="Contact page" value={currentPage} disabled={loading || !contacts.length} onChange={(event) => setPage(Number(event.target.value))}>
+            {Array.from({ length: totalPages }, (_, index) => <option key={index + 1} value={index + 1}>{index + 1}</option>)}
+          </select> of {totalPages}</label>
+          <button type="button" disabled={loading || currentPage === totalPages} onClick={() => setPage(currentPage + 1)}>Next</button>
+        </div>
+      </nav>
     </article>
   );
 }
