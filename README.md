@@ -65,6 +65,15 @@ Active branches appear in the homepage's **Branches** section. The public feed
 returns inactive branches. Cards show location, address, timings, an optional
 branch link and Google Maps directions. Empty, loading and retry states are included.
 
+**Read More** opens `/branches/{state}/{city}/{branch-slug}` using the saved state,
+city and slug (for example `/branches/karnataka/bengaluru/malleswaram`). **Map**
+opens the same page at `#branch-map`. Only active branches with matching location
+segments are available. The detail page uses the branch photo, address, hours
+and coordinates, with an address-based map fallback when coordinates are absent.
+The map shows the current branch at full width. Callback requests use
+the existing contact endpoint as **Sell Gold** leads, with the branch name and ID
+included in **Service / Help with**. No extra database migration is needed.
+
 Uploads accept JPG, PNG and WebP up to 10 MB and 25 megapixels. Images are decoded,
 stripped of metadata, resized to fit 1600 × 1200 and saved as WebP with unique
 branch-ID-prefixed filenames in `uploads/branches/`. A dedicated image route serves
@@ -75,6 +84,7 @@ Replaced/deleted images are retained on disk to avoid breaking in-flight readers
 they are not referenced by the branch feed. Failed new uploads are cleaned up.
 
 Validation tests: `node --test tests/branch-values.test.mjs`.
+Branch detail URL and directions tests: `node --test tests/branch-links.test.mjs`.
 
 ## Google Ads landing page
 

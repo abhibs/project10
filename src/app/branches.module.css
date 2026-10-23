@@ -191,18 +191,21 @@
 }
 .actions {
   display: grid;
-  grid-template-columns: 1fr 1fr 1.25fr;
-  gap: 9px;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 16px;
   margin-top: auto;
 }
-.actionsTwo { grid-template-columns: 1fr 1.25fr; }
+.detailLinks { display: flex; align-items: center; justify-content: flex-end; gap: 16px; margin: 0 0 18px; }
+.detailLinks a { display: inline-flex; align-items: center; gap: 7px; color: #006a64; font-size: 13px; font-weight: 800; text-decoration: none; }
+.detailLinks a:hover { text-decoration: underline; }
+.detailLinks svg { width: 17px; height: 17px; }
 .actions a {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 7px;
-  min-height: 44px;
-  padding: 9px;
+  min-height: 48px;
+  padding: 13px 20px;
   border-radius: 7px;
   font-size: 12px;
   font-weight: 800;
@@ -213,18 +216,15 @@
 }
 .actions a:hover { transform: translateY(-2px); }
 .actions svg { width: 16px; height: 16px; flex: none; }
-.actionLight {
-  border: 1px solid #e6eae4;
-  background: #fff;
+.section .actions a.actionLight {
+  border: 1px solid #d9dfd5;
+  background: #faf7f0;
   color: #064e49;
 }
-.actionLight svg { color: #af172b; }
-.actionGold {
-  border: 1px solid #e3ac1a;
-  background: #ffd04b;
-  color: #17342e;
-}
-.actionGold:hover { background: #ffdb72; }
+.section .actions a.actionLight:hover { background: #edf0e7; }
+.actionLight svg { color: currentColor; }
+.section .actions a.actionPrimary { border: 1px solid #e8b932; background: linear-gradient(120deg, #ffe17b, #ffcb40); color: #165d58; }
+.section .actions a.actionPrimary:hover { background: #ffdc72; }
 .carouselFooter {
   display: flex;
   width: 100%;
@@ -308,8 +308,6 @@
   .card h3 { font-size: 21px; }
   .details { grid-template-columns: 1fr; gap: 13px; }
   .actions { grid-template-columns: 1fr 1fr; }
-  .actionGold { grid-column: 1 / -1; }
-  .actionsTwo .actionGold { grid-column: auto; }
 }
 @media (prefers-reduced-motion: reduce) {
   .cityTab, .cityActive, .actions a { transition: none; }

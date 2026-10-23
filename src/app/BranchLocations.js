@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { branchPath, branchDirections } from "@/lib/branch-links.mjs";
 
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import styles from "./branches.module.css";
@@ -24,16 +25,13 @@ function Icon({ name }) {
     pin: <><path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11Z" /><circle cx="12" cy="10" r="2.4" /></>,
     clock: <><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.5 2" /></>,
     phone: <path d="M6.7 3.5 9.2 6l-1.5 2.5a15 15 0 0 0 7.8 7.8L18 14.8l2.5 2.5-1.6 3a2 2 0 0 1-2.2 1A19 19 0 0 1 2.7 7.3a2 2 0 0 1 1-2.2l3-1.6Z" />,
-    calendar: <><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4M17 3v4M3 10h18" /></>,
   };
   return <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">{paths[name]}</svg>;
 }
 
 function BranchCard({ branch }) {
-  const destination = branch.latitude != null && branch.longitude != null
-    ? `${branch.latitude},${branch.longitude}`
-    : [branch.name, branch.address, branch.area, branch.city, branch.state, branch.pincode].filter(Boolean).join(", ");
-  const directions = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(destination);
+  const path = branchPath(branch);
+  const directions = branchDirections(branch);
 
   return <article className={styles.card}>
     <div className={styles.cardTop}>
@@ -44,10 +42,13 @@ function BranchCard({ branch }) {
       <p className={styles.address}>{branch.address}<br />{branch.city}, {branch.state} - {branch.pincode}</p>
       <p className={styles.timings}><Icon name="clock" /><span><strong>Opening hours</strong>{branch.timings}</span></p>
     </div>
-    <div className={`${styles.actions}${branch.phone ? "" : ` ${styles.actionsTwo}`}`}>
+    <div className={styles.detailLinks}>
+      <Link href={`${path}#branch-map`}><Icon name="pin" /> Map</Link>
+    </div>
+    <div className={styles.actions}>
+      <Link className={styles.actionPrimary} href={path}>Read More <span aria-hidden="true">→</span></Link>
       <a className={styles.actionLight} href={directions} target="_blank" rel="noopener noreferrer"><Icon name="pin" /> Directions</a>
       {branch.phone && <a className={styles.actionLight} href={`tel:${branch.phone}`}><Icon name="phone" /> Call Branch</a>}
-      <Link className={styles.actionGold} href="/#booking"><Icon name="calendar" /> Book Appointment</Link>
     </div>
   </article>;
 }
