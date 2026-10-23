@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { getPageSeoMetadata } from "@/lib/seo-metadata";
 import { Manrope, Playfair_Display } from "next/font/google";
 import Brand from "@/app/Brand";
 import GoogleLeadForm from "./GoogleLeadForm";
@@ -7,10 +8,14 @@ import styles from "./googleleads.module.css";
 const bodyFont = Manrope({ subsets: ["latin"], variable: "--font-google-lead-body", display: "swap" });
 const displayFont = Playfair_Display({ subsets: ["latin"], variable: "--font-google-lead-display", display: "swap" });
 
-export const metadata = {
+const defaultMetadata = {
   title: "Sell Gold for Instant Cash | Aryan Gold Buyers",
   description: "Get a free, transparent gold valuation and quick payment from Aryan Gold Buyers. Share your details for a callback from our gold expert.",
 };
+
+export async function generateMetadata() {
+  return getPageSeoMetadata("/googleleads", defaultMetadata);
+}
 
 function BenefitIcon({ type }) {
   if (type === "shield") return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8 20 6v5.5c0 4.8-3.2 8.2-8 10-4.8-1.8-8-5.2-8-10V6l8-3.2Z"/><path d="m8.6 12 2.1 2.1 4.8-5"/></svg>;

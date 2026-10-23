@@ -9,6 +9,7 @@ nextEnv.loadEnvConfig(process.cwd());
 const pages = [
   ["Site defaults", "*", null],
   ["Home page", "/", "src/app/page.js"],
+  ["Google Leads landing page", "/googleleads", "src/app/googleleads/page.js"],
   ["About us", "/about-us", "src/app/(informational)/about-us/page.js"],
   ["Services", "/services", "src/app/(informational)/services/page.js"],
   ...Object.entries(SERVICE_PAGES).map(([slug, service]) => [service.title, `/services/${slug}`, `src/app/(informational)/services/${slug}/page.js`]),

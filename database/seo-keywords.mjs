@@ -1,4 +1,5 @@
 export const SEO_KEYWORDS = {
+  "/googleleads": "sell gold, sell old gold, sell gold for cash, cash for gold, gold buyers near me, sell gold near me, gold buyers Bengaluru, gold buyers Bangalore, gold buyers Chennai, gold jewellery buyers, sell gold jewellery, sell gold coins, sell gold bars, free gold valuation, transparent gold valuation, non-destructive gold testing, quick payment for gold, release pledged gold, doorstep gold valuation, Aryan Gold Buyers",
   "*": "Aryan Gold Buyers, gold buyers, sell gold, cash for gold, gold valuation, gold buyers Bengaluru",
   "/": "sell gold near me, coins and gold, cash in gold, gold buyers close to me, gold selling price today, sell gold, gold for sell near me, Aryan Gold Buyers, gold buyers Bengaluru",
   "/about-us": "about Aryan Gold Buyers, Aryan Gold Buyers company, gold buying company Bengaluru, gold valuation services, gold buyers Karnataka",
