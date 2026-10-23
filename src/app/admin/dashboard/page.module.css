@@ -168,3 +168,10 @@
   .sidebar nav a { flex-direction: column; gap: 4px; }
   .toast { top: 16px; right: 16px; }
 }
+
+.detailsTable { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 13px; }
+.detailsTable th, .detailsTable td { padding: 11px 12px; border-bottom: 1px solid var(--admin-border); text-align: left; vertical-align: top; overflow-wrap: anywhere; white-space: pre-wrap; }
+.detailsTable thead { color: var(--admin-cream); background: var(--admin-teal); }
+.detailsTable th:first-child { width: 38%; }
+.detailsTable tbody th { color: #fff; background: var(--admin-teal); font-weight: 700; }
+.detailsCaption { margin-bottom: 12px; text-align: left; color: var(--admin-teal); }

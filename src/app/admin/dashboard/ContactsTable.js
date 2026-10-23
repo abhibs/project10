@@ -9,10 +9,20 @@ function displayService(contact) {
   return ["Banner Form", "Sell Gold", "Release Pledged Gold"].includes(contact.businessType) ? "—" : contact.services || "—";
 }
 
-function GclidDetails({ contact }) {
+function ContactDetails({ contact }) {
   const dialog = useRef(null);
   const [message, setMessage] = useState("");
-  if (!contact.gclid) return "-";
+  const fields = [
+    ["Date", displayDate(contact.submittedDate)], ["Time (IST)", displayTime(contact.submittedTime)],
+    ["Form type", contact.businessType], ["Name", contact.name], ["Mobile", contact.mobile],
+    ["City", contact.city], ["Weight", contact.weight ? contact.weight + " g" : "-"],
+    ["Release bank", contact.releaseBank], ["Release place", contact.releasePlace],
+    ["Preferred date", displayDate(contact.preferredDate)], ["Preferred time", displayTime(contact.preferredTime)],
+    ["Service / Help with", displayService(contact)], ["GCLID", contact.gclid],
+    ["UTM Source", contact.utmSource], ["UTM Campaign", contact.utmCampaign],
+    ["Keyword", contact.keyword], ["Adgroup ID", contact.adgroupId],
+    ["Status", contact.status === "active" ? "Completed" : "Pending"], ["Comment", contact.comment],
+  ];
 
   async function copyGclid() {
     try {
@@ -22,13 +32,17 @@ function GclidDetails({ contact }) {
   }
 
   return <>
-    <button type="button" className={styles.gclidButton} aria-haspopup="dialog" aria-label={`View GCLID for ${contact.name}`} onClick={() => { setMessage(""); dialog.current.showModal(); }}>View GCLID</button>
+    <button type="button" className={styles.gclidButton} aria-haspopup="dialog" aria-label={`View details for ${contact.name}`} onClick={() => { setMessage(""); dialog.current.showModal(); }}>View details</button>
     <dialog ref={dialog} className={styles.gclidDialog} aria-labelledby={`gclid-title-${contact.id}`} onClick={(event) => { if (event.target === event.currentTarget) dialog.current.close(); }}>
       <div className={styles.gclidContent}>
-        <div className={styles.modalHead}><div><h2 id={`gclid-title-${contact.id}`}>GCLID details</h2><p>{contact.name} · {contact.mobile}</p></div><button type="button" aria-label="Close GCLID details" onClick={() => dialog.current.close()}>×</button></div>
-        <div className={styles.gclidValue}>{contact.gclid}</div>
+        <div className={styles.modalHead}><div><h2 id={`gclid-title-${contact.id}`}>Contact details</h2><p>{contact.name} · {contact.mobile}</p></div><button type="button" aria-label="Close contact details" onClick={() => dialog.current.close()}>×</button></div>
+        <table className={styles.detailsTable}>
+          <caption className={styles.detailsCaption}>Details for {contact.name}</caption>
+          <thead><tr><th scope="col">Field</th><th scope="col">Value</th></tr></thead>
+          <tbody>{fields.map(([label, value]) => <tr key={label}><th scope="row">{label}</th><td>{value || "-"}</td></tr>)}</tbody>
+        </table>
         <p className={styles.exportStatus} role="status">{message}</p>
-        <div className={styles.modalActions}><button type="button" onClick={copyGclid}>Copy GCLID</button><button type="button" onClick={() => dialog.current.close()}>Close</button></div>
+        <div className={styles.modalActions}>{contact.gclid && <button type="button" onClick={copyGclid}>Copy GCLID</button>}<button type="button" onClick={() => dialog.current.close()}>Close</button></div>
       </div>
     </dialog>
   </>;
@@ -252,18 +266,16 @@ export default function ContactsTable() {
       </div>
       <div className={styles.tableWrap}>
         <table className={styles.contactsTable}>
-          <thead><tr><th>#</th><th>Date</th><th>Time (IST)</th><th>Form type</th><th>Name</th><th>Mobile</th><th>City</th><th>Weight</th><th>Release bank</th><th>Release place</th><th>Preferred date</th><th>Preferred time</th><th>Service / Help with</th><th>GCLID</th><th>UTM Source</th><th>UTM Campaign</th><th>Keyword</th><th>Adgroup ID</th><th>Status</th><th>Comment</th></tr></thead>
+          <thead><tr><th>#</th><th>Date</th><th>Time (IST)</th><th>Form type</th><th>Name</th><th>Mobile</th><th>City</th><th>Weight</th><th>Details</th><th>Status</th><th>Comment</th></tr></thead>
           <tbody>
-            {loading ? <tr><td className={styles.tableStatus} colSpan="20">Loading contact requests…</td></tr> : contacts.length === 0 ? <tr><td className={styles.tableStatus} colSpan="20">No contact requests found.</td></tr> : contacts.map((contact, index) => (
+            {loading ? <tr><td className={styles.tableStatus} colSpan="11">Loading contact requests…</td></tr> : contacts.length === 0 ? <tr><td className={styles.tableStatus} colSpan="11">No contact requests found.</td></tr> : contacts.map((contact, index) => (
               <tr key={contact.id} className={contact.comment?.trim() ? styles.commentedRow : undefined}>
                 <td>{index + 1}</td>
                 <td className={styles.noWrap}>{displayDate(contact.submittedDate)}</td>
                 <td className={styles.noWrap}>{displayTime(contact.submittedTime)}</td>
                 <td><span className={`${styles.typeBadge} ${["Quick Contact", "Contact Page", "Banner Form"].includes(contact.businessType) ? styles.quickBadge : ""}`}>{contact.businessType}</span></td>
                 <td>{contact.name}</td><td className={styles.noWrap}>{contact.mobile}</td><td>{contact.city || "—"}</td>
-                <td className={styles.noWrap}>{contact.weight ? `${contact.weight} g` : "—"}</td><td>{contact.releaseBank || "-"}</td><td>{contact.releasePlace || "-"}</td><td className={styles.noWrap}>{displayDate(contact.preferredDate)}</td><td className={styles.noWrap}>{displayTime(contact.preferredTime)}</td><td>{displayService(contact)}</td>
-                <td><GclidDetails contact={contact} /></td>
-                {["utmSource", "utmCampaign", "keyword", "adgroupId"].map((field) => <td key={field}>{contact[field] || "-"}</td>)}
+                <td className={styles.noWrap}>{contact.weight ? `${contact.weight} g` : "—"}</td><td><ContactDetails contact={contact} /></td>
                 <ContactControls contact={contact} onSaved={updateRow} />
               </tr>
             ))}
