@@ -82,6 +82,7 @@ export default function GoogleLeadForm() {
         <select id="google-lead-service" name="services" defaultValue="" required>
           <option value="" disabled>Select a service</option>
           <option>Sell Gold for Instant Cash</option>
+          <option>Doorstep Service</option>
           <option>Release Pledged Gold</option>
           <option>Gold Valuation</option>
           <option>Need Guidance</option>

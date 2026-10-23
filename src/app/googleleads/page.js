@@ -52,7 +52,6 @@ export default function GoogleLeadsPage() {
             <div className={styles.portrait} aria-label="Welcome to Aryan Gold Buyers">
               <div className={styles.portraitHalo} aria-hidden="true" />
               <Image src="/Selected/306A7111-transparent.png" alt="Aryan Gold Buyers representative holding cash and gold jewellery" width={1024} height={1536} priority sizes="(max-width: 820px) 92vw, 34vw" />
-              <div className={styles.cashBadge}><span>₹</span><p><small>GOLD TO CASH</small><strong>Clear value. Quick payment.</strong></p></div>
             </div>
 
             <GoogleLeadForm />
