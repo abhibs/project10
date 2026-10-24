@@ -1,3 +1,5 @@
+import { INCOMING_CALL_TYPE } from "./contact-summary.mjs";
+
 export const DAILY_CONTACT_DUPLICATE_CODE = "CONTACT_ALREADY_RECEIVED_TODAY";
 export const DAILY_CONTACT_DUPLICATE_MESSAGE = "Your query has already been received. Please allow us some time to get back to you!";
 
@@ -40,6 +42,8 @@ export async function runOncePerContactDay(connection, mobile, insert) {
 export function uniqueDailyContacts(contacts) {
   const seen = new Set();
   return contacts.filter((contact) => {
+    // Every manually logged call is an independent admin record and must stay visible.
+    if (contact.businessType === INCOMING_CALL_TYPE) return true;
     const mobile = String(contact.mobile || "").replace(/\D/g, "");
     if (!mobile) return true;
     const key = `${contact.submittedDate}:${mobile}`;

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { resolveContactFilters } from "@/lib/contact-filters.mjs";
-import { CONTACT_FORM_TYPES, GOOGLE_LEAD_TYPE, getContactFormLabel } from "@/lib/contact-summary.mjs";
+import { CONTACT_FORM_TYPES, GOOGLE_LEAD_TYPE, INCOMING_CALL_TYPE, getContactFormLabel } from "@/lib/contact-summary.mjs";
 import styles from "./page.module.css";
 
 function displayService(contact) {
@@ -25,6 +25,7 @@ function ContactDetails({ contact }) {
     ["Form type", getContactFormLabel(contact.businessType)],
     ["Name", contact.name], ["Mobile", contact.mobile], ["City", contact.city],
     ["Weight", contact.weight ? `${contact.weight} g` : "-"],
+    ["Service / Help with", displayService(contact)], ["Details", contact.details],
     ["Release bank", contact.releaseBank], ["Release place", contact.releasePlace],
     ["Preferred date", displayDate(contact.preferredDate)],
     ["Preferred time", displayTime(contact.preferredTime)],
@@ -117,6 +118,75 @@ function ContactControls({ contact, onSaved }) {
   </>;
 }
 
+function ManualEnquiryDialog({ onCreated }) {
+  const dialog = useRef(null);
+  const form = useRef(null);
+  const lock = useRef(false);
+  const [saving, setSaving] = useState(false);
+  const [message, setMessage] = useState("");
+
+  function open() {
+    form.current?.reset();
+    setMessage("");
+    dialog.current.showModal();
+  }
+
+  function close() {
+    if (!saving) dialog.current.close();
+  }
+
+  async function submit(event) {
+    event.preventDefault();
+    if (lock.current || !event.currentTarget.reportValidity()) return;
+    lock.current = true;
+    setSaving(true);
+    setMessage("");
+    const fields = Object.fromEntries(new FormData(event.currentTarget));
+    try {
+      const response = await fetch("/api/admin/contacts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(fields),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || "Unable to add the enquiry.");
+      form.current.reset();
+      dialog.current.close();
+      onCreated(data.message);
+    } catch (error) {
+      setMessage(error.message || "Unable to add the enquiry. Please try again.");
+    } finally {
+      lock.current = false;
+      setSaving(false);
+    }
+  }
+
+  return <>
+    <button type="button" className={styles.insertEnquiryButton} onClick={open}>+ Insert enquiry</button>
+    <dialog ref={dialog} className={`${styles.gclidDialog} ${styles.enquiryDialog}`} aria-labelledby="manual-enquiry-title" onClick={(event) => { if (event.target === event.currentTarget) close(); }}>
+      <form ref={form} className={styles.enquiryForm} onSubmit={submit}>
+        <div className={styles.modalHead}>
+          <div><h2 id="manual-enquiry-title">Insert enquiry</h2><p>Add an enquiry received through an incoming call.</p></div>
+          <button type="button" aria-label="Close enquiry form" disabled={saving} onClick={close}>×</button>
+        </div>
+        <div className={styles.formGrid}>
+          <label><span>Form type</span><input value={INCOMING_CALL_TYPE} readOnly /></label>
+          <label><span>Status <b>*</b></span><select name="status" defaultValue="" required disabled={saving}><option value="" disabled>Select status</option><option value="inactive">Pending</option><option value="active">Completed</option></select></label>
+          <label><span>Name <b>*</b></span><input name="name" autoComplete="name" minLength={2} maxLength={255} placeholder="Customer name" required disabled={saving} /></label>
+          <label><span>Mobile <b>*</b></span><input name="mobile" type="tel" autoComplete="tel-national" inputMode="numeric" pattern="[0-9]{10}" minLength={10} maxLength={10} placeholder="10-digit mobile number" required disabled={saving} onInput={(event) => { event.currentTarget.value = event.currentTarget.value.replace(/\D/g, "").slice(0, 10); }} /></label>
+          <label><span>City / area <b>*</b></span><input name="city" autoComplete="address-level2" maxLength={255} placeholder="e.g. Bengaluru" required disabled={saving} /></label>
+          <label><span>Gold weight (g) <b>*</b></span><input name="weight" type="number" inputMode="decimal" min="0.01" max="100000" step="0.01" placeholder="Approx. weight" required disabled={saving} /></label>
+          <label className={styles.fullField}><span>Service / Help with <b>*</b></span><input name="services" maxLength={255} placeholder="e.g. Gold valuation or pledged gold release" required disabled={saving} /></label>
+          <label className={styles.fullField}><span>Details</span><textarea name="details" maxLength={2000} rows={4} placeholder="Add the customer’s enquiry details" disabled={saving} /></label>
+          <label className={styles.fullField}><span>Comment</span><textarea name="comment" maxLength={2000} rows={3} placeholder="Optional internal comment" disabled={saving} /></label>
+        </div>
+        {message && <p className={styles.passwordError} role="alert">{message}</p>}
+        <div className={styles.modalActions}><button type="button" disabled={saving} onClick={close}>Cancel</button><button className={styles.savePassword} type="submit" disabled={saving}>{saving ? "Adding…" : "Add enquiry"}</button></div>
+      </form>
+    </dialog>
+  </>;
+}
+
 export default function ContactsTable() {
   const [filters, setFilters] = useState(() => resolveContactFilters());
   const [appliedFilters, setAppliedFilters] = useState(filters);
@@ -138,15 +208,26 @@ export default function ContactsTable() {
     setContacts((previous) => previous.map((contact) => contact.id === id ? { ...contact, ...changes } : contact));
   }
 
+  function manualEnquiryCreated(message) {
+    const nextFilters = resolveContactFilters({ businessType: INCOMING_CALL_TYPE });
+    setFilters(nextFilters);
+    setAppliedFilters(nextFilters);
+    setPage(1);
+    setLoading(true);
+    setError("");
+    setExportMessage(message);
+    setRequestVersion((version) => version + 1);
+  }
+
   async function exportContacts(format) {
     setExporting(true);
     setExportMessage("");
-    const headers = ["#", "Date", "Time (IST)", "Form type", "Name", "Mobile", "City", "Weight", "Release bank", "Release place", "Preferred date", "Preferred time", "Service / Help with", "GCLID", "UTM Source", "UTM Campaign", "Keyword", "Adgroup ID", "Landing page", "Referrer", "Tracking data", "Status", "Comment"];
+    const headers = ["#", "Date", "Time (IST)", "Form type", "Name", "Mobile", "City", "Weight", "Release bank", "Release place", "Preferred date", "Preferred time", "Service / Help with", "Details", "GCLID", "UTM Source", "UTM Campaign", "Keyword", "Adgroup ID", "Landing page", "Referrer", "Tracking data", "Status", "Comment"];
     const rows = contacts.map((contact, index) => [
       index + 1, displayDate(contact.submittedDate), displayTime(contact.submittedTime),
       getContactFormLabel(contact.businessType), contact.name, contact.mobile, contact.city || "—",
       contact.weight ? `${contact.weight} g` : "—", contact.releaseBank || "", contact.releasePlace || "", displayDate(contact.preferredDate),
-      displayTime(contact.preferredTime), displayService(contact),
+      displayTime(contact.preferredTime), displayService(contact), contact.details || "",
       ...["gclid", "utmSource", "utmCampaign", "keyword", "adgroupId"].map((field) => contact[field] || "-"),
       contact.landingPage || "", contact.referrer || "", JSON.stringify(contact.trackingData || {}),
       contact.status === "active" ? "Completed" : "Pending", contact.comment || "",
@@ -175,7 +256,7 @@ export default function ContactsTable() {
         sheet.getRow(1).font = { bold: true };
         sheet.columns.forEach((column, index) => { column.width = index === 13 ? 50 : 22; });
         sheet.views = [{ state: "frozen", ySplit: 1 }];
-        sheet.autoFilter = { from: "A1", to: "W1" };
+        sheet.autoFilter = { from: "A1", to: "X1" };
         blob = new Blob([await workbook.xlsx.writeBuffer()], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
       }
       const url = URL.createObjectURL(blob);
@@ -258,7 +339,7 @@ export default function ContactsTable() {
     <article className={styles.contactsPanel}>
       <div className={styles.panelHeading}>
         <div><h2>Contact requests</h2><p>Today’s requests are shown by default. Choose a date range and click Filter to view older requests.</p></div>
-        <span className={styles.resultCount}>{loading ? "…" : contacts.length} records</span>
+        <div className={styles.panelActions}><ManualEnquiryDialog onCreated={manualEnquiryCreated} /><span className={styles.resultCount}>{loading ? "…" : contacts.length} records</span></div>
       </div>
 
       <form className={styles.filters} onSubmit={applyFilters}>
@@ -292,7 +373,7 @@ export default function ContactsTable() {
                 <td>{pageStart + index + 1}</td>
                 <td className={styles.noWrap}>{displayDate(contact.submittedDate)}</td>
                 <td className={styles.noWrap}>{displayTime(contact.submittedTime)}</td>
-                <td><span className={`${styles.typeBadge} ${["Quick Contact", "Contact Page", "Banner Form", GOOGLE_LEAD_TYPE].includes(contact.businessType) ? styles.quickBadge : ""}`}>{getContactFormLabel(contact.businessType)}</span></td>
+                <td><span className={`${styles.typeBadge} ${["Quick Contact", "Contact Page", "Banner Form", GOOGLE_LEAD_TYPE, INCOMING_CALL_TYPE].includes(contact.businessType) ? styles.quickBadge : ""}`}>{getContactFormLabel(contact.businessType)}</span></td>
                 <td>{contact.name}</td><td className={styles.noWrap}>{contact.mobile}</td><td>{contact.city || "—"}</td>
                 <td className={styles.noWrap}>{contact.weight ? `${contact.weight} g` : "—"}</td><td>{displayService(contact)}</td><td><ContactDetails contact={contact} /></td>
                 <ContactControls contact={contact} onSaved={updateRow} />

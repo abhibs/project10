@@ -222,6 +222,16 @@ export async function createContact({
   }
 }
 
+export async function createManualContact({ name, mobile, city, weight, services, details, status, comment, businessType }) {
+  const [result] = await executeContactQuery(
+    `INSERT INTO contacts
+      (name, mobile, city, weight, services, business_type, details, status, comment)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    [name, mobile, city, weight, services, businessType, details || null, status, comment || null],
+  );
+  return result.insertId;
+}
+
 export async function getContacts({ fromDate = "", toDate = "", businessType = "" } = {}) {
   const conditions = [];
   const values = [];
@@ -241,7 +251,7 @@ export async function getContacts({ fromDate = "", toDate = "", businessType = "
 
   const where = conditions.length ? `WHERE ${conditions.join(" AND ")}` : "";
   const [rows] = await executeContactQuery(
-    `SELECT id, name, mobile, city, weight, status, comment, release_bank AS releaseBank, release_place AS releasePlace,
+    `SELECT id, name, mobile, city, weight, details, status, comment, release_bank AS releaseBank, release_place AS releasePlace,
        DATE_FORMAT(preffered_date, '%Y-%m-%d') AS preferredDate,
        preffered_time AS preferredTime, services, business_type AS businessType,
        gclid, utm_source AS utmSource, utm_campaign AS utmCampaign, keyword, adgroup_id AS adgroupId,

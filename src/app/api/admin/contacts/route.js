@@ -1,12 +1,41 @@
 import { cookies } from "next/headers";
 import { ADMIN_SESSION_COOKIE, readAdminSession } from "@/lib/admin-session";
-import { getContacts, updateContact } from "@/lib/admin-db";
+import { createManualContact, getContacts, updateContact } from "@/lib/admin-db";
 import { resolveContactFilters } from "@/lib/contact-filters.mjs";
 import { isAllowedBranchOrigin } from "@/lib/branch-origin.mjs";
 import { CONTACT_FORM_TYPES, countContactTypes, sumContactWeights } from "@/lib/contact-summary.mjs";
+import { validateManualContact } from "@/lib/manual-contact.mjs";
 
 const BUSINESS_TYPES = new Set(CONTACT_FORM_TYPES);
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
+
+export async function POST(request) {
+  const cookieStore = await cookies();
+  if (!readAdminSession(cookieStore.get(ADMIN_SESSION_COOKIE)?.value)) {
+    return Response.json({ message: "Unauthorized." }, { status: 401 });
+  }
+  if (!isAllowedBranchOrigin(request)) {
+    return Response.json({ message: "Invalid request origin." }, { status: 403 });
+  }
+
+  let body;
+  try { body = await request.json(); } catch {
+    return Response.json({ message: "Invalid request." }, { status: 400 });
+  }
+
+  let contact;
+  try { contact = validateManualContact(body); } catch (error) {
+    return Response.json({ message: error.message }, { status: 400 });
+  }
+
+  try {
+    const id = await createManualContact(contact);
+    return Response.json({ id, message: "Incoming-call enquiry added." }, { status: 201 });
+  } catch (error) {
+    console.error("Unable to add manual contact:", error);
+    return Response.json({ message: "Unable to add the enquiry. Please try again." }, { status: 500 });
+  }
+}
 
 export async function PATCH(request) {
   const cookieStore = await cookies();
