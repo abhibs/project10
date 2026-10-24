@@ -1,6 +1,6 @@
 import mysql from "mysql2/promise";
 import { SEO_FIELDS } from "./seo-fields.mjs";
-import { uniqueDailyContacts } from "./contact-leads.mjs";
+import { runOncePerContactDay, uniqueDailyContacts } from "./contact-leads.mjs";
 
 export async function getSeoPages() {
   const [rows] = await getPool().execute("SELECT * FROM seo_pages ORDER BY route_path <> '*', id");
@@ -189,29 +189,37 @@ export async function createContact({
   trackingData = {}, landingPage = "", referrer = "",
   releaseBank = "", releasePlace = "",
 }) {
-  const [result] = await executeContactQuery(
-    `INSERT INTO contacts
-      (name, mobile, city, weight, preffered_date, preffered_time, services, business_type,
-       gclid, utm_source, utm_campaign, keyword, adgroup_id, tracking_data, landing_page, referrer,
-       release_bank, release_place)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-    [
-      name,
-      mobile,
-      city || null,
-      weight || null,
-      preferredDate || null,
-      preferredTime || null,
-      services,
-      businessType,
-      gclid || null, utmSource || null, utmCampaign || null, keyword || null, adgroupId || null,
-      Object.keys(trackingData).length ? JSON.stringify(trackingData) : null,
-      landingPage || null, referrer || null,
-      releaseBank || null, releasePlace || null,
-    ]
-  );
-
-  return result.insertId;
+  if (!contactPool) contactPool = createPool();
+  const connection = await contactPool.getConnection();
+  try {
+    await connection.query("SET SESSION time_zone = '+05:30'");
+    return await runOncePerContactDay(connection, mobile, async () => {
+      const [result] = await connection.execute(
+        `INSERT INTO contacts
+          (name, mobile, city, weight, preffered_date, preffered_time, services, business_type,
+           gclid, utm_source, utm_campaign, keyword, adgroup_id, tracking_data, landing_page, referrer,
+           release_bank, release_place)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [
+          name,
+          mobile,
+          city || null,
+          weight || null,
+          preferredDate || null,
+          preferredTime || null,
+          services,
+          businessType,
+          gclid || null, utmSource || null, utmCampaign || null, keyword || null, adgroupId || null,
+          Object.keys(trackingData).length ? JSON.stringify(trackingData) : null,
+          landingPage || null, referrer || null,
+          releaseBank || null, releasePlace || null,
+        ],
+      );
+      return result.insertId;
+    });
+  } finally {
+    connection.release();
+  }
 }
 
 export async function getContacts({ fromDate = "", toDate = "", businessType = "" } = {}) {
