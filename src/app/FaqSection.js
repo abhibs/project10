@@ -59,7 +59,7 @@ export default function FaqSection() {
         </div>
         <aside className={styles.aside} aria-label="More help">
           <div className={styles.image}>
-            <Image src="/faq-jewellery.webp" alt="Gold necklace and bangles displayed in a jewellery showroom" fill sizes="(max-width: 760px) 90vw, 38vw" />
+            <Image src="/old-gold-consultation.webp" alt="Customer asking a gold valuation advisor about selling her old jewellery" fill sizes="(max-width: 760px) 90vw, 38vw" />
           </div>
           <h3>Still have questions?<br />Talk to our team.</h3>
           <div className={styles.actions}>

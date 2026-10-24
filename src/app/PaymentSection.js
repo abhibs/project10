@@ -2,10 +2,10 @@ import Image from "next/image";
 import styles from "./payment.module.css";
 
 const benefits = [
-  { title: "Easy Checkout", detail: "Review your purchase before payment.", icon: "bolt", tone: "gold" },
-  { title: "Multiple Payment Options", detail: "Choose a convenient available method.", icon: "coins", tone: "red" },
+  { title: "Clear Offer", detail: "Review your gold valuation before selling.", icon: "bolt", tone: "gold" },
+  { title: "Payment to You", detail: "Receive payment after accepting the offer.", icon: "coins", tone: "red" },
   { title: "Safe Transactions", detail: "A clear, secure process from start to finish.", icon: "shield", tone: "gold" },
-  { title: "GST Bill", detail: "Keep a bill for your gold purchase.", icon: "receipt", tone: "red" },
+  { title: "Sale Record", detail: "Keep a record of your gold sale.", icon: "receipt", tone: "red" },
 ];
 
 
@@ -28,12 +28,12 @@ export default function PaymentSection() {
   return <section className={styles.section} aria-labelledby="payment-title">
     <div className={styles.hero}>
       <div className={styles.photo}>
-        <Image src="/gold-purchase-handover.webp" alt="Customer receiving newly purchased gold jewellery in a presentation box" width={1800} height={771} sizes="(max-width: 1100px) 100vw, 50vw" />
+        <Image src="/old-gold-sale-payment.webp" alt="Customer receiving payment and a sale receipt after selling her old gold at a valuation office" width={1500} height={1200} sizes="(max-width: 1100px) 100vw, 50vw" />
       </div>
       <div className={styles.content}>
-        <span className={styles.eyebrow}>Complete Your Gold Purchase</span>
-        <h2 id="payment-title">Your Chosen Gold.<br /><span>Ready for You.</span></h2>
-        <p className={styles.intro}>Review your selection and price breakdown, complete payment, and receive your gold jewellery with your purchase bill.</p>
+        <span className={styles.eyebrow}>Turn Your Old Gold Into Money</span>
+        <h2 id="payment-title">Your Old Gold.<br /><span>Your Payment.</span></h2>
+        <p className={styles.intro}>Review the valuation of your old gold, accept the offer when you are ready, and receive payment after verification.</p>
         <div className={styles.benefits}>
           {benefits.map(({ title, detail, icon, tone }) => <div className={styles.benefit} key={title}>
             <span className={`${styles.benefitIcon} ${styles[tone]}`}><PaymentIcon name={icon} /></span>

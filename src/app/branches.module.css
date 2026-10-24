@@ -14,7 +14,7 @@
   background-image:
     linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, .98) 30%, rgba(255, 255, 255, .86) 47%, rgba(255, 255, 255, .24) 72%, rgba(255, 255, 255, .08) 100%),
     linear-gradient(0deg, #fff 0%, rgba(255, 255, 255, 0) 24%),
-    url("/branches-storefront.webp");
+    url("/gold-buying-office.webp");
   background-position: center, center, center 52%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -295,7 +295,7 @@
     background-image:
       linear-gradient(90deg, rgba(255, 255, 255, .97), rgba(255, 255, 255, .88)),
       linear-gradient(0deg, #fff, rgba(255, 255, 255, 0) 35%),
-      url("/branches-storefront.webp");
+      url("/gold-buying-office.webp");
   }
   .section .intro :is(h1, h2) { font-size: clamp(31px, 8vw, 43px); }
   .section .intro .subtitle { font-size: 13px; }

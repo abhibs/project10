@@ -1444,7 +1444,7 @@
 
 /* Transparent valuation follows the testing process. */
 .aryan-home .valuation-section{overflow:hidden;background:#fffaf3;color:#006A64}
-.aryan-home .valuation-overview{position:relative;min-height:520px;background:#fffaf3 url("/gold-purchase-detail.webp") center top / cover no-repeat}
+.aryan-home .valuation-overview{position:relative;min-height:520px;background:#fffaf3 url("/old-gold-assessment.webp") center top / cover no-repeat}
 .aryan-home .valuation-overview:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,250,243,.55) 0%,rgba(255,250,243,.43) 38%,rgba(255,250,243,.27) 56%,transparent 70%);pointer-events:none}
 .aryan-home .valuation-overview-inner{position:relative;display:grid;grid-template-columns:minmax(0,480px) minmax(0,355px) minmax(0,1fr);gap:32px;min-height:520px}
 .aryan-home .valuation-heading{padding:44px 0 28px}

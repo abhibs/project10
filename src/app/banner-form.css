@@ -101,7 +101,7 @@
 }
 .aryan-home #hero .hero-grid { align-items: center; }
 .aryan-home #hero .hero-siddhi { align-self: center; min-width: 0; position: relative; z-index: 1; }
-.aryan-home #hero .hero-siddhi img { display: block; width: 100%; height: auto; aspect-ratio: 550 / 695; object-fit: cover; object-position: center 20%; mask-image: linear-gradient(to bottom, #000 0%, #000 95%, transparent 100%); }
+.aryan-home #hero .hero-siddhi img { display: block; width: 100%; height: auto; aspect-ratio: 1087 / 1446; object-fit: contain; object-position: center; mask-image: linear-gradient(to bottom, #000 0%, #000 95%, transparent 100%); }
 .aryan-home #hero .hero-siddhi { isolation: isolate; }
 @media (min-width: 1201px) {
   .aryan-home[data-theme] #hero.hero.section-shell {
@@ -113,7 +113,7 @@
   }
   .aryan-home #hero .hero-grid { height: 100%; min-height: 0; }
   .aryan-home #hero .hero-siddhi {
-    width: min(100%, calc((100svh - var(--hero-header-height) - 2 * var(--hero-block-padding)) * 550 / 695));
+    width: min(100%, calc((100svh - var(--hero-header-height) - 2 * var(--hero-block-padding)) * 1087 / 1446));
     justify-self: center;
   }
 }

@@ -2,7 +2,7 @@ import Image from "next/image";
 import styles from "./experience.module.css";
 
 const benefits = [
-  { title: "Explore Designs", detail: "Discover necklaces, bangles and more.", icon: "eye", tone: "gold" },
+  { title: "Gold Evaluation", detail: "See your old gold weighed and tested.", icon: "eye", tone: "gold" },
   { title: "Clear Explanation", detail: "Understand purity, weight and pricing.", icon: "chat", tone: "red" },
   { title: "No Pressure", detail: "Take time to review and decide.", icon: "people", tone: "gold" },
   { title: "Trusted Process", detail: "A clear process at every branch.", icon: "handshake", tone: "red" },
@@ -28,12 +28,12 @@ export default function ExperienceSection() {
   return <section className={styles.section} aria-labelledby="experience-title">
     <div className={styles.hero}>
       <div className={styles.heroImage}>
-        <Image src="/gold-purchase-selection.webp" alt="Jewellery advisor helping a customer choose new gold jewellery" fill sizes="100vw" />
+        <Image src="/sell-old-gold-valuation.webp" alt="Customer selling her old gold jewellery to a gold buyer after weighing and valuation" fill sizes="100vw" />
       </div>
       <div className={styles.heroCopy}>
-        <span className={styles.eyebrow}>A Better Gold Buying Experience</span>
-        <h2 id="experience-title">Explore Gold.<br /><span>Find Your Favourite.</span></h2>
-        <p className={styles.lead}>Explore gold jewellery with guidance on design, purity and pricing, so you can choose with confidence.</p>
+        <span className={styles.eyebrow}>A Better Gold Selling Experience</span>
+        <h2 id="experience-title">Sell Your Old Gold.<br /><span>Know Its Value.</span></h2>
+        <p className={styles.lead}>Bring your unused gold jewellery for a transparent evaluation. Understand its purity, weight and offer before you decide to sell.</p>
         <div className={styles.benefits}>
           {benefits.map(({ title, detail, icon, tone }) => <div className={styles.benefit} key={title}>
             <span className={`${styles.benefitIcon} ${styles[tone]}`}><ExperienceIcon name={icon} /></span>

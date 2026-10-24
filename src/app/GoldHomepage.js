@@ -35,10 +35,10 @@ const TESTING_BENEFITS = [
   {title: "Transparent Results", description: "See the purity details clearly", icon: "check", tone: "red"},
 ];
 const VALUATION_FACTORS = [
-  {title: "Weight", description: "Understand the gold weight of your chosen piece.", icon: "scale"},
-  {title: "Purity", description: "Check the stated karat and hallmark details.", icon: "gem"},
-  {title: "Current Gold Rate", description: "See the gold rate used for your purchase.", icon: "chart"},
-  {title: "Your Purchase Price", description: "Review gold value, making charges and applicable taxes.", icon: "rupee"},
+  {title: "Weight", description: "See the weight of the old gold you bring to sell.", icon: "scale"},
+  {title: "Purity", description: "Understand the purity measured during your gold assessment.", icon: "gem"},
+  {title: "Current Gold Rate", description: "Understand the rate used to value your old gold.", icon: "chart"},
+  {title: "Your Gold Offer", description: "Review the valuation and any deductions before you sell.", icon: "rupee"},
 ];
 
 function HeroBenefitIcon({type}) {
@@ -279,7 +279,7 @@ export default function GoldHomepage() {
               <circle cx="300" cy="300" r="280" strokeDasharray="2 7" />
             </g>
           </svg>
-          <Image src="/siddhi.png" alt="Siddhi welcoming you to Aryan Gold" width={1024} height={1536} sizes="(max-width: 1200px) 80vw, 32vw" preload />
+          <Image src="/siddhi-banner.png" alt="Siddhi welcoming you to Aryan Gold" width={1087} height={1446} sizes="(max-width: 1200px) 80vw, 32vw" preload />
         </div>
 
         <form className="banner-form" id="banner-form" aria-labelledby="banner-form-title" aria-busy={submitting.banner} onSubmit={(event) => submitContact(event, "banner")}>
@@ -383,8 +383,8 @@ export default function GoldHomepage() {
         <div className="container valuation-overview-inner">
           <div className="valuation-heading reveal">
             <span className="valuation-kicker">Transparent Gold Pricing</span>
-            <h2 id="valuation-title">Know What Goes<br /><span>Into Your Gold</span><br />Purchase.</h2>
-            <p>Understand weight, purity, the applicable gold rate and other charges before choosing your gold jewellery.</p>
+            <h2 id="valuation-title">Know What Your<br /><span>Old Gold</span><br />Is Worth.</h2>
+            <p>Understand your old gold’s weight, tested purity and applicable rate. Review the offer and any deductions before deciding to sell.</p>
           </div>
           <div className="valuation-factors reveal delay-1">
             {VALUATION_FACTORS.map((factor) => (
