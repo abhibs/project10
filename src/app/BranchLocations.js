@@ -42,9 +42,6 @@ function BranchCard({ branch }) {
       <p className={styles.address}>{branch.address}<br />{branch.city}, {branch.state} - {branch.pincode}</p>
       <p className={styles.timings}><Icon name="clock" /><span><strong>Opening hours</strong>{branch.timings}</span></p>
     </div>
-    <div className={styles.detailLinks}>
-      <Link href={`${path}#branch-map`}><Icon name="pin" /> Map</Link>
-    </div>
     <div className={styles.actions}>
       <Link className={styles.actionPrimary} href={path}>Read More <span aria-hidden="true">→</span></Link>
       <a className={styles.actionLight} href={directions} target="_blank" rel="noopener noreferrer"><Icon name="pin" /> Directions</a>
