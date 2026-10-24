@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { resolveContactFilters } from "../src/lib/contact-filters.mjs";
+import { buildContactDateFilter, resolveContactFilters } from "../src/lib/contact-filters.mjs";
 
 test("defaults to today in India across the UTC date boundary", () => {
   assert.deepEqual(resolveContactFilters({}, new Date("2026-10-15T18:29:59Z")), {
@@ -25,4 +25,14 @@ test("explicit historical and open-ended date filters are preserved", () => {
   ]) {
     assert.deepEqual(resolveContactFilters(dates), { ...dates, businessType: "" });
   }
+});
+
+test("date queries include enquiries scheduled for a call back in the selected range", () => {
+  const filter = buildContactDateFilter("2026-10-24", "2026-10-24");
+  assert.match(filter.condition, /created_at >= \?/);
+  assert.match(filter.condition, /status = 'pending_callback'/);
+  assert.match(filter.condition, /callback_date >= \?/);
+  assert.match(filter.condition, /callback_date <= \?/);
+  assert.deepEqual(filter.values, ["2026-10-24 00:00:00", "2026-10-24", "2026-10-24", "2026-10-24"]);
+  assert.deepEqual(buildContactDateFilter(), { condition: "", values: [] });
 });

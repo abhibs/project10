@@ -16,11 +16,25 @@ try {
   const additions = [];
   if (!columns.some((column) => column.Field === "status")) additions.push("ADD COLUMN status ENUM('active', 'inactive') NOT NULL DEFAULT 'inactive'");
   if (!columns.some((column) => column.Field === "comment")) additions.push("ADD COLUMN comment TEXT DEFAULT NULL");
+  if (!columns.some((column) => column.Field === "details")) additions.push("ADD COLUMN details TEXT DEFAULT NULL");
+  if (!columns.some((column) => column.Field === "callback_date")) additions.push("ADD COLUMN callback_date DATE DEFAULT NULL");
   if (additions.length) await connection.query(`ALTER TABLE contacts ${additions.join(", ")}`);
-  await connection.query("ALTER TABLE contacts MODIFY COLUMN status ENUM('active', 'inactive') NOT NULL DEFAULT 'inactive'");
+  const statusType = columns.find((column) => column.Field === "status")?.Type || "enum('active','inactive')";
+  if (!statusType.includes("'pending_callback'")) {
+    await connection.query(`ALTER TABLE contacts MODIFY COLUMN status ${statusType.slice(0, -1)},'pending_callback') NOT NULL DEFAULT 'inactive'`);
+  }
+  const businessType = columns.find((column) => column.Field === "business_type")?.Type;
+  if (!businessType?.startsWith("enum(")) throw new Error("Unexpected contacts business_type schema.");
+  if (!businessType.includes("'Incoming Calls'")) {
+    await connection.query(`ALTER TABLE contacts MODIFY COLUMN business_type ${businessType.slice(0, -1)},'Incoming Calls') NOT NULL`);
+  }
+  const [indexes] = await connection.query("SHOW INDEX FROM contacts");
+  if (!indexes.some((index) => index.Column_name === "callback_date" && index.Seq_in_index === 1)) {
+    await connection.query("ALTER TABLE contacts ADD KEY contacts_callback_date_index (callback_date)");
+  }
   const [verified] = await connection.query("SHOW COLUMNS FROM contacts");
-  if (!["status", "comment"].every((field) => verified.some((column) => column.Field === field))) throw new Error("Schema verification failed.");
-  console.log("Contact status and comment columns are ready.");
+  if (!["status", "comment", "details", "callback_date"].every((field) => verified.some((column) => column.Field === field))) throw new Error("Schema verification failed.");
+  console.log("Contact management, incoming-call and callback columns are ready.");
 } catch (error) {
   console.error("Contact management migration failed:", error.code || error.message);
   process.exitCode = 1;

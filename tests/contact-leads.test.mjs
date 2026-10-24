@@ -24,6 +24,15 @@ test("empty results and contacts without a mobile number are retained correctly"
   assert.equal(uniqueDailyContacts([{ id: 1 }, { id: 2 }]).length, 2);
 });
 
+test("retains every manually entered incoming call", () => {
+  const contacts = [
+    { id: 3, mobile: "9481187122", submittedDate: "2026-10-23", businessType: "Incoming Calls" },
+    { id: 2, mobile: "9481187122", submittedDate: "2026-10-23", businessType: "Incoming Calls" },
+    { id: 1, mobile: "9481187122", submittedDate: "2026-10-23", businessType: "Quick Contact" },
+  ];
+  assert.deepEqual(uniqueDailyContacts(contacts).map((row) => row.id), [3, 2, 1]);
+});
+
 function connectionWith(existingRows = []) {
   const calls = [];
   return {

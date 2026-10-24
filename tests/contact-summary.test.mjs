@@ -14,6 +14,7 @@ test("counts every form type including zero counts after daily deduplication", (
   assert.equal(counts["Banner Form"], 1);
   assert.equal(counts["Contact Page"], 0);
   assert.equal(counts["googlelead-lp"], 0);
+  assert.equal(counts["Incoming Calls"], 0);
   assert.equal(getContactFormLabel("googlelead-lp"), "Google Lead");
   assert.equal(Object.keys(counts).length, CONTACT_FORM_TYPES.length);
   assert.equal(Object.values(counts).reduce((a, b) => a + b, 0), rows.length);

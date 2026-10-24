@@ -97,7 +97,7 @@ CREATE TABLE `contacts` (
   `preffered_date` date DEFAULT NULL,
   `preffered_time` varchar(20) DEFAULT NULL COMMENT '24-hour time or time range',
   `services` varchar(255) NOT NULL,
-  `business_type` enum('Branch Visit','Doorstep Service','Quick Contact','Contact Page','Banner Form','Sell Gold','Release Pledged Gold','Doorstep Valuation','googlelead-lp') NOT NULL,
+  `business_type` enum('Branch Visit','Doorstep Service','Quick Contact','Contact Page','Banner Form','Sell Gold','Release Pledged Gold','Doorstep Valuation','googlelead-lp','Incoming Calls') NOT NULL,
   `gclid` varchar(255) DEFAULT NULL,
   `utm_source` varchar(255) DEFAULT NULL,
   `utm_campaign` varchar(255) DEFAULT NULL,
@@ -108,7 +108,9 @@ CREATE TABLE `contacts` (
   `referrer` varchar(2048) DEFAULT NULL,
   `release_bank` varchar(255) DEFAULT NULL,
   `release_place` varchar(255) DEFAULT NULL,
-  `status` enum('active','inactive') NOT NULL DEFAULT 'inactive',
+  `details` text DEFAULT NULL,
+  `callback_date` date DEFAULT NULL,
+  `status` enum('active','inactive','pending_callback') NOT NULL DEFAULT 'inactive',
   `comment` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -170,7 +172,8 @@ ALTER TABLE `branches`
 ALTER TABLE `contacts`
   ADD PRIMARY KEY (`id`),
   ADD KEY `contacts_created_at_index` (`created_at`),
-  ADD KEY `contacts_business_type_index` (`business_type`);
+  ADD KEY `contacts_business_type_index` (`business_type`),
+  ADD KEY `contacts_callback_date_index` (`callback_date`);
 
 --
 -- Indexes for table `rates`

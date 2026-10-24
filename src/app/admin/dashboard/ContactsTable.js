@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { resolveContactFilters } from "@/lib/contact-filters.mjs";
-import { CONTACT_FORM_TYPES, GOOGLE_LEAD_TYPE, getContactFormLabel } from "@/lib/contact-summary.mjs";
+import { CONTACT_FORM_TYPES, GOOGLE_LEAD_TYPE, INCOMING_CALL_TYPE, getContactFormLabel } from "@/lib/contact-summary.mjs";
+import { CALLBACK_STATUS, CONTACT_STATUS_OPTIONS, getContactStatusLabel } from "@/lib/contact-status.mjs";
 import styles from "./page.module.css";
 
 function displayService(contact) {
@@ -25,11 +26,13 @@ function ContactDetails({ contact }) {
     ["Form type", getContactFormLabel(contact.businessType)],
     ["Name", contact.name], ["Mobile", contact.mobile], ["City", contact.city],
     ["Weight", contact.weight ? `${contact.weight} g` : "-"],
+    ["Service / Help with", displayService(contact)], ["Details", contact.details],
     ["Release bank", contact.releaseBank], ["Release place", contact.releasePlace],
     ["Preferred date", displayDate(contact.preferredDate)],
     ["Preferred time", displayTime(contact.preferredTime)],
+    ["Call-back date", displayDate(contact.callbackDate)],
     ...standard, ...extra, ...context,
-    ["Status", contact.status === "active" ? "Completed" : "Pending"],
+    ["Status", getContactStatusLabel(contact.status)],
     ["Comment", contact.comment],
   ].map(([label, value]) => [label,
     value == null || value === "" ? "-" : typeof value === "object" ? JSON.stringify(value) : String(value),
@@ -77,12 +80,15 @@ function displayTime(value) {
 
 function ContactControls({ contact, onSaved }) {
   const [draft, setDraft] = useState(contact.comment || "");
+  const [status, setStatus] = useState(contact.status);
+  const [callbackDate, setCallbackDate] = useState(contact.callbackDate || "");
   const [saving, setSaving] = useState(false);
-  const [message, setMessage] = useState("");
+  const [statusMessage, setStatusMessage] = useState("");
+  const [commentMessage, setCommentMessage] = useState("");
   const lock = useRef(false);
-  const active = contact.status === "active";
+  const statusChanged = status !== contact.status || (status === CALLBACK_STATUS ? callbackDate !== (contact.callbackDate || "") : !!contact.callbackDate);
 
-  async function save(changes) {
+  async function save(changes, setMessage) {
     if (lock.current) return;
     lock.current = true;
     setSaving(true);
@@ -96,24 +102,104 @@ function ContactControls({ contact, onSaved }) {
       if (!response.ok) throw new Error(data.message || "Unable to save changes.");
       onSaved(contact.id, data.changes);
       if (changes.comment !== undefined) setDraft(data.changes.comment);
+      if (changes.status !== undefined) {
+        setStatus(data.changes.status);
+        setCallbackDate(data.changes.callbackDate || "");
+      }
       setMessage("Saved.");
     } catch (error) { setMessage(error.message || "Unable to save changes."); }
     finally { lock.current = false; setSaving(false); }
   }
 
   return <>
-    <td>
-      <label className={styles.completionCheckbox}>
-        <input type="checkbox" checked={active} aria-label={`Completed for ${contact.name}`} disabled={saving} onChange={(event) => save({ status: event.target.checked ? "active" : "inactive" })} />
-        <span>{active ? "Completed" : "Pending"}</span>
-      </label>
-    </td>
-    <td className={styles.commentCell}>
-      <form onSubmit={(event) => { event.preventDefault(); save({ comment: draft }); }}>
-        <textarea aria-label={`Comment for ${contact.name}`} placeholder="Add a comment…" maxLength={2000} rows={2} value={draft} disabled={saving} onChange={(event) => { setDraft(event.target.value); setMessage(""); }} />
-        <div><button type="submit" disabled={saving || draft === (contact.comment || "")}>{saving ? "Saving…" : "Save comment"}</button><span role="status">{message}</span></div>
+    <td className={styles.statusCell}>
+      <form className={styles.statusEditor} onSubmit={(event) => { event.preventDefault(); save({ status, callbackDate }, setStatusMessage); }}>
+        <select aria-label={`Status for ${contact.name}`} value={status} disabled={saving} onChange={(event) => { setStatus(event.target.value); setStatusMessage(""); }}>
+          {CONTACT_STATUS_OPTIONS.map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+        </select>
+        {status === CALLBACK_STATUS && <input aria-label={`Call-back date for ${contact.name}`} type="date" value={callbackDate} required disabled={saving} onChange={(event) => { setCallbackDate(event.target.value); setStatusMessage(""); }} />}
+        <div><button type="submit" disabled={saving || !statusChanged || (status === CALLBACK_STATUS && !callbackDate)}>{saving ? "Saving…" : "Save status"}</button><span role="status">{statusMessage}</span></div>
       </form>
     </td>
+    <td className={styles.commentCell}>
+      <form onSubmit={(event) => { event.preventDefault(); save({ comment: draft }, setCommentMessage); }}>
+        <textarea aria-label={`Comment for ${contact.name}`} placeholder="Add a comment…" maxLength={2000} rows={2} value={draft} disabled={saving} onChange={(event) => { setDraft(event.target.value); setCommentMessage(""); }} />
+        <div><button type="submit" disabled={saving || draft === (contact.comment || "")}>{saving ? "Saving…" : "Save comment"}</button><span role="status">{commentMessage}</span></div>
+      </form>
+    </td>
+  </>;
+}
+
+function ManualEnquiryDialog({ onCreated }) {
+  const dialog = useRef(null);
+  const form = useRef(null);
+  const lock = useRef(false);
+  const [saving, setSaving] = useState(false);
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState("");
+
+  function open() {
+    form.current?.reset();
+    setMessage("");
+    setStatus("");
+    dialog.current.showModal();
+  }
+
+  function close() {
+    if (!saving) dialog.current.close();
+  }
+
+  async function submit(event) {
+    event.preventDefault();
+    if (lock.current || !event.currentTarget.reportValidity()) return;
+    lock.current = true;
+    setSaving(true);
+    setMessage("");
+    const fields = Object.fromEntries(new FormData(event.currentTarget));
+    try {
+      const response = await fetch("/api/admin/contacts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(fields),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || "Unable to add the enquiry.");
+      form.current.reset();
+      setStatus("");
+      dialog.current.close();
+      onCreated(data.message, data.callbackDate);
+    } catch (error) {
+      setMessage(error.message || "Unable to add the enquiry. Please try again.");
+    } finally {
+      lock.current = false;
+      setSaving(false);
+    }
+  }
+
+  return <>
+    <button type="button" className={styles.insertEnquiryButton} onClick={open}>+ Insert enquiry</button>
+    <dialog ref={dialog} className={`${styles.gclidDialog} ${styles.enquiryDialog}`} aria-labelledby="manual-enquiry-title" onClick={(event) => { if (event.target === event.currentTarget) close(); }}>
+      <form ref={form} className={styles.enquiryForm} onSubmit={submit}>
+        <div className={styles.modalHead}>
+          <div><h2 id="manual-enquiry-title">Insert enquiry</h2><p>Add an enquiry received through an incoming call.</p></div>
+          <button type="button" aria-label="Close enquiry form" disabled={saving} onClick={close}>×</button>
+        </div>
+        <div className={styles.formGrid}>
+          <label><span>Form type</span><input value={INCOMING_CALL_TYPE} readOnly /></label>
+          <label><span>Status <b>*</b></span><select name="status" value={status} required disabled={saving} onChange={(event) => setStatus(event.target.value)}><option value="" disabled>Select status</option>{CONTACT_STATUS_OPTIONS.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
+          {status === CALLBACK_STATUS && <label><span>Call-back date <b>*</b></span><input name="callbackDate" type="date" required disabled={saving} /></label>}
+          <label><span>Name <b>*</b></span><input name="name" autoComplete="name" minLength={2} maxLength={255} placeholder="Customer name" required disabled={saving} /></label>
+          <label><span>Mobile <b>*</b></span><input name="mobile" type="tel" autoComplete="tel-national" inputMode="numeric" pattern="[0-9]{10}" minLength={10} maxLength={10} placeholder="10-digit mobile number" required disabled={saving} onInput={(event) => { event.currentTarget.value = event.currentTarget.value.replace(/\D/g, "").slice(0, 10); }} /></label>
+          <label><span>City / area <b>*</b></span><input name="city" autoComplete="address-level2" maxLength={255} placeholder="e.g. Bengaluru" required disabled={saving} /></label>
+          <label><span>Gold weight (g) <b>*</b></span><input name="weight" type="number" inputMode="decimal" min="0.01" max="100000" step="0.01" placeholder="Approx. weight" required disabled={saving} /></label>
+          <label className={styles.fullField}><span>Service / Help with <b>*</b></span><input name="services" maxLength={255} placeholder="e.g. Gold valuation or pledged gold release" required disabled={saving} /></label>
+          <label className={styles.fullField}><span>Details</span><textarea name="details" maxLength={2000} rows={4} placeholder="Add the customer’s enquiry details" disabled={saving} /></label>
+          <label className={styles.fullField}><span>Comment</span><textarea name="comment" maxLength={2000} rows={3} placeholder="Optional internal comment" disabled={saving} /></label>
+        </div>
+        {message && <p className={styles.passwordError} role="alert">{message}</p>}
+        <div className={styles.modalActions}><button type="button" disabled={saving} onClick={close}>Cancel</button><button className={styles.savePassword} type="submit" disabled={saving}>{saving ? "Adding…" : "Add enquiry"}</button></div>
+      </form>
+    </dialog>
   </>;
 }
 
@@ -136,20 +222,42 @@ export default function ContactsTable() {
 
   function updateRow(id, changes) {
     setContacts((previous) => previous.map((contact) => contact.id === id ? { ...contact, ...changes } : contact));
+    if (changes.status !== undefined) {
+      if (changes.status === CALLBACK_STATUS && changes.callbackDate) {
+        const nextFilters = resolveContactFilters({ fromDate: changes.callbackDate, toDate: changes.callbackDate, businessType: appliedFilters.businessType });
+        setFilters(nextFilters);
+        setAppliedFilters(nextFilters);
+      }
+      setLoading(true);
+      setRequestVersion((version) => version + 1);
+    }
+  }
+
+  function manualEnquiryCreated(message, callbackDate) {
+    const nextFilters = callbackDate
+      ? resolveContactFilters({ fromDate: callbackDate, toDate: callbackDate, businessType: INCOMING_CALL_TYPE })
+      : resolveContactFilters({ businessType: INCOMING_CALL_TYPE });
+    setFilters(nextFilters);
+    setAppliedFilters(nextFilters);
+    setPage(1);
+    setLoading(true);
+    setError("");
+    setExportMessage(message);
+    setRequestVersion((version) => version + 1);
   }
 
   async function exportContacts(format) {
     setExporting(true);
     setExportMessage("");
-    const headers = ["#", "Date", "Time (IST)", "Form type", "Name", "Mobile", "City", "Weight", "Release bank", "Release place", "Preferred date", "Preferred time", "Service / Help with", "GCLID", "UTM Source", "UTM Campaign", "Keyword", "Adgroup ID", "Landing page", "Referrer", "Tracking data", "Status", "Comment"];
+    const headers = ["#", "Date", "Time (IST)", "Form type", "Name", "Mobile", "City", "Weight", "Release bank", "Release place", "Preferred date", "Preferred time", "Service / Help with", "Details", "GCLID", "UTM Source", "UTM Campaign", "Keyword", "Adgroup ID", "Landing page", "Referrer", "Tracking data", "Call-back date", "Status", "Comment"];
     const rows = contacts.map((contact, index) => [
       index + 1, displayDate(contact.submittedDate), displayTime(contact.submittedTime),
       getContactFormLabel(contact.businessType), contact.name, contact.mobile, contact.city || "—",
       contact.weight ? `${contact.weight} g` : "—", contact.releaseBank || "", contact.releasePlace || "", displayDate(contact.preferredDate),
-      displayTime(contact.preferredTime), displayService(contact),
+      displayTime(contact.preferredTime), displayService(contact), contact.details || "",
       ...["gclid", "utmSource", "utmCampaign", "keyword", "adgroupId"].map((field) => contact[field] || "-"),
       contact.landingPage || "", contact.referrer || "", JSON.stringify(contact.trackingData || {}),
-      contact.status === "active" ? "Completed" : "Pending", contact.comment || "",
+      displayDate(contact.callbackDate), getContactStatusLabel(contact.status), contact.comment || "",
     ]);
     // Prevent user-entered values from becoming spreadsheet formulas.
     const safeText = (value) => {
@@ -175,7 +283,7 @@ export default function ContactsTable() {
         sheet.getRow(1).font = { bold: true };
         sheet.columns.forEach((column, index) => { column.width = index === 13 ? 50 : 22; });
         sheet.views = [{ state: "frozen", ySplit: 1 }];
-        sheet.autoFilter = { from: "A1", to: "W1" };
+        sheet.autoFilter = { from: "A1", to: "Y1" };
         blob = new Blob([await workbook.xlsx.writeBuffer()], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
       }
       const url = URL.createObjectURL(blob);
@@ -258,7 +366,7 @@ export default function ContactsTable() {
     <article className={styles.contactsPanel}>
       <div className={styles.panelHeading}>
         <div><h2>Contact requests</h2><p>Today’s requests are shown by default. Choose a date range and click Filter to view older requests.</p></div>
-        <span className={styles.resultCount}>{loading ? "…" : contacts.length} records</span>
+        <div className={styles.panelActions}><ManualEnquiryDialog onCreated={manualEnquiryCreated} /><span className={styles.resultCount}>{loading ? "…" : contacts.length} records</span></div>
       </div>
 
       <form className={styles.filters} onSubmit={applyFilters}>
@@ -292,7 +400,7 @@ export default function ContactsTable() {
                 <td>{pageStart + index + 1}</td>
                 <td className={styles.noWrap}>{displayDate(contact.submittedDate)}</td>
                 <td className={styles.noWrap}>{displayTime(contact.submittedTime)}</td>
-                <td><span className={`${styles.typeBadge} ${["Quick Contact", "Contact Page", "Banner Form", GOOGLE_LEAD_TYPE].includes(contact.businessType) ? styles.quickBadge : ""}`}>{getContactFormLabel(contact.businessType)}</span></td>
+                <td><span className={`${styles.typeBadge} ${["Quick Contact", "Contact Page", "Banner Form", GOOGLE_LEAD_TYPE, INCOMING_CALL_TYPE].includes(contact.businessType) ? styles.quickBadge : ""}`}>{getContactFormLabel(contact.businessType)}</span></td>
                 <td>{contact.name}</td><td className={styles.noWrap}>{contact.mobile}</td><td>{contact.city || "—"}</td>
                 <td className={styles.noWrap}>{contact.weight ? `${contact.weight} g` : "—"}</td><td>{displayService(contact)}</td><td><ContactDetails contact={contact} /></td>
                 <ContactControls contact={contact} onSaved={updateRow} />

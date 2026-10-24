@@ -1,6 +1,7 @@
 import mysql from "mysql2/promise";
 import { SEO_FIELDS } from "./seo-fields.mjs";
 import { runOncePerContactDay, uniqueDailyContacts } from "./contact-leads.mjs";
+import { buildContactDateFilter } from "./contact-filters.mjs";
 
 export async function getSeoPages() {
   const [rows] = await getPool().execute("SELECT * FROM seo_pages ORDER BY route_path <> '*', id");
@@ -222,18 +223,23 @@ export async function createContact({
   }
 }
 
+export async function createManualContact({ name, mobile, city, weight, services, details, status, callbackDate, comment, businessType }) {
+  const [result] = await executeContactQuery(
+    `INSERT INTO contacts
+      (name, mobile, city, weight, services, business_type, details, status, callback_date, comment)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    [name, mobile, city, weight, services, businessType, details || null, status, callbackDate || null, comment || null],
+  );
+  return result.insertId;
+}
+
 export async function getContacts({ fromDate = "", toDate = "", businessType = "" } = {}) {
   const conditions = [];
   const values = [];
 
-  if (fromDate) {
-    conditions.push("created_at >= ?");
-    values.push(`${fromDate} 00:00:00`);
-  }
-  if (toDate) {
-    conditions.push("created_at < DATE_ADD(?, INTERVAL 1 DAY)");
-    values.push(toDate);
-  }
+  const dateFilter = buildContactDateFilter(fromDate, toDate);
+  if (dateFilter.condition) conditions.push(dateFilter.condition);
+  values.push(...dateFilter.values);
   if (businessType) {
     conditions.push("business_type = ?");
     values.push(businessType);
@@ -241,7 +247,8 @@ export async function getContacts({ fromDate = "", toDate = "", businessType = "
 
   const where = conditions.length ? `WHERE ${conditions.join(" AND ")}` : "";
   const [rows] = await executeContactQuery(
-    `SELECT id, name, mobile, city, weight, status, comment, release_bank AS releaseBank, release_place AS releasePlace,
+    `SELECT id, name, mobile, city, weight, details, status, comment, release_bank AS releaseBank, release_place AS releasePlace,
+       DATE_FORMAT(callback_date, '%Y-%m-%d') AS callbackDate,
        DATE_FORMAT(preffered_date, '%Y-%m-%d') AS preferredDate,
        preffered_time AS preferredTime, services, business_type AS businessType,
        gclid, utm_source AS utmSource, utm_campaign AS utmCampaign, keyword, adgroup_id AS adgroupId,
