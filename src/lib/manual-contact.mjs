@@ -1,8 +1,8 @@
 import { INCOMING_CALL_TYPE } from "./contact-summary.mjs";
+import { normalizeContactStatus } from "./contact-status.mjs";
 
 const NAME_PATTERN = /^[\p{L}\s]+$/u;
 const MOBILE_PATTERN = /^\d{10}$/;
-const STATUSES = new Set(["active", "inactive"]);
 
 function clean(value, maximum) {
   return typeof value === "string" ? value.trim().slice(0, maximum) : "";
@@ -18,6 +18,7 @@ export function validateManualContact(body) {
   const details = clean(body.details, 2000);
   const comment = clean(body.comment, 2000);
   const status = clean(body.status, 20);
+  const callbackDate = clean(body.callbackDate, 10);
   const weight = Number(body.weight);
 
   if (name.length < 2 || !NAME_PATTERN.test(name)) {
@@ -31,7 +32,7 @@ export function validateManualContact(body) {
     throw new Error("Enter a valid gold weight up to 100,000 grams.");
   }
   if (!services) throw new Error("Enter the service or help requested.");
-  if (!STATUSES.has(status)) throw new Error("Select Pending or Completed status.");
+  const normalizedStatus = normalizeContactStatus(status, callbackDate);
 
   return {
     name,
@@ -40,7 +41,7 @@ export function validateManualContact(body) {
     weight,
     services,
     details,
-    status,
+    ...normalizedStatus,
     comment,
     businessType: INCOMING_CALL_TYPE,
   };

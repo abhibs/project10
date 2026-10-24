@@ -13,3 +13,29 @@ export function resolveContactFilters({ fromDate = "", toDate = "", businessType
 
   return { fromDate, toDate, businessType };
 }
+
+export function buildContactDateFilter(fromDate = "", toDate = "") {
+  if (!fromDate && !toDate) return { condition: "", values: [] };
+
+  const createdConditions = [];
+  const callbackConditions = [];
+  const createdValues = [];
+  const callbackValues = [];
+  if (fromDate) {
+    createdConditions.push("created_at >= ?");
+    createdValues.push(`${fromDate} 00:00:00`);
+    callbackConditions.push("callback_date >= ?");
+    callbackValues.push(fromDate);
+  }
+  if (toDate) {
+    createdConditions.push("created_at < DATE_ADD(?, INTERVAL 1 DAY)");
+    createdValues.push(toDate);
+    callbackConditions.push("callback_date <= ?");
+    callbackValues.push(toDate);
+  }
+
+  return {
+    condition: `((${createdConditions.join(" AND ")}) OR (status = 'pending_callback' AND ${callbackConditions.join(" AND ")}))`,
+    values: [...createdValues, ...callbackValues],
+  };
+}

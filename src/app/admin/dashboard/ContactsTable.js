@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { resolveContactFilters } from "@/lib/contact-filters.mjs";
 import { CONTACT_FORM_TYPES, GOOGLE_LEAD_TYPE, INCOMING_CALL_TYPE, getContactFormLabel } from "@/lib/contact-summary.mjs";
+import { CALLBACK_STATUS, CONTACT_STATUS_OPTIONS, getContactStatusLabel } from "@/lib/contact-status.mjs";
 import styles from "./page.module.css";
 
 function displayService(contact) {
@@ -29,8 +30,9 @@ function ContactDetails({ contact }) {
     ["Release bank", contact.releaseBank], ["Release place", contact.releasePlace],
     ["Preferred date", displayDate(contact.preferredDate)],
     ["Preferred time", displayTime(contact.preferredTime)],
+    ["Call-back date", displayDate(contact.callbackDate)],
     ...standard, ...extra, ...context,
-    ["Status", contact.status === "active" ? "Completed" : "Pending"],
+    ["Status", getContactStatusLabel(contact.status)],
     ["Comment", contact.comment],
   ].map(([label, value]) => [label,
     value == null || value === "" ? "-" : typeof value === "object" ? JSON.stringify(value) : String(value),
@@ -78,12 +80,15 @@ function displayTime(value) {
 
 function ContactControls({ contact, onSaved }) {
   const [draft, setDraft] = useState(contact.comment || "");
+  const [status, setStatus] = useState(contact.status);
+  const [callbackDate, setCallbackDate] = useState(contact.callbackDate || "");
   const [saving, setSaving] = useState(false);
-  const [message, setMessage] = useState("");
+  const [statusMessage, setStatusMessage] = useState("");
+  const [commentMessage, setCommentMessage] = useState("");
   const lock = useRef(false);
-  const active = contact.status === "active";
+  const statusChanged = status !== contact.status || (status === CALLBACK_STATUS ? callbackDate !== (contact.callbackDate || "") : !!contact.callbackDate);
 
-  async function save(changes) {
+  async function save(changes, setMessage) {
     if (lock.current) return;
     lock.current = true;
     setSaving(true);
@@ -97,22 +102,29 @@ function ContactControls({ contact, onSaved }) {
       if (!response.ok) throw new Error(data.message || "Unable to save changes.");
       onSaved(contact.id, data.changes);
       if (changes.comment !== undefined) setDraft(data.changes.comment);
+      if (changes.status !== undefined) {
+        setStatus(data.changes.status);
+        setCallbackDate(data.changes.callbackDate || "");
+      }
       setMessage("Saved.");
     } catch (error) { setMessage(error.message || "Unable to save changes."); }
     finally { lock.current = false; setSaving(false); }
   }
 
   return <>
-    <td>
-      <label className={styles.completionCheckbox}>
-        <input type="checkbox" checked={active} aria-label={`Completed for ${contact.name}`} disabled={saving} onChange={(event) => save({ status: event.target.checked ? "active" : "inactive" })} />
-        <span>{active ? "Completed" : "Pending"}</span>
-      </label>
+    <td className={styles.statusCell}>
+      <form className={styles.statusEditor} onSubmit={(event) => { event.preventDefault(); save({ status, callbackDate }, setStatusMessage); }}>
+        <select aria-label={`Status for ${contact.name}`} value={status} disabled={saving} onChange={(event) => { setStatus(event.target.value); setStatusMessage(""); }}>
+          {CONTACT_STATUS_OPTIONS.map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+        </select>
+        {status === CALLBACK_STATUS && <input aria-label={`Call-back date for ${contact.name}`} type="date" value={callbackDate} required disabled={saving} onChange={(event) => { setCallbackDate(event.target.value); setStatusMessage(""); }} />}
+        <div><button type="submit" disabled={saving || !statusChanged || (status === CALLBACK_STATUS && !callbackDate)}>{saving ? "Saving…" : "Save status"}</button><span role="status">{statusMessage}</span></div>
+      </form>
     </td>
     <td className={styles.commentCell}>
-      <form onSubmit={(event) => { event.preventDefault(); save({ comment: draft }); }}>
-        <textarea aria-label={`Comment for ${contact.name}`} placeholder="Add a comment…" maxLength={2000} rows={2} value={draft} disabled={saving} onChange={(event) => { setDraft(event.target.value); setMessage(""); }} />
-        <div><button type="submit" disabled={saving || draft === (contact.comment || "")}>{saving ? "Saving…" : "Save comment"}</button><span role="status">{message}</span></div>
+      <form onSubmit={(event) => { event.preventDefault(); save({ comment: draft }, setCommentMessage); }}>
+        <textarea aria-label={`Comment for ${contact.name}`} placeholder="Add a comment…" maxLength={2000} rows={2} value={draft} disabled={saving} onChange={(event) => { setDraft(event.target.value); setCommentMessage(""); }} />
+        <div><button type="submit" disabled={saving || draft === (contact.comment || "")}>{saving ? "Saving…" : "Save comment"}</button><span role="status">{commentMessage}</span></div>
       </form>
     </td>
   </>;
@@ -124,10 +136,12 @@ function ManualEnquiryDialog({ onCreated }) {
   const lock = useRef(false);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
+  const [status, setStatus] = useState("");
 
   function open() {
     form.current?.reset();
     setMessage("");
+    setStatus("");
     dialog.current.showModal();
   }
 
@@ -151,8 +165,9 @@ function ManualEnquiryDialog({ onCreated }) {
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || "Unable to add the enquiry.");
       form.current.reset();
+      setStatus("");
       dialog.current.close();
-      onCreated(data.message);
+      onCreated(data.message, data.callbackDate);
     } catch (error) {
       setMessage(error.message || "Unable to add the enquiry. Please try again.");
     } finally {
@@ -171,7 +186,8 @@ function ManualEnquiryDialog({ onCreated }) {
         </div>
         <div className={styles.formGrid}>
           <label><span>Form type</span><input value={INCOMING_CALL_TYPE} readOnly /></label>
-          <label><span>Status <b>*</b></span><select name="status" defaultValue="" required disabled={saving}><option value="" disabled>Select status</option><option value="inactive">Pending</option><option value="active">Completed</option></select></label>
+          <label><span>Status <b>*</b></span><select name="status" value={status} required disabled={saving} onChange={(event) => setStatus(event.target.value)}><option value="" disabled>Select status</option>{CONTACT_STATUS_OPTIONS.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
+          {status === CALLBACK_STATUS && <label><span>Call-back date <b>*</b></span><input name="callbackDate" type="date" required disabled={saving} /></label>}
           <label><span>Name <b>*</b></span><input name="name" autoComplete="name" minLength={2} maxLength={255} placeholder="Customer name" required disabled={saving} /></label>
           <label><span>Mobile <b>*</b></span><input name="mobile" type="tel" autoComplete="tel-national" inputMode="numeric" pattern="[0-9]{10}" minLength={10} maxLength={10} placeholder="10-digit mobile number" required disabled={saving} onInput={(event) => { event.currentTarget.value = event.currentTarget.value.replace(/\D/g, "").slice(0, 10); }} /></label>
           <label><span>City / area <b>*</b></span><input name="city" autoComplete="address-level2" maxLength={255} placeholder="e.g. Bengaluru" required disabled={saving} /></label>
@@ -206,10 +222,21 @@ export default function ContactsTable() {
 
   function updateRow(id, changes) {
     setContacts((previous) => previous.map((contact) => contact.id === id ? { ...contact, ...changes } : contact));
+    if (changes.status !== undefined) {
+      if (changes.status === CALLBACK_STATUS && changes.callbackDate) {
+        const nextFilters = resolveContactFilters({ fromDate: changes.callbackDate, toDate: changes.callbackDate, businessType: appliedFilters.businessType });
+        setFilters(nextFilters);
+        setAppliedFilters(nextFilters);
+      }
+      setLoading(true);
+      setRequestVersion((version) => version + 1);
+    }
   }
 
-  function manualEnquiryCreated(message) {
-    const nextFilters = resolveContactFilters({ businessType: INCOMING_CALL_TYPE });
+  function manualEnquiryCreated(message, callbackDate) {
+    const nextFilters = callbackDate
+      ? resolveContactFilters({ fromDate: callbackDate, toDate: callbackDate, businessType: INCOMING_CALL_TYPE })
+      : resolveContactFilters({ businessType: INCOMING_CALL_TYPE });
     setFilters(nextFilters);
     setAppliedFilters(nextFilters);
     setPage(1);
@@ -222,7 +249,7 @@ export default function ContactsTable() {
   async function exportContacts(format) {
     setExporting(true);
     setExportMessage("");
-    const headers = ["#", "Date", "Time (IST)", "Form type", "Name", "Mobile", "City", "Weight", "Release bank", "Release place", "Preferred date", "Preferred time", "Service / Help with", "Details", "GCLID", "UTM Source", "UTM Campaign", "Keyword", "Adgroup ID", "Landing page", "Referrer", "Tracking data", "Status", "Comment"];
+    const headers = ["#", "Date", "Time (IST)", "Form type", "Name", "Mobile", "City", "Weight", "Release bank", "Release place", "Preferred date", "Preferred time", "Service / Help with", "Details", "GCLID", "UTM Source", "UTM Campaign", "Keyword", "Adgroup ID", "Landing page", "Referrer", "Tracking data", "Call-back date", "Status", "Comment"];
     const rows = contacts.map((contact, index) => [
       index + 1, displayDate(contact.submittedDate), displayTime(contact.submittedTime),
       getContactFormLabel(contact.businessType), contact.name, contact.mobile, contact.city || "—",
@@ -230,7 +257,7 @@ export default function ContactsTable() {
       displayTime(contact.preferredTime), displayService(contact), contact.details || "",
       ...["gclid", "utmSource", "utmCampaign", "keyword", "adgroupId"].map((field) => contact[field] || "-"),
       contact.landingPage || "", contact.referrer || "", JSON.stringify(contact.trackingData || {}),
-      contact.status === "active" ? "Completed" : "Pending", contact.comment || "",
+      displayDate(contact.callbackDate), getContactStatusLabel(contact.status), contact.comment || "",
     ]);
     // Prevent user-entered values from becoming spreadsheet formulas.
     const safeText = (value) => {
@@ -256,7 +283,7 @@ export default function ContactsTable() {
         sheet.getRow(1).font = { bold: true };
         sheet.columns.forEach((column, index) => { column.width = index === 13 ? 50 : 22; });
         sheet.views = [{ state: "frozen", ySplit: 1 }];
-        sheet.autoFilter = { from: "A1", to: "X1" };
+        sheet.autoFilter = { from: "A1", to: "Y1" };
         blob = new Blob([await workbook.xlsx.writeBuffer()], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
       }
       const url = URL.createObjectURL(blob);

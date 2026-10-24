@@ -10,6 +10,7 @@ const valid = {
   services: " Gold valuation ",
   details: " Customer called from Malleshwaram. ",
   status: "inactive",
+  callbackDate: "",
   comment: " Call after 4 PM. ",
 };
 
@@ -22,6 +23,7 @@ test("normalizes a valid manual incoming-call enquiry", () => {
     services: "Gold valuation",
     details: "Customer called from Malleshwaram.",
     status: "inactive",
+    callbackDate: "",
     comment: "Call after 4 PM.",
     businessType: "Incoming Calls",
   });
@@ -37,6 +39,8 @@ test("rejects invalid required values and trims optional text", () => {
   assert.throws(() => validateManualContact({ ...valid, mobile: "123" }), /10-digit/);
   assert.throws(() => validateManualContact({ ...valid, weight: "100001" }), /weight/);
   assert.throws(() => validateManualContact({ ...valid, status: "new" }), /status/);
+  assert.throws(() => validateManualContact({ ...valid, status: "pending_callback", callbackDate: "" }), /call-back date/);
+  assert.equal(validateManualContact({ ...valid, status: "pending_callback", callbackDate: "2026-11-01" }).callbackDate, "2026-11-01");
   const contact = validateManualContact({ ...valid, details: "", comment: "" });
   assert.equal(contact.details, "");
   assert.equal(contact.comment, "");

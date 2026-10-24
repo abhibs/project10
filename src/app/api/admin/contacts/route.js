@@ -5,6 +5,7 @@ import { resolveContactFilters } from "@/lib/contact-filters.mjs";
 import { isAllowedBranchOrigin } from "@/lib/branch-origin.mjs";
 import { CONTACT_FORM_TYPES, countContactTypes, sumContactWeights } from "@/lib/contact-summary.mjs";
 import { validateManualContact } from "@/lib/manual-contact.mjs";
+import { normalizeContactStatus } from "@/lib/contact-status.mjs";
 
 const BUSINESS_TYPES = new Set(CONTACT_FORM_TYPES);
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
@@ -30,7 +31,7 @@ export async function POST(request) {
 
   try {
     const id = await createManualContact(contact);
-    return Response.json({ id, message: "Incoming-call enquiry added." }, { status: 201 });
+    return Response.json({ id, callbackDate: contact.callbackDate, message: "Incoming-call enquiry added." }, { status: 201 });
   } catch (error) {
     console.error("Unable to add manual contact:", error);
     return Response.json({ message: "Unable to add the enquiry. Please try again." }, { status: 500 });
@@ -50,17 +51,29 @@ export async function PATCH(request) {
     return Response.json({ message: "Invalid request." }, { status: 400 });
   }
   if (!body || !Number.isSafeInteger(body.id) || body.id < 1 ||
-      (body.status !== undefined && !["active", "inactive"].includes(body.status)) ||
       (body.comment !== undefined && (typeof body.comment !== "string" || body.comment.length > 2000)) ||
       (body.status === undefined && body.comment === undefined)) {
     return Response.json({ message: "Enter a valid status and a comment of up to 2,000 characters." }, { status: 400 });
   }
   const changes = {};
-  if (body.status !== undefined) changes.status = body.status;
-  if (body.comment !== undefined) changes.comment = body.comment.trim();
+  const responseChanges = {};
+  if (body.status !== undefined) {
+    let normalizedStatus;
+    try { normalizedStatus = normalizeContactStatus(body.status, body.callbackDate); } catch (error) {
+      return Response.json({ message: error.message }, { status: 400 });
+    }
+    changes.status = normalizedStatus.status;
+    changes.callback_date = normalizedStatus.callbackDate || null;
+    responseChanges.status = normalizedStatus.status;
+    responseChanges.callbackDate = normalizedStatus.callbackDate;
+  }
+  if (body.comment !== undefined) {
+    changes.comment = body.comment.trim();
+    responseChanges.comment = changes.comment;
+  }
   try {
     if (!await updateContact(body.id, changes)) return Response.json({ message: "Contact not found." }, { status: 404 });
-    return Response.json({ changes, message: "Contact updated." });
+    return Response.json({ changes: responseChanges, message: "Contact updated." });
   } catch (error) {
     console.error("Unable to update contact:", error);
     return Response.json({ message: "Unable to save changes. Please try again." }, { status: 500 });
