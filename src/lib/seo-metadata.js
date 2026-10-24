@@ -2,8 +2,12 @@ import { getSeoPages } from "./admin-db";
 
 export async function getPageSeoMetadata(route, fallback) {
   let pages;
-  try { pages = await getSeoPages(); } catch (error) {
-    console.error("Unable to load SEO metadata:", error.code || error.message);
+  try {
+    pages = await getSeoPages();
+  } catch (error) {
+    // Database SEO overrides are optional; keep serving the page's defaults.
+    // console.error surfaces even handled failures in the Next.js dev overlay.
+    console.warn("SEO database unavailable; using default metadata:", error.code || error.message);
     return fallback;
   }
   const site = pages.find((page) => page.route_path === "*" && page.is_active);

@@ -9,12 +9,14 @@ export default function GoldRateSection({ rates, live, rateStatus, loading, fetc
           <Heading>{live ? "Today’s Gold Rate" : "Indicative Gold Rate"}</Heading>
           <p>Know the market before you sell.</p>
         </div>
-        <div className="rate-values">
-          <div className="rate-card">
-            <span>24K Gold</span>
-            <strong id="rate-24">{rupees.format(rates[24])}</strong>
-            <small>per gram</small>
-          </div>
+        <div className="rate-values rate-rotation" aria-label="24K and 22K gold rates per gram">
+          {[24, 22].map((karat) => (
+            <div className="rate-card" key={karat}>
+              <span>{karat}K Gold</span>
+              <strong id={`rate-${karat}`}>{rupees.format(rates[karat])}</strong>
+              <small>per gram</small>
+            </div>
+          ))}
         </div>
         <div className="rate-meta">
           <span><b>Note:</b> Online rates are indicative. Final purchase value is determined after physical evaluation and verification.</span>

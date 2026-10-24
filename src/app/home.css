@@ -1444,7 +1444,7 @@
 
 /* Transparent valuation follows the testing process. */
 .aryan-home .valuation-section{overflow:hidden;background:#fffaf3;color:#006A64}
-.aryan-home .valuation-overview{position:relative;min-height:520px;background:#fffaf3 url("/valuation-overview.webp") center top / cover no-repeat}
+.aryan-home .valuation-overview{position:relative;min-height:520px;background:#fffaf3 url("/gold-purchase-detail.webp") center top / cover no-repeat}
 .aryan-home .valuation-overview:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,250,243,.55) 0%,rgba(255,250,243,.43) 38%,rgba(255,250,243,.27) 56%,transparent 70%);pointer-events:none}
 .aryan-home .valuation-overview-inner{position:relative;display:grid;grid-template-columns:minmax(0,480px) minmax(0,355px) minmax(0,1fr);gap:32px;min-height:520px}
 .aryan-home .valuation-heading{padding:44px 0 28px}
@@ -1660,4 +1660,23 @@
   justify-content:center;
   align-items:center;
   text-align:center;
+}
+
+.aryan-home .rate-values.rate-rotation{position:relative;overflow:hidden}
+.aryan-home .rate-values.rate-rotation .rate-card{
+  position:absolute;inset:0;min-height:0;border:0;
+  animation:gold-rate-slide-down 8s ease-in-out infinite;
+}
+.aryan-home .rate-values.rate-rotation .rate-card:nth-child(2){animation-delay:-4s}
+.aryan-home .rate-rotation:hover .rate-card{animation-play-state:paused}
+@keyframes gold-rate-slide-down{
+  0%,40%{transform:translateY(0);visibility:visible}
+  50%{transform:translateY(100%);visibility:hidden}
+  50.01%,90%{transform:translateY(-100%);visibility:hidden}
+  90.01%{transform:translateY(-100%);visibility:visible}
+  100%{transform:translateY(0);visibility:visible}
+}
+@media(prefers-reduced-motion:reduce){
+  .aryan-home .rate-values.rate-rotation{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .aryan-home .rate-values.rate-rotation .rate-card{position:static;animation:none;transform:none;visibility:visible}
 }

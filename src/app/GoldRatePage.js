@@ -2,8 +2,10 @@
 import { useEffect, useState } from "react";
 import GoldRateSection from "./GoldRateSection";
 import GoldCalculator from "./GoldCalculator";
+import { validateRates } from "@/lib/rate-values";
+const FALLBACK_RATES = {24: 14250, 22: 13062, 18: 10688};
 export default function GoldRatePage() {
-  const [rate, setRate] = useState(14250);
+  const [rates, setRates] = useState(FALLBACK_RATES);
   const [live, setLive] = useState(false);
   const [loading, setLoading] = useState(true);
   const [attempt, setAttempt] = useState(0);
@@ -20,14 +22,14 @@ export default function GoldRatePage() {
         const response = await fetch("/api/rates", {cache: "no-store", signal: request.signal});
         if (!response.ok) throw new Error("Rates unavailable");
         const data = await response.json();
-        const value = Number(data.rates?.[24]);
-        if (!Number.isFinite(value) || value <= 0) throw new Error("Invalid rate");
+        const values = validateRates(data.rates);
+        if (!values) throw new Error("Invalid rates");
         if (disposed || controller !== request) return;
-        setRate(value);
+        setRates(values);
         setLive(true);
       } catch {
         if (disposed || controller !== request) return;
-        setRate(14250);
+        setRates(FALLBACK_RATES);
         setLive(false);
       } finally {
         clearTimeout(timeout);
@@ -40,10 +42,10 @@ export default function GoldRatePage() {
   }, [attempt]);
   return (
     <>
-      <GoldRateSection standalone rates={{24: rate}} live={live} loading={loading}
+      <GoldRateSection standalone rates={rates} live={live} loading={loading}
         rateStatus={loading ? "Loading published gold rates..." : live ? "Published gold rates" : "Published rates unavailable - showing demo fallback rates"}
         fetchRates={() => setAttempt(value => value + 1)} />
-      <GoldCalculator rate={rate} live={live} bookingHref="/#booking" />
+      <GoldCalculator rate={rates[24]} live={live} bookingHref="/#booking" />
     </>
   );
 }

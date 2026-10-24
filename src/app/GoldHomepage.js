@@ -35,10 +35,10 @@ const TESTING_BENEFITS = [
   {title: "Transparent Results", description: "See the purity details clearly", icon: "check", tone: "red"},
 ];
 const VALUATION_FACTORS = [
-  {title: "Weight", description: "Verified weight on a digital machine.", icon: "scale"},
-  {title: "Purity", description: "Measured using advanced XRF technology.", icon: "gem"},
-  {title: "Current Gold Rate", description: "Applicable live market rate at the time of evaluation.", icon: "chart"},
-  {title: "Your Final Offer", description: "Based on verified weight, purity and live rate.", icon: "rupee"},
+  {title: "Weight", description: "Understand the gold weight of your chosen piece.", icon: "scale"},
+  {title: "Purity", description: "Check the stated karat and hallmark details.", icon: "gem"},
+  {title: "Current Gold Rate", description: "See the gold rate used for your purchase.", icon: "chart"},
+  {title: "Your Purchase Price", description: "Review gold value, making charges and applicable taxes.", icon: "rupee"},
 ];
 
 function HeroBenefitIcon({type}) {
@@ -382,9 +382,9 @@ export default function GoldHomepage() {
       <div className="valuation-overview">
         <div className="container valuation-overview-inner">
           <div className="valuation-heading reveal">
-            <span className="valuation-kicker">Transparent Valuation</span>
-            <h2 id="valuation-title">See How Your<br /><span>Gold’s Value</span><br />Is Calculated.</h2>
-            <p>We weigh, test and value your gold in front of you with complete transparency, so you know exactly what you are getting.</p>
+            <span className="valuation-kicker">Transparent Gold Pricing</span>
+            <h2 id="valuation-title">Know What Goes<br /><span>Into Your Gold</span><br />Purchase.</h2>
+            <p>Understand weight, purity, the applicable gold rate and other charges before choosing your gold jewellery.</p>
           </div>
           <div className="valuation-factors reveal delay-1">
             {VALUATION_FACTORS.map((factor) => (

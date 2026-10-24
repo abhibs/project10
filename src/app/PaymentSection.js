@@ -2,10 +2,10 @@ import Image from "next/image";
 import styles from "./payment.module.css";
 
 const benefits = [
-  { title: "Fast Settlement", detail: "Payment arranged after verification.", icon: "bolt", tone: "gold" },
+  { title: "Easy Checkout", detail: "Review your purchase before payment.", icon: "bolt", tone: "gold" },
   { title: "Multiple Payment Options", detail: "Choose a convenient available method.", icon: "coins", tone: "red" },
   { title: "Safe Transactions", detail: "A clear, secure process from start to finish.", icon: "shield", tone: "gold" },
-  { title: "GST Bill", detail: "Get a bill for your transaction.", icon: "receipt", tone: "red" },
+  { title: "GST Bill", detail: "Keep a bill for your gold purchase.", icon: "receipt", tone: "red" },
 ];
 
 
@@ -28,12 +28,12 @@ export default function PaymentSection() {
   return <section className={styles.section} aria-labelledby="payment-title">
     <div className={styles.hero}>
       <div className={styles.photo}>
-        <Image src="/instant-payment-teal.webp" alt="Gold buyer handing payment to a customer beside a teal jewellery tray" width={1800} height={771} sizes="(max-width: 1100px) 100vw, 50vw" />
+        <Image src="/gold-purchase-handover.webp" alt="Customer receiving newly purchased gold jewellery in a presentation box" width={1800} height={771} sizes="(max-width: 1100px) 100vw, 50vw" />
       </div>
       <div className={styles.content}>
-        <span className={styles.eyebrow}>Instant Payment</span>
-        <h2 id="payment-title">Get Your Payment<br /><span>Immediately.</span></h2>
-        <p className={styles.intro}>Once you accept the offered value, we arrange payment through your preferred available method after verification.</p>
+        <span className={styles.eyebrow}>Complete Your Gold Purchase</span>
+        <h2 id="payment-title">Your Chosen Gold.<br /><span>Ready for You.</span></h2>
+        <p className={styles.intro}>Review your selection and price breakdown, complete payment, and receive your gold jewellery with your purchase bill.</p>
         <div className={styles.benefits}>
           {benefits.map(({ title, detail, icon, tone }) => <div className={styles.benefit} key={title}>
             <span className={`${styles.benefitIcon} ${styles[tone]}`}><PaymentIcon name={icon} /></span>
