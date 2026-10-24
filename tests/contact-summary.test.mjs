@@ -3,6 +3,13 @@ import assert from "node:assert/strict";
 import { CONTACT_FORM_TYPES, countContactTypes, getContactFormLabel, sumContactWeights } from "../src/lib/contact-summary.mjs";
 import { uniqueDailyContacts } from "../src/lib/contact-leads.mjs";
 
+test("Branch Form has its own count and weight total", () => {
+  const contacts = [{ businessType: "Branch Form", weight: "7.50" }];
+  assert.equal(countContactTypes(contacts)["Branch Form"], 1);
+  assert.equal(countContactTypes(contacts)["Sell Gold"], 0);
+  assert.equal(sumContactWeights(contacts).weights["Branch Form"], 7.5);
+});
+
 test("counts every form type including zero counts after daily deduplication", () => {
   const rows = uniqueDailyContacts([
     { mobile: "1234567890", submittedDate: "2026-10-22", businessType: "Sell Gold" },

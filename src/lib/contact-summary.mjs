@@ -1,6 +1,6 @@
 export const GOOGLE_LEAD_TYPE = "googlelead-lp";
 export const INCOMING_CALL_TYPE = "Incoming Calls";
-export const CONTACT_FORM_TYPES = ["Branch Visit", "Doorstep Service", "Quick Contact", "Contact Page", "Banner Form", "Sell Gold", "Release Pledged Gold", "Doorstep Valuation", GOOGLE_LEAD_TYPE, INCOMING_CALL_TYPE];
+export const CONTACT_FORM_TYPES = ["Branch Visit", "Doorstep Service", "Quick Contact", "Contact Page", "Banner Form", "Branch Form", "Sell Gold", "Release Pledged Gold", "Doorstep Valuation", GOOGLE_LEAD_TYPE, INCOMING_CALL_TYPE];
 
 export function getContactFormLabel(type) {
   return type === GOOGLE_LEAD_TYPE ? "Google Lead" : type;

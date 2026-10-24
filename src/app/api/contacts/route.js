@@ -1,4 +1,4 @@
-import { createContact } from "@/lib/admin-db";
+import { createContact, findBranchByCode } from "@/lib/admin-db";
 import { sanitizeTrackingData } from "@/lib/contact-attribution.mjs";
 import { GOOGLE_LEAD_TYPE } from "@/lib/contact-summary.mjs";
 import { DAILY_CONTACT_DUPLICATE_MESSAGE, isDailyContactDuplicate } from "@/lib/contact-leads.mjs";
@@ -6,7 +6,7 @@ import { SERVICE_PAGES } from "@/lib/service-pages.mjs";
 
 const APPOINTMENT_TYPES = new Set(["Branch Visit", "Doorstep Service"]);
 const SERVICE_TYPES = new Set(Object.values(SERVICE_PAGES).map((service) => service.title));
-const BUSINESS_TYPES = new Set([...APPOINTMENT_TYPES, ...SERVICE_TYPES, "Quick Contact", "Contact Page", "Banner Form", GOOGLE_LEAD_TYPE]);
+const BUSINESS_TYPES = new Set([...APPOINTMENT_TYPES, ...SERVICE_TYPES, "Quick Contact", "Contact Page", "Banner Form", "Branch Form", GOOGLE_LEAD_TYPE]);
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 const TIME_PATTERN = /^(?:[01]\d|2[0-3]):[0-5]\d(?:-(?:[01]\d|2[0-3]):[0-5]\d)?$/;
 const MOBILE_PATTERN = /^\d{10}$/;
@@ -31,10 +31,18 @@ export async function POST(request) {
     const businessType = clean(body.businessType, 30);
     const services = businessType === "Banner Form" ? "" : clean(body.services);
     const city = clean(body.city);
+    const branchId = typeof body.branchId === "string" ? body.branchId.trim() : "";
+    if (body.branchId != null && (typeof body.branchId !== "string" || !branchId || branchId.length > 64)) {
+      return Response.json({ message: "Please select a valid branch." }, { status: 400 });
+    }
     const preferredDate = clean(body.preferredDate, 10);
     const preferredTime = clean(body.preferredTime, 20);
     const appointment = APPOINTMENT_TYPES.has(businessType);
     const banner = businessType === "Banner Form";
+    const branchForm = businessType === "Branch Form";
+    if (branchForm && !branchId) {
+      return Response.json({ message: "Please select a valid branch." }, { status: 400 });
+    }
     const contactPage = businessType === "Contact Page";
     const googleLead = businessType === GOOGLE_LEAD_TYPE;
     const scheduled = appointment || contactPage;
@@ -55,18 +63,24 @@ export async function POST(request) {
     if (googleLead && !city) {
       return Response.json({ message: "Please enter your city or area." }, { status: 400 });
     }
-    if (((banner || servicePage) && rawWeight === null) || (rawWeight !== null && (!Number.isFinite(rawWeight) || rawWeight <= 0 || rawWeight > 100000))) {
+    if (((banner || servicePage || branchForm) && rawWeight === null) || (rawWeight !== null && (!Number.isFinite(rawWeight) || rawWeight <= 0 || rawWeight > 100000))) {
       return Response.json({ message: "Please enter a valid gold weight." }, { status: 400 });
     }
     if (pledged && (!releaseBank || !releasePlace)) {
       return Response.json({ message: "Please enter the release bank and place." }, { status: 400 });
     }
 
+    const branch = branchId ? await findBranchByCode(branchId) : null;
+    if (branchId && (!branch || branch.status !== "active")) {
+      return Response.json({ message: "This branch is unavailable. Please select an active branch." }, { status: 400 });
+    }
+
     const id = await createContact({
       name,
       mobile,
-      city,
-      weight: scheduled || banner || servicePage || googleLead ? rawWeight : null,
+      city: branch ? branch.city : city,
+      branchId: branch ? branch.branchId : null,
+      weight: scheduled || banner || servicePage || googleLead || branchForm ? rawWeight : null,
       releaseBank, releasePlace,
       preferredDate: scheduled ? preferredDate : "",
       preferredTime: scheduled ? preferredTime : "",

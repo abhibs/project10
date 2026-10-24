@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS contacts (
   preffered_date DATE DEFAULT NULL,
   preffered_time VARCHAR(20) DEFAULT NULL COMMENT '24-hour time or time range',
   services VARCHAR(255) NOT NULL,
-  business_type ENUM('Branch Visit', 'Doorstep Service', 'Quick Contact', 'Contact Page', 'Banner Form', 'Sell Gold', 'Release Pledged Gold', 'Doorstep Valuation', 'googlelead-lp', 'Incoming Calls') NOT NULL,
+  business_type ENUM('Branch Visit', 'Doorstep Service', 'Quick Contact', 'Contact Page', 'Banner Form', 'Sell Gold', 'Release Pledged Gold', 'Doorstep Valuation', 'googlelead-lp', 'Incoming Calls', 'Branch Form') NOT NULL,
   gclid VARCHAR(255) DEFAULT NULL,
   utm_source VARCHAR(255) DEFAULT NULL,
   utm_campaign VARCHAR(255) DEFAULT NULL,
@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS contacts (
   referrer VARCHAR(2048) DEFAULT NULL,
   release_bank VARCHAR(255) DEFAULT NULL,
   release_place VARCHAR(255) DEFAULT NULL,
+  branch_id VARCHAR(64) DEFAULT NULL,
   details TEXT DEFAULT NULL,
   callback_date DATE DEFAULT NULL,
   status ENUM('active', 'inactive', 'pending_callback') NOT NULL DEFAULT 'inactive',
@@ -27,5 +28,6 @@ CREATE TABLE IF NOT EXISTS contacts (
   PRIMARY KEY (id),
   KEY contacts_created_at_index (created_at),
   KEY contacts_business_type_index (business_type),
-  KEY contacts_callback_date_index (callback_date)
+  KEY contacts_callback_date_index (callback_date),
+  CONSTRAINT contacts_branch_fk FOREIGN KEY (branch_id) REFERENCES branches (branch_id) ON UPDATE CASCADE ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

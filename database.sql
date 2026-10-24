@@ -97,7 +97,7 @@ CREATE TABLE `contacts` (
   `preffered_date` date DEFAULT NULL,
   `preffered_time` varchar(20) DEFAULT NULL COMMENT '24-hour time or time range',
   `services` varchar(255) NOT NULL,
-  `business_type` enum('Branch Visit','Doorstep Service','Quick Contact','Contact Page','Banner Form','Sell Gold','Release Pledged Gold','Doorstep Valuation','googlelead-lp','Incoming Calls') NOT NULL,
+  `business_type` enum('Branch Visit','Doorstep Service','Quick Contact','Contact Page','Banner Form','Sell Gold','Release Pledged Gold','Doorstep Valuation','googlelead-lp','Incoming Calls','Branch Form') NOT NULL,
   `gclid` varchar(255) DEFAULT NULL,
   `utm_source` varchar(255) DEFAULT NULL,
   `utm_campaign` varchar(255) DEFAULT NULL,
@@ -108,6 +108,7 @@ CREATE TABLE `contacts` (
   `referrer` varchar(2048) DEFAULT NULL,
   `release_bank` varchar(255) DEFAULT NULL,
   `release_place` varchar(255) DEFAULT NULL,
+  `branch_id` varchar(64) DEFAULT NULL,
   `details` text DEFAULT NULL,
   `callback_date` date DEFAULT NULL,
   `status` enum('active','inactive','pending_callback') NOT NULL DEFAULT 'inactive',
@@ -202,6 +203,9 @@ ALTER TABLE `branches`
 --
 ALTER TABLE `contacts`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `contacts`
+  ADD CONSTRAINT `contacts_branch_fk` FOREIGN KEY (`branch_id`)
+    REFERENCES `branches` (`branch_id`) ON UPDATE CASCADE ON DELETE SET NULL;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

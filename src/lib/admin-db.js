@@ -41,6 +41,11 @@ export async function findBranchById(id) {
   return branchRow(rows[0]);
 }
 
+export async function findBranchByCode(branchId) {
+  const [rows] = await getPool().execute(`SELECT ${BRANCH_COLUMNS} FROM branches WHERE branch_id = ? LIMIT 1`, [branchId]);
+  return branchRow(rows[0]);
+}
+
 function branchParameters(branch) {
   return [branch.branchId, branch.name, branch.slug, branch.image, branch.area, branch.city, branch.state,
     branch.pincode, branch.timings, branch.latitude, branch.longitude, branch.url, branch.status, branch.address];
@@ -189,6 +194,7 @@ export async function createContact({
   gclid, utmSource, utmCampaign, keyword, adgroupId,
   trackingData = {}, landingPage = "", referrer = "",
   releaseBank = "", releasePlace = "",
+  branchId = null,
 }) {
   if (!contactPool) contactPool = createPool();
   const connection = await contactPool.getConnection();
@@ -199,8 +205,8 @@ export async function createContact({
         `INSERT INTO contacts
           (name, mobile, city, weight, preffered_date, preffered_time, services, business_type,
            gclid, utm_source, utm_campaign, keyword, adgroup_id, tracking_data, landing_page, referrer,
-           release_bank, release_place)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+           release_bank, release_place, branch_id)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
           name,
           mobile,
@@ -214,6 +220,7 @@ export async function createContact({
           Object.keys(trackingData).length ? JSON.stringify(trackingData) : null,
           landingPage || null, referrer || null,
           releaseBank || null, releasePlace || null,
+          branchId,
         ],
       );
       return result.insertId;
@@ -248,6 +255,8 @@ export async function getContacts({ fromDate = "", toDate = "", businessType = "
   const where = conditions.length ? `WHERE ${conditions.join(" AND ")}` : "";
   const [rows] = await executeContactQuery(
     `SELECT id, name, mobile, city, weight, details, status, comment, release_bank AS releaseBank, release_place AS releasePlace,
+       branch_id AS branchId,
+       (SELECT b.name FROM branches b WHERE b.branch_id = contacts.branch_id) AS branchName,
        DATE_FORMAT(callback_date, '%Y-%m-%d') AS callbackDate,
        DATE_FORMAT(preffered_date, '%Y-%m-%d') AS preferredDate,
        preffered_time AS preferredTime, services, business_type AS businessType,

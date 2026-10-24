@@ -22,8 +22,8 @@ export default function BranchEnquiry({ branch }) {
       const values = Object.fromEntries(new FormData(form));
       const data = await submitContactRequest({
         ...getContactAttribution(), ...values,
-        businessType: "Sell Gold", city: branch.city,
-        services: `${values.services} — ${branch.name} (${branch.branchId})`.slice(0, 255),
+        businessType: "Branch Form", city: branch.city,
+        branchId: branch.branchId,
       });
       setFeedback({ message: data.message || "Thank you. Our team will call you shortly.", error: false });
       form.reset();
@@ -42,10 +42,8 @@ export default function BranchEnquiry({ branch }) {
     <form onSubmit={submit} aria-busy={busy}>
       <label>Full name<input name="name" autoComplete="name" placeholder="Your full name" minLength={2} maxLength={255} required onInput={(event) => { event.currentTarget.value = event.currentTarget.value.replace(/[^\p{L}\s]/gu, ""); }} /></label>
       <label>Mobile number<input name="mobile" type="tel" inputMode="numeric" autoComplete="tel-national" placeholder="10-digit mobile number" pattern="[0-9]{10}" maxLength={10} required onInput={(event) => { event.currentTarget.value = event.currentTarget.value.replace(/\D/g, "").slice(0, 10); }} /></label>
-      <div className={styles.formRow}>
-        <label>Gold weight (g)<input name="weight" type="number" inputMode="decimal" placeholder="Approx. grams" min="0.01" max="100000" step="0.01" required /></label>
-        <label>Gold type<select name="services" defaultValue="Gold jewellery"><option>Gold jewellery</option><option>Gold coins</option><option>Gold bars</option><option>Old or broken gold</option></select></label>
-      </div>
+      <label>Gold weight (g)<input name="weight" type="number" inputMode="decimal" placeholder="Approx. grams" min="0.01" max="100000" step="0.01" required /></label>
+      <label>Service required<select name="services" defaultValue="Sell Gold for Cash"><option>Sell Gold for Cash</option><option>Release Pledged Gold</option><option>Gold Valuation Only</option><option>Other / Need Guidance</option></select></label>
       <label className={styles.consent}><input type="checkbox" defaultChecked required /><span>I authorise Aryan Gold to contact me.</span></label>
       <button className={styles.goldButton} type="submit" disabled={busy}><SubmitLabel loading={busy}>Request a callback</SubmitLabel><span aria-hidden="true">→</span></button>
       {feedback && <p className={feedback.error ? styles.formError : styles.formSuccess} role={feedback.error ? "alert" : "status"}>{feedback.message}</p>}

@@ -71,8 +71,8 @@ opens the same page at `#branch-map`. Only active branches with matching locatio
 segments are available. The detail page uses the branch photo, address, hours
 and coordinates, with an address-based map fallback when coordinates are absent.
 The map shows the current branch at full width. Callback requests use
-the existing contact endpoint as **Sell Gold** leads, with the branch name and ID
-included in **Service / Help with**. No extra database migration is needed.
+the existing contact endpoint as **Branch Form** leads. The selected service is stored
+separately from the branch ID; see the branch contact migration below.
 
 Uploads accept JPG, PNG and WebP up to 10 MB and 25 megapixels. Images are decoded,
 stripped of metadata, resized to fit 1600 × 1200 and saved as WebP with unique
@@ -93,3 +93,11 @@ Run `node scripts/migrate-google-leads.mjs` once per database, then open
 `googlelead-lp` and appear as **Google Lead** in the admin contact dashboard.
 The form retains the existing GCLID, UTM campaign, keyword and ad-group fields,
 plus common campaign query parameters, the landing-page URL and referrer.
+
+## Branch contact references
+
+Run `node scripts/migrate-contact-branches.mjs` after the branches migration in each environment.
+Branch enquiries store the selected service separately from `contacts.branch_id`, which references
+`branches.branch_id`. The contact details modal shows the branch ID and current branch name.
+Contacts from other forms can have no branch. Branch code changes cascade to contacts;
+deleting a branch retains its contacts and clears their branch reference.

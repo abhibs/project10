@@ -7,6 +7,7 @@ import { CALLBACK_STATUS, CONTACT_STATUS_OPTIONS, getContactStatusLabel } from "
 import styles from "./page.module.css";
 
 function displayService(contact) {
+  if (contact.branchId) return contact.services || "—";
   return ["Banner Form", "Sell Gold", "Release Pledged Gold"].includes(contact.businessType) ? "—" : contact.services || "—";
 }
 
@@ -25,6 +26,7 @@ function ContactDetails({ contact }) {
     ["Time (IST)", displayTime(contact.submittedTime)],
     ["Form type", getContactFormLabel(contact.businessType)],
     ["Name", contact.name], ["Mobile", contact.mobile], ["City", contact.city],
+    ["Branch ID", contact.branchId], ["Branch name", contact.branchName],
     ["Weight", contact.weight ? `${contact.weight} g` : "-"],
     ["Service / Help with", displayService(contact)], ["Details", contact.details],
     ["Release bank", contact.releaseBank], ["Release place", contact.releasePlace],
