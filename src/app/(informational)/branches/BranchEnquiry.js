@@ -1,15 +1,17 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { getContactAttribution } from "@/lib/contact-attribution.mjs";
 import { submitContactRequest } from "@/lib/submit-contact.mjs";
 import SubmitLabel from "@/app/SubmitLabel";
+import FormToast from "@/app/FormToast";
 import styles from "./branch-detail.module.css";
 
 export default function BranchEnquiry({ branch }) {
   const lock = useRef(false);
   const [busy, setBusy] = useState(false);
   const [feedback, setFeedback] = useState(null);
+  const closeToast = useCallback(() => setFeedback(null), []);
 
   async function submit(event) {
     event.preventDefault();
@@ -46,8 +48,8 @@ export default function BranchEnquiry({ branch }) {
       <label>Service required<select name="services" defaultValue="Sell Gold for Cash"><option>Sell Gold for Cash</option><option>Release Pledged Gold</option><option>Gold Valuation Only</option><option>Other / Need Guidance</option></select></label>
       <label className={styles.consent}><input type="checkbox" defaultChecked required /><span>I authorise Aryan Gold to contact me.</span></label>
       <button className={styles.goldButton} type="submit" disabled={busy}><SubmitLabel loading={busy}>Request a callback</SubmitLabel><span aria-hidden="true">→</span></button>
-      {feedback && <p className={feedback.error ? styles.formError : styles.formSuccess} role={feedback.error ? "alert" : "status"}>{feedback.message}</p>}
       <small>Free valuation. No obligation to sell.</small>
     </form>
+    <FormToast notification={feedback} onClose={closeToast} />
   </aside>;
 }
