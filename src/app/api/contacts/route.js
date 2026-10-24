@@ -1,6 +1,7 @@
 import { createContact } from "@/lib/admin-db";
 import { sanitizeTrackingData } from "@/lib/contact-attribution.mjs";
 import { GOOGLE_LEAD_TYPE } from "@/lib/contact-summary.mjs";
+import { DAILY_CONTACT_DUPLICATE_MESSAGE, isDailyContactDuplicate } from "@/lib/contact-leads.mjs";
 import { SERVICE_PAGES } from "@/lib/service-pages.mjs";
 
 const APPOINTMENT_TYPES = new Set(["Branch Visit", "Doorstep Service"]);
@@ -83,6 +84,9 @@ export async function POST(request) {
 
     return Response.json({ id, message: appointment ? "Appointment request received." : googleLead ? "Thank you. Our gold expert will call you shortly." : "Callback request received." }, { status: 201 });
   } catch (error) {
+    if (isDailyContactDuplicate(error)) {
+      return Response.json({ message: DAILY_CONTACT_DUPLICATE_MESSAGE }, { status: 409 });
+    }
     console.error("Unable to save contact request:", error);
     return Response.json({ message: "Unable to submit your request right now. Please try again." }, { status: 500 });
   }
