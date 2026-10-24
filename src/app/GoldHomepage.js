@@ -311,7 +311,7 @@ export default function GoldHomepage() {
 
     <GoldRateSection rates={rates} live={live} rateStatus={rateStatus} loading={loading} fetchRates={fetchRates} />
 
-    <GoldCalculator rate={rates[24]} live={live} />
+    <GoldCalculator rates={rates} live={live} />
 
     <ServicesSection onDoorstep={() => setServiceMode("Doorstep Service")} />
 

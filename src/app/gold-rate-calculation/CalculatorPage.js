@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 import GoldCalculator from "../GoldCalculator";
 import SiteHeader from "../SiteHeader";
 import SiteFooter from "../SiteFooter";
+import { validateRates } from "@/lib/rate-values";
 
-const FALLBACK_RATE = 14250;
+const FALLBACK_RATES = {24: 14250, 22: 13062, 18: 10688};
 
 export default function CalculatorPage() {
-  const [rate, setRate] = useState(FALLBACK_RATE);
+  const [rates, setRates] = useState(FALLBACK_RATES);
   const [live, setLive] = useState(false);
 
   useEffect(() => {
@@ -23,14 +24,14 @@ export default function CalculatorPage() {
         const response = await fetch("/api/rates", { cache: "no-store", signal: request.signal });
         if (!response.ok) throw new Error("Rates unavailable");
         const data = await response.json();
-        const nextRate = Number(data.rates?.[24]);
-        if (!Number.isFinite(nextRate) || nextRate <= 0) throw new Error("Invalid rate");
+        const nextRates = validateRates(data.rates);
+        if (!nextRates) throw new Error("Invalid rates");
         if (disposed || controller !== request) return;
-        setRate(nextRate);
+        setRates(nextRates);
         setLive(true);
       } catch {
         if (disposed || controller !== request) return;
-        setRate(FALLBACK_RATE);
+        setRates(FALLBACK_RATES);
         setLive(false);
       } finally {
         clearTimeout(timeout);
@@ -48,7 +49,7 @@ export default function CalculatorPage() {
   return (
     <div className="aryan-home" data-theme="light">
       <SiteHeader calculatorPage />
-      <main><GoldCalculator rate={rate} live={live} standalone /></main>
+      <main><GoldCalculator rates={rates} live={live} standalone /></main>
       <SiteFooter />
     </div>
   );

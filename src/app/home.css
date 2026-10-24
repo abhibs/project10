@@ -1526,6 +1526,8 @@
 .aryan-home #calculator .gold-calc-intro p{margin:0 0 24px;color:#edf7f2;font-size:clamp(1rem,1.22vw,1.2rem);line-height:1.35}
 .aryan-home .gold-calc-panel{width:100%;padding:25px 28px 27px;border:1px solid #e6dfd1;border-radius:13px;background:#fffbf5;box-shadow:0 18px 48px rgba(0,20,20,.24);color:#006A60}
 .aryan-home #calculator .gold-calc-label{display:block;margin:0 0 8px;color:#006A60;font-size:1rem;font-weight:800;line-height:1.25}
+.aryan-home .gold-calc-purity{display:block;width:100%;height:57px;margin-bottom:20px;padding:0 16px;border:1px solid #d9dfdb;border-radius:7px;background:#fff;color:#006A60;font-size:1rem;font-weight:700}
+.aryan-home .gold-calc-purity:focus-visible{outline:3px solid rgba(0,106,96,.2);outline-offset:2px;border-color:#006A60}
 .aryan-home .gold-calc-weight{display:flex;align-items:center;height:57px;margin:0 0 20px;overflow:hidden;border:1px solid #d9dfdb;border-radius:7px;background:#fff}
 .aryan-home .gold-calc-weight:focus-within{border-color:#006A60;box-shadow:0 0 0 3px rgba(0,106,96,.13)}
 .aryan-home .gold-calc-weight input{width:100%;min-width:0;height:100%;padding:0 16px;border:0;outline:none;background:transparent;color:#006A60;font-size:1.25rem;font-weight:800;appearance:textfield}
@@ -1600,12 +1602,11 @@
 }
 @media(min-width:1001px){
   .aryan-home #transparent-valuation .valuation-overview:before{
-    left:auto;
-    width:auto;
+    inset:0;
+    width:100%;
     height:100%;
-    max-width:100%;
-    aspect-ratio:1672 / 941;
-    background:linear-gradient(90deg,#fffaf3 0%,rgba(255,250,243,.96) 12%,rgba(255,250,243,.72) 28%,rgba(255,250,243,.3) 46%,transparent 68%);
+    aspect-ratio:auto;
+    background:linear-gradient(90deg,#fffaf3 0%,#fffaf3 48%,rgba(255,250,243,.88) 55%,rgba(255,250,243,.3) 65%,transparent 76%);
   }
 }
 @media(max-width:700px){

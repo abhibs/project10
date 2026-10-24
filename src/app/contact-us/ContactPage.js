@@ -66,7 +66,9 @@ export default function ContactPage() {
       <main>
         <section className={styles.hero} aria-labelledby="contact-title">
           <div className={styles.heroImage}>
-            <Image src="/story-reception.webp" fill sizes="(max-width: 700px) 100vw, 60vw" alt="A welcoming gold-toned reception lounge" priority />
+            <div className={styles.heroScene}>
+              <Image src="/contact-wall-sign.webp" fill sizes="(max-width: 700px) 100vw, 60vw" alt="Gold valuation office with a brass Aryan Gold Buyers wall sign reading Trust, Transparency and Value" priority />
+            </div>
           </div>
           <div className={styles.heroInner}>
             <div className={styles.breadcrumb}><Link href="/">Home</Link><span aria-hidden="true">/</span><span>Contact Us</span></div>

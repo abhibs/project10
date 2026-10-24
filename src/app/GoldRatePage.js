@@ -45,7 +45,7 @@ export default function GoldRatePage() {
       <GoldRateSection standalone rates={rates} live={live} loading={loading}
         rateStatus={loading ? "Loading published gold rates..." : live ? "Published gold rates" : "Published rates unavailable - showing demo fallback rates"}
         fetchRates={() => setAttempt(value => value + 1)} />
-      <GoldCalculator rate={rates[24]} live={live} bookingHref="/#booking" />
+      <GoldCalculator rates={rates} live={live} bookingHref="/#booking" />
     </>
   );
 }

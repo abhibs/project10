@@ -31,25 +31,6 @@
   transform: translateX(-68%);
 }
 .photo { object-fit: cover; }
-.wallBrand {
-  position: absolute;
-  top: 24%;
-  left: 68%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  transform: translate(-50%, -50%);
-  color: #006a62;
-  white-space: nowrap;
-  text-shadow: 0 1px 1px rgba(255, 250, 242, .7), 0 2px 3px rgba(69, 40, 3, .2);
-}
-.wallLogo { display: flex; align-items: center; gap: 12px; }
-.wallLogo img { width: clamp(40px, 4.3vw, 82px); height: auto; object-fit: contain; }
-.wallWordmark { display: flex; flex-direction: column; align-items: center; gap: 2px; font-family: var(--font-aryan-display), Georgia, serif; }
-.wallWordmark strong { font-size: clamp(22px, 2.4vw, 46px); line-height: 1; letter-spacing: -.025em; }
-.wallWordmark > span { color: #725015; font-size: clamp(14px, 1.4vw, 27px); line-height: 1.1; font-weight: 700; }
-.section .wallBrand .tagline { margin: 0; color: #064e49; font-family: var(--font-aryan-body), Arial, sans-serif; font-size: clamp(10px, .95vw, 18px); font-weight: 750; letter-spacing: .025em; line-height: 1.4; }
 .content { position: relative; grid-column: 1; grid-row: 1; min-width: 0; padding: 48px clamp(24px, 4vw, 80px); }
 .section .content :is(h1, h2) { margin: 0 0 24px; color: #fffaf2; font-family: var(--font-aryan-body), Arial, sans-serif; font-size: clamp(38px, 4vw, 76px); font-weight: 850; letter-spacing: -.055em; line-height: 1.06; }
 .section .content :is(h1, h2) span { color: #ffd35c; }
@@ -76,8 +57,6 @@
   .values li { font-size: 16px; }
   .icon { width: 43px; height: 43px; }
   .icon svg { width: 24px; height: 24px; }
-  .wallBrand { gap: 6px; }
-  .wallLogo { gap: 7px; }
 }
 @media (max-width: 420px) {
   .values { grid-template-columns: 1fr; }

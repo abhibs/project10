@@ -24,14 +24,7 @@ export default function StorySection({ standalone = false }) {
     <div className={styles.shell}>
       <div className={styles.photoPanel}>
         <div className={styles.scene}>
-          <Image className={styles.photo} src="/story-reception.webp" alt="Warm reception interior with a cream counter and gold accents" fill sizes="(max-width: 760px) 100vw, 75vw" />
-          <div className={styles.wallBrand}>
-            <div className={styles.wallLogo}>
-              <Image src="/aryan-mark.webp" width={82} height={82} alt="" />
-              <span className={styles.wallWordmark}><strong>ARYAN</strong><span>Gold Buyers</span></span>
-            </div>
-            <p className={styles.tagline}>Trust &bull; Transparency &bull; Value</p>
-          </div>
+          <Image className={styles.photo} src="/about-wall-sign.webp" alt="Reception with a brass Aryan Gold Buyers sign mounted on the wall, reading Trust, Transparency and Value" fill sizes="(max-width: 760px) 100vw, 75vw" />
         </div>
       </div>
       <div className={styles.content}>
