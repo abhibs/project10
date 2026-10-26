@@ -231,11 +231,11 @@
 
 @media (max-width: 760px) {
   .section { padding-bottom: 18px; }
-  .hero { padding-bottom: 300px; }
-  .heroImage { top: auto; height: 370px; }
-  .heroImage img { object-position: 77% center; }
-  .hero::after { background: linear-gradient(180deg, #006A64 0%, #006A64 calc(100% - 250px), rgba(0, 106, 100, .95) calc(100% - 200px), transparent calc(100% - 140px)); }
-  .heroCopy { width: 100%; padding: 72px 24px 0; }
+  .hero { display: flex; flex-direction: column; min-height: 0; }
+  .heroImage { position: relative; inset: auto; order: 1; z-index: auto; width: 100%; aspect-ratio: 2 / 1; }
+  .heroImage img { object-fit: contain; object-position: center; }
+  .hero::after { display: none; }
+  .heroCopy { width: 100%; padding: 72px 24px 28px; }
   .section .heroCopy h2 { font-size: clamp(43px, 9.6vw, 68px); }
   .section .heroCopy p.lead { max-width: 610px; font-size: 17px; }
   .benefits { gap: 22px 0; }
@@ -250,8 +250,6 @@
 }
 
 @media (max-width: 520px) {
-  .hero { padding-bottom: 250px; }
-  .heroImage { height: 325px; }
   .heroCopy { padding-inline: 21px; }
   .eyebrow { gap: 9px; font-size: 12px; }
   .eyebrow::before { width: 34px; height: 4px; }
