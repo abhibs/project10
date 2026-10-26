@@ -1,0 +1,22 @@
+.page { display: flex; flex-direction: column; min-height: 100svh; color: #fffaf0; background: radial-gradient(circle at 50% 40%, #11645b 0, #023c38 70%); font-family: var(--font-thank-body), Arial, sans-serif; }
+.page * { box-sizing: border-box; }
+.header { display: flex; align-items: center; min-height: 86px; padding: 16px max(24px, calc((100vw - 1280px) / 2)); border-bottom: 1px solid rgba(239, 187, 61, .25); }
+.brand { color: #fffaf0; }
+.content { display: flex; flex: 1; flex-direction: column; align-items: center; justify-content: center; width: min(680px, 100%); margin: auto; padding: 64px 24px 110px; text-align: center; }
+.check { display: grid; place-items: center; width: 88px; height: 88px; margin-bottom: 28px; border-radius: 50%; color: #023c38; background: #ffda73; box-shadow: 0 0 0 12px rgba(255, 218, 115, .08); }
+.check svg { width: 42px; height: 42px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.eyebrow { margin: 0 0 14px; color: #ffda73; font-size: 11px; font-weight: 800; letter-spacing: .18em; }
+.content h1 { margin: 0 0 20px; font: 700 clamp(48px, 8vw, 76px)/1.1 var(--font-thank-display), Georgia, serif; letter-spacing: -.04em; }
+.message { margin: 0; color: #deebe5; font-size: 17px; line-height: 1.8; }
+.countdown { margin: 26px 0 0; color: #c4d8d0; font-size: 13px; line-height: 1.6; }
+.countdown strong { color: #ffda73; }
+.homeLink { display: inline-flex; align-items: center; gap: 18px; min-height: 48px; margin-top: 24px; padding: 12px 22px; border-radius: 999px; color: #023c38; background: #ffda73; font-size: 13px; font-weight: 800; text-decoration: none; }
+.homeLink:hover { background: #ffe59a; }
+.homeLink:focus-visible { outline: 3px solid #fffaf0; outline-offset: 4px; }
+.footer { padding: 20px 24px; color: #b4cec4; font-size: 11px; line-height: 1.6; text-align: center; }
+@media (max-width: 600px) {
+  .header { min-height: 74px; padding: 14px 20px; }
+  .content { padding: 48px 20px 150px; }
+  .message { font-size: 15px; }
+  .footer { padding-bottom: 160px; }
+}

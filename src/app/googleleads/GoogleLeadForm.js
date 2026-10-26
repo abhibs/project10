@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { getContactAttribution } from "@/lib/contact-attribution.mjs";
 import { GOOGLE_LEAD_TYPE } from "@/lib/contact-summary.mjs";
 import { submitContactRequest } from "@/lib/submit-contact.mjs";
@@ -16,6 +17,7 @@ function keepNameCharacters(event) {
 }
 
 export default function GoogleLeadForm() {
+  const router = useRouter();
   const lock = useRef(false);
   const [submitting, setSubmitting] = useState(false);
   const [feedback, setFeedback] = useState({ type: "", message: "" });
@@ -41,10 +43,11 @@ export default function GoogleLeadForm() {
       });
       form.reset();
       setFeedback({ type: "success", message: result.message });
+      router.replace("/thank-page");
     } catch (error) {
       setFeedback({ type: "error", message: error.message || "Unable to submit your request. Please try again." });
-    } finally {
       lock.current = false;
+    } finally {
       setSubmitting(false);
     }
   }
@@ -95,7 +98,7 @@ export default function GoogleLeadForm() {
         <span>I authorise Aryan Gold Buyers to contact me about this enquiry.</span>
       </label>
 
-      <button className={styles.submitButton} type="submit" disabled={submitting}>
+      <button className={styles.submitButton} type="submit" disabled={submitting || feedback.type === "success"}>
         <span>{submitting ? "Submitting…" : "Get Free Valuation"}</span>
         <span aria-hidden="true">→</span>
       </button>
@@ -109,7 +112,7 @@ export default function GoogleLeadForm() {
         <span>Find your nearest branch</span>
         <span aria-hidden="true">→</span>
       </Link>
-      <p className={`${styles.feedback} ${feedback.type === "success" ? styles.success : feedback.type === "error" ? styles.error : ""}`} role={feedback.type === "error" ? "alert" : "status"} aria-live="polite">{feedback.message}</p>
+      {feedback.type === "error" && <p className={`${styles.feedback} ${styles.error}`} role="alert">{feedback.message}</p>}
     </form>
   );
 }

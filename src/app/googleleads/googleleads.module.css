@@ -142,7 +142,6 @@
 .branchLink:hover { transform: translateY(-1px); border-color: var(--gold-500); color: #8b5c0b; }
 .branchLink:focus-visible { outline: 3px solid rgba(8, 116, 108, .3); outline-offset: 3px; }
 .feedback { min-height: 18px; margin: 8px 0 0; text-align: center; font-size: .72rem; font-weight: 700; }
-.success { color: #08734b; }
 .error { color: #a52e25; }
 
 .trustSection { border-top: 1px solid #ead9b3; background: var(--cream); }

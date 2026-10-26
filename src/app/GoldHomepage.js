@@ -446,9 +446,6 @@ export default function GoldHomepage() {
 
   <SiteFooter homePage />
 
-  <div className="floating-actions" aria-label="Quick actions">
-    <a href="#booking" className="float-btn gold" aria-label="Book valuation">₹</a>
-  </div>
   <FormToast notification={toast} onClose={closeToast} />
     </div>
   );

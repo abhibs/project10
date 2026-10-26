@@ -1,6 +1,7 @@
 import "./globals.css";
 import ContactAttribution from "./ContactAttribution";
 import GoogleTagManager, { GoogleTagManagerNoScript } from "./GoogleTagManager";
+import FloatingContactActions from "./FloatingContactActions";
 
 export const metadata = {
   title: "Larkon Admin",
@@ -32,6 +33,7 @@ gtag('config', 'AW-18497186303');`,
         <GoogleTagManagerNoScript />
         <ContactAttribution />
         {children}
+        <FloatingContactActions />
       </body>
     </html>
   );
