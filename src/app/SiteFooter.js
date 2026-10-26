@@ -22,6 +22,7 @@ export default function SiteFooter({ homePage = false }) {
         <div>
           <h4>Quick Links</h4>
           <Link href="/gold-rate">Gold Rate</Link>
+          <Link href="/documents">Required Documents</Link>
           <Link href="/branches">Our Branches</Link>
           <Link href={`${home}#testing`}>How It Works</Link>
           <Link href={`${home}#faq`}>FAQs</Link>

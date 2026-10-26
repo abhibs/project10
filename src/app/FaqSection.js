@@ -24,7 +24,7 @@ const questions = [
   },
   {
     question: "What documents should I carry?",
-    answer: "Bring a valid government-issued ID and any available purchase documents. Our team will confirm if anything else is needed.",
+    answer: "For physical gold, bring your PAN card, Aadhaar card and gold ornaments. To release pledged gold, bring your pledge slip, cheque leaf, bank passbook, PAN card and Aadhaar card.",
   },
   {
     question: "Can Aryan release pledged gold?",
