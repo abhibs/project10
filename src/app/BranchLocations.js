@@ -1,17 +1,22 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { branchPath, branchDirections } from "@/lib/branch-links.mjs";
+import { getBranchCarouselItems } from "@/lib/branch-carousel.mjs";
 
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import styles from "./branches.module.css";
 
-const singleCardQuery = "(max-width: 1100px)";
+const cardLayoutQueries = ["(max-width: 600px)", "(max-width: 900px)", "(max-width: 1200px)"];
 function subscribeToCardLayout(callback) {
-  const media = window.matchMedia(singleCardQuery);
-  media.addEventListener("change", callback);
-  return () => media.removeEventListener("change", callback);
+  const queries = cardLayoutQueries.map(query => window.matchMedia(query));
+  queries.forEach(query => query.addEventListener("change", callback));
+  return () => queries.forEach(query => query.removeEventListener("change", callback));
 }
-function isSingleCardLayout() { return window.matchMedia(singleCardQuery).matches; }
+function visibleCardCount() {
+  const index = cardLayoutQueries.findIndex(query => window.matchMedia(query).matches);
+  return index < 0 ? 4 : index + 1;
+}
 
 function cityName(value) {
   if (/^(bangalore|bengaluru)$/i.test(value)) return "Bangalore";
@@ -25,27 +30,37 @@ function Icon({ name }) {
     pin: <><path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11Z" /><circle cx="12" cy="10" r="2.4" /></>,
     clock: <><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.5 2" /></>,
     phone: <path d="M6.7 3.5 9.2 6l-1.5 2.5a15 15 0 0 0 7.8 7.8L18 14.8l2.5 2.5-1.6 3a2 2 0 0 1-2.2 1A19 19 0 0 1 2.7 7.3a2 2 0 0 1 1-2.2l3-1.6Z" />,
+    pause: <path d="M9 5v14M15 5v14" />,
+    play: <path d="m8 5 11 7-11 7V5Z" />,
   };
   return <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">{paths[name]}</svg>;
 }
 
 function BranchCard({ branch }) {
+  const [failedImage, setFailedImage] = useState(null);
+  const uploadedImage = branch.image ? `/api/branch-images/${encodeURIComponent(branch.image)}` : null;
+  const image = uploadedImage && failedImage !== uploadedImage ? uploadedImage : "/branches-storefront.webp";
   const path = branchPath(branch);
   const directions = branchDirections(branch);
 
   return <article className={styles.card}>
-    <div className={styles.cardTop}>
-      <span className={styles.locationTag}><Icon name="pin" /> {branch.area}</span>
-      <h3>{branch.name}</h3>
+    <div className={styles.cardImage}>
+      <Image src={image} alt={image === uploadedImage ? `${branch.name} branch in ${branch.city}` : "Aryan Gold Buyers branch exterior"} fill sizes="(max-width: 600px) 90vw, (max-width: 900px) 45vw, (max-width: 1200px) 30vw, 25vw" onError={() => { if (uploadedImage && failedImage !== uploadedImage) setFailedImage(uploadedImage); }} />
     </div>
-    <div className={styles.details}>
-      <p className={styles.address}>{branch.address}<br />{branch.city}, {branch.state} - {branch.pincode}</p>
-      <p className={styles.timings}><Icon name="clock" /><span><strong>Opening hours</strong>{branch.timings}</span></p>
-    </div>
-    <div className={styles.actions}>
-      <Link className={styles.actionPrimary} href={path}>Read More <span aria-hidden="true">→</span></Link>
-      <a className={styles.actionLight} href={directions} target="_blank" rel="noopener noreferrer"><Icon name="pin" /> Directions</a>
-      {branch.phone && <a className={styles.actionLight} href={`tel:${branch.phone}`}><Icon name="phone" /> Call Branch</a>}
+    <div className={styles.cardBody}>
+      <div className={styles.cardTop}>
+        <span className={styles.locationTag}><Icon name="pin" /> {branch.area}</span>
+        <h3>{branch.name}</h3>
+      </div>
+      <div className={styles.details}>
+        <p className={styles.address}>{branch.address}<br />{branch.city}, {branch.state} - {branch.pincode}</p>
+        <p className={styles.timings}><Icon name="clock" /><span><strong>Opening hours</strong>{branch.timings}</span></p>
+      </div>
+      <div className={styles.actions}>
+        <Link className={styles.actionPrimary} href={path}>Read More <span aria-hidden="true">→</span></Link>
+        <a className={styles.actionLight} href={directions} target="_blank" rel="noopener noreferrer"><Icon name="pin" /> Directions</a>
+        {branch.phone && <a className={styles.actionLight} href={`tel:${branch.phone}`}><Icon name="phone" /> Call Branch</a>}
+      </div>
     </div>
   </article>;
 }
@@ -59,10 +74,13 @@ export default function BranchLocations({ standalone = false }) {
   const [searchDraft, setSearchDraft] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
-  const [autoScrollPaused, setAutoScrollPaused] = useState(false);
+  const [hoverPaused, setHoverPaused] = useState(false);
+  const [focusPaused, setFocusPaused] = useState(false);
+  const [manuallyPaused, setManuallyPaused] = useState(false);
+  const autoScrollPaused = hoverPaused || focusPaused || manuallyPaused;
   const trackRef = useRef(null);
   const loopResetRef = useRef(null);
-  const visibleCount = useSyncExternalStore(subscribeToCardLayout, isSingleCardLayout, () => false) ? 1 : 2;
+  const visibleCount = useSyncExternalStore(subscribeToCardLayout, visibleCardCount, () => 4);
   const cities = useMemo(() => [
     "Bangalore",
     "Chennai",
@@ -74,9 +92,7 @@ export default function BranchLocations({ standalone = false }) {
     const term = searchQuery.trim().toLocaleLowerCase();
     return branches.filter(branch => cityName(branch.city) === city && (!term || [branch.name, branch.area, branch.address, branch.pincode].some(value => String(value || "").toLocaleLowerCase().includes(term))));
   }, [branches, city, searchQuery]);
-  const carouselBranches = visibleBranches.length > 1
-    ? [...visibleBranches, ...visibleBranches.slice(0, visibleCount)]
-    : visibleBranches;
+  const carouselBranches = useMemo(() => getBranchCarouselItems(visibleBranches, visibleCount), [visibleBranches, visibleCount]);
   const maxIndex = Math.max(0, visibleBranches.length - 1);
   const currentIndex = Math.min(activeIndex, maxIndex);
 
@@ -110,7 +126,7 @@ export default function BranchLocations({ standalone = false }) {
   useEffect(() => {
     clearTimeout(loopResetRef.current);
     trackRef.current?.scrollTo({ left: 0, behavior: "instant" });
-  }, [city, searchQuery]);
+  }, [city, searchQuery, visibleCount]);
 
   useEffect(() => {
     if (visibleBranches.length < 2 || autoScrollPaused) return;
@@ -164,10 +180,10 @@ export default function BranchLocations({ standalone = false }) {
       </div>
     </div>
     <div className={"container " + styles.results}
-      onMouseEnter={() => setAutoScrollPaused(true)}
-      onMouseLeave={() => setAutoScrollPaused(false)}
-      onFocusCapture={() => setAutoScrollPaused(true)}
-      onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget)) setAutoScrollPaused(false); }}>
+      onMouseEnter={() => setHoverPaused(true)}
+      onMouseLeave={() => setHoverPaused(false)}
+      onFocusCapture={() => setFocusPaused(true)}
+      onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget)) setFocusPaused(false); }}>
       {loading ? <p className={styles.notice} role="status">Loading branch locations...</p> : error ? <div className={styles.notice} role="status">Branch locations are temporarily unavailable. <button type="button" onClick={() => { setLoading(true); setAttempt(value => value + 1); }}>Try again</button></div> :
         !branches.length ? <p className={styles.notice}>Branch locations will be listed here soon. <Link href="/#booking">Book a valuation</Link> for assistance.</p> :
         !visibleBranches.length ? <div className={styles.notice} role="status">{searchQuery ? <>No branches found for “{searchQuery}” in {city}. <button type="button" onClick={() => { setSearchDraft(""); setSearchQuery(""); }}>Clear search</button></> : <>No branches are currently listed in {city}. <Link href="/#booking">Book a valuation</Link> for assistance.</>}</div> :
@@ -186,8 +202,9 @@ export default function BranchLocations({ standalone = false }) {
             {carouselBranches.map((branch, index) => <div className={styles.slide} key={branch.id + "-" + index} role="group" aria-roledescription="slide" aria-label={`${index % visibleBranches.length + 1} of ${visibleBranches.length}: ${branch.name}`}><BranchCard branch={branch} /></div>)}
           </div>
           {visibleBranches.length > 1 && <div className={styles.carouselFooter}>
-            <span className={styles.count} aria-live="polite">Branch {currentIndex + 1} of {visibleBranches.length}</span>
+            <span className={styles.count} aria-live={autoScrollPaused ? "polite" : "off"}>Branch {currentIndex + 1} of {visibleBranches.length}</span>
             <div className={styles.controls} aria-label="Branch carousel controls">
+              <button type="button" onClick={() => setManuallyPaused(value => !value)} aria-pressed={manuallyPaused} aria-label={manuallyPaused ? "Start automatic branch scrolling" : "Pause automatic branch scrolling"}><Icon name={manuallyPaused ? "play" : "pause"} /></button>
               <button type="button" onClick={() => goTo(currentIndex - 1)} disabled={currentIndex === 0} aria-label="Previous branch">←</button>
               <button type="button" onClick={() => goTo(currentIndex + 1)} aria-label="Next branch">→</button>
             </div>

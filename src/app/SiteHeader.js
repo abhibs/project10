@@ -36,7 +36,7 @@ export default function SiteHeader({ progressRef }) {
                 <button type="button" aria-label={`${label} submenu`} aria-expanded={openSubmenu === href} aria-controls={`${href.slice(1)}-submenu`} onClick={() => setOpenSubmenu((open) => open === href ? null : href)}><span aria-hidden="true">⌄</span></button>
               </div>
               <div id={`${href.slice(1)}-submenu`} className={styles.submenu} hidden={openSubmenu !== href}>
-                {(href === "/services" ? [...Object.entries(SERVICE_PAGES).map(([slug, service]) => [`/services/${slug}`, service.title]), ["/documents", "Required Documents"]] : [["/gold-rate-calculation", "Gold Rate Calculation"]]).map(([url, title]) => <Link key={url} href={url} aria-current={pathname === url ? "page" : undefined}>{title}</Link>)}
+                {(href === "/services" ? Object.entries(SERVICE_PAGES).map(([slug, service]) => [`/services/${slug}`, service.title]) : [["/gold-rate-calculation", "Gold Rate Calculation"]]).map(([url, title]) => <Link key={url} href={url} aria-current={pathname === url ? "page" : undefined}>{title}</Link>)}
               </div>
             </div> : <Link key={href} href={href} aria-current={pathname === href ? "page" : undefined}>{label}</Link>
           ))}

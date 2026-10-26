@@ -28,12 +28,6 @@ const BUY_ITEMS = [
   {title: "Gold Bars / Biscuits", description: "Investment gold, subject to verification", image: "/buy-gold-bars.webp", alt: "Stack of gold bars"},
   {title: "Silver Articles", description: "Silver jewellery, coins and more", image: "/buy-silver-articles.webp", alt: "Silver vessels and jewellery"},
 ];
-const TESTING_BENEFITS = [
-  {title: "No Scratching", description: "Truly non-destructive evaluation", icon: "shield", tone: "teal"},
-  {title: "No Cutting", description: "Your jewellery stays intact", icon: "atom", tone: "red"},
-  {title: "Accurate Purity Check", description: "Advanced XRF technology", icon: "search", tone: "teal"},
-  {title: "Transparent Results", description: "See the purity details clearly", icon: "check", tone: "red"},
-];
 const VALUATION_FACTORS = [
   {title: "Weight", description: "See the weight of the old gold you bring to sell.", icon: "scale"},
   {title: "Purity", description: "Understand the purity measured during your gold assessment.", icon: "gem"},
@@ -49,19 +43,6 @@ function HeroBenefitIcon({type}) {
     payment: <><circle cx="24" cy="24" r="19"/><path d="M16 15h17M16 21h17M18 15c11 0 11 10 0 10l13 11"/></>,
     coins: <><ellipse cx="17" cy="13" rx="10" ry="4"/><path d="M7 13v8c0 2 4 4 10 4 2 0 4 0 6-1M7 20c1 2 5 4 10 4"/><ellipse cx="31" cy="25" rx="10" ry="4"/><path d="M21 25v12c0 2 4 4 10 4s10-2 10-4V25M21 31c0 2 4 4 10 4s10-2 10-4"/></>,
     support: <><circle cx="24" cy="15" r="6"/><path d="M12 37v-3c0-6 5-10 12-10s12 4 12 10v3H12Z"/><circle cx="9" cy="20" r="4"/><path d="M8 27c-4 0-6 3-6 8v2h7M39 27c4 0 7 3 7 8v2h-7"/><circle cx="39" cy="20" r="4"/></>,
-  };
-  return <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[type]}</svg>;
-}
-
-function TestingIcon({type}) {
-  const paths = {
-    shield: <><path d="M24 4 40 10v12c0 11-7 18-16 22C15 40 8 33 8 22V10L24 4Z"/><path d="m16 24 5 5 11-12"/></>,
-    atom: <><circle cx="24" cy="24" r="3"/><ellipse cx="24" cy="24" rx="18" ry="7"/><ellipse cx="24" cy="24" rx="18" ry="7" transform="rotate(60 24 24)"/><ellipse cx="24" cy="24" rx="18" ry="7" transform="rotate(120 24 24)"/></>,
-    search: <><circle cx="21" cy="21" r="14"/><path d="m31 31 12 12"/></>,
-    check: <><circle cx="24" cy="24" r="19"/><path d="m14 24 7 7 14-15"/></>,
-    bangle: <><ellipse cx="24" cy="18" rx="17" ry="7"/><path d="M7 18v12c0 4 8 7 17 7s17-3 17-7V18M7 24c0 4 8 7 17 7s17-3 17-7"/></>,
-    scan: <><path d="M5 17V7h10M33 7h10v10M43 31v10H33M15 41H5V31"/><path d="m24 15 9 9-9 9-9-9 9-9Z"/></>,
-    report: <><path d="M12 5h18l7 7v31H12V5Z"/><path d="M30 5v8h7M18 21h13M18 27h13M18 33h10"/></>,
   };
   return <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[type]}</svg>;
 }
@@ -317,29 +298,6 @@ export default function GoldHomepage() {
 
     <ExperienceSection />
 
-    <section className="testing-section" id="testing" aria-labelledby="testing-title">
-      <div className="testing-main">
-        <div className="container testing-main-inner">
-          <div className="testing-image">
-            <Image src="/gold-testing-omio-scene.webp" alt="Gold jewellery being examined beside a testing machine" width={1672} height={941} sizes="(max-width: 1100px) 100vw, 52vw" />
-          </div>
-          <div className="testing-copy reveal">
-            <span className="testing-kicker">Non-Destructive Testing</span>
-            <h2 id="testing-title">Your Jewellery<br />Should Be Tested.<br /><span>Not Damaged.</span></h2>
-            <p>We use advanced non-destructive testing technology designed to analyse your gold’s purity without scratching, cutting or causing any damage.</p>
-            <div className="testing-benefits">
-              {TESTING_BENEFITS.map((benefit) => (
-                <article className="testing-benefit" key={benefit.title}>
-                  <span className={`testing-benefit-icon ${benefit.tone}`}><TestingIcon type={benefit.icon} /></span>
-                  <h3>{benefit.title}</h3>
-                  <p>{benefit.description}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <section className="section why-section" id="why-aryan" aria-labelledby="why-aryan-title">
       <div className="container why-shell">
