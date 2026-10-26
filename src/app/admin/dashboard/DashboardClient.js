@@ -7,13 +7,16 @@ import RateForm from "./RateForm";
 import ContactsTable from "./ContactsTable";
 import BranchManager from "../branches/BranchManager";
 import SeoManager from "../seo/SeoManager";
+import AdminUsersManager from "../users/AdminUsersManager";
+import { ADMIN_SECTIONS, hasAdminPermission } from "@/lib/admin-access.mjs";
 import AdminBrand from "../AdminBrand";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 
 export default function DashboardClient({ admin, section = "dashboard" }) {
   const router = useRouter();
-  const [profile, setProfile] = useState(admin);
+  const [profileUpdate, setProfileUpdate] = useState(null);
+  const profile = profileUpdate?.source === admin ? profileUpdate.value : admin;
   const [successMessage, setSuccessMessage] = useState("");
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
@@ -115,7 +118,7 @@ export default function DashboardClient({ admin, section = "dashboard" }) {
       }
 
       if (imagePreview.startsWith("blob:")) URL.revokeObjectURL(imagePreview);
-      setProfile(data.admin);
+      setProfileUpdate({ source: admin, value: data.admin });
       setImagePreview(data.admin.image ? `/admin/${data.admin.image}` : "");
       setProfileImageError(false);
       setIsProfileModalOpen(false);
@@ -129,7 +132,7 @@ export default function DashboardClient({ admin, section = "dashboard" }) {
   }
 
   const avatar = imagePreview || (profile.image ? `/admin/${profile.image}` : "");
-  const sectionTitle = section === "seo" ? "SEO Control Center" : section === "branches" ? "Branches" : section === "rate" ? "Gold rates" : section === "contact" ? "Contact requests" : "Dashboard";
+  const sectionTitle = section === "admins" ? "Admins & permissions" : section === "no-access" ? "Account access" : section === "seo" ? "SEO Control Center" : section === "branches" ? "Branches" : section === "rate" ? "Gold rates" : section === "contact" ? "Contact requests" : "Dashboard";
 
   return (
     <main className={styles.dashboard}>
@@ -137,11 +140,7 @@ export default function DashboardClient({ admin, section = "dashboard" }) {
         <div className={styles.brand}><AdminBrand /></div>
         <p className={styles.menuTitle}>ADMIN WORKSPACE</p>
         <nav aria-label="Admin navigation">
-          <Link className={section === "dashboard" ? styles.active : undefined} aria-current={section === "dashboard" ? "page" : undefined} href="/admin/dashboard"><span aria-hidden="true">▦</span> Dashboard</Link>
-          <Link className={section === "branches" ? styles.active : undefined} aria-current={section === "branches" ? "page" : undefined} href="/admin/branches"><span aria-hidden="true">⌂</span> Branches</Link>
-          <Link className={section === "contact" ? styles.active : undefined} aria-current={section === "contact" ? "page" : undefined} href="/admin/contact/index"><span aria-hidden="true">☏</span> Contacts</Link>
-          <Link className={section === "rate" ? styles.active : undefined} aria-current={section === "rate" ? "page" : undefined} href="/admin/rate"><span aria-hidden="true">₹</span> Gold rates</Link>
-          <Link className={section === "seo" ? styles.active : undefined} aria-current={section === "seo" ? "page" : undefined} href="/admin/seo"><span aria-hidden="true">&#8981;</span> SEO</Link>
+          {ADMIN_SECTIONS.filter(({ key }) => hasAdminPermission(admin, key)).map(({ key, label, href, icon }) => <Link key={key} className={section === key ? styles.active : undefined} aria-current={section === key ? "page" : undefined} href={href}><span aria-hidden="true">{icon}</span> {label}</Link>)}
         </nav>
         <div className={styles.sidebarFoot}><span>ARYAN GOLD</span><p>Trust today.<br />Brighter tomorrows.</p><Link href="/">View website →</Link></div>
       </aside>
@@ -160,17 +159,17 @@ export default function DashboardClient({ admin, section = "dashboard" }) {
             </div>}
           </div>
         </header>
-        {section === "seo" ? <SeoManager /> : section === "branches" ? <BranchManager /> : section === "rate" ? <RateForm /> : section === "contact" ? <ContactsTable /> : <>
+        {section === "no-access" ? <article className={styles.welcome}><h2>No sections assigned yet</h2><p>Ask your administrator to select the sidebar sections you can access. You can still update your profile or sign out using the account menu.</p></article> : section === "admins" ? <AdminUsersManager admin={admin} /> : section === "seo" ? <SeoManager /> : section === "branches" ? <BranchManager /> : section === "rate" ? <RateForm /> : section === "contact" ? <ContactsTable /> : <>
           <article className={styles.welcome}>
             <p className={styles.eyebrow}>YOUR ARYAN GOLD WORKSPACE</p>
             <h2>Welcome back, {profile.name}.</h2>
             <p>Keep your gold rates up to date and every customer enquiry within reach.</p>
-            <Link href="/admin/rate">Manage gold rates →</Link>
+            {hasAdminPermission(admin, "rate") && <Link href="/admin/rate">Manage gold rates →</Link>}
           </article>
           <div className={styles.quickGrid}>
-            <Link className={styles.quickCard} href="/admin/branches"><span className={styles.cardIcon} aria-hidden="true">⌂</span><h2>Branch locations</h2><p>Add and manage the branches customers can find on your website.</p><strong>Manage branches →</strong></Link>
-            <Link className={styles.quickCard} href="/admin/contact/index"><span className={styles.cardIcon} aria-hidden="true">☏</span><h2>Customer enquiries</h2><p>Review branch visits, doorstep service requests, quick contacts and contact page enquiries.</p><strong>View contact requests →</strong></Link>
-            <Link className={styles.quickCard} href="/admin/rate"><span className={styles.cardIcon} aria-hidden="true">₹</span><h2>Gold rates</h2><p>Manage the 24K, 22K and 18K prices displayed on your website.</p><strong>Update gold rates →</strong></Link>
+            {hasAdminPermission(admin, "branches") && <Link className={styles.quickCard} href="/admin/branches"><span className={styles.cardIcon} aria-hidden="true">⌂</span><h2>Branch locations</h2><p>Add and manage the branches customers can find on your website.</p><strong>Manage branches →</strong></Link>}
+            {hasAdminPermission(admin, "contact") && <Link className={styles.quickCard} href="/admin/contact/index"><span className={styles.cardIcon} aria-hidden="true">☏</span><h2>Customer enquiries</h2><p>Review branch visits, doorstep service requests, quick contacts and contact page enquiries.</p><strong>View contact requests →</strong></Link>}
+            {hasAdminPermission(admin, "rate") && <Link className={styles.quickCard} href="/admin/rate"><span className={styles.cardIcon} aria-hidden="true">₹</span><h2>Gold rates</h2><p>Manage the 24K, 22K and 18K prices displayed on your website.</p><strong>Update gold rates →</strong></Link>}
           </div>
         </>}
       </section>

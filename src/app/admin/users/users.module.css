@@ -1,0 +1,58 @@
+.manager { display: grid; gap: 20px; }
+.toolbar, .heading, .dialogHeading { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.toolbar p { margin: 0; color: var(--admin-teal); font-size: 13px; line-height: 1.7; }
+.manager button, .dialog button { padding: 10px 16px; border: 1px solid var(--admin-border); border-radius: 8px; color: var(--admin-teal); background: var(--admin-cream); font: 700 12px/1.5 var(--font-admin-body), Arial, sans-serif; cursor: pointer; }
+.manager button:disabled, .dialog button:disabled { opacity: .5; cursor: not-allowed; }
+.manager button:focus-visible, .dialog button:focus-visible, .dialog input:focus-visible, .dialog select:focus-visible { outline: 2px solid var(--admin-teal); outline-offset: 3px; }
+.manager .primary, .dialog .primary { color: var(--admin-cream); background: var(--admin-teal); border-color: var(--admin-teal); }
+.panel { min-width: 0; overflow: hidden; border: 1px solid var(--admin-border); border-top: 3px solid var(--admin-red); border-radius: 20px; background: var(--admin-cream); box-shadow: var(--admin-shadow); }
+.heading { padding: 24px; border-bottom: 1px solid var(--admin-border); }
+.heading h2, .dialogHeading h2 { margin: 0; font: 700 26px/1.25 var(--font-admin-display), Georgia, serif; }
+.heading p, .dialogHeading p { margin: 7px 0 0; color: var(--admin-teal); font-size: 12px; line-height: 1.6; }
+.search { display: grid; gap: 7px; color: var(--admin-teal); font-size: 11px; font-weight: 700; }
+.search input { width: 240px; max-width: 100%; padding: 11px 12px; border: 1px solid var(--admin-border); border-radius: 8px; color: var(--admin-ink); background: var(--admin-cream); font: inherit; }
+.tableWrap { overflow-x: auto; }
+.tableWrap table { width: 100%; border-collapse: collapse; text-align: left; font-size: 12px; }
+.tableWrap th { padding: 14px 18px; color: var(--admin-teal); background: var(--admin-tint); font-size: 11px; white-space: nowrap; }
+.tableWrap td { padding: 18px; border-top: 1px solid var(--admin-border); overflow-wrap: anywhere; min-width: 120px; }
+.tableWrap td:nth-child(2) { min-width: 190px; }
+.you { display: block; margin-top: 5px; color: var(--admin-teal); font-size: 10px; }
+.adminRole, .customRole, .badges span { display: inline-block; padding: 5px 8px; border-radius: 6px; font-size: 10px; }
+.adminRole { color: var(--admin-cream); background: var(--admin-teal); }
+.customRole { color: var(--admin-ink); background: var(--admin-gold); }
+.badges { display: flex; flex-wrap: wrap; gap: 5px; min-width: 140px; }
+.badges span { color: var(--admin-teal); background: var(--admin-tint); }
+.hint { display: flex; align-items: center; gap: 8px; }
+.hint span { min-width: 65px; max-width: 160px; overflow-wrap: anywhere; }
+.hint button { padding: 4px 7px; font-size: 10px; }
+.rowActions { display: flex; gap: 7px; }
+.manager .deleteButton { color: var(--admin-red); }
+.empty { padding: 24px; color: var(--admin-teal); font-size: 13px; }
+.success, .error { margin: 0; padding: 14px 18px; border-radius: 8px; font-size: 13px; line-height: 1.6; }
+.success { color: var(--admin-teal); background: var(--admin-tint); }
+.error { color: var(--admin-red); background: rgba(161, 30, 30, .06); }
+.dialog { width: min(620px, calc(100vw - 32px)); max-height: calc(100dvh - 40px); margin: auto; padding: 0; overflow-y: auto; border: 1px solid var(--admin-border); border-radius: 12px; color: var(--admin-ink); background: var(--admin-cream); box-shadow: var(--admin-shadow); }
+.dialog::backdrop { background: rgba(0, 35, 32, .55); }
+.dialogHeading { padding: 22px 24px; border-bottom: 1px solid var(--admin-border); }
+.dialogHeading > button { padding: 2px 10px; font-size: 24px; }
+.form { padding: 24px; }
+.fields { min-width: 0; margin: 0; padding: 0; border: 0; }
+.formGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.fields > label, .formGrid > label { display: grid; gap: 8px; min-width: 0; margin-bottom: 20px; font-size: 12px; font-weight: 700; }
+.fields input:not([type=checkbox]), .fields select { width: 100%; min-width: 0; padding: 11px 12px; border: 1px solid var(--admin-border); border-radius: 6px; color: var(--admin-ink); background: var(--admin-cream); font: 400 13px/1.4 var(--font-admin-body), Arial, sans-serif; }
+.fields small { color: var(--admin-teal); font-size: 10px; line-height: 1.5; font-weight: 400; }
+.passwordField { display: flex; gap: 8px; }
+.permissions { min-width: 0; margin: 0; padding: 16px; border: 1px solid var(--admin-border); border-radius: 6px; }
+.permissions legend { padding: 0 5px; color: var(--admin-teal); font-size: 12px; font-weight: 800; }
+.permissionGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 16px; max-height: 240px; overflow-y: auto; }
+.permissionGrid label { display: flex; align-items: center; gap: 9px; min-width: 0; font-size: 12px; line-height: 1.5; cursor: pointer; }
+.permissionGrid input { width: 16px; height: 16px; margin: 0; accent-color: var(--admin-teal); }
+.help { margin: 12px 0 0; color: var(--admin-teal); font-size: 11px; line-height: 1.6; }
+.actions { display: flex; justify-content: flex-end; gap: 9px; margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--admin-border); }
+.dialog .danger { color: var(--admin-cream); background: var(--admin-red); border-color: var(--admin-red); }
+@media (max-width: 600px) {
+  .toolbar, .heading { flex-direction: column; align-items: stretch; }
+  .search input { width: 100%; }
+  .formGrid { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .form, .heading, .dialogHeading { padding: 20px; }
+}

@@ -56,7 +56,7 @@ export default function AdminLoginPage() {
       }
 
       window.sessionStorage.setItem("admin-login-success", "true");
-      router.replace("/admin/dashboard");
+      router.replace(data.redirectTo || "/admin/dashboard");
       router.refresh();
     } catch {
       setMessage("Unable to connect to the server. Please try again.");

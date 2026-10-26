@@ -1,8 +1,6 @@
-import { cookies } from "next/headers";
-import { ADMIN_SESSION_COOKIE, readAdminSession } from "@/lib/admin-session";
+import { authorizeAdminRequest, adminApiError } from "@/lib/admin-auth";
 import { createManualContact, getContacts, updateContact } from "@/lib/admin-db";
 import { resolveContactFilters } from "@/lib/contact-filters.mjs";
-import { isAllowedBranchOrigin } from "@/lib/branch-origin.mjs";
 import { CONTACT_FORM_TYPES, countContactTypes, sumContactWeights } from "@/lib/contact-summary.mjs";
 import { validateManualContact } from "@/lib/manual-contact.mjs";
 import { normalizeContactStatus } from "@/lib/contact-status.mjs";
@@ -11,13 +9,7 @@ const BUSINESS_TYPES = new Set(CONTACT_FORM_TYPES);
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 
 export async function POST(request) {
-  const cookieStore = await cookies();
-  if (!readAdminSession(cookieStore.get(ADMIN_SESSION_COOKIE)?.value)) {
-    return Response.json({ message: "Unauthorized." }, { status: 401 });
-  }
-  if (!isAllowedBranchOrigin(request)) {
-    return Response.json({ message: "Invalid request origin." }, { status: 403 });
-  }
+  try { await authorizeAdminRequest(request, "contact"); } catch (error) { return adminApiError(error); }
 
   let body;
   try { body = await request.json(); } catch {
@@ -39,13 +31,7 @@ export async function POST(request) {
 }
 
 export async function PATCH(request) {
-  const cookieStore = await cookies();
-  if (!readAdminSession(cookieStore.get(ADMIN_SESSION_COOKIE)?.value)) {
-    return Response.json({ message: "Unauthorized." }, { status: 401 });
-  }
-  if (!isAllowedBranchOrigin(request)) {
-    return Response.json({ message: "Invalid request origin." }, { status: 403 });
-  }
+  try { await authorizeAdminRequest(request, "contact"); } catch (error) { return adminApiError(error); }
   let body;
   try { body = await request.json(); } catch {
     return Response.json({ message: "Invalid request." }, { status: 400 });
@@ -81,9 +67,7 @@ export async function PATCH(request) {
 }
 
 export async function GET(request) {
-  const cookieStore = await cookies();
-  const admin = readAdminSession(cookieStore.get(ADMIN_SESSION_COOKIE)?.value);
-  if (!admin) return Response.json({ message: "Unauthorized." }, { status: 401 });
+  try { await authorizeAdminRequest(request, "contact"); } catch (error) { return adminApiError(error); }
 
   const { searchParams } = new URL(request.url);
   const { fromDate, toDate, businessType } = resolveContactFilters({

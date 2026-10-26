@@ -24,6 +24,7 @@ export function createAdminSession(admin) {
     id: admin.id,
     name: admin.name || "Administrator",
     email: admin.email,
+    version: Number(admin.session_version || 0),
     expiresAt: Date.now() + SESSION_MAX_AGE * 1000,
   }));
 

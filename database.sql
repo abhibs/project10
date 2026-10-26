@@ -37,6 +37,9 @@ CREATE TABLE `admins` (
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `password_hint` varchar(255) NOT NULL,
+  `role` varchar(20) NOT NULL DEFAULT 'admin',
+  `permissions` longtext DEFAULT NULL,
+  `session_version` int UNSIGNED NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

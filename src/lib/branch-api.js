@@ -1,15 +1,9 @@
-import { cookies } from "next/headers";
-import { ADMIN_SESSION_COOKIE, readAdminSession } from "./admin-session";
-import { findAdminById } from "./admin-db";
+import { authorizeAdminRequest } from "./admin-auth";
+import { AdminAccessError } from "./admin-access.mjs";
 import { BranchError } from "./branch-values.mjs";
-import { isAllowedBranchOrigin } from "./branch-origin.mjs";
 
 export async function authorizeBranchRequest(request) {
-  const session = readAdminSession((await cookies()).get(ADMIN_SESSION_COOKIE)?.value);
-  if (!session || !await findAdminById(session.id)) throw new BranchError("Please sign in again.", 401);
-  if (request && request.method !== "GET") {
-    if (!isAllowedBranchOrigin(request)) throw new BranchError("Request origin is not allowed.", 403);
-  }
+  return authorizeAdminRequest(request, "branches");
 }
 
 // Bound the actual streamed body as well as Content-Length before multipart parsing.
@@ -34,7 +28,7 @@ export async function readBranchForm(request) {
 }
 
 export function branchApiError(error) {
-  if (error instanceof BranchError) return Response.json({ message: error.message }, { status: error.status });
+  if (error instanceof BranchError || error instanceof AdminAccessError) return Response.json({ message: error.message }, { status: error.status });
   if (error?.code === "ER_DUP_ENTRY") return Response.json({ message: "That Branch ID already exists. Choose a unique ID." }, { status: 409 });
   console.error("Branch operation failed:", error);
   return Response.json({ message: "Unable to complete the branch request. Please try again." }, { status: 500 });

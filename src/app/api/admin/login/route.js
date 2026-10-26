@@ -1,6 +1,8 @@
 import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
 import { findAdminByEmail } from "@/lib/admin-db";
+import { adminHome } from "@/lib/admin-access.mjs";
+import { isAllowedBranchOrigin } from "@/lib/branch-origin.mjs";
 import {
   ADMIN_SESSION_COOKIE,
   createAdminSession,
@@ -11,6 +13,7 @@ export const runtime = "nodejs";
 
 export async function POST(request) {
   try {
+    if (!isAllowedBranchOrigin(request)) return NextResponse.json({ message: "Request origin is not allowed." }, { status: 403 });
     const { email, password } = await request.json();
     const normalizedEmail = typeof email === "string" ? email.trim().toLowerCase() : "";
 
@@ -26,7 +29,7 @@ export async function POST(request) {
       return NextResponse.json({ message: "Invalid email or password." }, { status: 401 });
     }
 
-    const response = NextResponse.json({ admin: { id: admin.id, name: admin.name, email: admin.email } });
+    const response = NextResponse.json({ admin: { id: admin.id, name: admin.name, email: admin.email }, redirectTo: adminHome(admin) });
     response.cookies.set(ADMIN_SESSION_COOKIE, createAdminSession(admin), sessionCookieOptions);
     return response;
   } catch (error) {

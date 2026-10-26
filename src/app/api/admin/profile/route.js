@@ -2,12 +2,12 @@ import { randomUUID } from "crypto";
 import { mkdir, unlink, writeFile } from "fs/promises";
 import path from "path";
 import { NextResponse } from "next/server";
-import { cookies } from "next/headers";
-import { findAdminById, updateAdminProfile } from "@/lib/admin-db";
+import { authorizeAdminRequest, adminApiError } from "@/lib/admin-auth";
+import { adminProfile } from "@/lib/admin-access.mjs";
+import { updateAdminProfile } from "@/lib/admin-db";
 import {
   ADMIN_SESSION_COOKIE,
   createAdminSession,
-  readAdminSession,
   sessionCookieOptions,
 } from "@/lib/admin-session";
 
@@ -33,16 +33,7 @@ export async function POST(request) {
   let newImagePath = null;
 
   try {
-    const cookieStore = await cookies();
-    const session = readAdminSession(cookieStore.get(ADMIN_SESSION_COOKIE)?.value);
-    if (!session) {
-      return NextResponse.json({ message: "Your session has expired. Please sign in again." }, { status: 401 });
-    }
-
-    const currentAdmin = await findAdminById(session.id);
-    if (!currentAdmin) {
-      return NextResponse.json({ message: "Administrator account was not found." }, { status: 404 });
-    }
+    const currentAdmin = await authorizeAdminRequest(request);
 
     const form = await request.formData();
     const name = clean(form.get("name"));
@@ -76,12 +67,12 @@ export async function POST(request) {
 
       const uploadDirectory = path.join(process.cwd(), "public", "admin");
       await mkdir(uploadDirectory, { recursive: true });
-      imageName = `admin-${session.id}-${randomUUID()}${extension}`;
+      imageName = `admin-${currentAdmin.id}-${randomUUID()}${extension}`;
       newImagePath = path.join(uploadDirectory, imageName);
       await writeFile(newImagePath, Buffer.from(await image.arrayBuffer()), { flag: "wx" });
     }
 
-    await updateAdminProfile(session.id, { name, email, phone, address, image: imageName });
+    await updateAdminProfile(currentAdmin.id, { name, email, phone, address, image: imageName });
 
     if (newImagePath && currentAdmin.image && currentAdmin.image !== imageName) {
       const oldImagePath = imagePath(currentAdmin.image);
@@ -90,8 +81,8 @@ export async function POST(request) {
       });
     }
 
-    const admin = { id: session.id, name, email, phone, address, image: imageName || "" };
-    const response = NextResponse.json({ message: "Profile updated successfully.", admin });
+    const admin = { ...currentAdmin, name, email, phone, address, image: imageName || "" };
+    const response = NextResponse.json({ message: "Profile updated successfully.", admin: adminProfile(admin) });
     response.cookies.set(ADMIN_SESSION_COOKIE, createAdminSession(admin), sessionCookieOptions);
     return response;
   } catch (error) {
@@ -99,7 +90,6 @@ export async function POST(request) {
     if (error?.code === "ER_DUP_ENTRY") {
       return NextResponse.json({ message: "That email address is already in use." }, { status: 409 });
     }
-    console.error("Admin profile update failed:", error);
-    return NextResponse.json({ message: "Unable to update the profile right now." }, { status: 500 });
+    return adminApiError(error);
   }
 }

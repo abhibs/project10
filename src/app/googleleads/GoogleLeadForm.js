@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Link from "next/link";
 import { getContactAttribution } from "@/lib/contact-attribution.mjs";
 import { GOOGLE_LEAD_TYPE } from "@/lib/contact-summary.mjs";
 import { submitContactRequest } from "@/lib/submit-contact.mjs";
@@ -100,14 +101,14 @@ export default function GoogleLeadForm() {
       </button>
 
       <p className={styles.formNote}>No fees. No obligation to sell. Your details stay private.</p>
-      <a className={styles.branchLink} href="/branches">
+      <Link className={styles.branchLink} href="/branches">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" />
           <circle cx="12" cy="10" r="2.5" />
         </svg>
         <span>Find your nearest branch</span>
         <span aria-hidden="true">→</span>
-      </a>
+      </Link>
       <p className={`${styles.feedback} ${feedback.type === "success" ? styles.success : feedback.type === "error" ? styles.error : ""}`} role={feedback.type === "error" ? "alert" : "status"} aria-live="polite">{feedback.message}</p>
     </form>
   );

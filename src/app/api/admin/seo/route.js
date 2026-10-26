@@ -1,4 +1,4 @@
-import { authorizeBranchRequest } from "@/lib/branch-api";
+import { authorizeAdminRequest } from "@/lib/admin-auth";
 import { getSeoPages, saveSeoPage, deleteSeoPage } from "@/lib/admin-db";
 import { validateSeo } from "@/lib/seo-fields.mjs";
 import { revalidatePath } from "next/cache";
@@ -12,14 +12,14 @@ function errorResponse(error) {
 
 export async function GET(request) {
   try {
-    await authorizeBranchRequest(request);
+    await authorizeAdminRequest(request, "seo");
     return Response.json({ pages: await getSeoPages() });
   } catch (error) { return errorResponse(error); }
 }
 
 export async function POST(request) {
   try {
-    await authorizeBranchRequest(request);
+    await authorizeAdminRequest(request, "seo");
     const body = await request.json();
     let values;
     try { values = validateSeo(body); } catch (error) { return Response.json({ message: error.message }, { status: 400 }); }
@@ -33,7 +33,7 @@ export async function POST(request) {
 
 export async function DELETE(request) {
   try {
-    await authorizeBranchRequest(request);
+    await authorizeAdminRequest(request, "seo");
     const id = Number(new URL(request.url).searchParams.get("id"));
     if (!Number.isSafeInteger(id) || id < 1) return Response.json({ message: "Invalid SEO record." }, { status: 400 });
     await deleteSeoPage(id);

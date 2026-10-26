@@ -2,6 +2,7 @@ import mysql from "mysql2/promise";
 import { SEO_FIELDS } from "./seo-fields.mjs";
 import { runOncePerContactDay, uniqueDailyContacts } from "./contact-leads.mjs";
 import { buildContactDateFilter } from "./contact-filters.mjs";
+import { AdminAccessError, assertAdminUserChange, canManageAdmin, adminPermissions, hasAdminPermission } from "./admin-access.mjs";
 
 export async function getSeoPages() {
   const [rows] = await getPool().execute("SELECT * FROM seo_pages ORDER BY route_path <> '*', id");
@@ -131,7 +132,7 @@ async function executeContactQuery(sql, values) {
 
 export async function findAdminByEmail(email) {
   const [rows] = await getPool().execute(
-    "SELECT id, name, email, password FROM admins WHERE email = ? LIMIT 1",
+    "SELECT id, name, email, password, role, permissions, session_version FROM admins WHERE email = ? LIMIT 1",
     [email]
   );
 
@@ -140,7 +141,7 @@ export async function findAdminByEmail(email) {
 
 export async function findAdminById(id) {
   const [rows] = await getPool().execute(
-    "SELECT id, name, email, phone, address, image, password FROM admins WHERE id = ? LIMIT 1",
+    "SELECT id, name, email, phone, address, image, password, role, permissions, session_version FROM admins WHERE id = ? LIMIT 1",
     [id]
   );
 
@@ -154,11 +155,54 @@ export async function updateAdminProfile(id, { name, email, phone, address, imag
   );
 }
 
-export async function updateAdminPassword(id, passwordHash) {
+export async function updateAdminPassword(id, passwordHash, passwordHint) {
   await getPool().execute(
-    "UPDATE admins SET password = ?, updated_at = NOW() WHERE id = ?",
-    [passwordHash, id]
+    "UPDATE admins SET password = ?, password_hint = ?, session_version = session_version + 1, updated_at = NOW() WHERE id = ?",
+    [passwordHash, passwordHint, id]
   );
+}
+
+export async function getAdminUsers(actor) {
+  const [rows] = await getPool().execute("SELECT id, name, email, password_hint, role, permissions FROM admins ORDER BY id");
+  return rows.filter((row) => canManageAdmin(actor, row)).map((row) => ({ ...row, permissions: adminPermissions(row.permissions) }));
+}
+
+// Serialize account changes and recheck the actor under the same locks. This also
+// prevents two administrators from simultaneously demoting each other.
+export async function saveAdminUser(actor, id, values, passwordHash, deleting = false) {
+  const connection = await getPool().getConnection();
+  try {
+    await connection.beginTransaction();
+    const [rows] = await connection.query("SELECT id, role, permissions, session_version FROM admins ORDER BY id FOR UPDATE");
+    const currentActor = rows.find((row) => String(row.id) === String(actor.id));
+    if (!currentActor || Number(currentActor.session_version) !== Number(actor.session_version) || !hasAdminPermission(currentActor, "admins")) {
+      throw new AdminAccessError("Your access has changed. Please sign in again.", 403);
+    }
+    const target = id == null ? null : rows.find((row) => String(row.id) === String(id));
+    if (id != null && !target) throw new AdminAccessError("Account not found.", 404);
+    assertAdminUserChange(currentActor, target, values, deleting);
+    let savedId = id;
+    if (deleting) {
+      await connection.execute("DELETE FROM admins WHERE id = ?", [id]);
+    } else if (id == null) {
+      const [result] = await connection.execute(
+        "INSERT INTO admins (name, email, password, password_hint, role, permissions, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW())",
+        [values.name, values.email, passwordHash, values.password, values.role, JSON.stringify(values.permissions)],
+      );
+      savedId = result.insertId;
+    } else {
+      const passwordSql = passwordHash ? ", password = ?, password_hint = ?, session_version = session_version + 1" : "";
+      await connection.execute(
+        `UPDATE admins SET name = ?, email = ?, role = ?, permissions = ?, updated_at = NOW()${passwordSql} WHERE id = ?`,
+        [values.name, values.email, values.role, JSON.stringify(values.permissions), ...(passwordHash ? [passwordHash, values.password] : []), id],
+      );
+    }
+    await connection.commit();
+    return savedId;
+  } catch (error) {
+    await connection.rollback();
+    throw error;
+  } finally { connection.release(); }
 }
 
 export async function getRates() {
