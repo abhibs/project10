@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
       className="h-full antialiased"
     >
       <head>
-        {/* Keep the supplied Google Ads snippet in the initial page head. */}
+        {/* Share one Google tag loader for Google Ads and Analytics. */}
         {/* eslint-disable-next-line @next/next/next-script-for-ga */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18497186303" />
         <script
@@ -24,7 +24,8 @@ export default function RootLayout({ children }) {
             __html: `window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'AW-18497186303');`,
+gtag('config', 'AW-18497186303');
+gtag('config', 'G-ZCN1VRN9HD');`,
           }}
         />
         <GoogleTagManager />
