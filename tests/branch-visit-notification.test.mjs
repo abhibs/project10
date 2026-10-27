@@ -43,7 +43,7 @@ test("posts branch visits with the required authorization headers", async (conte
   let request;
   globalThis.fetch = async (url, options) => {
     request = { url, options };
-    return { ok: true, status: 200 };
+    return { ok: true, status: 201 };
   };
 
   const payload = { event: "contact.visiting_branch" };
@@ -56,4 +56,7 @@ test("posts branch visits with the required authorization headers", async (conte
   });
   assert.equal(request.options.body, JSON.stringify(payload));
   assert.equal(request.options.cache, "no-store");
+
+  globalThis.fetch = async () => ({ ok: true, status: 200 });
+  await assert.rejects(sendBranchVisitNotification(payload), /expected HTTP 201/);
 });

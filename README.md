@@ -122,5 +122,6 @@ Saving this status sends a server-side JSON `POST` to
 `https://aryangold.in/api/integrations/contact-visits`. Set the required
 `CONTACT_VISIT_WEBHOOK_SECRET` server environment variable to the webhook secret;
 it is sent as the `Authorization: Bearer <secret>` header and is never exposed to
-the browser. A failed delivery is shown in the admin table and can be retried
-without changing the saved visit details.
+the browser. The integration must respond with HTTP `201 Created`; any other
+status is treated as a failed delivery, shown in the admin table, and can be
+retried without changing the saved visit details.
