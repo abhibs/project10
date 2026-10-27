@@ -86,7 +86,7 @@ export default function GoogleLeadsPage() {
 
         <section className={styles.steps} aria-labelledby="steps-title">
           <div className={styles.stepsInner}>
-            <div className={styles.stepsHeading}><span>HOW IT WORKS</span><h2 id="steps-title">Your gold. Its true value. Three simple steps.</h2></div>
+            <div className={styles.stepsHeading}><span>HOW IT WORKS</span><h2 id="steps-title">Your gold&apos;s true value in 3 simple steps.</h2></div>
             <ol>
               <li><span>01</span><div><h3>Share your details</h3><p>Tell us how to reach you and what service you need.</p></div></li>
               <li><span>02</span><div><h3>Get a transparent valuation</h3><p>Your gold is checked for purity and weight in front of you.</p></div></li>

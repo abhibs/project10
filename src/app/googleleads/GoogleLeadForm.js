@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { getContactAttribution } from "@/lib/contact-attribution.mjs";
@@ -18,9 +18,21 @@ function keepNameCharacters(event) {
 
 export default function GoogleLeadForm() {
   const router = useRouter();
+  const formRef = useRef(null);
   const lock = useRef(false);
   const [submitting, setSubmitting] = useState(false);
   const [feedback, setFeedback] = useState({ type: "", message: "" });
+
+  useEffect(() => {
+    if (!window.matchMedia("(max-width: 850px)").matches) return;
+
+    const frame = window.requestAnimationFrame(() => {
+      formRef.current?.focus({ preventScroll: true });
+      formRef.current?.scrollIntoView({ block: "start" });
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   async function submitLead(event) {
     event.preventDefault();
@@ -53,7 +65,7 @@ export default function GoogleLeadForm() {
   }
 
   return (
-    <form className={styles.leadForm} id="lead-form" aria-labelledby="google-lead-form-title" aria-busy={submitting} onSubmit={submitLead}>
+    <form ref={formRef} className={styles.leadForm} id="lead-form" tabIndex={-1} aria-labelledby="google-lead-form-title" aria-busy={submitting} onSubmit={submitLead}>
       <div className={styles.formHeading}>
         <span className={styles.formKicker}>FREE GOLD VALUATION</span>
         <h2 id="google-lead-form-title">Request a free valuation</h2>
