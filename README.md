@@ -119,7 +119,8 @@ Run `npm run migrate:contact-branch-visits` once per database before using the
 branch, visit date and visit time fields.
 
 Saving this status sends a server-side JSON `POST` to
-`https://aryangold.in/api/branchnotif`. Set `BRANCH_NOTIFICATION_URL` to override
-the endpoint. If the receiver requires a bearer token, set
-`BRANCH_NOTIFICATION_TOKEN`. A failed delivery is shown in the admin table and can
-be retried without changing the saved visit details.
+`https://aryangold.in/api/integrations/contact-visits`. Set the required
+`CONTACT_VISIT_WEBHOOK_SECRET` server environment variable to the webhook secret;
+it is sent as the `Authorization: Bearer <secret>` header and is never exposed to
+the browser. A failed delivery is shown in the admin table and can be retried
+without changing the saved visit details.

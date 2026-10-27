@@ -1,4 +1,5 @@
 export const BRANCH_VISIT_TIMEZONE = "Asia/Kolkata";
+export const CONTACT_VISIT_ENDPOINT = "https://aryangold.in/api/integrations/contact-visits";
 
 export function buildBranchVisitNotification(contact, branch, visit) {
   return {
@@ -25,16 +26,18 @@ export function buildBranchVisitNotification(contact, branch, visit) {
   };
 }
 
-export async function sendBranchVisitNotification(payload) {
-  const endpoint = process.env.BRANCH_NOTIFICATION_URL || "https://aryangold.in/api/branchnotif";
-  const headers = { "Content-Type": "application/json", Accept: "application/json" };
-  if (process.env.BRANCH_NOTIFICATION_TOKEN) {
-    headers.Authorization = `Bearer ${process.env.BRANCH_NOTIFICATION_TOKEN}`;
-  }
+export function buildContactVisitHeaders(secret = process.env.CONTACT_VISIT_WEBHOOK_SECRET) {
+  if (!secret) throw new Error("CONTACT_VISIT_WEBHOOK_SECRET is not configured.");
+  return {
+    Authorization: `Bearer ${secret}`,
+    "Content-Type": "application/json",
+  };
+}
 
-  const response = await fetch(endpoint, {
+export async function sendBranchVisitNotification(payload) {
+  const response = await fetch(CONTACT_VISIT_ENDPOINT, {
     method: "POST",
-    headers,
+    headers: buildContactVisitHeaders(),
     body: JSON.stringify(payload),
     cache: "no-store",
     signal: AbortSignal.timeout(10000),
