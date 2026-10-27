@@ -8,6 +8,7 @@ export const metadata = {
   description: "Project 10 admin portal",
 };
 
+
 export default function RootLayout({ children }) {
   return (
     <html
