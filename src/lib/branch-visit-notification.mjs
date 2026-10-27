@@ -43,7 +43,8 @@ export async function sendBranchVisitNotification(payload) {
     signal: AbortSignal.timeout(10000),
   });
 
-  if (!response.ok) {
-    throw new Error(`Branch notification API returned HTTP ${response.status}.`);
+  if (response.status !== 201) {
+    throw new Error(`Branch notification API returned HTTP ${response.status}; expected HTTP 201.`);
   }
+  return response;
 }
