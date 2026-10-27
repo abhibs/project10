@@ -65,27 +65,6 @@ export default function GoogleLeadsPage() {
           </div>
         </section>
 
-        <section id="trust-benefits" className={styles.trustSection} aria-label="Why customers choose Aryan Gold Buyers">
-          <div className={styles.trustBar}>
-            <div className={styles.trustItem}>
-              <span className={styles.trustIcon} aria-hidden="true">✓</span>
-              <p><strong>Free valuation</strong><small>No fees or hidden charges</small></p>
-            </div>
-            <div className={styles.trustItem}>
-              <span className={styles.trustIcon} aria-hidden="true">✓</span>
-              <p><strong>Advanced purity testing</strong><small>Clear, non-destructive process</small></p>
-            </div>
-            <div className={styles.trustItem}>
-              <span className={styles.trustIcon} aria-hidden="true">✓</span>
-              <p><strong>Transparent gold rate</strong><small>Purity, weight and rate explained</small></p>
-            </div>
-            <div className={styles.trustItem}>
-              <span className={styles.trustIcon} aria-hidden="true">✓</span>
-              <p><strong>No obligation</strong><small>Decide only when you are ready</small></p>
-            </div>
-          </div>
-        </section>
-
         <section className={styles.steps} aria-labelledby="steps-title">
           <div className={styles.stepsInner}>
             <div className={styles.stepsHeading}><span>HOW IT WORKS</span><h2 id="steps-title">Your gold&apos;s true value in 3 simple steps.</h2></div>
