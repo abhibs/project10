@@ -301,6 +301,10 @@ export async function getContacts({ fromDate = "", toDate = "", businessType = "
     `SELECT id, name, mobile, city, weight, details, status, comment, release_bank AS releaseBank, release_place AS releasePlace,
        branch_id AS branchId,
        (SELECT b.name FROM branches b WHERE b.branch_id = contacts.branch_id) AS branchName,
+       visit_branch_id AS visitBranchId,
+       (SELECT b.name FROM branches b WHERE b.branch_id = contacts.visit_branch_id) AS visitBranchName,
+       DATE_FORMAT(visit_date, '%Y-%m-%d') AS visitDate,
+       TIME_FORMAT(visit_time, '%H:%i') AS visitTime,
        DATE_FORMAT(callback_date, '%Y-%m-%d') AS callbackDate,
        DATE_FORMAT(preffered_date, '%Y-%m-%d') AS preferredDate,
        preffered_time AS preferredTime, services, business_type AS businessType,
@@ -322,6 +326,14 @@ export async function getContacts({ fromDate = "", toDate = "", businessType = "
       try { return JSON.parse(row.trackingData); } catch { return {}; }
     })(),
   }));
+}
+
+export async function findContactById(id) {
+  const [rows] = await executeContactQuery(
+    "SELECT id, name, mobile, city FROM contacts WHERE id = ? LIMIT 1",
+    [id],
+  );
+  return rows[0] || null;
 }
 
 export async function updateContact(id, changes) {

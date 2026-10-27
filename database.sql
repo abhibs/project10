@@ -114,7 +114,10 @@ CREATE TABLE `contacts` (
   `branch_id` varchar(64) DEFAULT NULL,
   `details` text DEFAULT NULL,
   `callback_date` date DEFAULT NULL,
-  `status` enum('active','inactive','pending_callback') NOT NULL DEFAULT 'inactive',
+  `visit_branch_id` varchar(64) DEFAULT NULL,
+  `visit_date` date DEFAULT NULL,
+  `visit_time` time DEFAULT NULL,
+  `status` enum('active','inactive','pending_callback','visiting_branch') NOT NULL DEFAULT 'inactive',
   `comment` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -177,7 +180,8 @@ ALTER TABLE `contacts`
   ADD PRIMARY KEY (`id`),
   ADD KEY `contacts_created_at_index` (`created_at`),
   ADD KEY `contacts_business_type_index` (`business_type`),
-  ADD KEY `contacts_callback_date_index` (`callback_date`);
+  ADD KEY `contacts_callback_date_index` (`callback_date`),
+  ADD KEY `contacts_visit_date_index` (`visit_date`);
 
 --
 -- Indexes for table `rates`
@@ -208,6 +212,8 @@ ALTER TABLE `contacts`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 ALTER TABLE `contacts`
   ADD CONSTRAINT `contacts_branch_fk` FOREIGN KEY (`branch_id`)
+    REFERENCES `branches` (`branch_id`) ON UPDATE CASCADE ON DELETE SET NULL,
+  ADD CONSTRAINT `contacts_visit_branch_fk` FOREIGN KEY (`visit_branch_id`)
     REFERENCES `branches` (`branch_id`) ON UPDATE CASCADE ON DELETE SET NULL;
 COMMIT;
 

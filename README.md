@@ -111,3 +111,15 @@ Branch enquiries store the selected service separately from `contacts.branch_id`
 `branches.branch_id`. The contact details modal shows the branch ID and current branch name.
 Contacts from other forms can have no branch. Branch code changes cascade to contacts;
 deleting a branch retains its contacts and clears their branch reference.
+
+## Branch visit status notifications
+
+Run `npm run migrate:contact-branch-visits` once per database before using the
+**Visiting Branch** contact status. The migration adds the status plus the assigned
+branch, visit date and visit time fields.
+
+Saving this status sends a server-side JSON `POST` to
+`https://aryangold.in/api/branchnotif`. Set `BRANCH_NOTIFICATION_URL` to override
+the endpoint. If the receiver requires a bearer token, set
+`BRANCH_NOTIFICATION_TOKEN`. A failed delivery is shown in the admin table and can
+be retried without changing the saved visit details.

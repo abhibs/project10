@@ -142,9 +142,10 @@
 .completionCheckbox { display: inline-flex; align-items: center; gap: 8px; padding: 5px 0; color: var(--admin-teal); font-weight: 700; white-space: nowrap; cursor: pointer; }
 .completionCheckbox input { width: 17px; height: 17px; accent-color: var(--admin-teal); cursor: pointer; }
 .completionCheckbox input:disabled { cursor: wait; }
-.statusCell { min-width: 205px; }
+.statusCell { min-width: 225px; }
 .statusEditor { display: grid; gap: 7px; }
 .statusEditor select, .statusEditor input { width: 100%; min-width: 175px; height: 36px; padding: 0 8px; border: 1px solid var(--admin-border); border-radius: 8px; color: var(--admin-teal); background: var(--admin-cream); font: inherit; }
+.statusField { display: grid; gap: 4px; color: var(--admin-teal); font-size: 10px; font-weight: 700; }
 .statusEditor > div { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; }
 .statusEditor button { padding: 6px 10px; border: 1px solid var(--admin-border); border-radius: 8px; color: var(--admin-teal); background: var(--admin-cream); cursor: pointer; font-size: 11px; font-weight: 700; }
 .statusEditor button:disabled { opacity: .5; cursor: default; }

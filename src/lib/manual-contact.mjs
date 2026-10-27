@@ -1,5 +1,5 @@
 import { INCOMING_CALL_TYPE } from "./contact-summary.mjs";
-import { normalizeContactStatus } from "./contact-status.mjs";
+import { normalizeContactStatus, VISITING_BRANCH_STATUS } from "./contact-status.mjs";
 
 const NAME_PATTERN = /^[\p{L}\s]+$/u;
 const MOBILE_PATTERN = /^\d{10}$/;
@@ -32,6 +32,9 @@ export function validateManualContact(body) {
     throw new Error("Enter a valid gold weight up to 100,000 grams.");
   }
   if (!services) throw new Error("Enter the service or help requested.");
+  if (status === VISITING_BRANCH_STATUS) {
+    throw new Error("Create the enquiry before assigning a branch visit.");
+  }
   const normalizedStatus = normalizeContactStatus(status, callbackDate);
 
   return {

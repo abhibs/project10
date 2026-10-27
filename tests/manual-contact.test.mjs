@@ -40,6 +40,7 @@ test("rejects invalid required values and trims optional text", () => {
   assert.throws(() => validateManualContact({ ...valid, weight: "100001" }), /weight/);
   assert.throws(() => validateManualContact({ ...valid, status: "new" }), /status/);
   assert.throws(() => validateManualContact({ ...valid, status: "pending_callback", callbackDate: "" }), /call-back date/);
+  assert.throws(() => validateManualContact({ ...valid, status: "visiting_branch" }), /Create the enquiry/);
   assert.equal(validateManualContact({ ...valid, status: "pending_callback", callbackDate: "2026-11-01" }).callbackDate, "2026-11-01");
   const contact = validateManualContact({ ...valid, details: "", comment: "" });
   assert.equal(contact.details, "");

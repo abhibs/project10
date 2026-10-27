@@ -1,9 +1,10 @@
 import { authorizeAdminRequest, adminApiError } from "@/lib/admin-auth";
-import { createManualContact, getContacts, updateContact } from "@/lib/admin-db";
+import { createManualContact, findBranchByCode, findContactById, getContacts, updateContact } from "@/lib/admin-db";
+import { buildBranchVisitNotification, sendBranchVisitNotification } from "@/lib/branch-visit-notification.mjs";
 import { resolveContactFilters } from "@/lib/contact-filters.mjs";
 import { CONTACT_FORM_TYPES, countContactTypes, sumContactWeights } from "@/lib/contact-summary.mjs";
 import { validateManualContact } from "@/lib/manual-contact.mjs";
-import { normalizeContactStatus } from "@/lib/contact-status.mjs";
+import { normalizeBranchVisit, normalizeContactStatus, VISITING_BRANCH_STATUS } from "@/lib/contact-status.mjs";
 
 const BUSINESS_TYPES = new Set(CONTACT_FORM_TYPES);
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
@@ -43,6 +44,7 @@ export async function PATCH(request) {
   }
   const changes = {};
   const responseChanges = {};
+  let notificationPayload = null;
   if (body.status !== undefined) {
     let normalizedStatus;
     try { normalizedStatus = normalizeContactStatus(body.status, body.callbackDate); } catch (error) {
@@ -52,14 +54,69 @@ export async function PATCH(request) {
     changes.callback_date = normalizedStatus.callbackDate || null;
     responseChanges.status = normalizedStatus.status;
     responseChanges.callbackDate = normalizedStatus.callbackDate;
+
+    if (normalizedStatus.status === VISITING_BRANCH_STATUS) {
+      let visit;
+      try { visit = normalizeBranchVisit(body.visitBranchId, body.visitDate, body.visitTime); } catch (error) {
+        return Response.json({ message: error.message }, { status: 400 });
+      }
+
+      try {
+        const [branch, contact] = await Promise.all([
+          findBranchByCode(visit.branchId),
+          findContactById(body.id),
+        ]);
+        if (!contact) return Response.json({ message: "Contact not found." }, { status: 404 });
+        if (!branch || branch.status !== "active") {
+          return Response.json({ message: "Select an active branch for the visit." }, { status: 400 });
+        }
+        changes.visit_branch_id = visit.branchId;
+        changes.visit_date = visit.visitDate;
+        changes.visit_time = visit.visitTime;
+        responseChanges.visitBranchId = visit.branchId;
+        responseChanges.visitBranchName = branch.name;
+        responseChanges.visitDate = visit.visitDate;
+        responseChanges.visitTime = visit.visitTime;
+        notificationPayload = buildBranchVisitNotification(contact, branch, visit);
+      } catch (error) {
+        console.error("Unable to validate branch visit:", error);
+        return Response.json({ message: "Unable to validate the branch visit. Please try again." }, { status: 500 });
+      }
+    } else {
+      changes.visit_branch_id = null;
+      changes.visit_date = null;
+      changes.visit_time = null;
+      responseChanges.visitBranchId = "";
+      responseChanges.visitBranchName = "";
+      responseChanges.visitDate = "";
+      responseChanges.visitTime = "";
+    }
   }
   if (body.comment !== undefined) {
     changes.comment = body.comment.trim();
     responseChanges.comment = changes.comment;
   }
   try {
-    if (!await updateContact(body.id, changes)) return Response.json({ message: "Contact not found." }, { status: 404 });
-    return Response.json({ changes: responseChanges, message: "Contact updated." });
+    if (!await updateContact(body.id, changes) && !await findContactById(body.id)) {
+      return Response.json({ message: "Contact not found." }, { status: 404 });
+    }
+    if (notificationPayload) {
+      try {
+        await sendBranchVisitNotification(notificationPayload);
+      } catch (error) {
+        console.error("Branch visit notification delivery failed:", error);
+        return Response.json({
+          changes: responseChanges,
+          notificationDelivered: false,
+          message: "Status updated, but the branch notification could not be delivered.",
+        });
+      }
+    }
+    return Response.json({
+      changes: responseChanges,
+      notificationDelivered: notificationPayload ? true : undefined,
+      message: notificationPayload ? "Status updated and branch notified." : "Contact updated.",
+    });
   } catch (error) {
     console.error("Unable to update contact:", error);
     return Response.json({ message: "Unable to save changes. Please try again." }, { status: 500 });

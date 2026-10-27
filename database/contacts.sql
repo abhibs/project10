@@ -21,7 +21,10 @@ CREATE TABLE IF NOT EXISTS contacts (
   branch_id VARCHAR(64) DEFAULT NULL,
   details TEXT DEFAULT NULL,
   callback_date DATE DEFAULT NULL,
-  status ENUM('active', 'inactive', 'pending_callback') NOT NULL DEFAULT 'inactive',
+  visit_branch_id VARCHAR(64) DEFAULT NULL,
+  visit_date DATE DEFAULT NULL,
+  visit_time TIME DEFAULT NULL,
+  status ENUM('active', 'inactive', 'pending_callback', 'visiting_branch') NOT NULL DEFAULT 'inactive',
   comment TEXT DEFAULT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -29,5 +32,7 @@ CREATE TABLE IF NOT EXISTS contacts (
   KEY contacts_created_at_index (created_at),
   KEY contacts_business_type_index (business_type),
   KEY contacts_callback_date_index (callback_date),
-  CONSTRAINT contacts_branch_fk FOREIGN KEY (branch_id) REFERENCES branches (branch_id) ON UPDATE CASCADE ON DELETE SET NULL
+  KEY contacts_visit_date_index (visit_date),
+  CONSTRAINT contacts_branch_fk FOREIGN KEY (branch_id) REFERENCES branches (branch_id) ON UPDATE CASCADE ON DELETE SET NULL,
+  CONSTRAINT contacts_visit_branch_fk FOREIGN KEY (visit_branch_id) REFERENCES branches (branch_id) ON UPDATE CASCADE ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

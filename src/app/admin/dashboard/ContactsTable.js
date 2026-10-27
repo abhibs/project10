@@ -3,8 +3,23 @@
 import { useEffect, useRef, useState } from "react";
 import { resolveContactFilters } from "@/lib/contact-filters.mjs";
 import { CONTACT_FORM_TYPES, GOOGLE_LEAD_TYPE, INCOMING_CALL_TYPE, getContactFormLabel } from "@/lib/contact-summary.mjs";
-import { CALLBACK_STATUS, CONTACT_STATUS_OPTIONS, getContactStatusLabel } from "@/lib/contact-status.mjs";
+import { CALLBACK_STATUS, CONTACT_STATUS_OPTIONS, getContactStatusLabel, VISITING_BRANCH_STATUS } from "@/lib/contact-status.mjs";
 import styles from "./page.module.css";
+
+const MANUAL_CONTACT_STATUS_OPTIONS = CONTACT_STATUS_OPTIONS.filter(([value]) => value !== VISITING_BRANCH_STATUS);
+
+function currentIndiaDateTime() {
+  const parts = Object.fromEntries(new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Kolkata",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+  }).formatToParts(new Date()).map(({ type, value }) => [type, value]));
+  return { date: `${parts.year}-${parts.month}-${parts.day}`, time: `${parts.hour}:${parts.minute}` };
+}
 
 function displayService(contact) {
   if (contact.branchId) return contact.services || "—";
@@ -33,6 +48,8 @@ function ContactDetails({ contact }) {
     ["Preferred date", displayDate(contact.preferredDate)],
     ["Preferred time", displayTime(contact.preferredTime)],
     ["Call-back date", displayDate(contact.callbackDate)],
+    ["Visit branch ID", contact.visitBranchId], ["Visit branch", contact.visitBranchName],
+    ["Visit date", displayDate(contact.visitDate)], ["Visit time", displayTime(contact.visitTime)],
     ...standard, ...extra, ...context,
     ["Status", getContactStatusLabel(contact.status)],
     ["Comment", contact.comment],
@@ -80,15 +97,37 @@ function displayTime(value) {
   }).join(" – ");
 }
 
-function ContactControls({ contact, onSaved }) {
+function ContactControls({ contact, onSaved, branches, branchesLoading }) {
   const [draft, setDraft] = useState(contact.comment || "");
   const [status, setStatus] = useState(contact.status);
   const [callbackDate, setCallbackDate] = useState(contact.callbackDate || "");
+  const [visitBranchId, setVisitBranchId] = useState(contact.visitBranchId || "");
+  const [visitDate, setVisitDate] = useState(contact.visitDate || "");
+  const [visitTime, setVisitTime] = useState(contact.visitTime || "");
   const [saving, setSaving] = useState(false);
+  const [notificationFailed, setNotificationFailed] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
   const [commentMessage, setCommentMessage] = useState("");
   const lock = useRef(false);
-  const statusChanged = status !== contact.status || (status === CALLBACK_STATUS ? callbackDate !== (contact.callbackDate || "") : !!contact.callbackDate);
+  const statusChanged = status !== contact.status ||
+    (status === CALLBACK_STATUS ? callbackDate !== (contact.callbackDate || "") : !!contact.callbackDate) ||
+    (status === VISITING_BRANCH_STATUS && (
+      visitBranchId !== (contact.visitBranchId || "") ||
+      visitDate !== (contact.visitDate || "") ||
+      visitTime !== (contact.visitTime || "")
+    ));
+  const canSaveStatus = statusChanged || (status === VISITING_BRANCH_STATUS && notificationFailed);
+
+  function changeStatus(nextStatus) {
+    setStatus(nextStatus);
+    setNotificationFailed(false);
+    setStatusMessage("");
+    if (nextStatus === VISITING_BRANCH_STATUS && (!visitDate || !visitTime)) {
+      const current = currentIndiaDateTime();
+      if (!visitDate) setVisitDate(current.date);
+      if (!visitTime) setVisitTime(current.time);
+    }
+  }
 
   async function save(changes, setMessage) {
     if (lock.current) return;
@@ -107,20 +146,29 @@ function ContactControls({ contact, onSaved }) {
       if (changes.status !== undefined) {
         setStatus(data.changes.status);
         setCallbackDate(data.changes.callbackDate || "");
+        setVisitBranchId(data.changes.visitBranchId || "");
+        setVisitDate(data.changes.visitDate || "");
+        setVisitTime(data.changes.visitTime || "");
+        setNotificationFailed(data.notificationDelivered === false);
       }
-      setMessage("Saved.");
+      setMessage(data.message || "Saved.");
     } catch (error) { setMessage(error.message || "Unable to save changes."); }
     finally { lock.current = false; setSaving(false); }
   }
 
   return <>
     <td className={styles.statusCell}>
-      <form className={styles.statusEditor} onSubmit={(event) => { event.preventDefault(); save({ status, callbackDate }, setStatusMessage); }}>
-        <select aria-label={`Status for ${contact.name}`} value={status} disabled={saving} onChange={(event) => { setStatus(event.target.value); setStatusMessage(""); }}>
+      <form className={styles.statusEditor} onSubmit={(event) => { event.preventDefault(); save({ status, callbackDate, visitBranchId, visitDate, visitTime }, setStatusMessage); }}>
+        <select aria-label={`Status for ${contact.name}`} value={status} disabled={saving} onChange={(event) => changeStatus(event.target.value)}>
           {CONTACT_STATUS_OPTIONS.map(([value, label]) => <option key={value} value={value}>{label}</option>)}
         </select>
         {status === CALLBACK_STATUS && <input aria-label={`Call-back date for ${contact.name}`} type="date" value={callbackDate} required disabled={saving} onChange={(event) => { setCallbackDate(event.target.value); setStatusMessage(""); }} />}
-        <div><button type="submit" disabled={saving || !statusChanged || (status === CALLBACK_STATUS && !callbackDate)}>{saving ? "Saving…" : "Save status"}</button><span role="status">{statusMessage}</span></div>
+        {status === VISITING_BRANCH_STATUS && <>
+          <label className={styles.statusField}><span>Active branch *</span><select aria-label={`Visit branch for ${contact.name}`} value={visitBranchId} required disabled={saving || branchesLoading} onChange={(event) => { setVisitBranchId(event.target.value); setStatusMessage(""); }}><option value="">{branchesLoading ? "Loading branches…" : "Select branch"}</option>{branches.map((branch) => <option key={branch.branchId} value={branch.branchId}>{branch.name} — {branch.city}</option>)}</select></label>
+          <label className={styles.statusField}><span>Visit date *</span><input aria-label={`Visit date for ${contact.name}`} type="date" value={visitDate} required disabled={saving} onChange={(event) => { setVisitDate(event.target.value); setStatusMessage(""); }} /></label>
+          <label className={styles.statusField}><span>Visit time *</span><input aria-label={`Visit time for ${contact.name}`} type="time" value={visitTime} required disabled={saving} onChange={(event) => { setVisitTime(event.target.value); setStatusMessage(""); }} /></label>
+        </>}
+        <div><button type="submit" disabled={saving || !canSaveStatus || (status === CALLBACK_STATUS && !callbackDate) || (status === VISITING_BRANCH_STATUS && (branchesLoading || !visitBranchId || !visitDate || !visitTime))}>{saving ? "Saving…" : notificationFailed ? "Retry notification" : "Save status"}</button><span role="status">{statusMessage}</span></div>
       </form>
     </td>
     <td className={styles.commentCell}>
@@ -188,7 +236,7 @@ function ManualEnquiryDialog({ onCreated }) {
         </div>
         <div className={styles.formGrid}>
           <label><span>Form type</span><input value={INCOMING_CALL_TYPE} readOnly /></label>
-          <label><span>Status <b>*</b></span><select name="status" value={status} required disabled={saving} onChange={(event) => setStatus(event.target.value)}><option value="" disabled>Select status</option>{CONTACT_STATUS_OPTIONS.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
+          <label><span>Status <b>*</b></span><select name="status" value={status} required disabled={saving} onChange={(event) => setStatus(event.target.value)}><option value="" disabled>Select status</option>{MANUAL_CONTACT_STATUS_OPTIONS.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
           {status === CALLBACK_STATUS && <label><span>Call-back date <b>*</b></span><input name="callbackDate" type="date" required disabled={saving} /></label>}
           <label><span>Name <b>*</b></span><input name="name" autoComplete="name" minLength={2} maxLength={255} placeholder="Customer name" required disabled={saving} /></label>
           <label><span>Mobile <b>*</b></span><input name="mobile" type="tel" autoComplete="tel-national" inputMode="numeric" pattern="[0-9]{10}" minLength={10} maxLength={10} placeholder="10-digit mobile number" required disabled={saving} onInput={(event) => { event.currentTarget.value = event.currentTarget.value.replace(/\D/g, "").slice(0, 10); }} /></label>
@@ -209,6 +257,9 @@ export default function ContactsTable() {
   const [filters, setFilters] = useState(() => resolveContactFilters());
   const [appliedFilters, setAppliedFilters] = useState(filters);
   const [contacts, setContacts] = useState([]);
+  const [branches, setBranches] = useState([]);
+  const [branchesLoading, setBranchesLoading] = useState(true);
+  const [branchError, setBranchError] = useState("");
   const [page, setPage] = useState(1);
   const pageSize = 10;
   const totalPages = Math.max(1, Math.ceil(contacts.length / pageSize));
@@ -251,7 +302,7 @@ export default function ContactsTable() {
   async function exportContacts(format) {
     setExporting(true);
     setExportMessage("");
-    const headers = ["#", "Date", "Time (IST)", "Form type", "Name", "Mobile", "City", "Weight", "Release bank", "Release place", "Preferred date", "Preferred time", "Service / Help with", "Details", "GCLID", "UTM Source", "UTM Campaign", "Keyword", "Adgroup ID", "Landing page", "Referrer", "Tracking data", "Call-back date", "Status", "Comment"];
+    const headers = ["#", "Date", "Time (IST)", "Form type", "Name", "Mobile", "City", "Weight", "Release bank", "Release place", "Preferred date", "Preferred time", "Service / Help with", "Details", "GCLID", "UTM Source", "UTM Campaign", "Keyword", "Adgroup ID", "Landing page", "Referrer", "Tracking data", "Call-back date", "Visit branch ID", "Visit branch", "Visit date", "Visit time", "Status", "Comment"];
     const rows = contacts.map((contact, index) => [
       index + 1, displayDate(contact.submittedDate), displayTime(contact.submittedTime),
       getContactFormLabel(contact.businessType), contact.name, contact.mobile, contact.city || "—",
@@ -259,7 +310,8 @@ export default function ContactsTable() {
       displayTime(contact.preferredTime), displayService(contact), contact.details || "",
       ...["gclid", "utmSource", "utmCampaign", "keyword", "adgroupId"].map((field) => contact[field] || "-"),
       contact.landingPage || "", contact.referrer || "", JSON.stringify(contact.trackingData || {}),
-      displayDate(contact.callbackDate), getContactStatusLabel(contact.status), contact.comment || "",
+      displayDate(contact.callbackDate), contact.visitBranchId || "", contact.visitBranchName || "",
+      displayDate(contact.visitDate), displayTime(contact.visitTime), getContactStatusLabel(contact.status), contact.comment || "",
     ]);
     // Prevent user-entered values from becoming spreadsheet formulas.
     const safeText = (value) => {
@@ -285,7 +337,7 @@ export default function ContactsTable() {
         sheet.getRow(1).font = { bold: true };
         sheet.columns.forEach((column, index) => { column.width = index === 13 ? 50 : 22; });
         sheet.views = [{ state: "frozen", ySplit: 1 }];
-        sheet.autoFilter = { from: "A1", to: "Y1" };
+        sheet.autoFilter = { from: "A1", to: "AC1" };
         blob = new Blob([await workbook.xlsx.writeBuffer()], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
       }
       const url = URL.createObjectURL(blob);
@@ -303,6 +355,24 @@ export default function ContactsTable() {
       setExporting(false);
     }
   }
+
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch("/api/branches", { cache: "no-store", signal: controller.signal })
+      .then(async (response) => {
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.message || "Unable to load active branches.");
+        return data;
+      })
+      .then((data) => setBranches(data.branches || []))
+      .catch((loadError) => {
+        if (loadError.name !== "AbortError") setBranchError(loadError.message || "Unable to load active branches.");
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setBranchesLoading(false);
+      });
+    return () => controller.abort();
+  }, []);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -385,6 +455,7 @@ export default function ContactsTable() {
         </button>)}
       </div>
       {error && <p className={styles.tableError} role="alert">{error}</p>}
+      {branchError && <p className={styles.tableError} role="alert">{branchError} Branch visits cannot be assigned until the branch list is available.</p>}
       <div className={styles.exportToolbar}>
         <div className={styles.exportButtons} role="group" aria-label="Export contact requests">
           <button type="button" disabled={loading || exporting || !contacts.length} onClick={() => exportContacts("copy")}>Copy</button>
@@ -405,7 +476,7 @@ export default function ContactsTable() {
                 <td><span className={`${styles.typeBadge} ${["Quick Contact", "Contact Page", "Banner Form", GOOGLE_LEAD_TYPE, INCOMING_CALL_TYPE].includes(contact.businessType) ? styles.quickBadge : ""}`}>{getContactFormLabel(contact.businessType)}</span></td>
                 <td>{contact.name}</td><td className={styles.noWrap}>{contact.mobile}</td><td>{contact.city || "—"}</td>
                 <td className={styles.noWrap}>{contact.weight ? `${contact.weight} g` : "—"}</td><td>{displayService(contact)}</td><td><ContactDetails contact={contact} /></td>
-                <ContactControls contact={contact} onSaved={updateRow} />
+                <ContactControls contact={contact} onSaved={updateRow} branches={branches} branchesLoading={branchesLoading} />
               </tr>
             ))}
           </tbody>
