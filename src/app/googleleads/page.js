@@ -41,25 +41,27 @@ export default function GoogleLeadsPage() {
           <div className={styles.heroGlow} aria-hidden="true" />
           <div className={styles.heroInner}>
             <div className={styles.heroCopy}>
-              <span className={styles.eyebrow}>Gold buyers in Bengaluru &amp; Chennai</span>
-              <h1 id="google-leads-title">Your gold.<br />Its true value.<br /><em>Paid quickly.</em></h1>
-              <p className={styles.heroLead}>A transparent gold valuation, completed in front of you. No cutting, no hidden steps, and no obligation to sell.</p>
+              <div className={styles.heroIntro}>
+                <span className={styles.eyebrow}>Gold buyers in Bengaluru &amp; Chennai</span>
+                <h1 id="google-leads-title">Your gold.<br />Its true value.<br /><em>Paid quickly.</em></h1>
+                <p className={styles.heroLead}>A transparent gold valuation, completed in front of you. No cutting, no hidden steps, and no obligation to sell.</p>
+              </div>
 
               <div className={styles.benefits} aria-label="Aryan Gold Buyers benefits">
                 <div><span><BenefitIcon type="shield" /></span><p><strong>Non-destructive testing</strong><small>Your jewellery stays intact</small></p></div>
                 <div><span><BenefitIcon type="rate" /></span><p><strong>Transparent valuation</strong><small>Purity, weight and rate explained</small></p></div>
                 <div><span><BenefitIcon type="cash" /></span><p><strong>Quick payment</strong><small>After verification and formalities</small></p></div>
               </div>
-
-              <a className={styles.mobileCta} href="#lead-form">Get a free valuation <span aria-hidden="true">→</span></a>
             </div>
+
+            <GoogleLeadForm />
 
             <div className={styles.portrait} aria-label="Welcome to Aryan Gold Buyers">
               <div className={styles.portraitHalo} aria-hidden="true" />
               <Image src="/Selected/306A7111-transparent.png" alt="Aryan Gold Buyers representative holding cash and gold jewellery" width={1024} height={1536} priority sizes="(max-width: 820px) 92vw, 34vw" />
             </div>
 
-            <GoogleLeadForm />
+            <a className={styles.mobileCta} href="#lead-form">Get a free valuation <span aria-hidden="true">→</span></a>
           </div>
         </section>
 

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Manrope, Playfair_Display } from "next/font/google";
 import Brand from "../Brand";
-import ThankYouRedirect from "./ThankYouRedirect";
 import styles from "./page.module.css";
 
 const bodyFont = Manrope({ subsets: ["latin"], variable: "--font-thank-body", display: "swap" });
@@ -21,7 +20,6 @@ export default function ThankYouPage() {
       <p className={styles.eyebrow}>ENQUIRY RECEIVED</p>
       <h1>Thank you!</h1>
       <p className={styles.message}>Your enquiry has been received.<br />Our gold expert will call you shortly.</p>
-      <ThankYouRedirect />
       <Link className={styles.homeLink} href="/">Back to home <span aria-hidden="true">→</span></Link>
     </main>
     <footer className={styles.footer}>Aryan Gold Buyers · Free valuation. No obligation to sell.</footer>
