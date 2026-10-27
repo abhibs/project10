@@ -1519,7 +1519,7 @@
 .aryan-home .gold-calc-inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"image content";align-items:stretch;min-height:690px;width:100%;max-width:none;margin:0;padding:0}
 .aryan-home .gold-calc-image{grid-area:image;position:relative;align-self:stretch;min-width:0;width:100%;background:#143d37}
 .aryan-home .gold-calc-image img{object-fit:cover;object-position:center}
-.aryan-home .gold-calc-image:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent 85%,rgba(0,106,96,.15) 92%,rgba(0,106,96,.5) 97%,#006A60 100%)}
+.aryan-home .gold-calc-image:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent 50%,rgba(0,106,96,.08) 61%,rgba(0,106,96,.26) 72%,rgba(0,106,96,.58) 85%,rgba(0,106,96,.88) 95%,#006A60 100%)}
 .aryan-home .gold-calc-content{grid-area:content;align-self:center;justify-self:center;width:min(100%,760px);padding:100px clamp(30px,5vw,90px)}
 .aryan-home #calculator .gold-calc-intro :is(h1,h2){margin:0 0 8px;color:#fff;font-family:var(--serif);font-size:clamp(2.85rem,3.8vw,4.1rem);font-weight:800;line-height:1.04;letter-spacing:-.04em;text-shadow:0 3px 15px rgba(0,0,0,.17)}
 .aryan-home #calculator .gold-calc-intro :is(h1,h2) span{color:#ffd052}
@@ -1552,7 +1552,7 @@
 @media(max-width:760px){
   .aryan-home .gold-calc-inner{grid-template-columns:minmax(0,1fr);grid-template-areas:"image" "content";min-height:0}
   .aryan-home .gold-calc-image{aspect-ratio:1672/941}
-  .aryan-home .gold-calc-image:after{background:linear-gradient(180deg,transparent 85%,rgba(0,106,96,.15) 92%,rgba(0,106,96,.5) 97%,#006A60 100%)}
+  .aryan-home .gold-calc-image:after{background:linear-gradient(180deg,transparent 50%,rgba(0,106,96,.08) 61%,rgba(0,106,96,.26) 72%,rgba(0,106,96,.58) 85%,rgba(0,106,96,.88) 95%,#006A60 100%)}
   .aryan-home .gold-calc-content{width:min(100%,700px);padding:48px var(--page-gutter) 52px}
   .aryan-home #calculator .gold-calc-intro :is(h1,h2){font-size:clamp(2.6rem,7.5vw,3.9rem)}
 }
