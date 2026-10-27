@@ -1,11 +1,40 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import styles from "./floating-contact-actions.module.css";
 
 export default function FloatingContactActions() {
   const pathname = usePathname();
-  if (!pathname || pathname === "/admin" || pathname.startsWith("/admin/")) return null;
+  const [formVisibility, setFormVisibility] = useState({ pathname: "", visible: false });
+  const excludedPath = !pathname || pathname === "/admin" || pathname.startsWith("/admin/");
+  const formVisible = formVisibility.pathname === pathname && formVisibility.visible;
+
+  useEffect(() => {
+    if (excludedPath) return;
+
+    const targets = Array.from(document.querySelectorAll("main form, [data-floating-actions-exclusion]"));
+    if (!targets.length) return;
+
+    if (!("IntersectionObserver" in window)) {
+      const timer = window.setTimeout(() => setFormVisibility({ pathname, visible: true }), 0);
+      return () => window.clearTimeout(timer);
+    }
+
+    const visibleTargets = new Set();
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) visibleTargets.add(entry.target);
+        else visibleTargets.delete(entry.target);
+      });
+      setFormVisibility({ pathname, visible: visibleTargets.size > 0 });
+    }, { threshold: 0.01 });
+
+    targets.forEach((target) => observer.observe(target));
+    return () => observer.disconnect();
+  }, [excludedPath, pathname]);
+
+  if (excludedPath || formVisible) return null;
 
   return <div className={styles.actions} role="group" aria-label="Contact Aryan Gold Buyers">
     <a href="tel:+919117125555" aria-label="Call Aryan Gold Buyers on +91 9117 125 555" title="Call +91 9117 125 555">
