@@ -8,8 +8,6 @@
 .eyebrow { margin: 0 0 14px; color: #ffda73; font-size: 11px; font-weight: 800; letter-spacing: .18em; }
 .content h1 { margin: 0 0 20px; font: 700 clamp(48px, 8vw, 76px)/1.1 var(--font-thank-display), Georgia, serif; letter-spacing: -.04em; }
 .message { margin: 0; color: #deebe5; font-size: 17px; line-height: 1.8; }
-.countdown { margin: 26px 0 0; color: #c4d8d0; font-size: 13px; line-height: 1.6; }
-.countdown strong { color: #ffda73; }
 .homeLink { display: inline-flex; align-items: center; gap: 18px; min-height: 48px; margin-top: 24px; padding: 12px 22px; border-radius: 999px; color: #023c38; background: #ffda73; font-size: 13px; font-weight: 800; text-decoration: none; }
 .homeLink:hover { background: #ffe59a; }
 .homeLink:focus-visible { outline: 3px solid #fffaf0; outline-offset: 4px; }
