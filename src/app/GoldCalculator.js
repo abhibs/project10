@@ -55,7 +55,7 @@ export default function GoldCalculator({ rates, live = false, standalone = false
             <Heading id="gold-calc-title">What Could Your<br /><span>Gold Be Worth?</span></Heading>
             <p>Get an indicative estimate before visiting us.</p>
           </div>
-          <div className="gold-calc-panel reveal delay-1" data-floating-actions-exclusion>
+          <div className="gold-calc-panel reveal delay-1">
             <label className="gold-calc-label" htmlFor="gold-purity">Gold Purity</label>
             <select className="gold-calc-purity" id="gold-purity" value={purity} onChange={(event) => setPurity(event.target.value)}>
               <option value="22">22K Gold</option>
