@@ -1,6 +1,7 @@
 import { authorizeAdminRequest } from "./admin-auth";
 import { AdminAccessError } from "./admin-access.mjs";
 import { BranchError } from "./branch-values.mjs";
+import { BranchSyncError } from "./branch-sync.mjs";
 
 export async function authorizeBranchRequest(request) {
   return authorizeAdminRequest(request, "branches");
@@ -28,6 +29,10 @@ export async function readBranchForm(request) {
 }
 
 export function branchApiError(error) {
+  if (error instanceof BranchSyncError) {
+    console.error("Branch upsert delivery failed:", error.cause || error);
+    return Response.json({ message: error.message }, { status: error.status });
+  }
   if (error instanceof BranchError || error instanceof AdminAccessError) return Response.json({ message: error.message }, { status: error.status });
   if (error?.code === "ER_DUP_ENTRY") return Response.json({ message: "That Branch ID already exists. Choose a unique ID." }, { status: 409 });
   console.error("Branch operation failed:", error);

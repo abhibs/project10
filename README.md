@@ -96,6 +96,17 @@ they are not referenced by the branch feed. Failed new uploads are cleaned up.
 Validation tests: `node --test tests/branch-values.test.mjs`.
 Branch detail URL and directions tests: `node --test tests/branch-links.test.mjs`.
 
+### Branch API sync
+
+Creating or updating a branch also sends a server-side JSON `POST` to the branch
+upsert endpoint configured in `BRANCH_ADMIN_API_URL`. Set `BRANCH_ADMIN_API_TOKEN`
+to the target API's bearer token. The request contains `branchId`, name, area,
+city, state, pincode, timings, address, status, coordinates and URL; images stay
+local. The target must return `201 Created` for an insert or `200 OK` for an
+update. The local database write starts only after that response. If delivery
+fails, the local branch remains unchanged and the editor displays an error so
+the administrator can retry.
+
 ## Google Ads landing page
 
 Run `node scripts/migrate-google-leads.mjs` once per database, then open

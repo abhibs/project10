@@ -2,6 +2,7 @@ import { findBranchById, updateBranch, deleteBranch } from "@/lib/admin-db";
 import { authorizeBranchRequest, readBranchForm, branchApiError } from "@/lib/branch-api";
 import { BranchError, validateBranch, validBranchRecordId } from "@/lib/branch-values.mjs";
 import { saveBranchImage, discardBranchImage } from "@/lib/branch-images";
+import { requireBranchUpsert } from "@/lib/branch-sync.mjs";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -21,12 +22,14 @@ export async function PUT(request, { params }) {
     const current = await existingBranch(params);
     const form = await readBranchForm(request);
     const branch = validateBranch(form);
+    if (branch.branchId !== current.branchId) throw new BranchError("Branch ID cannot be changed after creation because it is the synchronization key.");
+    await requireBranchUpsert(branch);
     image = await saveBranchImage(form.get("image"), branch.branchId);
     const saved = await updateBranch(current.id, {
       ...branch, image: image || (form.get("removeImage") === "true" ? null : current.image),
     });
     if (!saved) throw new BranchError("Branch no longer exists. Refresh the list.", 404);
-    return Response.json({ branch: saved, message: "Branch updated successfully." });
+    return Response.json({ branch: saved, message: "Branch updated and synced successfully." });
   } catch (error) {
     if (image) await discardBranchImage(image);
     return branchApiError(error);

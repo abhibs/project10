@@ -51,7 +51,7 @@ function BranchForm({ branch, onSaved, onCancel }) {
     <form onSubmit={submit} className={styles.form}>
       <fieldset disabled={saving}>
         <div className={styles.formGrid}>
-          <label className={styles.field} htmlFor="branch-branchId"><span>Branch ID *</span><input id="branch-branchId" name="branchId" type="text" defaultValue={branch.branchId || ""} required maxLength={64} pattern="[a-zA-Z0-9][a-zA-Z0-9_-]*" placeholder="e.g. AG-BLR-01" /></label>
+          <label className={styles.field} htmlFor="branch-branchId"><span>Branch ID *</span><input id="branch-branchId" name="branchId" type="text" defaultValue={branch.branchId || ""} required readOnly={Boolean(branch.id)} maxLength={64} pattern="[a-zA-Z0-9][a-zA-Z0-9_-]*" placeholder="e.g. AG-BLR-01" title={branch.id ? "Branch ID is the synchronization key and cannot be changed after creation." : undefined} /></label>
           <label className={styles.field} htmlFor="branch-name"><span>Branch name *</span><input id="branch-name" name="name" type="text" defaultValue={branch.name || ""} required maxLength={160} onChange={event => setName(event.target.value)} /></label>
           <div className={styles.field}><span>Branch slug</span><output className={styles.slugPreview} aria-label="Generated branch slug" aria-live="polite">{slugifyBranchName(name) || "Enter a branch name"}</output><small>Created automatically from the name. Repeated names get a number.</small></div>
           {fields.map(field => <label key={field.name} className={styles.field} htmlFor={"branch-" + field.name}>

@@ -11,6 +11,7 @@ const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 const TIME_PATTERN = /^(?:[01]\d|2[0-3]):[0-5]\d(?:-(?:[01]\d|2[0-3]):[0-5]\d)?$/;
 const MOBILE_PATTERN = /^\d{10}$/;
 const NAME_PATTERN = /^[\p{L}\s]+$/u;
+const GOOGLE_LEAD_CITIES = new Set(["Bengaluru", "Chennai"]);
 
 function clean(value, maximum = 255) {
   return typeof value === "string" ? value.trim().slice(0, maximum) : "";
@@ -31,6 +32,7 @@ export async function POST(request) {
     const businessType = clean(body.businessType, 30);
     const services = businessType === "Banner Form" ? "" : clean(body.services);
     const city = clean(body.city);
+    const area = clean(body.area, 160);
     const branchId = typeof body.branchId === "string" ? body.branchId.trim() : "";
     if (body.branchId != null && (typeof body.branchId !== "string" || !branchId || branchId.length > 64)) {
       return Response.json({ message: "Please select a valid branch." }, { status: 400 });
@@ -60,8 +62,8 @@ export async function POST(request) {
     if (scheduled && (!city || !isRealDate(preferredDate) || !TIME_PATTERN.test(preferredTime))) {
       return Response.json({ message: "Please complete the appointment details." }, { status: 400 });
     }
-    if (googleLead && !city) {
-      return Response.json({ message: "Please enter your city or area." }, { status: 400 });
+    if (googleLead && (!GOOGLE_LEAD_CITIES.has(city) || !area)) {
+      return Response.json({ message: "Please select a valid city and enter your area." }, { status: 400 });
     }
     if (((banner || servicePage || branchForm) && rawWeight === null) || (rawWeight !== null && (!Number.isFinite(rawWeight) || rawWeight <= 0 || rawWeight > 100000))) {
       return Response.json({ message: "Please enter a valid gold weight." }, { status: 400 });
@@ -78,7 +80,7 @@ export async function POST(request) {
     const id = await createContact({
       name,
       mobile,
-      city: branch ? branch.city : city,
+      city: branch ? branch.city : googleLead ? `${city}, ${area}` : city,
       branchId: branch ? branch.branchId : null,
       weight: scheduled || banner || servicePage || googleLead || branchForm ? rawWeight : null,
       releaseBank, releasePlace,

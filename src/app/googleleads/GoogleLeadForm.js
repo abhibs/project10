@@ -37,6 +37,7 @@ export default function GoogleLeadForm() {
         name: fields.name,
         mobile: fields.mobile,
         city: fields.city,
+        area: fields.area,
         weight: fields.weight,
         services: fields.services,
         businessType: GOOGLE_LEAD_TYPE,
@@ -72,14 +73,23 @@ export default function GoogleLeadForm() {
 
       <div className={styles.fieldRow}>
         <label className={styles.field} htmlFor="google-lead-city">
-          <span>City / area</span>
-          <input id="google-lead-city" name="city" autoComplete="address-level2" placeholder="e.g. Bengaluru" maxLength={255} required />
+          <span>City</span>
+          <select id="google-lead-city" name="city" autoComplete="address-level2" defaultValue="" required>
+            <option value="" disabled>Select your city</option>
+            <option value="Bengaluru">Bengaluru</option>
+            <option value="Chennai">Chennai</option>
+          </select>
         </label>
-        <label className={styles.field} htmlFor="google-lead-weight">
-          <span>Approx. gold weight</span>
-          <div className={styles.weightField}><input id="google-lead-weight" name="weight" type="number" inputMode="decimal" placeholder="Optional" min="0.01" max="100000" step="0.01" /><b>g</b></div>
+        <label className={styles.field} htmlFor="google-lead-area">
+          <span>Area</span>
+          <input id="google-lead-area" name="area" autoComplete="address-level3" placeholder="e.g. Jayanagar" maxLength={160} required />
         </label>
       </div>
+
+      <label className={styles.field} htmlFor="google-lead-weight">
+        <span>Approx. gold weight</span>
+        <div className={styles.weightField}><input id="google-lead-weight" name="weight" type="number" inputMode="decimal" placeholder="Optional" min="0.01" max="100000" step="0.01" /><b>g</b></div>
+      </label>
 
       <label className={styles.field} htmlFor="google-lead-service">
         <span>How can we help?</span>
