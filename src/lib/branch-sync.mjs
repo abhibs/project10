@@ -73,3 +73,7 @@ export async function requireBranchUpsert(branch, send = sendBranchUpsert) {
     throw new BranchSyncError(error);
   }
 }
+
+export async function requireBranchDeactivation(branch, send = sendBranchUpsert) {
+  return requireBranchUpsert({ ...branch, status: "inactive" }, send);
+}

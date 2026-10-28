@@ -105,7 +105,9 @@ city, state, pincode, timings, address, status, coordinates and URL; images stay
 local. The target must return `201 Created` for an insert or `200 OK` for an
 update. The local database write starts only after that response. If delivery
 fails, the local branch remains unchanged and the editor displays an error so
-the administrator can retry.
+the administrator can retry. Deleting a branch first sends the same upsert with
+`status: inactive`; the local branch is deleted only after that remote update
+succeeds.
 
 ## Google Ads landing page
 

@@ -4,6 +4,7 @@ import {
   BranchSyncError,
   buildBranchUpsertPayload,
   buildBranchUpsertRequest,
+  requireBranchDeactivation,
   requireBranchUpsert,
   sendBranchUpsert,
 } from "../src/lib/branch-sync.mjs";
@@ -93,5 +94,17 @@ test("requires a successful push before the caller can continue", async () => {
   await assert.rejects(
     requireBranchUpsert(branch, async () => { throw failure; }),
     (error) => error instanceof BranchSyncError && error.status === 502 && error.cause === failure,
+  );
+});
+
+test("deactivates the remote branch before local deletion can continue", async () => {
+  let pushedBranch;
+  await requireBranchDeactivation(branch, async (value) => { pushedBranch = value; });
+  assert.deepEqual(pushedBranch, { ...branch, status: "inactive" });
+  assert.equal(branch.status, "active");
+
+  await assert.rejects(
+    requireBranchDeactivation(branch, async () => { throw new Error("remote delete update failed"); }),
+    (error) => error instanceof BranchSyncError && error.status === 502,
   );
 });

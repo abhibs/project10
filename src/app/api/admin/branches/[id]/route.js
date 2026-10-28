@@ -2,7 +2,7 @@ import { findBranchById, updateBranch, deleteBranch } from "@/lib/admin-db";
 import { authorizeBranchRequest, readBranchForm, branchApiError } from "@/lib/branch-api";
 import { BranchError, validateBranch, validBranchRecordId } from "@/lib/branch-values.mjs";
 import { saveBranchImage, discardBranchImage } from "@/lib/branch-images";
-import { requireBranchUpsert } from "@/lib/branch-sync.mjs";
+import { requireBranchDeactivation, requireBranchUpsert } from "@/lib/branch-sync.mjs";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -40,7 +40,8 @@ export async function DELETE(request, { params }) {
   try {
     await authorizeBranchRequest(request);
     const branch = await existingBranch(params);
+    await requireBranchDeactivation(branch);
     if (!await deleteBranch(branch.id)) throw new BranchError("Branch not found.", 404);
-    return Response.json({ message: "Branch deleted successfully." });
+    return Response.json({ message: "Branch deactivated remotely and deleted locally." });
   } catch (error) { return branchApiError(error); }
 }
