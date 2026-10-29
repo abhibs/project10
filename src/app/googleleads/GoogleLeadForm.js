@@ -44,7 +44,7 @@ export default function GoogleLeadForm() {
       });
       form.reset();
       setFeedback({ type: "success", message: result.message });
-      router.replace("/thank-you");
+      router.replace("/thank-page");
     } catch (error) {
       setFeedback({ type: "error", message: error.message || "Unable to submit your request. Please try again." });
       lock.current = false;
