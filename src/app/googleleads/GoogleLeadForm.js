@@ -2,7 +2,6 @@
 
 import { useRef, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { getContactAttribution } from "@/lib/contact-attribution.mjs";
 import { GOOGLE_LEAD_TYPE } from "@/lib/contact-summary.mjs";
 import { submitContactRequest } from "@/lib/submit-contact.mjs";
@@ -17,7 +16,6 @@ function keepNameCharacters(event) {
 }
 
 export default function GoogleLeadForm() {
-  const router = useRouter();
   const lock = useRef(false);
   const [submitting, setSubmitting] = useState(false);
   const [feedback, setFeedback] = useState({ type: "", message: "" });
@@ -44,7 +42,8 @@ export default function GoogleLeadForm() {
       });
       form.reset();
       setFeedback({ type: "success", message: result.message });
-      router.replace("/thank-page");
+      // Load a new document so GTM page-load triggers run on the thank-you URL.
+      window.location.replace("/thank-page");
     } catch (error) {
       setFeedback({ type: "error", message: error.message || "Unable to submit your request. Please try again." });
       lock.current = false;
