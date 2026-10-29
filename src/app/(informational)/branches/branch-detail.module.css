@@ -1,7 +1,7 @@
 .page { color: #165d58; background: #faf7f0; font-family: var(--font-aryan-body), Arial, sans-serif; }
 .page * { box-sizing: border-box; }
 .shell { width: min(1240px, calc(100% - 80px)); margin-inline: auto; }
-.page .eyebrow { display: block; margin: 0 0 16px; color: #95601f; font-size: 10px; font-weight: 850; letter-spacing: .16em; line-height: 1.7; text-transform: uppercase; }
+.page .eyebrow { display: block; margin: 0 0 16px; color: #ffd052; font-size: 10px; font-weight: 850; letter-spacing: .16em; line-height: 1.7; text-transform: uppercase; }
 .page h2 { margin: 0 0 18px; color: #006a64; font: 650 clamp(28px, 3vw, 42px)/1.15 var(--font-aryan-display), Georgia, serif; letter-spacing: -.035em; }
 .page h3 { color: #165d58; }
 .page p { font-size: 14px; line-height: 1.85; }
@@ -10,11 +10,11 @@
 .hero { position: relative; overflow: hidden; padding: 26px 0 72px; background: radial-gradient(ellipse at 5% 100%, #ead9aa38, transparent 55%), #faf7f0; }
 .breadcrumbs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 35px; color: #75827b; font-size: 11px; }
 .breadcrumbs a { color: #165d58; text-decoration: none; }
-.breadcrumbs [aria-current] { color: #936020; }
+.breadcrumbs [aria-current] { color: #ffd052; }
 .heroGrid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(320px, .8fr); align-items: center; gap: clamp(40px, 7vw, 100px); }
 .heroCopy { padding: 12px 0; }
 .heroCopy h1 { margin: 0 0 24px; color: #006a64; font: 700 clamp(40px, 4.3vw, 64px)/1.06 var(--font-aryan-display), Georgia, serif; letter-spacing: -.045em; }
-.heroCopy h1 em { color: #a77a25; font-style: normal; }
+.heroCopy h1 em { color: #ffd052; font-style: normal; }
 .heroCopy > p { max-width: 540px; margin: 0 0 28px; font-size: 15px; }
 .heroButtons { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
 .goldButton, .tealButton, .outlineButton { display: inline-flex; justify-content: center; align-items: center; gap: 12px; min-height: 48px; padding: 13px 21px; border: 1px solid transparent; border-radius: 7px; font-size: 12px; font-weight: 800; line-height: 1.5; text-decoration: none; cursor: pointer; }
@@ -50,7 +50,7 @@
 .trustStrip > div { display: grid; grid-template-columns: repeat(4, 1fr); padding-block: 24px; }
 .trustStrip > div > div { padding: 3px 22px; border-right: 1px solid #ffffff25; text-align: center; }
 .trustStrip > div > div:last-child { border: 0; }
-.trustStrip strong { display: block; color: #ffda6b; font-size: 15px; }
+.trustStrip strong { display: block; color: #ffd052; font-size: 15px; }
 .trustStrip span { display: block; margin-top: 6px; color: #d4e6df; font-size: 10px; line-height: 1.6; }
 .section { padding-block: 80px; scroll-margin-top: 95px; }
 .sectionHeading { max-width: 640px; margin-bottom: 30px; }
@@ -73,7 +73,7 @@
 .serviceImage img { object-fit: cover; transition: transform .3s; }
 .serviceCard:hover .serviceImage img { transform: scale(1.04); }
 .serviceCopy { display: flex; flex: 1; flex-direction: column; padding: 22px; }
-.serviceCopy > span { color: #a77a25; font-size: 10px; font-weight: 800; }
+.serviceCopy > span { color: #ffd052; font-size: 10px; font-weight: 800; }
 .serviceCopy h3 { margin: 12px 0 10px; font: 750 17px/1.3 var(--font-aryan-body), sans-serif; }
 .serviceCopy p { margin: 0 0 24px; font-size: 11px; }
 .serviceCopy > strong { display: flex; justify-content: space-between; margin-top: auto; font-size: 11px; }
@@ -82,12 +82,12 @@
 .splitSection .sectionHeading h2 { font-size: clamp(28px, 2.7vw, 38px); }
 .tealSection { background: #006a64; }
 .tealSection h2, .tealSection h3 { color: #fffaf2; }
-.tealSection .eyebrow { color: #ffda6b; }
+.tealSection .eyebrow { color: #ffd052; }
 .page .section.tealSection .shell p { color: #c9e0d8; }
 .tealSection .sectionHeading .goldButton { margin-top: 26px; }
 .processGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 36px; }
 .processGrid > div { border-top: 1px solid #ffffff30; padding-top: 18px; }
-.processGrid > div > span { color: #ffda6b; font: 500 24px var(--font-aryan-display), serif; }
+.processGrid > div > span { color: #ffd052; font: 500 24px var(--font-aryan-display), serif; }
 .processGrid h3 { margin: 13px 0 9px; font-size: 14px; font-weight: 800; }
 .processGrid p { margin: 0; font-size: 12px; }
 @media (max-width: 1000px) {
