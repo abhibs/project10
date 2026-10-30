@@ -1,0 +1,22 @@
+.section { width: min(1180px, calc(100% - 80px)); margin: 40px auto 0; }
+.card { position: relative; overflow: hidden; border: 1px solid #e9dfcd; border-radius: 8px; background: #fff; }
+.heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 20px; }
+.heading h2 { margin: 0 0 6px; font-family: var(--sans), Arial, sans-serif; font-size: 20px; font-weight: 800; color: #1c2638; }
+.heading p { margin: 0; font-size: 14px; color: #757575; }
+.heading > a { flex-shrink: 0; color: #d00000 !important; font-size: 14px; font-weight: 700; }
+.map { height: 440px; width: 100%; background: #e5ece8; z-index: 0; font-family: Arial, sans-serif; }
+.marker { background: #e00000; border: 2px solid #fff; border-radius: 50%; box-shadow: 0 2px 5px #0007; }
+.marker:focus-visible { outline: 3px solid #006a64; outline-offset: 3px; }
+.map .popup { line-height: 1.5; min-width: 180px; color: #263632 !important; }
+.map .popup strong { color: #1c2638 !important; font-size: 14px; }
+.map .popup p { color: #40524c !important; font-size: 13px; margin: 10px 0; }
+.map .popup a { color: #006a64 !important; font-weight: 700; }
+.notice { padding: 12px 20px; color: #56615c; font-size: 13px; background: #fffdf8; }
+.notice button { color: #006a64; text-decoration: underline; cursor: pointer; }
+@media (max-width: 700px) {
+  .section { width: calc(100% - 48px); margin-top: 28px; }
+  .heading { padding: 18px 16px; align-items: flex-start; flex-direction: column; gap: 12px; }
+  .heading h2 { font-size: 18px; }
+  .map { height: 400px; }
+}
+@media (max-width: 440px) { .section { width: calc(100% - 32px); } }

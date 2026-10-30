@@ -55,6 +55,9 @@ export default async function BranchDetailPage({ params }) {
 
   return <article className={styles.page}>
     <section className={styles.hero} aria-labelledby="branch-title">
+      <div className={styles.heroImage}>
+        <Image src={image} alt={`Aryan Gold Buyers ${branch.name} branch`} fill sizes="(max-width: 800px) 100vw, 65vw" priority />
+      </div>
       <div className={styles.shell}>
         <nav className={styles.breadcrumbs} aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><Link href="/branches">Branches</Link><span>/</span><span>{branch.state}</span><span>/</span><span>{branch.city}</span><span>/</span><span aria-current="page">{branch.name}</span></nav>
         <div className={styles.heroGrid}>

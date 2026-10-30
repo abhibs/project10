@@ -12,6 +12,7 @@ import Link from "next/link";
 import SiteHeader from "../SiteHeader";
 import SiteFooter from "../SiteFooter";
 import styles from "./contact.module.css";
+import ActiveBranchMap from "./ActiveBranchMap";
 
 function Icon({ name }) {
   const paths = {
@@ -109,6 +110,7 @@ export default function ContactPage() {
             <div className={styles.visitCard}><Icon name="pin" /><span>A friendly face, close to you.<small>Visit a branch for a personal gold valuation.</small></span></div>
           </aside>
         </section>
+        <ActiveBranchMap />
       </main>
       <SiteFooter />
       <FormToast notification={toast} onClose={closeToast} />
