@@ -1,4 +1,5 @@
 "use client";
+import { publishedRateStatus } from "@/lib/rate-freshness.mjs";
 import { useEffect, useState } from "react";
 import GoldRateSection from "./GoldRateSection";
 import GoldCalculator from "./GoldCalculator";
@@ -6,6 +7,7 @@ import { validateRates } from "@/lib/rate-values";
 const FALLBACK_RATES = {24: 14250, 22: 13062, 18: 10688};
 export default function GoldRatePage() {
   const [rates, setRates] = useState(FALLBACK_RATES);
+  const [publishedStatus, setPublishedStatus] = useState("");
   const [live, setLive] = useState(false);
   const [loading, setLoading] = useState(true);
   const [attempt, setAttempt] = useState(0);
@@ -26,11 +28,14 @@ export default function GoldRatePage() {
         if (!values) throw new Error("Invalid rates");
         if (disposed || controller !== request) return;
         setRates(values);
-        setLive(true);
+        const status = publishedRateStatus(data.updatedAt);
+        setLive(status.fresh);
+        setPublishedStatus(status.label);
       } catch {
         if (disposed || controller !== request) return;
         setRates(FALLBACK_RATES);
         setLive(false);
+        setPublishedStatus("");
       } finally {
         clearTimeout(timeout);
         if (!disposed && controller === request) setLoading(false);
@@ -43,7 +48,7 @@ export default function GoldRatePage() {
   return (
     <>
       <GoldRateSection standalone rates={rates} live={live} loading={loading}
-        rateStatus={loading ? "Loading published gold rates..." : live ? "Published gold rates" : "Published rates unavailable - showing demo fallback rates"}
+        rateStatus={loading ? "Loading published gold rates..." : publishedStatus ? publishedStatus : "Published rates unavailable - showing demo fallback rates"}
         fetchRates={() => setAttempt(value => value + 1)} />
       <GoldCalculator rates={rates} live={live} bookingHref="/#booking" />
     </>

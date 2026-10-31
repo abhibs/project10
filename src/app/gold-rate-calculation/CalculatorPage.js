@@ -1,4 +1,5 @@
 "use client";
+import { publishedRateStatus } from "@/lib/rate-freshness.mjs";
 
 import { useEffect, useState } from "react";
 import GoldCalculator from "../GoldCalculator";
@@ -10,6 +11,7 @@ const FALLBACK_RATES = {24: 14250, 22: 13062, 18: 10688};
 
 export default function CalculatorPage() {
   const [rates, setRates] = useState(FALLBACK_RATES);
+  const [status, setStatus] = useState("Published rates are loading; demo estimates shown until available.");
   const [live, setLive] = useState(false);
 
   useEffect(() => {
@@ -28,11 +30,14 @@ export default function CalculatorPage() {
         if (!nextRates) throw new Error("Invalid rates");
         if (disposed || controller !== request) return;
         setRates(nextRates);
-        setLive(true);
+        const publication = publishedRateStatus(data.updatedAt);
+        setLive(publication.fresh);
+        setStatus(publication.label);
       } catch {
         if (disposed || controller !== request) return;
         setRates(FALLBACK_RATES);
         setLive(false);
+        setStatus("Published rates unavailable; demo estimates shown. Confirm with the branch.");
       } finally {
         clearTimeout(timeout);
       }
@@ -49,7 +54,7 @@ export default function CalculatorPage() {
   return (
     <div className="aryan-home" data-theme="light">
       <SiteHeader calculatorPage />
-      <main><GoldCalculator rates={rates} live={live} standalone /></main>
+      <main><p role="status">{status}</p><GoldCalculator rates={rates} live={live} standalone /></main>
       <SiteFooter />
     </div>
   );

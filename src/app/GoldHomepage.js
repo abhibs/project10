@@ -1,4 +1,6 @@
 "use client";
+import { publishedRateStatus } from "@/lib/rate-freshness.mjs";
+
 
 import { getContactAttribution } from "@/lib/contact-attribution.mjs";
 
@@ -58,7 +60,7 @@ function ValuationIcon({type}) {
   return <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[type]}</svg>;
 }
 
-export default function GoldHomepage() {
+export default function GoldHomepage({ initialBranches = [] }) {
   const root = useRef(null);
   const scrollProgress = useRef(null);
   const pending = useRef(null);
@@ -89,10 +91,9 @@ export default function GoldHomepage() {
         throw new Error("Invalid rates");
       }
       setRates(data.rates);
-      const date = new Date(data.updatedAt);
-      const time = date.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" });
-      setLive(true);
-      setRateStatus(`Published gold rates • updated ${time}`);
+      const status = publishedRateStatus(data.updatedAt);
+      setLive(status.fresh);
+      setRateStatus(status.label);
     } catch {
       if (pending.current !== controller) return;
       setRates(FALLBACK_RATES);
@@ -357,7 +358,7 @@ export default function GoldHomepage() {
     </section>
 
     <PaymentSection />
-    <BranchLocations />
+    <BranchLocations initialBranches={initialBranches} />
     <StorySection />
     <FaqSection />
 

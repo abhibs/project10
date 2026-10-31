@@ -65,12 +65,12 @@ function BranchCard({ branch }) {
   </article>;
 }
 
-export default function BranchLocations({ standalone = false }) {
-  const [branches, setBranches] = useState([]);
-  const [loading, setLoading] = useState(true);
+export default function BranchLocations({ standalone = false, initialBranches = [] }) {
+  const [branches, setBranches] = useState(initialBranches);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [attempt, setAttempt] = useState(0);
-  const [selectedCity, setSelectedCity] = useState("Bangalore");
+  const [selectedCity, setSelectedCity] = useState(initialBranches[0] ? cityName(initialBranches[0].city) : "Bangalore");
   const [searchDraft, setSearchDraft] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
@@ -110,7 +110,7 @@ export default function BranchLocations({ standalone = false }) {
         if (!response.ok || !Array.isArray(data.branches)) throw new Error("Unavailable");
         if (!disposed && controller === current) { setBranches(data.branches); setError(false); }
       } catch {
-        if (!disposed && controller === current) { setBranches([]); setError(true); }
+        if (!disposed && controller === current) { setError(true); }
       } finally {
         clearTimeout(timeout);
         if (!disposed && controller === current) setLoading(false);
@@ -184,7 +184,7 @@ export default function BranchLocations({ standalone = false }) {
       onMouseLeave={() => setHoverPaused(false)}
       onFocusCapture={() => setFocusPaused(true)}
       onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget)) setFocusPaused(false); }}>
-      {loading ? <p className={styles.notice} role="status">Loading branch locations...</p> : error ? <div className={styles.notice} role="status">Branch locations are temporarily unavailable. <button type="button" onClick={() => { setLoading(true); setAttempt(value => value + 1); }}>Try again</button></div> :
+      {loading ? <p className={styles.notice} role="status">Loading branch locations...</p> : error && !branches.length ? <div className={styles.notice} role="status">Branch locations are temporarily unavailable. <button type="button" onClick={() => { setLoading(true); setAttempt(value => value + 1); }}>Try again</button></div> :
         !branches.length ? <p className={styles.notice}>Branch locations will be listed here soon. <Link href="/#booking">Book a valuation</Link> for assistance.</p> :
         !visibleBranches.length ? <div className={styles.notice} role="status">{searchQuery ? <>No branches found for “{searchQuery}” in {city}. <button type="button" onClick={() => { setSearchDraft(""); setSearchQuery(""); }}>Clear search</button></> : <>No branches are currently listed in {city}. <Link href="/#booking">Book a valuation</Link> for assistance.</>}</div> :
         <>
@@ -210,6 +210,7 @@ export default function BranchLocations({ standalone = false }) {
             </div>
           </div>}
         </>}
+    <details><summary>All branch addresses and opening hours</summary>{branches.map(branch => <div key={branch.id}><h3><Link href={branchPath(branch)}>{branch.name}</Link></h3><p>{branch.address}, {branch.city}, {branch.state} {branch.pincode}</p><p>{branch.timings}</p><a href={branchDirections(branch)}>Directions</a></div>)}<Link href="/contact-us">Contact our team for branch assistance</Link></details>
     </div>
   </section>;
 }

@@ -4,8 +4,9 @@ import GoogleTagManager, { GoogleTagManagerNoScript } from "./GoogleTagManager";
 import FloatingContactActions from "./FloatingContactActions";
 
 export const metadata = {
-  title: "Larkon Admin",
-  description: "Project 10 admin portal",
+  metadataBase: new URL("https://aryangoldbuyers.com"),
+  title: "Aryan Gold Buyers",
+  description: "Gold buying and valuation services from Aryan Gold Buyers.",
 };
 
 

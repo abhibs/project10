@@ -1,6 +1,8 @@
 import { getSeoPages } from "./admin-db";
+import { PAGE_DEFAULTS } from "./site-seo.mjs";
 
 export async function getPageSeoMetadata(route, fallback) {
+  fallback = { ...fallback, ...PAGE_DEFAULTS[route], alternates: { ...fallback.alternates, canonical: route } };
   let pages;
   try {
     pages = await getSeoPages();
@@ -14,10 +16,11 @@ export async function getPageSeoMetadata(route, fallback) {
   const page = pages.find((page) => page.route_path === route && page.is_active);
   const value = (field) => page?.[field] ?? site?.[field];
   const result = { ...fallback };
-  if (value("meta_title")) result.title = value("meta_title");
-  if (value("meta_description")) result.description = value("meta_description");
+  const legacyTitles = ["Aryan Gold Buyers", "Aryan Gold | Sell Gold for Instant Cash", "Branches | Aryan Gold Buyers", "About Us | Aryan Gold Buyers", "Services | Aryan Gold Buyers", "Gold Rate | Aryan Gold Buyers"];
+  if (page?.meta_title && !legacyTitles.includes(page.meta_title)) result.title = page.meta_title;
+  if (page?.meta_description && page.meta_description !== "Aryan Gold Buyers offers gold valuation, cash for gold and pledged gold release services." && !/^Aryan Gold . cash for gold, pledged gold release and doorstep valuation services\.$/.test(page.meta_description)) result.description = page.meta_description;
   if (value("focus_keywords")) result.keywords = value("focus_keywords");
-  if (value("canonical_url")) result.alternates = { ...fallback.alternates, canonical: value("canonical_url") };
+  if (page?.canonical_url) result.alternates = { ...fallback.alternates, canonical: page.canonical_url };
   const og = {};
   for (const [field, key] of [["og_title", "title"], ["og_description", "description"], ["og_site_name", "siteName"], ["og_locale", "locale"]]) {
     if (value(field)) og[key] = value(field);

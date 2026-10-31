@@ -1,3 +1,5 @@
+import BusinessSchema from "./BusinessSchema";
+import { getPublicBranches } from "@/lib/public-branches";
 import { getPageSeoMetadata } from "@/lib/seo-metadata";
 import GoldHomepage from "./GoldHomepage";
 import "./home.css";
@@ -27,9 +29,12 @@ export async function generateMetadata() {
   return getPageSeoMetadata("/", defaultMetadata);
 }
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+export default async function Home() {
+ const branches = await getPublicBranches();
   return (
     <>
+      <BusinessSchema />
       {/* Meta Pixel Code */}
       <Script id="meta-pixel" strategy="afterInteractive">
         {`!function(f,b,e,v,n,t,s)
@@ -55,7 +60,7 @@ fbq('track', 'PageView');`}
         />
       </noscript>
       <div className={`${bodyFont.variable} ${displayFont.variable}`}>
-        <GoldHomepage />
+        <GoldHomepage initialBranches={branches} />
       </div>
     </>
   );

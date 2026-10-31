@@ -1,3 +1,5 @@
+import BusinessSchema from "@/app/BusinessSchema";
+import { SITE_URL, jsonLd } from "@/lib/site-seo.mjs";
 import { cache } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -54,6 +56,8 @@ export default async function BranchDetailPage({ params }) {
   const image = branch.image ? `/api/branch-images/${encodeURIComponent(branch.image)}` : "/branches-storefront.webp";
 
   return <article className={styles.page}>
+    <BusinessSchema branch={{ ...branch, path: branchPath(branch) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{__html:jsonLd({"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{ "@type":"ListItem",position:1,name:"Home",item:SITE_URL},{"@type":"ListItem",position:2,name:"Branches",item:SITE_URL+"/branches"},{"@type":"ListItem",position:3,name:branch.name,item:SITE_URL+branchPath(branch)}]})}} />
     <section className={styles.hero} aria-labelledby="branch-title">
       <div className={styles.heroImage}>
         <Image src={image} alt={`Aryan Gold Buyers ${branch.name} branch`} fill sizes="(max-width: 800px) 100vw, 65vw" priority />
