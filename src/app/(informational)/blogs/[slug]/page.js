@@ -43,7 +43,7 @@ export default async function ArticlePage({ params }) {
         </article>
         {related.length > 0 && <section className={styles.related}><span className={styles.eyebrow}>CONTINUE READING</span><h2>A little more insight.</h2><div className={styles.relatedGrid}>{related.map(item => <BlogCard key={item.slug} post={item} image={blogImage(item, images)} />)}</div></section>}
       </div>
-      <div className={styles.valuation}><ServiceForm service="sell-gold" /></div>
+      <div className={styles.valuation}><ServiceForm service="sell-gold" blogId={post.id} /></div>
     </div>
   </div></div>;
 }

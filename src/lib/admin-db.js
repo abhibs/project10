@@ -248,6 +248,7 @@ export async function createContact({
   trackingData = {}, landingPage = "", referrer = "",
   releaseBank = "", releasePlace = "",
   branchId = null,
+  blogId = null, blogName = "",
 }) {
   if (!contactPool) contactPool = createPool();
   const connection = await contactPool.getConnection();
@@ -258,8 +259,8 @@ export async function createContact({
         `INSERT INTO contacts
           (name, mobile, city, weight, preffered_date, preffered_time, services, business_type,
            gclid, utm_source, utm_campaign, keyword, adgroup_id, tracking_data, landing_page, referrer,
-           release_bank, release_place, branch_id)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+           release_bank, release_place, branch_id, blog_id, blog_name)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
           name,
           mobile,
@@ -273,7 +274,7 @@ export async function createContact({
           Object.keys(trackingData).length ? JSON.stringify(trackingData) : null,
           landingPage || null, referrer || null,
           releaseBank || null, releasePlace || null,
-          branchId,
+          branchId, blogId, blogName || null,
         ],
       );
       return result.insertId;
@@ -308,6 +309,7 @@ export async function getContacts({ fromDate = "", toDate = "", businessType = "
   const where = conditions.length ? `WHERE ${conditions.join(" AND ")}` : "";
   const [rows] = await executeContactQuery(
     `SELECT id, name, mobile, city, weight, details, status, comment, release_bank AS releaseBank, release_place AS releasePlace,
+       blog_id AS blogId, blog_name AS blogName,
        branch_id AS branchId,
        (SELECT b.name FROM branches b WHERE b.branch_id = contacts.branch_id) AS branchName,
        visit_branch_id AS visitBranchId,

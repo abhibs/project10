@@ -9,6 +9,7 @@
     "lint": "eslint",
     "migrate:contact-branch-visits": "node scripts/migrate-contact-branch-visits.mjs",
     "import:blogs": "node scripts/import-blog-content.mjs",
+    "migrate:contact-blog": "node scripts/migrate-contact-blog.mjs",
     "migrate:blog-images": "node scripts/migrate-blog-images.mjs"
   },
   "dependencies": {

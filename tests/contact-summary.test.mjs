@@ -44,3 +44,12 @@ test("weight totals use daily unique leads and handle decimal and missing weight
   assert.equal(result.weights["Contact Page"], 0);
   assert.equal(sumContactWeights([]).totalWeight, 0);
 });
+
+test("Blog Page leads have a separate card count and weight total", () => {
+  const contacts = [{ businessType: "Blog Page", weight: "4.25" }, { businessType: "Sell Gold", weight: "2.50" }];
+  assert.ok(CONTACT_FORM_TYPES.includes("Blog Page"));
+  assert.equal(getContactFormLabel("Blog Page"), "Blog Page");
+  assert.equal(countContactTypes(contacts)["Blog Page"], 1);
+  assert.equal(sumContactWeights(contacts).weights["Blog Page"], 4.25);
+  assert.equal(sumContactWeights(contacts).totalWeight, 6.75);
+});

@@ -2,11 +2,12 @@ import { createContact, findBranchByCode } from "@/lib/admin-db";
 import { sanitizeTrackingData } from "@/lib/contact-attribution.mjs";
 import { GOOGLE_LEAD_TYPE } from "@/lib/contact-summary.mjs";
 import { DAILY_CONTACT_DUPLICATE_MESSAGE, isDailyContactDuplicate } from "@/lib/contact-leads.mjs";
+import { publishedBlogs } from "@/lib/blogs";
 import { SERVICE_PAGES } from "@/lib/service-pages.mjs";
 
 const APPOINTMENT_TYPES = new Set(["Branch Visit", "Doorstep Service"]);
 const SERVICE_TYPES = new Set(Object.values(SERVICE_PAGES).map((service) => service.title));
-const BUSINESS_TYPES = new Set([...APPOINTMENT_TYPES, ...SERVICE_TYPES, "Quick Contact", "Contact Page", "Banner Form", "Branch Form", GOOGLE_LEAD_TYPE]);
+const BUSINESS_TYPES = new Set([...APPOINTMENT_TYPES, ...SERVICE_TYPES, "Quick Contact", "Contact Page", "Banner Form", "Branch Form", "Blog Page", GOOGLE_LEAD_TYPE]);
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 const TIME_PATTERN = /^(?:[01]\d|2[0-3]):[0-5]\d(?:-(?:[01]\d|2[0-3]):[0-5]\d)?$/;
 const MOBILE_PATTERN = /^\d{10}$/;
@@ -41,6 +42,15 @@ export async function POST(request) {
     const preferredTime = clean(body.preferredTime, 20);
     const appointment = APPOINTMENT_TYPES.has(businessType);
     const banner = businessType === "Banner Form";
+    const blogPage = businessType === "Blog Page";
+    let blog = null;
+    if (blogPage) {
+      if (!Number.isSafeInteger(body.blogId) || body.blogId < 1) {
+        return Response.json({ message: "Please select a valid blog." }, { status: 400 });
+      }
+      blog = (await publishedBlogs()).find((post) => post.id === body.blogId);
+      if (!blog) return Response.json({ message: "This blog is unavailable." }, { status: 400 });
+    }
     const branchForm = businessType === "Branch Form";
     if (branchForm && !branchId) {
       return Response.json({ message: "Please select a valid branch." }, { status: 400 });
@@ -65,7 +75,7 @@ export async function POST(request) {
     if (googleLead && (!GOOGLE_LEAD_CITIES.has(city) || !area)) {
       return Response.json({ message: "Please select a valid city and enter your area." }, { status: 400 });
     }
-    if (((banner || servicePage || branchForm) && rawWeight === null) || (rawWeight !== null && (!Number.isFinite(rawWeight) || rawWeight <= 0 || rawWeight > 100000))) {
+    if (((banner || servicePage || branchForm || blogPage) && rawWeight === null) || (rawWeight !== null && (!Number.isFinite(rawWeight) || rawWeight <= 0 || rawWeight > 100000))) {
       return Response.json({ message: "Please enter a valid gold weight." }, { status: 400 });
     }
     if (pledged && (!releaseBank || !releasePlace)) {
@@ -82,7 +92,9 @@ export async function POST(request) {
       mobile,
       city: branch ? branch.city : googleLead ? `${city}, ${area}` : city,
       branchId: branch ? branch.branchId : null,
-      weight: scheduled || banner || servicePage || googleLead || branchForm ? rawWeight : null,
+      blogId: blog?.id ?? null,
+      blogName: blog?.title ?? "",
+      weight: scheduled || banner || servicePage || googleLead || branchForm || blogPage ? rawWeight : null,
       releaseBank, releasePlace,
       preferredDate: scheduled ? preferredDate : "",
       preferredTime: scheduled ? preferredTime : "",

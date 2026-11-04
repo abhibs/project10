@@ -41,6 +41,7 @@ function ContactDetails({ contact }) {
     ["Time (IST)", displayTime(contact.submittedTime)],
     ["Form type", getContactFormLabel(contact.businessType)],
     ["Name", contact.name], ["Mobile", contact.mobile], ["City", contact.city],
+    ["Blog ID", contact.blogId], ["Blog name", contact.blogName],
     ["Branch ID", contact.branchId], ["Branch name", contact.branchName],
     ["Weight", contact.weight ? `${contact.weight} g` : "-"],
     ["Service / Help with", displayService(contact)], ["Details", contact.details],
@@ -302,7 +303,7 @@ export default function ContactsTable() {
   async function exportContacts(format) {
     setExporting(true);
     setExportMessage("");
-    const headers = ["#", "Date", "Time (IST)", "Form type", "Name", "Mobile", "City", "Weight", "Release bank", "Release place", "Preferred date", "Preferred time", "Service / Help with", "Details", "GCLID", "UTM Source", "UTM Campaign", "Keyword", "Adgroup ID", "Landing page", "Referrer", "Tracking data", "Call-back date", "Visit branch ID", "Visit branch", "Visit date", "Visit time", "Status", "Comment"];
+    const headers = ["#", "Date", "Time (IST)", "Form type", "Name", "Mobile", "City", "Weight", "Release bank", "Release place", "Preferred date", "Preferred time", "Service / Help with", "Details", "GCLID", "UTM Source", "UTM Campaign", "Keyword", "Adgroup ID", "Landing page", "Referrer", "Tracking data", "Call-back date", "Visit branch ID", "Visit branch", "Visit date", "Visit time", "Status", "Comment", "Blog ID", "Blog name"];
     const rows = contacts.map((contact, index) => [
       index + 1, displayDate(contact.submittedDate), displayTime(contact.submittedTime),
       getContactFormLabel(contact.businessType), contact.name, contact.mobile, contact.city || "—",
@@ -311,7 +312,7 @@ export default function ContactsTable() {
       ...["gclid", "utmSource", "utmCampaign", "keyword", "adgroupId"].map((field) => contact[field] || "-"),
       contact.landingPage || "", contact.referrer || "", JSON.stringify(contact.trackingData || {}),
       displayDate(contact.callbackDate), contact.visitBranchId || "", contact.visitBranchName || "",
-      displayDate(contact.visitDate), displayTime(contact.visitTime), getContactStatusLabel(contact.status), contact.comment || "",
+      displayDate(contact.visitDate), displayTime(contact.visitTime), getContactStatusLabel(contact.status), contact.comment || "", contact.blogId ?? "", contact.blogName || "",
     ]);
     // Prevent user-entered values from becoming spreadsheet formulas.
     const safeText = (value) => {
@@ -466,15 +467,15 @@ export default function ContactsTable() {
       </div>
       <div className={styles.tableWrap}>
         <table className={styles.contactsTable}>
-          <thead><tr><th>#</th><th>Date</th><th>Time (IST)</th><th>Form type</th><th>Name</th><th>Mobile</th><th>City</th><th>Weight</th><th>Service / Help with</th><th>Details</th><th>Status</th><th>Comment</th></tr></thead>
+          <thead><tr><th>#</th><th>Date</th><th>Time (IST)</th><th>Form type</th><th>Blog name</th><th>Name</th><th>Mobile</th><th>City</th><th>Weight</th><th>Service / Help with</th><th>Details</th><th>Status</th><th>Comment</th></tr></thead>
           <tbody>
-            {loading ? <tr><td className={styles.tableStatus} colSpan="12">Loading contact requests…</td></tr> : contacts.length === 0 ? <tr><td className={styles.tableStatus} colSpan="12">No contact requests found.</td></tr> : visibleContacts.map((contact, index) => (
+            {loading ? <tr><td className={styles.tableStatus} colSpan="13">Loading contact requests…</td></tr> : contacts.length === 0 ? <tr><td className={styles.tableStatus} colSpan="13">No contact requests found.</td></tr> : visibleContacts.map((contact, index) => (
               <tr key={contact.id} className={contact.comment?.trim() ? styles.commentedRow : undefined}>
                 <td>{pageStart + index + 1}</td>
                 <td className={styles.noWrap}>{displayDate(contact.submittedDate)}</td>
                 <td className={styles.noWrap}>{displayTime(contact.submittedTime)}</td>
                 <td><span className={`${styles.typeBadge} ${["Quick Contact", "Contact Page", "Banner Form", GOOGLE_LEAD_TYPE, INCOMING_CALL_TYPE].includes(contact.businessType) ? styles.quickBadge : ""}`}>{getContactFormLabel(contact.businessType)}</span></td>
-                <td>{contact.name}</td><td className={styles.noWrap}>{contact.mobile}</td><td>{contact.city || "—"}</td>
+                <td>{contact.blogName || "\u2014"}</td><td>{contact.name}</td><td className={styles.noWrap}>{contact.mobile}</td><td>{contact.city || "—"}</td>
                 <td className={styles.noWrap}>{contact.weight ? `${contact.weight} g` : "—"}</td><td>{displayService(contact)}</td><td><ContactDetails contact={contact} /></td>
                 <ContactControls contact={contact} onSaved={updateRow} branches={branches} branchesLoading={branchesLoading} />
               </tr>

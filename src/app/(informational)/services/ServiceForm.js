@@ -8,7 +8,7 @@ import FormToast from "../../FormToast";
 import SubmitLabel from "../../SubmitLabel";
 import styles from "./service-page.module.css";
 
-export default function ServiceForm({ service }) {
+export default function ServiceForm({ service, blogId }) {
   const details = SERVICE_PAGES[service];
   const pledged = service === "release-pledged-gold";
   const lock = useRef(false);
@@ -26,7 +26,7 @@ export default function ServiceForm({ service }) {
     setFeedback(null);
     try {
       const fields = Object.fromEntries(new FormData(form));
-      const data = await submitContactRequest({ ...getContactAttribution(), ...fields, businessType: details.title, services: details.title });
+      const data = await submitContactRequest({ ...getContactAttribution(), ...fields, businessType: blogId ? "Blog Page" : details.title, ...(blogId ? { blogId } : {}), services: details.title });
       const result = { message: data.message || "Thank you! Our team will call you shortly.", error: false };
       setFeedback(result);
       setToast(result);

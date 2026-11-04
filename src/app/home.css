@@ -1663,6 +1663,10 @@
   text-align:center;
 }
 
+.aryan-home footer {
+  border-top:2px solid #ffd35c;
+}
+
 .aryan-home .rate-values.rate-rotation{position:relative;overflow:hidden}
 .aryan-home .rate-values.rate-rotation .rate-card{
   position:absolute;inset:0;min-height:0;border:0;
