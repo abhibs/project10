@@ -4,6 +4,15 @@ import { runOncePerContactDay, uniqueDailyContacts } from "./contact-leads.mjs";
 import { buildContactDateFilter } from "./contact-filters.mjs";
 import { AdminAccessError, assertAdminUserChange, canManageAdmin, adminPermissions, hasAdminPermission } from "./admin-access.mjs";
 
+export async function getBlogImages() {
+  const [rows] = await getPool().execute("SELECT slug, filename FROM blog_images");
+  return rows;
+}
+
+export async function updateBlogImage(slug, filename) {
+  await getPool().execute("INSERT INTO blog_images (slug, filename) VALUES (?, ?) ON DUPLICATE KEY UPDATE filename = VALUES(filename)", [slug, filename]);
+}
+
 export async function getSeoPages() {
   const [rows] = await getPool().execute("SELECT * FROM seo_pages ORDER BY route_path <> '*', id");
   return rows.map((row) => ({ ...row, structured_data: row.structured_data == null ? "" : typeof row.structured_data === "string" ? row.structured_data : JSON.stringify(row.structured_data, null, 2) }));

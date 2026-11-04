@@ -5,6 +5,7 @@ export const ADMIN_SECTIONS = [
   { key: "contact", label: "Contacts", href: "/admin/contact/index", icon: "☎" },
   { key: "rate", label: "Gold rates", href: "/admin/rate", icon: "₹" },
   { key: "seo", label: "SEO", href: "/admin/seo", icon: "⌕" },
+  { key: "blogs", label: "Blog images", href: "/admin/blogs", icon: "▤" },
 ];
 
 const permissionKeys = new Set(ADMIN_SECTIONS.map(({ key }) => key));

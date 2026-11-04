@@ -40,3 +40,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Download cache; the original workbook and normalized article data are versioned.
+/data/blogs/source/articles/
+/data/blogs/source/sample.html
+/uploads/blogs/

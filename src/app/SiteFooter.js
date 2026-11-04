@@ -27,6 +27,7 @@ export default function SiteFooter({ homePage = false }) {
           <Link href="/how-it-works">How It Works</Link>
           <Link href={`${home}#faq`}>FAQs</Link>
           <Link href="/about-us">Our Story</Link>
+          <Link href="/blogs">Blog</Link>
           <Link href="/contact-us">Contact Us</Link>
         </div>
         <div>

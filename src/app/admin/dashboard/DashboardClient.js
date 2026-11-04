@@ -7,6 +7,7 @@ import RateForm from "./RateForm";
 import ContactsTable from "./ContactsTable";
 import BranchManager from "../branches/BranchManager";
 import SeoManager from "../seo/SeoManager";
+import BlogImageManager from "../blogs/BlogImageManager";
 import AdminUsersManager from "../users/AdminUsersManager";
 import { ADMIN_SECTIONS, hasAdminPermission } from "@/lib/admin-access.mjs";
 import AdminBrand from "../AdminBrand";
@@ -132,7 +133,7 @@ export default function DashboardClient({ admin, section = "dashboard" }) {
   }
 
   const avatar = imagePreview || (profile.image ? `/admin/${profile.image}` : "");
-  const sectionTitle = section === "admins" ? "Admins & permissions" : section === "no-access" ? "Account access" : section === "seo" ? "SEO Control Center" : section === "branches" ? "Branches" : section === "rate" ? "Gold rates" : section === "contact" ? "Contact requests" : "Dashboard";
+  const sectionTitle = section === "blogs" ? "Blog images" : section === "admins" ? "Admins & permissions" : section === "no-access" ? "Account access" : section === "seo" ? "SEO Control Center" : section === "branches" ? "Branches" : section === "rate" ? "Gold rates" : section === "contact" ? "Contact requests" : "Dashboard";
 
   return (
     <main className={styles.dashboard}>
@@ -159,7 +160,7 @@ export default function DashboardClient({ admin, section = "dashboard" }) {
             </div>}
           </div>
         </header>
-        {section === "no-access" ? <article className={styles.welcome}><h2>No sections assigned yet</h2><p>Ask your administrator to select the sidebar sections you can access. You can still update your profile or sign out using the account menu.</p></article> : section === "admins" ? <AdminUsersManager admin={admin} /> : section === "seo" ? <SeoManager /> : section === "branches" ? <BranchManager /> : section === "rate" ? <RateForm /> : section === "contact" ? <ContactsTable /> : <>
+        {section === "no-access" ? <article className={styles.welcome}><h2>No sections assigned yet</h2><p>Ask your administrator to select the sidebar sections you can access. You can still update your profile or sign out using the account menu.</p></article> : section === "blogs" ? <BlogImageManager /> : section === "admins" ? <AdminUsersManager admin={admin} /> : section === "seo" ? <SeoManager /> : section === "branches" ? <BranchManager /> : section === "rate" ? <RateForm /> : section === "contact" ? <ContactsTable /> : <>
           <article className={styles.welcome}>
             <p className={styles.eyebrow}>YOUR ARYAN GOLD WORKSPACE</p>
             <h2>Welcome back, {profile.name}.</h2>

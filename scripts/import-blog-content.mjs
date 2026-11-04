@@ -1,0 +1,2 @@
+import { importBlogContent } from "../src/lib/blog-import.mjs";
+await importBlogContent({ refreshSheet: process.argv.includes("--refresh-sheet"), refreshArticles: process.argv.includes("--refresh-articles") });

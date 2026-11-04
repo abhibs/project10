@@ -28,6 +28,7 @@ export default function SiteHeader({ progressRef }) {
             ["/gold-rate", "Gold Rate"],
             ["/services", "Services"],
             ["/branches", "Branches"],
+            ["/blogs", "Blog"],
             ["/contact-us", "Contact Us"],
           ].map(([href, label]) => (
             ["/gold-rate", "/services"].includes(href) ? <div key={href} className={styles.dropdown} onMouseEnter={() => setOpenSubmenu(href)} onMouseLeave={() => setOpenSubmenu(null)} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setOpenSubmenu(null); }}>
