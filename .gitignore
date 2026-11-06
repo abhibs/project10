@@ -43,5 +43,6 @@ next-env.d.ts
 
 # Download cache; the original workbook and normalized article data are versioned.
 /data/blogs/source/articles/
+/data/blogs/source/website/
 /data/blogs/source/sample.html
 /uploads/blogs/

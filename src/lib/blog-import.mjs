@@ -97,10 +97,26 @@ async function worker() {
 }
 await Promise.all(Array.from({ length: 6 }, worker));
 if (strict && errors.length) throw new Error(`Refresh failed for ${errors.length} article(s): ${errors.map(item => item.error).join("; ")}. Existing articles have been kept. Check sharing access to the linked Google Docs.`);
+// Keep the last published version of unavailable rows while refreshing healthy ones.
+const previousPosts = await readFile(new URL("posts.json", root), "utf8").then(JSON.parse).catch(error => {
+  if (error.code === "ENOENT") return [];
+  throw error;
+});
+let preserved = 0;
+for (const error of errors) {
+  const position = posts.findIndex(post => post.id === error.id);
+  const post = posts[position];
+  error.title = post.title;
+  error.documentUrl = post.source.documentUrl;
+  const previous = previousPosts.find(item => item.id === post.id && item.source?.spreadsheet === spreadsheet && item.status === "published");
+  error.preserved = Boolean(previous);
+  if (previous) { posts[position] = previous; preserved++; }
+}
+const updated = posts.filter(post => post.status === "published").length - preserved;
 await writeFile(new URL("posts.json.tmp", root), JSON.stringify(posts));
 await rename(new URL("posts.json.tmp", root), new URL("posts.json", root));
 await writeFile(new URL("import-report.json", root), JSON.stringify({ spreadsheet, tabs: sheets.map(s => s.name), total: posts.length, published: posts.filter(p => p.status === "published").length, duplicateSlugs: posts.filter(p => p.source.duplicateSlug).map(p => ({ id: p.id, sourceSlug: p.source.duplicateSlug, importedSlug: p.slug })), errors }, null, 2));
 console.log(`Imported ${posts.length} entries; ${posts.filter(p => p.status === "published").length} published; ${errors.length} unavailable. See data/blogs/import-report.json.`);
 
-return { total: posts.length, published: posts.filter(post => post.status === 'published').length, errors };
+return { total: posts.length, published: posts.filter(post => post.status === 'published').length, updated, preserved, errors };
 }

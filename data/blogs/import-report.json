@@ -3,8 +3,96 @@
   "tabs": [
     "Sheet1"
   ],
-  "total": 1,
-  "published": 1,
-  "duplicateSlugs": [],
-  "errors": []
+  "total": 587,
+  "published": 584,
+  "duplicateSlugs": [
+    {
+      "id": 238,
+      "sourceSlug": "250-gram-gold-price-today",
+      "importedSlug": "250-gram-gold-price-today-guide-238"
+    },
+    {
+      "id": 301,
+      "sourceSlug": "200-gram-gold-price-today",
+      "importedSlug": "200-gram-gold-price-today-guide-301"
+    },
+    {
+      "id": 303,
+      "sourceSlug": "300-gram-gold-price-today",
+      "importedSlug": "300-gram-gold-price-today-guide-303"
+    },
+    {
+      "id": 305,
+      "sourceSlug": "150-gram-gold-price-today",
+      "importedSlug": "150-gram-gold-price-today-guide-305"
+    },
+    {
+      "id": 329,
+      "sourceSlug": "gold-rate-per-tola-today",
+      "importedSlug": "gold-rate-per-tola-today-guide-329"
+    },
+    {
+      "id": 330,
+      "sourceSlug": "80-gram-gold-price-today",
+      "importedSlug": "80-gram-gold-price-today-guide-330"
+    },
+    {
+      "id": 331,
+      "sourceSlug": "60-gram-gold-price-today",
+      "importedSlug": "60-gram-gold-price-today-guide-331"
+    },
+    {
+      "id": 334,
+      "sourceSlug": "70-gram-gold-price-today",
+      "importedSlug": "70-gram-gold-price-today-guide-334"
+    },
+    {
+      "id": 338,
+      "sourceSlug": "75-gram-gold-price-today",
+      "importedSlug": "75-gram-gold-price-today-guide-338"
+    },
+    {
+      "id": 340,
+      "sourceSlug": "90-gram-gold-price-today",
+      "importedSlug": "90-gram-gold-price-today-guide-340"
+    },
+    {
+      "id": 342,
+      "sourceSlug": "110-gram-gold-price-today",
+      "importedSlug": "110-gram-gold-price-today-guide-342"
+    },
+    {
+      "id": 492,
+      "sourceSlug": "gold-rate-after-budget-2026",
+      "importedSlug": "gold-rate-after-budget-2026-guide-492"
+    },
+    {
+      "id": 564,
+      "sourceSlug": "how-to-get-best-price-for-gold",
+      "importedSlug": "how-to-get-best-price-for-gold-guide-564"
+    }
+  ],
+  "errors": [
+    {
+      "id": 63,
+      "error": "No linked article document in spreadsheet",
+      "title": "GST on Gold in India 2026: Rate, Making Charges & What Sellers Need to Know",
+      "documentUrl": null,
+      "preserved": false
+    },
+    {
+      "id": 255,
+      "error": "No linked article document in spreadsheet",
+      "title": "Gold Solitaire Ring: Band & Stone Resale Value Explained",
+      "documentUrl": null,
+      "preserved": false
+    },
+    {
+      "id": 483,
+      "error": "Document export returned HTTP 401",
+      "title": "Sell Gold in Pondicherry: Live Rate & Trusted Buyers",
+      "documentUrl": "https://docs.google.com/document/d/18AINer3Fu5LvvjLSU4FElQqd_KexvtBN/edit?usp=drive_link&ouid=102862621877233821374&rtpof=true&sd=true",
+      "preserved": false
+    }
+  ]
 }

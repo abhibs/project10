@@ -58,6 +58,9 @@ export function prepareArticle(document) {
     if (/attica|ISO\s*9001|200\+?\s*branch|8880\s*300\s*300|zero hidden|guaranteed.*price/i.test(value) || /^(table of contents|toggle|meta title|meta description|canonical|url slug|schema types?)\s*:?.*$/i.test(value)) node.remove();
   });
   body.querySelectorAll("h1").forEach(node => node.remove());
+  body.querySelectorAll("p").forEach(node => {
+    if (!node.textContent.replace(/[\s\u00a0\u200b-\u200d\ufeff]/g, "")) node.remove();
+  });
   const headings = [], ids = new Set();
   body.querySelectorAll("h2,h3").forEach(node => {
     const title = node.textContent.trim();

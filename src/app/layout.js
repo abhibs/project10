@@ -1,4 +1,5 @@
 import "./globals.css";
+import Script from "next/script";
 import ContactAttribution from "./ContactAttribution";
 import GoogleTagManager, { GoogleTagManagerNoScript } from "./GoogleTagManager";
 import FloatingContactActions from "./FloatingContactActions";
@@ -18,10 +19,9 @@ export default function RootLayout({ children }) {
     >
       <head>
         {/* Share one Google tag loader for Google Ads and Analytics. */}
-        {/* eslint-disable-next-line @next/next/next-script-for-ga */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18497186303" />
-        <script
+        <Script
           id="google-ads-tag"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -29,6 +29,10 @@ gtag('js', new Date());
 gtag('config', 'AW-18497186303');
 gtag('config', 'G-ZCN1VRN9HD');`,
           }}
+        />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18497186303"
+          strategy="afterInteractive"
         />
         <GoogleTagManager />
       </head>

@@ -1,0 +1,4928 @@
+{
+  "why-gold-rate-changes-twice-a-day": {
+    "image": "/blog-import/why-gold-rate-changes-twice-a-day.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-melting-charges-india": {
+    "image": "/blog-import/gold-melting-charges-india.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "sell-gold-for-business": {
+    "image": "/blog-import/sell-gold-for-business.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "gold-vs-real-estate-india": {
+    "image": "/blog-import/gold-vs-real-estate-india.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-vs-mutual-fund": {
+    "image": "/blog-import/gold-vs-mutual-fund.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-vs-fixed-deposit": {
+    "image": "/blog-import/gold-vs-fixed-deposit.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "right-time-to-sell-gold": {
+    "image": "/blog-import/right-time-to-sell-gold.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "999-vs-24k-gold": {
+    "image": "/blog-import/999-vs-24k-gold.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "gold-findings-jewellery": {
+    "image": "/blog-import/gold-findings-jewellery.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "black-gold-jewellery": {
+    "image": "/blog-import/black-gold-jewellery.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "white-gold-vs-silver": {
+    "image": "/blog-import/white-gold-vs-silver.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "palladium-gold-jewellery": {
+    "image": "/blog-import/palladium-gold-jewellery.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "14-karat-gold-rate-today": {
+    "image": "/blog-import/14-karat-gold-rate-today.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "gold-rate-per-sovereign": {
+    "image": "/blog-import/gold-rate-per-sovereign.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "195-gram-gold-price-today": {
+    "image": "/blog-import/195-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "185-gram-gold-price-today": {
+    "image": "/blog-import/185-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "170-gram-gold-price-today": {
+    "image": "/blog-import/170-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "sell-gold-in-rajamahendravaram": {
+    "image": "/blog-import/sell-gold-in-rajamahendravaram.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "sell-gold-in-dindigul": {
+    "image": "/blog-import/sell-gold-in-dindigul.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "sell-gold-in-hosur": {
+    "image": "/blog-import/sell-gold-in-hosur.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "sell-gold-in-thoothukudi": {
+    "image": "/blog-import/sell-gold-in-thoothukudi.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "sell-gold-in-kurnool": {
+    "image": "/blog-import/sell-gold-in-kurnool.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "sell-gold-in-nellore": {
+    "image": "/blog-import/sell-gold-in-nellore.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "sell-gold-in-thanjavur": {
+    "image": "/blog-import/sell-gold-in-thanjavur.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "how-to-weigh-gold-without-scale": {
+    "image": "/blog-import/how-to-weigh-gold-without-scale.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-valuation-certificate": {
+    "image": "/blog-import/gold-valuation-certificate.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "sgb-early-exit": {
+    "image": "/blog-import/sgb-early-exit.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "is-gold-sale-anonymous-india": {
+    "image": "/blog-import/is-gold-sale-anonymous-india.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "pawn-gold-vs-sell-gold": {
+    "image": "/blog-import/pawn-gold-vs-sell-gold.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "gold-gift-employer-tax": {
+    "image": "/blog-import/gold-gift-employer-tax.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "sell-gold-before-leaving-india": {
+    "image": "/blog-import/sell-gold-before-leaving-india.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "gold-airport-india-customs": {
+    "image": "/blog-import/gold-airport-india-customs.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "nri-gold-allowance-india": {
+    "image": "/blog-import/nri-gold-allowance-india.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "gold-chain-weight-per-cm": {
+    "image": "/blog-import/gold-chain-weight-per-cm.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-bangle-weight-calculation": {
+    "image": "/blog-import/gold-bangle-weight-calculation.webp?v=photo-v2",
+    "theme": "bangles",
+    "asset": "/ornaments/services-bangles.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "how-gold-weight-measured": {
+    "image": "/blog-import/how-gold-weight-measured.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "how-much-per-gram-gold-selling": {
+    "image": "/blog-import/how-much-per-gram-gold-selling.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "london-gold-fix-india": {
+    "image": "/blog-import/london-gold-fix-india.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "spot-gold-price-india": {
+    "image": "/blog-import/spot-gold-price-india.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "24k-gold-coin-india": {
+    "image": "/blog-import/24k-gold-coin-india.webp?v=photo-v2",
+    "theme": "coins",
+    "asset": "/buy-gold-coins.webp",
+    "label": "GOLD COINS & VALUE"
+  },
+  "gold-over-silver": {
+    "image": "/blog-import/gold-over-silver.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "gold-vermeil": {
+    "image": "/blog-import/gold-vermeil.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "sell-gold-in-erode": {
+    "image": "/blog-import/sell-gold-in-erode.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "gold-filled-jewellery": {
+    "image": "/blog-import/gold-filled-jewellery.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "sell-gold-in-warangal": {
+    "image": "/blog-import/sell-gold-in-warangal.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "sell-gold-in-hubli": {
+    "image": "/blog-import/sell-gold-in-hubli.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "sell-gold-in-vellore": {
+    "image": "/blog-import/sell-gold-in-vellore.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "sell-gold-in-tirunelveli": {
+    "image": "/blog-import/sell-gold-in-tirunelveli.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "sell-gold-in-salem": {
+    "image": "/blog-import/sell-gold-in-salem.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "selling-dental-gold-india": {
+    "image": "/blog-import/selling-dental-gold-india.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "sell-gold-without-address-proof": {
+    "image": "/blog-import/sell-gold-without-address-proof.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "sell-gold-without-hallmark": {
+    "image": "/blog-import/sell-gold-without-hallmark.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "how-to-check-ibja-gold-rate": {
+    "image": "/blog-import/how-to-check-ibja-gold-rate.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "negotiate-making-charges-gold": {
+    "image": "/blog-import/negotiate-making-charges-gold.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "sell-gold-jeweller-vs-buyer": {
+    "image": "/blog-import/sell-gold-jeweller-vs-buyer.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "selling-gold-for-medical-bills": {
+    "image": "/blog-import/selling-gold-for-medical-bills.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "selling-wedding-gift-gold": {
+    "image": "/blog-import/selling-wedding-gift-gold.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "gold-found-at-home-sell-legally": {
+    "image": "/blog-import/gold-found-at-home-sell-legally.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "can-minor-sell-gold": {
+    "image": "/blog-import/can-minor-sell-gold.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "joint-gold-ownership-selling": {
+    "image": "/blog-import/joint-gold-ownership-selling.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "store-gold-at-home-safely": {
+    "image": "/blog-import/store-gold-at-home-safely.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "sell-gold-in-belagavi": {
+    "image": "/blog-import/sell-gold-in-belagavi.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "gold-seized-income-tax-india": {
+    "image": "/blog-import/gold-seized-income-tax-india.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "gold-price-per-ratti": {
+    "image": "/blog-import/gold-price-per-ratti.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "sell-gold-in-coimbatore-live-rate-trusted-buyers-instant-cash": {
+    "image": "/blog-import/sell-gold-in-coimbatore-live-rate-trusted-buyers-instant-cash.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "gold-vs-silver-which-to-sell": {
+    "image": "/blog-import/gold-vs-silver-which-to-sell.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "gold-weight-conversion-chart": {
+    "image": "/blog-import/gold-weight-conversion-chart.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "107-gram-gold-price-today": {
+    "image": "/blog-import/107-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "118-gram-gold-price-today": {
+    "image": "/blog-import/118-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "119-gram-gold-price-today": {
+    "image": "/blog-import/119-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "109-gram-gold-price-today": {
+    "image": "/blog-import/109-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-feather-pendant-resale": {
+    "image": "/blog-import/gold-feather-pendant-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-solitaire-pendant-resale": {
+    "image": "/blog-import/gold-solitaire-pendant-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "111-gram-gold-price-today": {
+    "image": "/blog-import/111-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "114-gram-gold-price-today": {
+    "image": "/blog-import/114-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "155-gram-gold-price-today": {
+    "image": "/blog-import/155-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "97-gram-gold-price-today": {
+    "image": "/blog-import/97-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "108-gram-gold-price-today": {
+    "image": "/blog-import/108-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "145-gram-gold-price-today": {
+    "image": "/blog-import/145-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "122-gram-gold-price-today": {
+    "image": "/blog-import/122-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "121-gram-gold-price-today": {
+    "image": "/blog-import/121-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "165-gram-gold-price-today": {
+    "image": "/blog-import/165-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-coin-bracelet-resale": {
+    "image": "/blog-import/gold-coin-bracelet-resale.webp?v=photo-v2",
+    "theme": "bracelets",
+    "asset": "/ornaments/branches-bracelet.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-anchor-pendant-resale": {
+    "image": "/blog-import/gold-anchor-pendant-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-star-pendant-resale": {
+    "image": "/blog-import/gold-star-pendant-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-snake-bracelet-resale": {
+    "image": "/blog-import/gold-snake-bracelet-resale.webp?v=photo-v2",
+    "theme": "bracelets",
+    "asset": "/ornaments/branches-bracelet.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "190-gram-gold-price-today": {
+    "image": "/blog-import/190-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "180-gram-gold-price-today": {
+    "image": "/blog-import/180-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-moon-pendant-resale": {
+    "image": "/blog-import/gold-moon-pendant-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "difference-between-18k-and-22k-gold": {
+    "image": "/blog-import/difference-between-18k-and-22k-gold.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "gold-butterfly-pendant-resale": {
+    "image": "/blog-import/gold-butterfly-pendant-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-rate-history-india": {
+    "image": "/blog-import/gold-rate-history-india.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-diamond-pendant-resale": {
+    "image": "/blog-import/gold-diamond-pendant-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-heart-pendant-resale": {
+    "image": "/blog-import/gold-heart-pendant-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "how-long-to-sell-gold": {
+    "image": "/blog-import/how-long-to-sell-gold.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "gold-midi-ring-resale": {
+    "image": "/blog-import/gold-midi-ring-resale.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "7-pavan-gold-price-today": {
+    "image": "/blog-import/7-pavan-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-paperclip-chain-resale": {
+    "image": "/blog-import/gold-paperclip-chain-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-hallmark-types": {
+    "image": "/blog-import/gold-hallmark-types.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "gold-horseshoe-ring-resale": {
+    "image": "/blog-import/gold-horseshoe-ring-resale.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-curb-bracelet-resale": {
+    "image": "/blog-import/gold-curb-bracelet-resale.webp?v=photo-v2",
+    "theme": "bracelets",
+    "asset": "/ornaments/branches-bracelet.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "6-pavan-gold-price-today": {
+    "image": "/blog-import/6-pavan-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "8-pavan-gold-price-today": {
+    "image": "/blog-import/8-pavan-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "101-gram-gold-price-today": {
+    "image": "/blog-import/101-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "106-gram-gold-price-today": {
+    "image": "/blog-import/106-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-tree-of-life-pendant-resale": {
+    "image": "/blog-import/gold-tree-of-life-pendant-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "94-gram-gold-price-today": {
+    "image": "/blog-import/94-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "112-gram-gold-price-today": {
+    "image": "/blog-import/112-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-tennis-necklace-resale": {
+    "image": "/blog-import/gold-tennis-necklace-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "103-gram-gold-price-today": {
+    "image": "/blog-import/103-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-rope-bracelet-resale": {
+    "image": "/blog-import/gold-rope-bracelet-resale.webp?v=photo-v2",
+    "theme": "bracelets",
+    "asset": "/ornaments/branches-bracelet.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "102-gram-gold-price-today": {
+    "image": "/blog-import/102-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "98-gram-gold-price-today": {
+    "image": "/blog-import/98-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "99-gram-gold-price-today": {
+    "image": "/blog-import/99-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "104-gram-gold-price-today": {
+    "image": "/blog-import/104-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-omega-necklace-resale": {
+    "image": "/blog-import/gold-omega-necklace-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-lariat-necklace-resale": {
+    "image": "/blog-import/gold-lariat-necklace-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "117-gram-gold-price-today": {
+    "image": "/blog-import/117-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "96-gram-gold-price-today": {
+    "image": "/blog-import/96-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "113-gram-gold-price-today": {
+    "image": "/blog-import/113-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "116-gram-gold-price-today": {
+    "image": "/blog-import/116-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-peacock-pendant-resale": {
+    "image": "/blog-import/gold-peacock-pendant-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-emerald-pendant-resale": {
+    "image": "/blog-import/gold-emerald-pendant-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-ruby-pendant-resale": {
+    "image": "/blog-import/gold-ruby-pendant-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "how-to-get-best-price-for-gold": {
+    "image": "/blog-import/how-to-get-best-price-for-gold.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "13-pavan-gold-price-today": {
+    "image": "/blog-import/13-pavan-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "11-pavan-gold-price-today": {
+    "image": "/blog-import/11-pavan-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "4-pavan-gold-price-today": {
+    "image": "/blog-import/4-pavan-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "selling-gold-online-india": {
+    "image": "/blog-import/selling-gold-online-india.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "best-time-to-sell-gold": {
+    "image": "/blog-import/best-time-to-sell-gold.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "91-gram-gold-price-today": {
+    "image": "/blog-import/91-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "92-gram-gold-price-today": {
+    "image": "/blog-import/92-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "86-gram-gold-price-today": {
+    "image": "/blog-import/86-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "89-gram-gold-price-today": {
+    "image": "/blog-import/89-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-filigree-jewellery-resale": {
+    "image": "/blog-import/gold-filigree-jewellery-resale.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "83-gram-gold-price-today": {
+    "image": "/blog-import/83-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "82-gram-gold-price-today": {
+    "image": "/blog-import/82-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "93-gram-gold-price-today": {
+    "image": "/blog-import/93-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-bar-pendant-resale": {
+    "image": "/blog-import/gold-bar-pendant-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "15-pavan-gold-price-today": {
+    "image": "/blog-import/15-pavan-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "3-pavan-gold-price-today": {
+    "image": "/blog-import/3-pavan-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "2-pavan-gold-price-today": {
+    "image": "/blog-import/2-pavan-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "81-gram-gold-price-today": {
+    "image": "/blog-import/81-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "84-gram-gold-price-today": {
+    "image": "/blog-import/84-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "5-pavan-gold-price-today": {
+    "image": "/blog-import/5-pavan-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "88-gram-gold-price-today": {
+    "image": "/blog-import/88-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "51-gram-gold-price-today": {
+    "image": "/blog-import/51-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "87-gram-gold-price-today": {
+    "image": "/blog-import/87-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "10-pavan-gold-price-today": {
+    "image": "/blog-import/10-pavan-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-kundan-jewellery-resale": {
+    "image": "/blog-import/gold-kundan-jewellery-resale.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "1-pavan-gold-price-today": {
+    "image": "/blog-import/1-pavan-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "79-gram-gold-price-today": {
+    "image": "/blog-import/79-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-mens-bangle-resale": {
+    "image": "/blog-import/gold-mens-bangle-resale.webp?v=photo-v2",
+    "theme": "bangles",
+    "asset": "/ornaments/services-bangles.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "50-gram-gold-price-today": {
+    "image": "/blog-import/50-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-hallmark-verification-online": {
+    "image": "/blog-import/gold-hallmark-verification-online.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "gold-scapular-pendant-resale": {
+    "image": "/blog-import/gold-scapular-pendant-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-zodiac-pendant-resale": {
+    "image": "/blog-import/gold-zodiac-pendant-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-dog-tag-pendant-resale": {
+    "image": "/blog-import/gold-dog-tag-pendant-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "76-gram-gold-price-today": {
+    "image": "/blog-import/76-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "69-gram-gold-price-today": {
+    "image": "/blog-import/69-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "71-gram-gold-price-today": {
+    "image": "/blog-import/71-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "73-gram-gold-price-today": {
+    "image": "/blog-import/73-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "78-gram-gold-price-today": {
+    "image": "/blog-import/78-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "68-gram-gold-price-today": {
+    "image": "/blog-import/68-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "77-gram-gold-price-today": {
+    "image": "/blog-import/77-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "67-gram-gold-price-today": {
+    "image": "/blog-import/67-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "63-gram-gold-price-today": {
+    "image": "/blog-import/63-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "74-gram-gold-price-today": {
+    "image": "/blog-import/74-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "61-gram-gold-price-today": {
+    "image": "/blog-import/61-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "62-gram-gold-price-today": {
+    "image": "/blog-import/62-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "66-gram-gold-price-today": {
+    "image": "/blog-import/66-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-promise-ring-resale": {
+    "image": "/blog-import/gold-promise-ring-resale.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "64-gram-gold-price-today": {
+    "image": "/blog-import/64-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "72-gram-gold-price-today": {
+    "image": "/blog-import/72-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-initial-pendant-resale": {
+    "image": "/blog-import/gold-initial-pendant-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-rosary-chain-resale": {
+    "image": "/blog-import/gold-rosary-chain-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-cross-pendant-resale": {
+    "image": "/blog-import/gold-cross-pendant-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-evil-eye-pendant-resale": {
+    "image": "/blog-import/gold-evil-eye-pendant-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "difference-between-22k-and-24k-gold": {
+    "image": "/blog-import/difference-between-22k-and-24k-gold.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "gold-name-pendant-resale": {
+    "image": "/blog-import/gold-name-pendant-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-infinity-ring-resale": {
+    "image": "/blog-import/gold-infinity-ring-resale.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-om-pendant-resale": {
+    "image": "/blog-import/gold-om-pendant-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-temple-jewellery-resale": {
+    "image": "/blog-import/gold-temple-jewellery-resale.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "selling-inherited-gold": {
+    "image": "/blog-import/selling-inherited-gold.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "gold-side-tikka-resale": {
+    "image": "/blog-import/gold-side-tikka-resale.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-princess-necklace-resale": {
+    "image": "/blog-import/gold-princess-necklace-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-veni-resale": {
+    "image": "/blog-import/gold-veni-resale.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-oval-ring-resale": {
+    "image": "/blog-import/gold-oval-ring-resale.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "115-gram-gold-price-today": {
+    "image": "/blog-import/115-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "57-gram-gold-price-today": {
+    "image": "/blog-import/57-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "53-gram-gold-price-today": {
+    "image": "/blog-import/53-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "54-gram-gold-price-today": {
+    "image": "/blog-import/54-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "56-gram-gold-price-today": {
+    "image": "/blog-import/56-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "47-gram-gold-price-today": {
+    "image": "/blog-import/47-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-square-ring-resale": {
+    "image": "/blog-import/gold-square-ring-resale.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "52-gram-gold-price-today": {
+    "image": "/blog-import/52-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "58-gram-gold-price-today": {
+    "image": "/blog-import/58-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "110-gram-gold-price-today": {
+    "image": "/blog-import/110-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "how-to-check-gold-purity-at-home": {
+    "image": "/blog-import/how-to-check-gold-purity-at-home.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "90-gram-gold-price-today": {
+    "image": "/blog-import/90-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-heart-ring-resale": {
+    "image": "/blog-import/gold-heart-ring-resale.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "75-gram-gold-price-today": {
+    "image": "/blog-import/75-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-nethichutti-resale": {
+    "image": "/blog-import/gold-nethichutti-resale.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-beaded-necklace-resale": {
+    "image": "/blog-import/gold-beaded-necklace-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-mens-chain-bracelet-resale": {
+    "image": "/blog-import/gold-mens-chain-bracelet-resale.webp?v=photo-v2",
+    "theme": "bracelets",
+    "asset": "/ornaments/branches-bracelet.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-flower-ring-resale": {
+    "image": "/blog-import/gold-flower-ring-resale.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "80-gram-gold-price-today": {
+    "image": "/blog-import/80-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-mangalsutra-chain-resale": {
+    "image": "/blog-import/gold-mangalsutra-chain-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "100-gram-gold-price-today": {
+    "image": "/blog-import/100-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "135-gram-gold-price-today": {
+    "image": "/blog-import/135-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-pinky-ring-resale": {
+    "image": "/blog-import/gold-pinky-ring-resale.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-eternity-ring-resale": {
+    "image": "/blog-import/gold-eternity-ring-resale.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "25-gram-gold-rate-today": {
+    "image": "/blog-import/25-gram-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-rate-this-week": {
+    "image": "/blog-import/gold-rate-this-week.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "95-gram-gold-price-today": {
+    "image": "/blog-import/95-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "280-gram-gold-price-today": {
+    "image": "/blog-import/280-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "220-gram-gold-price-today": {
+    "image": "/blog-import/220-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-herringbone-chain-resale": {
+    "image": "/blog-import/gold-herringbone-chain-resale.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-anchor-chain-resale": {
+    "image": "/blog-import/gold-anchor-chain-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "49-gram-gold-price-today": {
+    "image": "/blog-import/49-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "41-gram-gold-price-today": {
+    "image": "/blog-import/41-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "46-gram-gold-price-today": {
+    "image": "/blog-import/46-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-tassel-earring-resale": {
+    "image": "/blog-import/gold-tassel-earring-resale.webp?v=photo-v2",
+    "theme": "earrings",
+    "asset": "/ornaments/calculator-earrings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-wheat-chain-resale": {
+    "image": "/blog-import/gold-wheat-chain-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-collar-necklace-resale": {
+    "image": "/blog-import/gold-collar-necklace-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-threader-earring-resale": {
+    "image": "/blog-import/gold-threader-earring-resale.webp?v=photo-v2",
+    "theme": "earrings",
+    "asset": "/ornaments/calculator-earrings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-armlet-resale": {
+    "image": "/blog-import/gold-armlet-resale.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-charm-bracelet-resale": {
+    "image": "/blog-import/gold-charm-bracelet-resale.webp?v=photo-v2",
+    "theme": "bracelets",
+    "asset": "/ornaments/branches-bracelet.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-acid-test-explained": {
+    "image": "/blog-import/gold-acid-test-explained.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "150-gram-gold-price-today": {
+    "image": "/blog-import/150-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-tikka-resale": {
+    "image": "/blog-import/gold-tikka-resale.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "300-gram-gold-price-today": {
+    "image": "/blog-import/300-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-bajuband-resaletest": {
+    "image": "/blog-import/gold-bajuband-resaletest.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-bajuband-resale": {
+    "image": "/blog-import/gold-bajuband-resale.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-nath-resale": {
+    "image": "/blog-import/gold-nath-resale.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-hoop-earring-resale": {
+    "image": "/blog-import/gold-hoop-earring-resale.webp?v=photo-v2",
+    "theme": "earrings",
+    "asset": "/ornaments/calculator-earrings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-price-calculator-resale": {
+    "image": "/blog-import/gold-price-calculator-resale.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-figaro-chain-resale": {
+    "image": "/blog-import/gold-figaro-chain-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-designer-chain-resale": {
+    "image": "/blog-import/gold-designer-chain-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "43-gram-gold-price-today": {
+    "image": "/blog-import/43-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-rope-chain-resale": {
+    "image": "/blog-import/gold-rope-chain-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "85-gram-gold-price-today": {
+    "image": "/blog-import/85-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-link-chain-resale": {
+    "image": "/blog-import/gold-link-chain-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-huggie-earring-resale": {
+    "image": "/blog-import/gold-huggie-earring-resale.webp?v=photo-v2",
+    "theme": "earrings",
+    "asset": "/ornaments/calculator-earrings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "105-gram-gold-price-today": {
+    "image": "/blog-import/105-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-polki-jewellery-resale": {
+    "image": "/blog-import/gold-polki-jewellery-resale.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "gold-thumb-ring-resale": {
+    "image": "/blog-import/gold-thumb-ring-resale.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-heavy-necklace-resale": {
+    "image": "/blog-import/gold-heavy-necklace-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-band-ring-resale": {
+    "image": "/blog-import/gold-band-ring-resale.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-wedding-ring-resale": {
+    "image": "/blog-import/gold-wedding-ring-resale.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-box-chain-resale": {
+    "image": "/blog-import/gold-box-chain-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-ball-chain-resale": {
+    "image": "/blog-import/gold-ball-chain-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-drop-earring-resale": {
+    "image": "/blog-import/gold-drop-earring-resale.webp?v=photo-v2",
+    "theme": "earrings",
+    "asset": "/ornaments/calculator-earrings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-cocktail-ring-resale": {
+    "image": "/blog-import/gold-cocktail-ring-resale.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-purity-chart": {
+    "image": "/blog-import/gold-purity-chart.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "gold-pendant-set-2": {
+    "image": "/blog-import/gold-pendant-set-2.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-stackable-ring-resale": {
+    "image": "/blog-import/gold-stackable-ring-resale.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-pendant-set": {
+    "image": "/blog-import/gold-pendant-set.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-short-mangalsutra": {
+    "image": "/blog-import/gold-short-mangalsutra.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-curb-chain-resale": {
+    "image": "/blog-import/gold-curb-chain-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-tanmaniya": {
+    "image": "/blog-import/gold-tanmaniya.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-antique-necklace": {
+    "image": "/blog-import/gold-antique-necklace.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-studs": {
+    "image": "/blog-import/gold-studs.webp?v=photo-v2",
+    "theme": "earrings",
+    "asset": "/ornaments/calculator-earrings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-snake-chain": {
+    "image": "/blog-import/gold-snake-chain.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-engagement-ring": {
+    "image": "/blog-import/gold-engagement-ring.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "black-bead-gold-chain": {
+    "image": "/blog-import/black-bead-gold-chain.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "long-mangalsutra-design-gold": {
+    "image": "/blog-import/long-mangalsutra-design-gold.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-mens-bracelet": {
+    "image": "/blog-import/gold-mens-bracelet.webp?v=photo-v2",
+    "theme": "bracelets",
+    "asset": "/ornaments/branches-bracelet.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-satlada": {
+    "image": "/blog-import/gold-satlada.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-sheeshphool": {
+    "image": "/blog-import/gold-sheeshphool.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "12-pavan-gold-rate": {
+    "image": "/blog-import/12-pavan-gold-rate.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "putli-haar-gold": {
+    "image": "/blog-import/putli-haar-gold.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-addigai-weight-todays-rate-resale-value": {
+    "image": "/blog-import/gold-addigai-weight-todays-rate-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-gundla-mala-weight-todays-rate-resale-value": {
+    "image": "/blog-import/gold-gundla-mala-weight-todays-rate-resale-value.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-kante-necklace-weight-todays-rate-resale-value": {
+    "image": "/blog-import/gold-kante-necklace-weight-todays-rate-resale-value.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "175-gram-gold-price-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/175-gram-gold-price-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-rakhdi-weight-todays-rate-resale-value": {
+    "image": "/blog-import/gold-rakhdi-weight-todays-rate-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "what-determines-your-gold-value": {
+    "image": "/blog-import/what-determines-your-gold-value.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "140-gram-gold-price-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/140-gram-gold-price-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-champasaralu-weight-todays-rate-resale-value": {
+    "image": "/blog-import/gold-champasaralu-weight-todays-rate-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-solitaire-ring": {
+    "image": "/blog-import/gold-solitaire-ring.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "130-gram-gold-price": {
+    "image": "/blog-import/130-gram-gold-price.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "44-gram-gold-price-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/44-gram-gold-price-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "37-gram-gold-price": {
+    "image": "/blog-import/37-gram-gold-price.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "125-gram-gold-price": {
+    "image": "/blog-import/125-gram-gold-price.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "31-gram-gold-price-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/31-gram-gold-price-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "29-gram-gold-price": {
+    "image": "/blog-import/29-gram-gold-price.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "38-gram-gold-price-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/38-gram-gold-price-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-guluband": {
+    "image": "/blog-import/gold-guluband.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-bormala": {
+    "image": "/blog-import/gold-bormala.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "350-gram-gold-price": {
+    "image": "/blog-import/350-gram-gold-price.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "160-gram-gold-price": {
+    "image": "/blog-import/160-gram-gold-price.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "34-gram-gold-price": {
+    "image": "/blog-import/34-gram-gold-price.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "27-gram-gold-price-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/27-gram-gold-price-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "400-gram-gold-price": {
+    "image": "/blog-import/400-gram-gold-price.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-mugappu-chain-weight-todays-rate-resale-value": {
+    "image": "/blog-import/gold-mugappu-chain-weight-todays-rate-resale-value.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-thewa-jewellery-weight-todays-rate-resale-value": {
+    "image": "/blog-import/gold-thewa-jewellery-weight-todays-rate-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "best-gold-buyers-in-bangalore-attica": {
+    "image": "/blog-import/best-gold-buyers-in-bangalore-attica.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "250-gram-gold-price-today-live-ibja-rate-exact-cash-value-3": {
+    "image": "/blog-import/250-gram-gold-price-today-live-ibja-rate-exact-cash-value-3.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-rani-haar-weight-todays-rate-resale-value": {
+    "image": "/blog-import/gold-rani-haar-weight-todays-rate-resale-value.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "55-gram-gold-price-today": {
+    "image": "/blog-import/55-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "65-gram-gold-price-today": {
+    "image": "/blog-import/65-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "32-gram-gold-price-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/32-gram-gold-price-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "26-gram-gold-price-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/26-gram-gold-price-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "23-gram-gold-price-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/23-gram-gold-price-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-lotus-pendant-necklace-weight-todays-rate-resale": {
+    "image": "/blog-import/gold-lotus-pendant-necklace-weight-todays-rate-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-coin-pendant-necklace-weight-todays-rate-resale": {
+    "image": "/blog-import/gold-coin-pendant-necklace-weight-todays-rate-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-bali-earring-weight-todays-rate-resale-value": {
+    "image": "/blog-import/gold-bali-earring-weight-todays-rate-resale-value.webp?v=photo-v2",
+    "theme": "earrings",
+    "asset": "/ornaments/calculator-earrings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-mukut-bengali-bridal-crown-weight-resale-value": {
+    "image": "/blog-import/gold-mukut-bengali-bridal-crown-weight-resale-value.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "gold-pacheli": {
+    "image": "/blog-import/gold-pacheli.webp?v=photo-v2",
+    "theme": "bangles",
+    "asset": "/ornaments/services-bangles.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "36-gram-gold-price-today": {
+    "image": "/blog-import/36-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-kalgi-weight-todays-rate-resale-value": {
+    "image": "/blog-import/gold-kalgi-weight-todays-rate-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "48-gram-gold-price-today": {
+    "image": "/blog-import/48-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "42-gram-gold-price-today": {
+    "image": "/blog-import/42-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-jadanagam": {
+    "image": "/blog-import/gold-jadanagam.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "33-gram-gold-price-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/33-gram-gold-price-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "10-savaran-gold-rate-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/10-savaran-gold-rate-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "5-savaran-gold-rate-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/5-savaran-gold-rate-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "meenakari-gold-jewellery-resale-enamel-weight-cash-value-guide": {
+    "image": "/blog-import/meenakari-gold-jewellery-resale-enamel-weight-cash-value-guide.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "diwali-gold-selling-guide-rate-timing-should-you-sell-now": {
+    "image": "/blog-import/diwali-gold-selling-guide-rate-timing-should-you-sell-now.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-savaran-rate-today": {
+    "image": "/blog-import/gold-savaran-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "4-pavan-gold-rate-today-live-ibja-rate-exact-cash-value-2": {
+    "image": "/blog-import/4-pavan-gold-rate-today-live-ibja-rate-exact-cash-value-2.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-thushi-necklace": {
+    "image": "/blog-import/gold-thushi-necklace.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-guttapusalu": {
+    "image": "/blog-import/gold-guttapusalu.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "120-gram-gold-price-today": {
+    "image": "/blog-import/120-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "17-gram-gold-price-today": {
+    "image": "/blog-import/17-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-gajra": {
+    "image": "/blog-import/gold-gajra.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-kolhapuri-saaj-necklace": {
+    "image": "/blog-import/gold-kolhapuri-saaj-necklace.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-sui-dhaga-earring": {
+    "image": "/blog-import/gold-sui-dhaga-earring.webp?v=photo-v2",
+    "theme": "earrings",
+    "asset": "/ornaments/calculator-earrings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-layered-necklace": {
+    "image": "/blog-import/gold-layered-necklace.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "19-gram-gold-price-today": {
+    "image": "/blog-import/19-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-chandraharam": {
+    "image": "/blog-import/gold-chandraharam.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-chandraharam-2": {
+    "image": "/blog-import/gold-chandraharam-2.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "21-gram-gold-price-today": {
+    "image": "/blog-import/21-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-rate-after-budget-2026": {
+    "image": "/blog-import/gold-rate-after-budget-2026.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "8-pavan-gold-rate-today": {
+    "image": "/blog-import/8-pavan-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-manga-malai-necklace": {
+    "image": "/blog-import/gold-manga-malai-necklace.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "9-pavan-gold-rate-today": {
+    "image": "/blog-import/9-pavan-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-nagapadam-earrings": {
+    "image": "/blog-import/gold-nagapadam-earrings.webp?v=photo-v2",
+    "theme": "earrings",
+    "asset": "/ornaments/calculator-earrings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-puligoru-pendant": {
+    "image": "/blog-import/gold-puligoru-pendant.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-pathakam-necklace": {
+    "image": "/blog-import/gold-pathakam-necklace.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "6-pavan-gold-rate-today": {
+    "image": "/blog-import/6-pavan-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "7-pavan-gold-rate-today": {
+    "image": "/blog-import/7-pavan-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-vaddanam": {
+    "image": "/blog-import/gold-vaddanam.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-tussi-necklace": {
+    "image": "/blog-import/gold-tussi-necklace.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "28-gram-gold-price-today": {
+    "image": "/blog-import/28-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "4-pavan-gold-rate-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/4-pavan-gold-rate-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "3-pavan-gold-rate-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/3-pavan-gold-rate-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "dhanteras-gold-selling-guide-rate-timing-how-to-get-maximum-value": {
+    "image": "/blog-import/dhanteras-gold-selling-guide-rate-timing-how-to-get-maximum-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "akshaya-tritiya-gold-selling-guide-should-you-sell-or-hold": {
+    "image": "/blog-import/akshaya-tritiya-gold-selling-guide-should-you-sell-or-hold.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "gold-oddiyanam-weight-todays-rate-resale-value": {
+    "image": "/blog-import/gold-oddiyanam-weight-todays-rate-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "8-gram-gold-price-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/8-gram-gold-price-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-borla": {
+    "image": "/blog-import/gold-borla.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-pasa": {
+    "image": "/blog-import/gold-pasa.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-kangan-weight-by-design-todays-live-rate-resale-value": {
+    "image": "/blog-import/gold-kangan-weight-by-design-todays-live-rate-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "how-to-weigh-gold-at-home-before-selling-accurate-methods": {
+    "image": "/blog-import/how-to-weigh-gold-at-home-before-selling-accurate-methods.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-ganesha-pendant-weight-todays-rate-resale-value": {
+    "image": "/blog-import/gold-ganesha-pendant-weight-todays-rate-resale-value.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-peacock-pendant-weight-todays-rate-resale-value": {
+    "image": "/blog-import/gold-peacock-pendant-weight-todays-rate-resale-value.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "10-pavan-gold-rate-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/10-pavan-gold-rate-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "10-pavan-gold-rate-today": {
+    "image": "/blog-import/10-pavan-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-krishna-pendant": {
+    "image": "/blog-import/gold-krishna-pendant.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "white-gold-resale-guide": {
+    "image": "/blog-import/white-gold-resale-guide.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "gold-haath-phool-weight-todays-rate-resale-value": {
+    "image": "/blog-import/gold-haath-phool-weight-todays-rate-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-ear-tops-weight-todays-rate-resale-value": {
+    "image": "/blog-import/gold-ear-tops-weight-todays-rate-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "300-gram-gold-price-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/300-gram-gold-price-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "250-gram-gold-price-today-live-ibja-rate-exact-cash-value-2": {
+    "image": "/blog-import/250-gram-gold-price-today-live-ibja-rate-exact-cash-value-2.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "250-gram-gold-price-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/250-gram-gold-price-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-toe-ring": {
+    "image": "/blog-import/gold-toe-ring.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "150-gram-gold-price-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/150-gram-gold-price-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-rate-per-gram-today": {
+    "image": "/blog-import/gold-rate-per-gram-today.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-kada": {
+    "image": "/blog-import/gold-kada.webp?v=photo-v2",
+    "theme": "bangles",
+    "asset": "/ornaments/services-bangles.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "110-gram-gold-price-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/110-gram-gold-price-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "ladies-gold-chain": {
+    "image": "/blog-import/ladies-gold-chain.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "90-gram-gold-price-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/90-gram-gold-price-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "75-gram-gold-price-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/75-gram-gold-price-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "45-gram-gold-price-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/45-gram-gold-price-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "24-gram-gold-price-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/24-gram-gold-price-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-ring-for-women": {
+    "image": "/blog-import/gold-ring-for-women.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-rate-per-tola-today": {
+    "image": "/blog-import/gold-rate-per-tola-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-locket-weight-designs-todays-rate-resale-value": {
+    "image": "/blog-import/gold-locket-weight-designs-todays-rate-resale-value.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-jimikki": {
+    "image": "/blog-import/gold-jimikki.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-jada-billa": {
+    "image": "/blog-import/gold-jada-billa.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-cuff-bracelet": {
+    "image": "/blog-import/gold-cuff-bracelet.webp?v=photo-v2",
+    "theme": "bracelets",
+    "asset": "/ornaments/branches-bracelet.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-ring-with-diamond": {
+    "image": "/blog-import/gold-ring-with-diamond.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-nallapusalu": {
+    "image": "/blog-import/gold-nallapusalu.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-ear-cuff": {
+    "image": "/blog-import/gold-ear-cuff.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-rate-today-vs-yesterday": {
+    "image": "/blog-import/gold-rate-today-vs-yesterday.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-rate-this-year-2026": {
+    "image": "/blog-import/gold-rate-this-year-2026.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-thali-chain": {
+    "image": "/blog-import/gold-thali-chain.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "24-gram-gold-price-today": {
+    "image": "/blog-import/24-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "22-gram-gold-price-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/22-gram-gold-price-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "18-gram-gold-price-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/18-gram-gold-price-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "1-pavan-gold-rate-today": {
+    "image": "/blog-import/1-pavan-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "16-gram-gold-price-today": {
+    "image": "/blog-import/16-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "14-gram-gold-price-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/14-gram-gold-price-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "13-gram-gold-price-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/13-gram-gold-price-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "huid-number-on-gold": {
+    "image": "/blog-import/huid-number-on-gold.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "gold-waist-chain-weight-todays-live-rate-resale-value": {
+    "image": "/blog-import/gold-waist-chain-weight-todays-live-rate-resale-value.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-haram-south-indian-long-necklace-weight-todays-rate-resale-value": {
+    "image": "/blog-import/gold-haram-south-indian-long-necklace-weight-todays-rate-resale-value.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-maang-tikka-weight-by-design-todays-live-rate-resale-value-2": {
+    "image": "/blog-import/gold-maang-tikka-weight-by-design-todays-live-rate-resale-value-2.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-jhumka": {
+    "image": "/blog-import/gold-jhumka.webp?v=photo-v2",
+    "theme": "earrings",
+    "asset": "/ornaments/calculator-earrings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-maang-tikka-weight-by-design-todays-live-rate-resale-value": {
+    "image": "/blog-import/gold-maang-tikka-weight-by-design-todays-live-rate-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "bridal-gold-jewellery-weight-by-design-todays-rate-resale-value-when-you-sell-2": {
+    "image": "/blog-import/bridal-gold-jewellery-weight-by-design-todays-rate-resale-value-when-you-sell-2.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-nose-ring-nath-weight-designs-todays-rate-resale-value": {
+    "image": "/blog-import/gold-nose-ring-nath-weight-designs-todays-rate-resale-value.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-vanki": {
+    "image": "/blog-import/gold-vanki.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "bridal-gold-jewellery-weight-by-design-todays-rate-resale-value-when-you-sell": {
+    "image": "/blog-import/bridal-gold-jewellery-weight-by-design-todays-rate-resale-value-when-you-sell.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "25-gram-gold-rate-today-live-selling-price-exact-cash-value-guide": {
+    "image": "/blog-import/25-gram-gold-rate-today-live-selling-price-exact-cash-value-guide.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-earrings-for-women": {
+    "image": "/blog-import/gold-earrings-for-women.webp?v=photo-v2",
+    "theme": "earrings",
+    "asset": "/ornaments/calculator-earrings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-bangles": {
+    "image": "/blog-import/gold-bangles.webp?v=photo-v2",
+    "theme": "bangles",
+    "asset": "/ornaments/services-bangles.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "15-gram-gold-rate-today-live-selling-price-exact-cash-value-guide": {
+    "image": "/blog-import/15-gram-gold-rate-today-live-selling-price-exact-cash-value-guide.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "40-gram-gold-rate-today-live-selling-price-exact-cash-value-guide": {
+    "image": "/blog-import/40-gram-gold-rate-today-live-selling-price-exact-cash-value-guide.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-necklace-set": {
+    "image": "/blog-import/gold-necklace-set.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-rate-this-week-live-weekly-trend-monthly-movement-best-time-to-sell": {
+    "image": "/blog-import/gold-rate-this-week-live-weekly-trend-monthly-movement-best-time-to-sell.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "30-gram-gold-rate-today-live-selling-price-exact-cash-value-guide": {
+    "image": "/blog-import/30-gram-gold-rate-today-live-selling-price-exact-cash-value-guide.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-rate-today-india": {
+    "image": "/blog-import/gold-rate-today-india.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "7-gram-gold-rate-today-live-selling-price-exact-cash-value-guide": {
+    "image": "/blog-import/7-gram-gold-rate-today-live-selling-price-exact-cash-value-guide.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "6-gram-gold-rate-today-live-selling-price-exact-cash-value-guide": {
+    "image": "/blog-import/6-gram-gold-rate-today-live-selling-price-exact-cash-value-guide.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "500-gram-gold-price-today": {
+    "image": "/blog-import/500-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "200-gram-gold-price-today": {
+    "image": "/blog-import/200-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-nose-pin-weight-designs-resale-value-at-todays-live-rate": {
+    "image": "/blog-import/gold-nose-pin-weight-designs-resale-value-at-todays-live-rate.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "mens-gold-chain-weight-by-design-todays-live-rate-resale-value": {
+    "image": "/blog-import/mens-gold-chain-weight-by-design-todays-live-rate-resale-value.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-coin-selling-guide": {
+    "image": "/blog-import/gold-coin-selling-guide.webp?v=photo-v2",
+    "theme": "coins",
+    "asset": "/buy-gold-coins.webp",
+    "label": "GOLD COINS & VALUE"
+  },
+  "60-gram-gold-price-today": {
+    "image": "/blog-import/60-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "mens-gold-ring-weight-by-design-todays-live-rate-resale-value": {
+    "image": "/blog-import/mens-gold-ring-weight-by-design-todays-live-rate-resale-value.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "9-gram-gold-rate-today-live-selling-price-exact-cash-value-guide": {
+    "image": "/blog-import/9-gram-gold-rate-today-live-selling-price-exact-cash-value-guide.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "70-gram-gold-price-today": {
+    "image": "/blog-import/70-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "how-to-sell-digital-gold-paytm-mmtc-pamp-tanishq-redemption-tax-process": {
+    "image": "/blog-import/how-to-sell-digital-gold-paytm-mmtc-pamp-tanishq-redemption-tax-process.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "gold-buying-rate-today": {
+    "image": "/blog-import/gold-buying-rate-today.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "sell-gold-today": {
+    "image": "/blog-import/sell-gold-today.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "gold-kolusu": {
+    "image": "/blog-import/gold-kolusu.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "where-can-i-sell-gold": {
+    "image": "/blog-import/where-can-i-sell-gold.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "gold-mathapatti": {
+    "image": "/blog-import/gold-mathapatti.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "50-gram-gold-rate-today": {
+    "image": "/blog-import/50-gram-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-kasumala": {
+    "image": "/blog-import/gold-kasumala.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "old-gold-buyers-near-me": {
+    "image": "/blog-import/old-gold-buyers-near-me.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "gold-lakshmi-pendant": {
+    "image": "/blog-import/gold-lakshmi-pendant.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "import-gold-to-india": {
+    "image": "/blog-import/import-gold-to-india.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "sell-my-gold-step-by-step-process-to-get-the-best-cash-value-today": {
+    "image": "/blog-import/sell-my-gold-step-by-step-process-to-get-the-best-cash-value-today.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "gold-chandbali": {
+    "image": "/blog-import/gold-chandbali.webp?v=photo-v2",
+    "theme": "earrings",
+    "asset": "/ornaments/calculator-earrings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-bar-selling-guide-10g-50g-100g-1kg-prices-today": {
+    "image": "/blog-import/gold-bar-selling-guide-10g-50g-100g-1kg-prices-today.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "100-gram-gold-rate-today": {
+    "image": "/blog-import/100-gram-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "12-gram-gold-rate-today": {
+    "image": "/blog-import/12-gram-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-payal": {
+    "image": "/blog-import/gold-payal.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-purchase-rate-today": {
+    "image": "/blog-import/gold-purchase-rate-today.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "3-gram-gold-rate-today": {
+    "image": "/blog-import/3-gram-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "5-gram-gold-rate-today": {
+    "image": "/blog-import/5-gram-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "2-gram-gold-rate-today-live-selling-price-exact-cash-value-for-tiny-pieces": {
+    "image": "/blog-import/2-gram-gold-rate-today-live-selling-price-exact-cash-value-for-tiny-pieces.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-choker-necklace": {
+    "image": "/blog-import/gold-choker-necklace.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "4-gram-gold-rate-today": {
+    "image": "/blog-import/4-gram-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "11-gram-gold-price-today": {
+    "image": "/blog-import/11-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "35-gram-gold-price-today": {
+    "image": "/blog-import/35-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "80-gram-gold-price-today-live-ibja-rate-exact-cash-value": {
+    "image": "/blog-import/80-gram-gold-price-today-live-ibja-rate-exact-cash-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-rate-this-month": {
+    "image": "/blog-import/gold-rate-this-month.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-anklet": {
+    "image": "/blog-import/gold-anklet.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-buyers-near-me-how-to-find-a-trusted-iso-certified-buyer-in-your-area": {
+    "image": "/blog-import/gold-buyers-near-me-how-to-find-a-trusted-iso-certified-buyer-in-your-area.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "gold-price-history": {
+    "image": "/blog-import/gold-price-history.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "1-kg-gold-price": {
+    "image": "/blog-import/1-kg-gold-price.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-mangalsutra": {
+    "image": "/blog-import/gold-mangalsutra.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-coin-price": {
+    "image": "/blog-import/gold-coin-price.webp?v=photo-v2",
+    "theme": "coins",
+    "asset": "/buy-gold-coins.webp",
+    "label": "GOLD COINS & VALUE"
+  },
+  "gold-bracelet": {
+    "image": "/blog-import/gold-bracelet.webp?v=photo-v2",
+    "theme": "bracelets",
+    "asset": "/ornaments/branches-bracelet.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "blogs-1-kg-gold-price-today-2": {
+    "image": "/blog-import/blogs-1-kg-gold-price-today-2.webp?v=photo-v2",
+    "theme": "earrings",
+    "asset": "/ornaments/calculator-earrings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-price-chart": {
+    "image": "/blog-import/gold-price-chart.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "1-kg-gold-price-today": {
+    "image": "/blog-import/1-kg-gold-price-today.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "blogs-1-kg-gold-price-today": {
+    "image": "/blog-import/blogs-1-kg-gold-price-today.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "gold-jewellery-vs-gold-coin": {
+    "image": "/blog-import/gold-jewellery-vs-gold-coin.webp?v=photo-v2",
+    "theme": "coins",
+    "asset": "/buy-gold-coins.webp",
+    "label": "GOLD COINS & VALUE"
+  },
+  "gold-bar-vs-gold-jewellery": {
+    "image": "/blog-import/gold-bar-vs-gold-jewellery.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-chain-price-resale": {
+    "image": "/blog-import/gold-chain-price-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "dubai-gold-rate-today": {
+    "image": "/blog-import/dubai-gold-rate-today.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-vs-platinum-selling": {
+    "image": "/blog-import/gold-vs-platinum-selling.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "how-much-gold-can-i-keep-at-home": {
+    "image": "/blog-import/how-much-gold-can-i-keep-at-home.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "same-day-gold-sale": {
+    "image": "/blog-import/same-day-gold-sale.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "how-to-sell-gold-7-steps": {
+    "image": "/blog-import/how-to-sell-gold-7-steps.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "nri-sell-gold-india": {
+    "image": "/blog-import/nri-sell-gold-india.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "what-happens-to-sold-gold": {
+    "image": "/blog-import/what-happens-to-sold-gold.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "big-gold-buyers-vs-local-shops": {
+    "image": "/blog-import/big-gold-buyers-vs-local-shops.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "physical-gold-vs-etf-vs-sgb": {
+    "image": "/blog-import/physical-gold-vs-etf-vs-sgb.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "section-269st-gold-cash-limit": {
+    "image": "/blog-import/section-269st-gold-cash-limit.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "old-gold-exchange-vs-sell": {
+    "image": "/blog-import/old-gold-exchange-vs-sell.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "gold-hallmark-verification": {
+    "image": "/blog-import/gold-hallmark-verification.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "cooperative-bank-gold-scheme-vs-selling": {
+    "image": "/blog-import/cooperative-bank-gold-scheme-vs-selling.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "refinery-vs-local-buyer-gold-sale": {
+    "image": "/blog-import/refinery-vs-local-buyer-gold-sale.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-buyer-refused-your-rights": {
+    "image": "/blog-import/gold-buyer-refused-your-rights.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "verify-gold-buyer-authenticity-checklist": {
+    "image": "/blog-import/verify-gold-buyer-authenticity-checklist.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "report-gold-sale-itr-filing-guide": {
+    "image": "/blog-import/report-gold-sale-itr-filing-guide.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "tcs-on-gold-sale-refund-guide": {
+    "image": "/blog-import/tcs-on-gold-sale-refund-guide.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "physical-gold-vs-etf-sale-quick-cash": {
+    "image": "/blog-import/physical-gold-vs-etf-sale-quick-cash.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "how-gold-buyers-make-money-refining-margin": {
+    "image": "/blog-import/how-gold-buyers-make-money-refining-margin.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "hallmarking-in-india": {
+    "image": "/blog-import/hallmarking-in-india.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "loan-on-gold-bridge-finance-vs-selling": {
+    "image": "/blog-import/loan-on-gold-bridge-finance-vs-selling.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "gold-biscuit-selling-guide": {
+    "image": "/blog-import/gold-biscuit-selling-guide.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gst-on-gold-jewellery": {
+    "image": "/blog-import/gst-on-gold-jewellery.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "gold-plated-vs-real-gold": {
+    "image": "/blog-import/gold-plated-vs-real-gold.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "making-charges-on-gold": {
+    "image": "/blog-import/making-charges-on-gold.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "gold-valuation-process": {
+    "image": "/blog-import/gold-valuation-process.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "gold-sale-receipt-red-flags": {
+    "image": "/blog-import/gold-sale-receipt-red-flags.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "gold-bangle-price-resale": {
+    "image": "/blog-import/gold-bangle-price-resale.webp?v=photo-v2",
+    "theme": "bangles",
+    "asset": "/ornaments/services-bangles.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-ring-price-resale": {
+    "image": "/blog-import/gold-ring-price-resale.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "why-bank-transfer-is-the-safest": {
+    "image": "/blog-import/why-bank-transfer-is-the-safest.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "gold-price-forecast-2026": {
+    "image": "/blog-import/gold-price-forecast-2026.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "where-to-sell-broken-gold": {
+    "image": "/blog-import/where-to-sell-broken-gold.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "best-time-to-sell-gold-in-india": {
+    "image": "/blog-import/best-time-to-sell-gold-in-india.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "gold-loan-default-pledged-gold": {
+    "image": "/blog-import/gold-loan-default-pledged-gold.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "how-to-release-pledged-gold": {
+    "image": "/blog-import/how-to-release-pledged-gold.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "gold-loan-interest-vs-selling-gold": {
+    "image": "/blog-import/gold-loan-interest-vs-selling-gold.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "old-gold-rate-today": {
+    "image": "/blog-import/old-gold-rate-today.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-resale-value-calculator": {
+    "image": "/blog-import/gold-resale-value-calculator.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "gold-price-drop-2026": {
+    "image": "/blog-import/gold-price-drop-2026.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "how-to-check-gold-purity": {
+    "image": "/blog-import/how-to-check-gold-purity.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "soldering-stone-deductions-gold": {
+    "image": "/blog-import/soldering-stone-deductions-gold.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "nri-selling-gold-india": {
+    "image": "/blog-import/nri-selling-gold-india.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "how-gold-prices-are-decided": {
+    "image": "/blog-import/how-gold-prices-are-decided.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "avoid-cheating-selling-gold": {
+    "image": "/blog-import/avoid-cheating-selling-gold.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "gold-sell-home-down-payment": {
+    "image": "/blog-import/gold-sell-home-down-payment.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "sell-gold-clear-debt-payoff-math": {
+    "image": "/blog-import/sell-gold-clear-debt-payoff-math.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "20-gram-gold-selling-price": {
+    "image": "/blog-import/20-gram-gold-selling-price.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "how-long-to-sell-gold-time-breakdown": {
+    "image": "/blog-import/how-long-to-sell-gold-time-breakdown.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "in-branch-vs-online-gold-selling": {
+    "image": "/blog-import/in-branch-vs-online-gold-selling.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "10-gram-gold-rate-today": {
+    "image": "/blog-import/10-gram-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "1-gram-gold-rate-today": {
+    "image": "/blog-import/1-gram-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "kdm-vs-hallmark-gold": {
+    "image": "/blog-import/kdm-vs-hallmark-gold.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "916-hallmark-gold": {
+    "image": "/blog-import/916-hallmark-gold.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "24-karat-gold": {
+    "image": "/blog-import/24-karat-gold.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "gold-vs-silver-easier-to-sell": {
+    "image": "/blog-import/gold-vs-silver-easier-to-sell.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "22-karat-gold": {
+    "image": "/blog-import/22-karat-gold.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "gold-weight-units-india": {
+    "image": "/blog-import/gold-weight-units-india.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "14-karat-gold": {
+    "image": "/blog-import/14-karat-gold.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "18-karat-gold": {
+    "image": "/blog-import/18-karat-gold.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "1-sovereign-gold-to-grams": {
+    "image": "/blog-import/1-sovereign-gold-to-grams.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "tola-to-gram-converter": {
+    "image": "/blog-import/tola-to-gram-converter.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-necklace-price-resale": {
+    "image": "/blog-import/gold-necklace-price-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "tax-on-gold-sale-india-2026": {
+    "image": "/blog-import/tax-on-gold-sale-india-2026.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "sell-gold-for-cash": {
+    "image": "/blog-import/sell-gold-for-cash.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "sell-gold-in-hyderabad": {
+    "image": "/blog-import/sell-gold-in-hyderabad.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "sell-gold-in-chennai": {
+    "image": "/blog-import/sell-gold-in-chennai.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "sell-gold-in-bangalore": {
+    "image": "/blog-import/sell-gold-in-bangalore.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "what-is-18-karat-gold": {
+    "image": "/blog-import/what-is-18-karat-gold.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "documents-required-to-sell-gold-in-india": {
+    "image": "/blog-import/documents-required-to-sell-gold-in-india.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "benefits-of-buying-gold-jewellery-in-india": {
+    "image": "/blog-import/benefits-of-buying-gold-jewellery-in-india.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "what-is-24-karat-gold": {
+    "image": "/blog-import/what-is-24-karat-gold.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "reasons-to-invest-in-gold-bars-in-india": {
+    "image": "/blog-import/reasons-to-invest-in-gold-bars-in-india.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "benefits-of-investing-in-gold": {
+    "image": "/blog-import/benefits-of-investing-in-gold.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "what-is-22-karat-gold": {
+    "image": "/blog-import/what-is-22-karat-gold.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "what-are-gold-bars": {
+    "image": "/blog-import/what-are-gold-bars.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "sovereign-gold-bond": {
+    "image": "/blog-import/sovereign-gold-bond.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "benefits-of-buying-gold-coins-in-india": {
+    "image": "/blog-import/benefits-of-buying-gold-coins-in-india.webp?v=photo-v2",
+    "theme": "coins",
+    "asset": "/buy-gold-coins.webp",
+    "label": "GOLD COINS & VALUE"
+  },
+  "gold-bars-vs-gold-coins": {
+    "image": "/blog-import/gold-bars-vs-gold-coins.webp?v=photo-v2",
+    "theme": "coins",
+    "asset": "/buy-gold-coins.webp",
+    "label": "GOLD COINS & VALUE"
+  },
+  "bank-of-baroda-gold-loan-interest-rate": {
+    "image": "/blog-import/bank-of-baroda-gold-loan-interest-rate.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "platinum-vs-gold-price": {
+    "image": "/blog-import/platinum-vs-gold-price.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "digital-gold-vs-gold-etfs": {
+    "image": "/blog-import/digital-gold-vs-gold-etfs.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "top-10-countries-to-buy-cheapest-gold": {
+    "image": "/blog-import/top-10-countries-to-buy-cheapest-gold.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "kyc-verification-when-selling-gold": {
+    "image": "/blog-import/kyc-verification-when-selling-gold.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "sbi-gold-loan-interest-rate": {
+    "image": "/blog-import/sbi-gold-loan-interest-rate.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "gold-price-history-in-india": {
+    "image": "/blog-import/gold-price-history-in-india.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "union-bank-gold-loan-interest-rate": {
+    "image": "/blog-import/union-bank-gold-loan-interest-rate.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "gst-on-gold-in-india": {
+    "image": "/blog-import/gst-on-gold-in-india.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "what-is-750-gold": {
+    "image": "/blog-import/what-is-750-gold.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "indian-overseas-bank-gold-loan-interest-rate": {
+    "image": "/blog-import/indian-overseas-bank-gold-loan-interest-rate.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "differences-between-yellow-gold-vs-rose-gold": {
+    "image": "/blog-import/differences-between-yellow-gold-vs-rose-gold.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "axis-bank-gold-loan-interest-rate": {
+    "image": "/blog-import/axis-bank-gold-loan-interest-rate.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "best-month-to-buy-gold-in-india": {
+    "image": "/blog-import/best-month-to-buy-gold-in-india.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "best-day-to-buy-gold-jewellery-in-india": {
+    "image": "/blog-import/best-day-to-buy-gold-jewellery-in-india.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "how-much-is-1-pavan-gold-in-grams": {
+    "image": "/blog-import/how-much-is-1-pavan-gold-in-grams.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "how-much-is-1-ana-gold-in-grams": {
+    "image": "/blog-import/how-much-is-1-ana-gold-in-grams.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "how-much-is-1-ounce-of-gold-in-grams": {
+    "image": "/blog-import/how-much-is-1-ounce-of-gold-in-grams.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "how-much-is-1-kasu-gold-in-grams": {
+    "image": "/blog-import/how-much-is-1-kasu-gold-in-grams.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-loan-interest-rates": {
+    "image": "/blog-import/gold-loan-interest-rates.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "how-much-is-1-bhori-gold-in-grams": {
+    "image": "/blog-import/how-much-is-1-bhori-gold-in-grams.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "the-value-of-vintage-gold": {
+    "image": "/blog-import/the-value-of-vintage-gold.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "what-is-20-carat-gold": {
+    "image": "/blog-import/what-is-20-carat-gold.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "types-of-gold-in-india": {
+    "image": "/blog-import/types-of-gold-in-india.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "top-10-gold-jewellery-brands-in-india": {
+    "image": "/blog-import/top-10-gold-jewellery-brands-in-india.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "costly-gold-buying-mistakes": {
+    "image": "/blog-import/costly-gold-buying-mistakes.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "difference-between-white-and-yellow-gold": {
+    "image": "/blog-import/difference-between-white-and-yellow-gold.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "gold-plated-and-solid-gold-jewellery": {
+    "image": "/blog-import/gold-plated-and-solid-gold-jewellery.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "gold-resale-value-today": {
+    "image": "/blog-import/gold-resale-value-today.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "how-to-buy-gold-biscuits-in-india": {
+    "image": "/blog-import/how-to-buy-gold-biscuits-in-india.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "what-is-rose-gold": {
+    "image": "/blog-import/what-is-rose-gold.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "things-to-know-before-selling-gold": {
+    "image": "/blog-import/things-to-know-before-selling-gold.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "22k-or-24k-gold": {
+    "image": "/blog-import/22k-or-24k-gold.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "how-many-grams-in-1-tulam-gold": {
+    "image": "/blog-import/how-many-grams-in-1-tulam-gold.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "20-carat-gold-purity-percentage": {
+    "image": "/blog-import/20-carat-gold-purity-percentage.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "how-many-grams-of-gold-are-sufficient-for-a-gold-chain": {
+    "image": "/blog-import/how-many-grams-of-gold-are-sufficient-for-a-gold-chain.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "best-tips-to-get-the-highest-price-for-your-gold-in-india": {
+    "image": "/blog-import/best-tips-to-get-the-highest-price-for-your-gold-in-india.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "how-to-sell-old-gold-jewellery-without-a-bill": {
+    "image": "/blog-import/how-to-sell-old-gold-jewellery-without-a-bill.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "how-many-grams-is-a-gold-ring": {
+    "image": "/blog-import/how-many-grams-is-a-gold-ring.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "how-to-purchase-gold-on-emi": {
+    "image": "/blog-import/how-to-purchase-gold-on-emi.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "how-much-is-1-savaran-gold-in-grams": {
+    "image": "/blog-import/how-much-is-1-savaran-gold-in-grams.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "1-ratti-gold-in-grams": {
+    "image": "/blog-import/1-ratti-gold-in-grams.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "how-to-identify-real-gold-at-home": {
+    "image": "/blog-import/how-to-identify-real-gold-at-home.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "difference-between-gold-karats": {
+    "image": "/blog-import/difference-between-gold-karats.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "how-to-calculate-gold-jewellery-price-in-india": {
+    "image": "/blog-import/how-to-calculate-gold-jewellery-price-in-india.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "sell-gold-with-aadhaar": {
+    "image": "/blog-import/sell-gold-with-aadhaar.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "sell-old-gold-jewellery-without-getting-cheated": {
+    "image": "/blog-import/sell-old-gold-jewellery-without-getting-cheated.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "sell-gold-from-friend-relative-provenance": {
+    "image": "/blog-import/sell-gold-from-friend-relative-provenance.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "gold-worth-more-than-10-years-ago": {
+    "image": "/blog-import/gold-worth-more-than-10-years-ago.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "kdm-gold-vs-hallmark": {
+    "image": "/blog-import/kdm-gold-vs-hallmark.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "services-sell-gold-for-cash": {
+    "image": "/blog-import/services-sell-gold-for-cash.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "gold-purity-testing": {
+    "image": "/blog-import/gold-purity-testing.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "best-time-to-sell-gold-india": {
+    "image": "/blog-import/best-time-to-sell-gold-india.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "gold-loan-vs-selling-gold": {
+    "image": "/blog-import/gold-loan-vs-selling-gold.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "gold-price-drop-trend-2026": {
+    "image": "/blog-import/gold-price-drop-trend-2026.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "sell-broken-damaged-gold": {
+    "image": "/blog-import/sell-broken-damaged-gold.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "documents-required-to-sell-gold": {
+    "image": "/blog-import/documents-required-to-sell-gold.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "gst-on-gold": {
+    "image": "/blog-import/gst-on-gold.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "bank-transfer-safest-gold-sale": {
+    "image": "/blog-import/bank-transfer-safest-gold-sale.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "gold-earrings-resale-value": {
+    "image": "/blog-import/gold-earrings-resale-value.webp?v=photo-v2",
+    "theme": "earrings",
+    "asset": "/ornaments/calculator-earrings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-bracelet-weight-resale": {
+    "image": "/blog-import/gold-bracelet-weight-resale.webp?v=photo-v2",
+    "theme": "bracelets",
+    "asset": "/ornaments/branches-bracelet.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-coin-price-selling-guide": {
+    "image": "/blog-import/gold-coin-price-selling-guide.webp?v=photo-v2",
+    "theme": "coins",
+    "asset": "/buy-gold-coins.webp",
+    "label": "GOLD COINS & VALUE"
+  },
+  "gold-mangalsutra-weight-resale": {
+    "image": "/blog-import/gold-mangalsutra-weight-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-pendant-weight-resale": {
+    "image": "/blog-import/gold-pendant-weight-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-price-history-india": {
+    "image": "/blog-import/gold-price-history-india.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-buyers-near-me": {
+    "image": "/blog-import/gold-buyers-near-me.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "gold-anklet-weight-resale": {
+    "image": "/blog-import/gold-anklet-weight-resale.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "2-gram-gold-rate-today": {
+    "image": "/blog-import/2-gram-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "5-gram-gold-selling-price-today": {
+    "image": "/blog-import/5-gram-gold-selling-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "100-gram-gold-selling-price-today": {
+    "image": "/blog-import/100-gram-gold-selling-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "sell-my-gold": {
+    "image": "/blog-import/sell-my-gold.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "how-to-sell-digital-gold": {
+    "image": "/blog-import/how-to-sell-digital-gold.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "50-gram-gold-selling-price-today": {
+    "image": "/blog-import/50-gram-gold-selling-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "mens-gold-ring-resale-value": {
+    "image": "/blog-import/mens-gold-ring-resale-value.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "9-gram-gold-rate-today": {
+    "image": "/blog-import/9-gram-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "mens-gold-chain-resale-value": {
+    "image": "/blog-import/mens-gold-chain-resale-value.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-nose-pin-resale-value": {
+    "image": "/blog-import/gold-nose-pin-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "6-gram-gold-rate-today": {
+    "image": "/blog-import/6-gram-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "7-gram-gold-rate-today": {
+    "image": "/blog-import/7-gram-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "40-gram-gold-rate-today": {
+    "image": "/blog-import/40-gram-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "30-gram-gold-rate-today": {
+    "image": "/blog-import/30-gram-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "15-gram-gold-rate-today": {
+    "image": "/blog-import/15-gram-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "bridal-gold-jewellery-resale-value": {
+    "image": "/blog-import/bridal-gold-jewellery-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-haram-resale-value": {
+    "image": "/blog-import/gold-haram-resale-value.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-maang-tikka-resale-value": {
+    "image": "/blog-import/gold-maang-tikka-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-waist-chain-resale-value": {
+    "image": "/blog-import/gold-waist-chain-resale-value.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "huid-number-gold": {
+    "image": "/blog-import/huid-number-gold.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "gold-jhumka-resale-value": {
+    "image": "/blog-import/gold-jhumka-resale-value.webp?v=photo-v2",
+    "theme": "earrings",
+    "asset": "/ornaments/calculator-earrings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-ring-for-women-resale-value": {
+    "image": "/blog-import/gold-ring-for-women-resale-value.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-thali-chain-resale-value": {
+    "image": "/blog-import/gold-thali-chain-resale-value.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "ladies-gold-chain-resale-value": {
+    "image": "/blog-import/ladies-gold-chain-resale-value.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-kada-resale-value": {
+    "image": "/blog-import/gold-kada-resale-value.webp?v=photo-v2",
+    "theme": "bangles",
+    "asset": "/ornaments/services-bangles.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-nath-resale-value": {
+    "image": "/blog-import/gold-nath-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-vanki-resale-value": {
+    "image": "/blog-import/gold-vanki-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-earrings-for-women-resale-value": {
+    "image": "/blog-import/gold-earrings-for-women-resale-value.webp?v=photo-v2",
+    "theme": "earrings",
+    "asset": "/ornaments/calculator-earrings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-bangles-set-resale-value": {
+    "image": "/blog-import/gold-bangles-set-resale-value.webp?v=photo-v2",
+    "theme": "bangles",
+    "asset": "/ornaments/services-bangles.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-necklace-set-resale-value": {
+    "image": "/blog-import/gold-necklace-set-resale-value.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-kolusu-resale-value": {
+    "image": "/blog-import/gold-kolusu-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-mathapatti-resale-value": {
+    "image": "/blog-import/gold-mathapatti-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-lakshmi-pendant-resale-value": {
+    "image": "/blog-import/gold-lakshmi-pendant-resale-value.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-kasumala-resale-value": {
+    "image": "/blog-import/gold-kasumala-resale-value.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-chandbali-resale-value": {
+    "image": "/blog-import/gold-chandbali-resale-value.webp?v=photo-v2",
+    "theme": "earrings",
+    "asset": "/ornaments/calculator-earrings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-bar-selling-guide": {
+    "image": "/blog-import/gold-bar-selling-guide.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-payal-resale-value": {
+    "image": "/blog-import/gold-payal-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-choker-necklace-resale-value": {
+    "image": "/blog-import/gold-choker-necklace-resale-value.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "13-gram-gold-price-today": {
+    "image": "/blog-import/13-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "14-gram-gold-price-today": {
+    "image": "/blog-import/14-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "18-gram-gold-price-today": {
+    "image": "/blog-import/18-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "22-gram-gold-price-today": {
+    "image": "/blog-import/22-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "45-gram-gold-price-today": {
+    "image": "/blog-import/45-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "250-gram-gold-price-today": {
+    "image": "/blog-import/250-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-ear-tops-resale-value": {
+    "image": "/blog-import/gold-ear-tops-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-mangalsutra-pendant-resale-value": {
+    "image": "/blog-import/gold-mangalsutra-pendant-resale-value.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-locket-resale-value": {
+    "image": "/blog-import/gold-locket-resale-value.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-jimikki-resale-value": {
+    "image": "/blog-import/gold-jimikki-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-cuff-bracelet-resale-value": {
+    "image": "/blog-import/gold-cuff-bracelet-resale-value.webp?v=photo-v2",
+    "theme": "bracelets",
+    "asset": "/ornaments/branches-bracelet.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-ring-with-diamond-resale-value": {
+    "image": "/blog-import/gold-ring-with-diamond-resale-value.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-jada-billa-resale-value": {
+    "image": "/blog-import/gold-jada-billa-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-nallapusalu-resale-value": {
+    "image": "/blog-import/gold-nallapusalu-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-toe-ring-resale-value": {
+    "image": "/blog-import/gold-toe-ring-resale-value.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-ear-cuff-resale-value": {
+    "image": "/blog-import/gold-ear-cuff-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-haath-phool-resale-value": {
+    "image": "/blog-import/gold-haath-phool-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "white-gold-resale-value": {
+    "image": "/blog-import/white-gold-resale-value.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "gold-krishna-pendant-resale-value": {
+    "image": "/blog-import/gold-krishna-pendant-resale-value.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-peacock-pendant-resale-value": {
+    "image": "/blog-import/gold-peacock-pendant-resale-value.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-ganesha-pendant-resale-value": {
+    "image": "/blog-import/gold-ganesha-pendant-resale-value.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "how-to-weigh-gold-at-home": {
+    "image": "/blog-import/how-to-weigh-gold-at-home.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-kangan-resale-value": {
+    "image": "/blog-import/gold-kangan-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "8-gram-gold-price-today": {
+    "image": "/blog-import/8-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-oddiyanam-resale-value": {
+    "image": "/blog-import/gold-oddiyanam-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "akshaya-tritiya-gold-selling-guide": {
+    "image": "/blog-import/akshaya-tritiya-gold-selling-guide.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "dhanteras-gold-selling-guide": {
+    "image": "/blog-import/dhanteras-gold-selling-guide.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "3-pavan-gold-rate-today": {
+    "image": "/blog-import/3-pavan-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "4-pavan-gold-rate-today": {
+    "image": "/blog-import/4-pavan-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "diwali-gold-selling-guide": {
+    "image": "/blog-import/diwali-gold-selling-guide.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "meenakari-gold-jewellery-resale": {
+    "image": "/blog-import/meenakari-gold-jewellery-resale.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "5-savaran-gold-rate-today": {
+    "image": "/blog-import/5-savaran-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "10-savaran-gold-rate-today": {
+    "image": "/blog-import/10-savaran-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-thushi-necklace-resale-value": {
+    "image": "/blog-import/gold-thushi-necklace-resale-value.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-guttapusalu-resale-value": {
+    "image": "/blog-import/gold-guttapusalu-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-gajra-resale-value": {
+    "image": "/blog-import/gold-gajra-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-kolhapuri-saaj-necklace-resale": {
+    "image": "/blog-import/gold-kolhapuri-saaj-necklace-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-sui-dhaga-earring-resale-value": {
+    "image": "/blog-import/gold-sui-dhaga-earring-resale-value.webp?v=photo-v2",
+    "theme": "earrings",
+    "asset": "/ornaments/calculator-earrings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-layered-necklace-resale-value": {
+    "image": "/blog-import/gold-layered-necklace-resale-value.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-chandraharam-resale-value": {
+    "image": "/blog-import/gold-chandraharam-resale-value.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-manga-malai-necklace-resale": {
+    "image": "/blog-import/gold-manga-malai-necklace-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-nagapadam-earrings-resale": {
+    "image": "/blog-import/gold-nagapadam-earrings-resale.webp?v=photo-v2",
+    "theme": "earrings",
+    "asset": "/ornaments/calculator-earrings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-puligoru-pendant-resale": {
+    "image": "/blog-import/gold-puligoru-pendant-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-pathakam-necklace-resale": {
+    "image": "/blog-import/gold-pathakam-necklace-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-vaddanam-resale-value": {
+    "image": "/blog-import/gold-vaddanam-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-tussi-necklace-resale": {
+    "image": "/blog-import/gold-tussi-necklace-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-borla-resale-value": {
+    "image": "/blog-import/gold-borla-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-pasa-resale-value": {
+    "image": "/blog-import/gold-pasa-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "33-gram-gold-price-today": {
+    "image": "/blog-import/33-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-kalgi-resale-value": {
+    "image": "/blog-import/gold-kalgi-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-bali-earring-resale-value": {
+    "image": "/blog-import/gold-bali-earring-resale-value.webp?v=photo-v2",
+    "theme": "earrings",
+    "asset": "/ornaments/calculator-earrings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-mukut-bengali-bridal-resale": {
+    "image": "/blog-import/gold-mukut-bengali-bridal-resale.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "gold-coin-pendant-necklace-resale": {
+    "image": "/blog-import/gold-coin-pendant-necklace-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-lotus-pendant-necklace-resale": {
+    "image": "/blog-import/gold-lotus-pendant-necklace-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "23-gram-gold-price-today": {
+    "image": "/blog-import/23-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "32-gram-gold-price-today": {
+    "image": "/blog-import/32-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "26-gram-gold-price-today": {
+    "image": "/blog-import/26-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-pacheli-resale-value": {
+    "image": "/blog-import/gold-pacheli-resale-value.webp?v=photo-v2",
+    "theme": "bangles",
+    "asset": "/ornaments/services-bangles.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-rani-haar-resale-value": {
+    "image": "/blog-import/gold-rani-haar-resale-value.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "250-gram-gold-price-today-guide-238": {
+    "image": "/blog-import/250-gram-gold-price-today-guide-238.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-jadanagam-resale-value": {
+    "image": "/blog-import/gold-jadanagam-resale-value.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "gold-thewa-jewellery-resale": {
+    "image": "/blog-import/gold-thewa-jewellery-resale.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-mugappu-chain-resale": {
+    "image": "/blog-import/gold-mugappu-chain-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "400-gram-gold-price-today": {
+    "image": "/blog-import/400-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "27-gram-gold-price-today": {
+    "image": "/blog-import/27-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "34-gram-gold-price-today": {
+    "image": "/blog-import/34-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "160-gram-gold-price-today": {
+    "image": "/blog-import/160-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-bormala-resale-value": {
+    "image": "/blog-import/gold-bormala-resale-value.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "350-gram-gold-price-today": {
+    "image": "/blog-import/350-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-guluband-resale-value": {
+    "image": "/blog-import/gold-guluband-resale-value.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "38-gram-gold-price-today": {
+    "image": "/blog-import/38-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "31-gram-gold-price-today": {
+    "image": "/blog-import/31-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "29-gram-gold-price-today": {
+    "image": "/blog-import/29-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "125-gram-gold-price-today": {
+    "image": "/blog-import/125-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "44-gram-gold-price-today": {
+    "image": "/blog-import/44-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "130-gram-gold-price-today": {
+    "image": "/blog-import/130-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "37-gram-gold-price-today": {
+    "image": "/blog-import/37-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-solitaire-ring-resale": {
+    "image": "/blog-import/gold-solitaire-ring-resale.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-champasaralu-resale": {
+    "image": "/blog-import/gold-champasaralu-resale.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-rakhdi-resale-value": {
+    "image": "/blog-import/gold-rakhdi-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "140-gram-gold-price-today": {
+    "image": "/blog-import/140-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "175-gram-gold-price-today": {
+    "image": "/blog-import/175-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-gundla-mala-resale": {
+    "image": "/blog-import/gold-gundla-mala-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-kante-necklace-resale": {
+    "image": "/blog-import/gold-kante-necklace-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-addigai-resale-value": {
+    "image": "/blog-import/gold-addigai-resale-value.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-putli-haar-resale": {
+    "image": "/blog-import/gold-putli-haar-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-sheeshphool-resale": {
+    "image": "/blog-import/gold-sheeshphool-resale.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-satlada-necklace-resale": {
+    "image": "/blog-import/gold-satlada-necklace-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-mens-bracelet-resale": {
+    "image": "/blog-import/gold-mens-bracelet-resale.webp?v=photo-v2",
+    "theme": "bracelets",
+    "asset": "/ornaments/branches-bracelet.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "12-pavan-gold-rate-today": {
+    "image": "/blog-import/12-pavan-gold-rate-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-engagement-ring-resale": {
+    "image": "/blog-import/gold-engagement-ring-resale.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-snake-chain-resale": {
+    "image": "/blog-import/gold-snake-chain-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-long-mangalsutra-resale": {
+    "image": "/blog-import/gold-long-mangalsutra-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-black-beads-necklace-resale": {
+    "image": "/blog-import/gold-black-beads-necklace-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-studs-resale-value": {
+    "image": "/blog-import/gold-studs-resale-value.webp?v=photo-v2",
+    "theme": "earrings",
+    "asset": "/ornaments/calculator-earrings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-pendant-set-resale": {
+    "image": "/blog-import/gold-pendant-set-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-short-mangalsutra-resale": {
+    "image": "/blog-import/gold-short-mangalsutra-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-antique-necklace-resale": {
+    "image": "/blog-import/gold-antique-necklace-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-cuban-chain-resale": {
+    "image": "/blog-import/gold-cuban-chain-resale.webp?v=photo-v2",
+    "theme": "necklaces",
+    "asset": "/ornaments/faq-necklace.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "gold-tanmaniya-resale": {
+    "image": "/blog-import/gold-tanmaniya-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "300-gram-gold-price-today-guide-303": {
+    "image": "/blog-import/300-gram-gold-price-today-guide-303.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "200-gram-gold-price-today-guide-301": {
+    "image": "/blog-import/200-gram-gold-price-today-guide-301.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-signet-ring-resale": {
+    "image": "/blog-import/gold-signet-ring-resale.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "150-gram-gold-price-today-guide-305": {
+    "image": "/blog-import/150-gram-gold-price-today-guide-305.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-tennis-bracelet-resale": {
+    "image": "/blog-import/gold-tennis-bracelet-resale.webp?v=photo-v2",
+    "theme": "bracelets",
+    "asset": "/ornaments/branches-bracelet.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "sell-gold-without-receipt": {
+    "image": "/blog-import/sell-gold-without-receipt.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "gold-rate-per-tola-today-guide-329": {
+    "image": "/blog-import/gold-rate-per-tola-today-guide-329.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "80-gram-gold-price-today-guide-330": {
+    "image": "/blog-import/80-gram-gold-price-today-guide-330.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "60-gram-gold-price-today-guide-331": {
+    "image": "/blog-import/60-gram-gold-price-today-guide-331.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "70-gram-gold-price-today-guide-334": {
+    "image": "/blog-import/70-gram-gold-price-today-guide-334.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-cuff-bracelet-resale": {
+    "image": "/blog-import/gold-cuff-bracelet-resale.webp?v=photo-v2",
+    "theme": "bracelets",
+    "asset": "/ornaments/branches-bracelet.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "75-gram-gold-price-today-guide-338": {
+    "image": "/blog-import/75-gram-gold-price-today-guide-338.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "90-gram-gold-price-today-guide-340": {
+    "image": "/blog-import/90-gram-gold-price-today-guide-340.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "110-gram-gold-price-today-guide-342": {
+    "image": "/blog-import/110-gram-gold-price-today-guide-342.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "gold-hamsa-pendant-resale": {
+    "image": "/blog-import/gold-hamsa-pendant-resale.webp?v=photo-v2",
+    "theme": "pendants",
+    "asset": "/ornaments/pledge-pendant.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "sell-gold-in-mysore": {
+    "image": "/blog-import/sell-gold-in-mysore.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "sell-gold-in-visakhapatnam": {
+    "image": "/blog-import/sell-gold-in-visakhapatnam.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "sell-gold-in-coimbatore": {
+    "image": "/blog-import/sell-gold-in-coimbatore.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "sell-gold-in-madurai": {
+    "image": "/blog-import/sell-gold-in-madurai.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "sell-gold-in-mangalore": {
+    "image": "/blog-import/sell-gold-in-mangalore.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "sell-gold-in-tirupati": {
+    "image": "/blog-import/sell-gold-in-tirupati.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "sell-gold-in-vijayawada": {
+    "image": "/blog-import/sell-gold-in-vijayawada.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "9k-gold-375-hallmark": {
+    "image": "/blog-import/9k-gold-375-hallmark.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "sell-gold-in-pondicherry": {
+    "image": "/blog-import/sell-gold-in-pondicherry.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "rose-gold-resale-value": {
+    "image": "/blog-import/rose-gold-resale-value.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "875-gold-21k-hallmark": {
+    "image": "/blog-import/875-gold-21k-hallmark.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "italian-gold-foreign-hallmarks": {
+    "image": "/blog-import/italian-gold-foreign-hallmarks.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "995-gold-meaning": {
+    "image": "/blog-import/995-gold-meaning.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "jeweller-rate-vs-ibja": {
+    "image": "/blog-import/jeweller-rate-vs-ibja.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-rate-weekends-bank-holidays": {
+    "image": "/blog-import/gold-rate-weekends-bank-holidays.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-rate-after-budget-2026-guide-492": {
+    "image": "/blog-import/gold-rate-after-budget-2026-guide-492.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "dollar-rupee-gold-rate": {
+    "image": "/blog-import/dollar-rupee-gold-rate.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "selling-gold-after-divorce": {
+    "image": "/blog-import/selling-gold-after-divorce.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "sell-inherited-gold-deceased-parent": {
+    "image": "/blog-import/sell-inherited-gold-deceased-parent.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "sell-gold-in-guntur": {
+    "image": "/blog-import/sell-gold-in-guntur.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "sell-gold-in-tiruchirappalli": {
+    "image": "/blog-import/sell-gold-in-tiruchirappalli.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "bank-gold-locker-charges": {
+    "image": "/blog-import/bank-gold-locker-charges.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "digital-gold-to-physical-gold": {
+    "image": "/blog-import/digital-gold-to-physical-gold.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "bhori-gold-price": {
+    "image": "/blog-import/bhori-gold-price.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "169-gram-gold-price-today": {
+    "image": "/blog-import/169-gram-gold-price-today.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "selling-gold-after-retirement": {
+    "image": "/blog-import/selling-gold-after-retirement.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "sell-gold-for-house-down-payment": {
+    "image": "/blog-import/sell-gold-for-house-down-payment.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "does-gold-purity-change-during-repair": {
+    "image": "/blog-import/does-gold-purity-change-during-repair.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "how-to-get-best-price-for-gold-guide-564": {
+    "image": "/blog-import/how-to-get-best-price-for-gold-guide-564.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "first-time-selling-gold-mistakes": {
+    "image": "/blog-import/first-time-selling-gold-mistakes.webp?v=photo-v2",
+    "theme": "people",
+    "asset": "/blog-scenes/people.webp",
+    "label": "SELL WITH CONFIDENCE"
+  },
+  "which-gold-coin-best-resale-value": {
+    "image": "/blog-import/which-gold-coin-best-resale-value.webp?v=photo-v2",
+    "theme": "coins",
+    "asset": "/buy-gold-coins.webp",
+    "label": "GOLD COINS & VALUE"
+  },
+  "why-old-jewellery-tests-lower-purity": {
+    "image": "/blog-import/why-old-jewellery-tests-lower-purity.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "how-much-gold-rate-changes-in-a-week": {
+    "image": "/blog-import/how-much-gold-rate-changes-in-a-week.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "why-india-uses-22k-gold": {
+    "image": "/blog-import/why-india-uses-22k-gold.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "gold-loan-auction-notice-india": {
+    "image": "/blog-import/gold-loan-auction-notice-india.webp?v=photo-v2",
+    "theme": "cash",
+    "asset": "/blog-scenes/cash.webp",
+    "label": "GOLD & YOUR MONEY"
+  },
+  "gold-rate-during-demonetisation-2016": {
+    "image": "/blog-import/gold-rate-during-demonetisation-2016.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "how-much-gold-indians-own": {
+    "image": "/blog-import/how-much-gold-indians-own.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "mcx-gold-rate-vs-ibja-rate": {
+    "image": "/blog-import/mcx-gold-rate-vs-ibja-rate.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-rate-india-during-covid-2020": {
+    "image": "/blog-import/gold-rate-india-during-covid-2020.webp?v=photo-v2",
+    "theme": "rings",
+    "asset": "/ornaments/contact-rings.webp",
+    "label": "GOLD JEWELLERY GUIDE"
+  },
+  "fed-rate-hike-gold-india": {
+    "image": "/blog-import/fed-rate-hike-gold-india.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "gold-smuggling-penalties-india": {
+    "image": "/blog-import/gold-smuggling-penalties-india.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "how-to-read-xrf-gold-testing-report": {
+    "image": "/blog-import/how-to-read-xrf-gold-testing-report.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "home-gold-testing-toothpaste-vinegar": {
+    "image": "/blog-import/home-gold-testing-toothpaste-vinegar.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "sell-gold-without-aadhaar-pan-only": {
+    "image": "/blog-import/sell-gold-without-aadhaar-pan-only.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "kacha-gold-vs-pakka-gold": {
+    "image": "/blog-import/kacha-gold-vs-pakka-gold.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "gold-rate-karnataka-vs-tamil-nadu": {
+    "image": "/blog-import/gold-rate-karnataka-vs-tamil-nadu.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "22k-hallmark-vs-kdm-gold-difference": {
+    "image": "/blog-import/22k-hallmark-vs-kdm-gold-difference.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "sell-gold-baby-shower-naming-ceremony": {
+    "image": "/blog-import/sell-gold-baby-shower-naming-ceremony.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "gold-rate-akshaya-tritiya-dhanteras-festivals": {
+    "image": "/blog-import/gold-rate-akshaya-tritiya-dhanteras-festivals.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "how-gold-futures-work-india": {
+    "image": "/blog-import/how-gold-futures-work-india.webp?v=photo-v2",
+    "theme": "bullion",
+    "asset": "/buy-gold-bars.webp",
+    "label": "GOLD VALUE & MARKETS"
+  },
+  "south-indian-wedding-gold-quantity": {
+    "image": "/blog-import/south-indian-wedding-gold-quantity.webp?v=photo-v2",
+    "theme": "gold",
+    "asset": "/blog-scenes/gold.webp",
+    "label": "THE GOLD JOURNAL"
+  },
+  "nri-usd-payment-gold-sale-india": {
+    "image": "/blog-import/nri-usd-payment-gold-sale-india.webp?v=photo-v2",
+    "theme": "documents",
+    "asset": "/experience-documentation.webp",
+    "label": "DOCUMENTS & GUIDANCE"
+  },
+  "kasu-gold-coin-south-india": {
+    "image": "/blog-import/kasu-gold-coin-south-india.webp?v=photo-v2",
+    "theme": "weight",
+    "asset": "/valuation-weight.webp",
+    "label": "GOLD WEIGHT GUIDE"
+  },
+  "export-quality-gold-vs-domestic-india": {
+    "image": "/blog-import/export-quality-gold-vs-domestic-india.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  },
+  "antique-gold-jewellery-purity-india": {
+    "image": "/blog-import/antique-gold-jewellery-purity-india.webp?v=photo-v2",
+    "theme": "purity",
+    "asset": "/gold-xrf-testing.webp",
+    "label": "PURITY & TESTING"
+  }
+}

@@ -8,7 +8,7 @@
 .copy { padding: 30px; }
 .eyebrow { margin: 0 0 12px; color: #a15817; font-size: 11px; letter-spacing: .12em; font-weight: 800; }
 .copy h1 { margin: 0 0 18px; font-family: var(--font-aryan-display), Georgia, serif; font-size: clamp(30px, 3vw, 44px); line-height: 1.15; color: #006a64; }
-.copy > p:not(.eyebrow) { font-size: 15px; line-height: 1.85; }
+.section .copy > p:not(.eyebrow) { color: #405d57; font-size: 15px; line-height: 1.85; }
 .copy ul { display: grid; gap: 12px; margin: 22px 0 0; padding-left: 20px; font-size: 14px; line-height: 1.65; }
 .formCard { padding: 32px; border: 1px solid #e8dfcf; border-top: 4px solid #f4c34a; border-radius: 18px; background: #fffaf2; box-shadow: 0 12px 35px #1437320d; }
 .formCard h2 { margin: 0 0 12px; font: 700 30px/1.2 var(--font-aryan-display), Georgia, serif; color: #006a64; }

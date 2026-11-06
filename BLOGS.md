@@ -1,5 +1,45 @@
 # Blog content and images
 
+## Authorized website import
+
+`npm run import:website-blogs` imports the authorized article library from
+`https://www.atticagoldcompany.com/blogs/`, discovering every article through its
+posts sitemap. The user confirmed reuse permission for the articles and images.
+Article HTML and original images are cached in the ignored
+`data/blogs/source/website/` directory. A failed download keeps the existing
+website dataset intact; rerun to retry. Use `-- --refresh --rebrand` to redownload
+article HTML and rebuild covers, or `-- --rebrand` to rebuild from cached sources.
+
+Imported articles live in `data/blogs/website-posts.json`, with provenance,
+stable IDs in a separate namespace, and a report in
+`data/blogs/website-import-report.json`. Existing Google Sheet posts take
+precedence on duplicate slugs. Sheet refreshes preserve the website library.
+Both sources appear in admin, search, article pages and the sitemap.
+
+Imported images are stored in `public/blog-import/` and travel with deployment.
+Aryan-branded covers use clear topic-matched gold, cash, customer consultation,
+testing, weighing and jewellery photographs. Three original AI-generated editorial
+photos are stored in `public/blog-scenes/`; existing site photography supplies the
+specialist subjects. These are illustrations, not photographs of actual customers.
+`src/lib/blog-visuals.mjs` selects the subject from each title and description.
+Run `npm run blogs:covers` to rebuild every cover locally without downloading the
+source site. The cover manifest also applies to Google Sheet posts and duplicate
+slugs; future website imports use the same rendering rules. Source images stay
+archived in the download cache rather than appearing on the public covers.
+Uploaded admin images continue to override imported covers.
+
+To replace an existing logo-only or blank admin upload with a description-related
+photo, run `node scripts/set-blog-topic-images.mjs sell-gold-in-bangalore sell-gold-in-chennai`
+against that deployment's database. This assigns a fresh image URL, keeps the old
+files, and uses the same topic selection as the covers. Both current local overrides
+have been replaced with the customer-and-gold valuation photograph.
+
+Article processing removes navigation, recommendations, forms, promotional blocks,
+source-company claims and source-specific FAQ answers. It sanitizes HTML, rewrites
+internal links and revises recurring editorial wording. It is an import with
+editorial cleanup, not a complete original rewrite of every sentence or an audit
+of historical financial figures. Original source dates remain provenance only.
+
 Public listing: `/blogs`. Articles: `/blogs/[slug]`. Image management: `/admin/blogs` (Blog images permission).
 
 Configured Google Sheet: https://docs.google.com/spreadsheets/d/1iQ666q4zXtzHlzHb31uLe2x6uK16TloudA9GxZbMq-o/edit?gid=0
