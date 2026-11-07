@@ -23,13 +23,13 @@ export async function PUT(request, { params }) {
     const form = await readBranchForm(request);
     const branch = validateBranch(form);
     if (branch.branchId !== current.branchId) throw new BranchError("Branch ID cannot be changed after creation because it is the synchronization key.");
-    await requireBranchUpsert(branch);
+    const synced = await requireBranchUpsert(branch);
     image = await saveBranchImage(form.get("image"), branch.branchId);
     const saved = await updateBranch(current.id, {
       ...branch, image: image || (form.get("removeImage") === "true" ? null : current.image),
     });
     if (!saved) throw new BranchError("Branch no longer exists. Refresh the list.", 404);
-    return Response.json({ branch: saved, message: "Branch updated and synced successfully." });
+    return Response.json({ branch: saved, message: synced ? "Branch updated and synced successfully." : "Branch updated successfully." });
   } catch (error) {
     if (image) await discardBranchImage(image);
     return branchApiError(error);
@@ -40,8 +40,8 @@ export async function DELETE(request, { params }) {
   try {
     await authorizeBranchRequest(request);
     const branch = await existingBranch(params);
-    await requireBranchDeactivation(branch);
+    const synced = await requireBranchDeactivation(branch);
     if (!await deleteBranch(branch.id)) throw new BranchError("Branch not found.", 404);
-    return Response.json({ message: "Branch deactivated remotely and deleted locally." });
+    return Response.json({ message: synced ? "Branch deactivated remotely and deleted locally." : "Branch deleted successfully." });
   } catch (error) { return branchApiError(error); }
 }

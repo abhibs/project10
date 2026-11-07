@@ -2,7 +2,9 @@ const EXPECTED_STATUSES = new Set([200, 201]);
 
 export class BranchSyncError extends Error {
   constructor(cause) {
-    super("Branch was not saved because the branch API push failed. Please try again.", { cause });
+    super(cause?.message?.startsWith("BRANCH_ADMIN_API_")
+      ? `Branch was not saved: ${cause.message} Configure both branch API settings or leave both unset to save locally.`
+      : "Branch was not saved because the branch API push failed. Please try again.", { cause });
     this.status = 502;
   }
 }
@@ -58,6 +60,11 @@ export function buildBranchUpsertRequest(
 }
 
 export async function sendBranchUpsert(branch) {
+  // A standalone installation has no remote branch service to synchronize.
+  // A partially configured integration must still fail rather than lose updates.
+  if (!process.env.BRANCH_ADMIN_API_URL && !process.env.BRANCH_ADMIN_API_TOKEN) {
+    return null;
+  }
   const { url, options } = buildBranchUpsertRequest(branch);
   const response = await fetch(url, options);
   if (!EXPECTED_STATUSES.has(response.status)) {

@@ -98,7 +98,10 @@ Branch detail URL and directions tests: `node --test tests/branch-links.test.mjs
 
 ### Branch API sync
 
-Creating or updating a branch also sends a server-side JSON `POST` to the branch
+Remote sync is optional: leave both `BRANCH_ADMIN_API_URL` and
+`BRANCH_ADMIN_API_TOKEN` unset for local-only branch management. Setting only one
+blocks changes with a configuration error. When both are configured,
+creating or updating a branch also sends a server-side JSON `POST` to the branch
 upsert endpoint configured in `BRANCH_ADMIN_API_URL`. Set `BRANCH_ADMIN_API_TOKEN`
 to the target API's bearer token. The request contains `branchId`, name, area,
 city, state, pincode, timings, address, status, coordinates and URL; images stay

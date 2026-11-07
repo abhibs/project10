@@ -20,10 +20,10 @@ export async function POST(request) {
     await authorizeBranchRequest(request);
     const form = await readBranchForm(request);
     const branch = validateBranch(form);
-    await requireBranchUpsert(branch);
+    const synced = await requireBranchUpsert(branch);
     image = await saveBranchImage(form.get("image"), branch.branchId);
     const saved = await createBranch({ ...branch, image });
-    return Response.json({ branch: saved, message: "Branch created and synced successfully." }, { status: 201 });
+    return Response.json({ branch: saved, message: synced ? "Branch created and synced successfully." : "Branch created successfully." }, { status: 201 });
   } catch (error) {
     if (image) await discardBranchImage(image);
     return branchApiError(error);

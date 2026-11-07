@@ -83,6 +83,18 @@ test("accepts create and update responses and rejects other statuses", async (co
   }
   globalThis.fetch = async () => ({ status: 401 });
   await assert.rejects(sendBranchUpsert(branch), /HTTP 401/);
+
+  globalThis.fetch = async () => { assert.fail("Unconfigured sync must not make a network request"); };
+  delete process.env.BRANCH_ADMIN_API_URL;
+  delete process.env.BRANCH_ADMIN_API_TOKEN;
+  assert.equal(await requireBranchUpsert(branch), null);
+  assert.equal(await requireBranchDeactivation(branch), null);
+
+  process.env.BRANCH_ADMIN_API_URL = "https://sync.example/api/admin/branches";
+  await assert.rejects(requireBranchUpsert(branch), /BRANCH_ADMIN_API_TOKEN is not configured/);
+  delete process.env.BRANCH_ADMIN_API_URL;
+  process.env.BRANCH_ADMIN_API_TOKEN = "secret-token";
+  await assert.rejects(requireBranchUpsert(branch), /BRANCH_ADMIN_API_URL is not configured/);
 });
 
 test("requires a successful push before the caller can continue", async () => {
