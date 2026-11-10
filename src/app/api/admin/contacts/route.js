@@ -33,7 +33,8 @@ export async function POST(request) {
 }
 
 export async function PATCH(request) {
-  try { await authorizeAdminRequest(request, "contact"); } catch (error) { return adminApiError(error); }
+  let admin;
+  try { admin = await authorizeAdminRequest(request); } catch (error) { return adminApiError(error); }
   let body;
   try { body = await request.json(); } catch {
     return Response.json({ message: "Invalid request." }, { status: 400 });
@@ -130,7 +131,12 @@ export async function PATCH(request) {
 }
 
 export async function GET(request) {
-  try { await authorizeAdminRequest(request, "contact"); } catch (error) { return adminApiError(error); }
+  try {
+    const admin = await authorizeAdminRequest(request);
+    if (!canAccessContactStatus(admin, new URL(request.url).searchParams.get("status"))) {
+      throw new AdminAccessError("You do not have access to this section.", 403);
+    }
+  } catch (error) { return adminApiError(error); }
 
   const { searchParams } = new URL(request.url);
   const { fromDate, toDate, businessType, status } = resolveContactFilters({
