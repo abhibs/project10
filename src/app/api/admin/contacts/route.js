@@ -128,6 +128,7 @@ export async function GET(request) {
 
   const { searchParams } = new URL(request.url);
   const { fromDate, toDate, businessType, status } = resolveContactFilters({
+    allDates: searchParams.get("allDates") === "true",
     status: searchParams.get("status") || "",
     fromDate: searchParams.get("fromDate") || "",
     toDate: searchParams.get("toDate") || "",

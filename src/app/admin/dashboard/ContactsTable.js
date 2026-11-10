@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { resolveContactFilters } from "@/lib/contact-filters.mjs";
+import { CONTACT_DATE_PRESETS, contactDatePreset, resolveContactFilters } from "@/lib/contact-filters.mjs";
 import { CONTACT_FORM_TYPES, GOOGLE_LEAD_TYPE, INCOMING_CALL_TYPE, getContactFormLabel } from "@/lib/contact-summary.mjs";
 import { CALLBACK_STATUS, CONTACT_STATUS_OPTIONS, getContactStatusLabel, VISITING_BRANCH_STATUS } from "@/lib/contact-status.mjs";
 import styles from "./page.module.css";
@@ -255,6 +255,7 @@ function ManualEnquiryDialog({ onCreated }) {
 }
 
 export default function ContactsTable({ status = "" }) {
+  const [datePreset, setDatePreset] = useState("today");
   const [filters, setFilters] = useState(() => resolveContactFilters({ status }));
   const [appliedFilters, setAppliedFilters] = useState(filters);
   const [contacts, setContacts] = useState([]);
@@ -422,6 +423,7 @@ export default function ContactsTable({ status = "" }) {
   function clearFilters() {
     setLoading(true);
     setError("");
+    setDatePreset("today");
     const todayFilters = resolveContactFilters({ status });
     setFilters(todayFilters);
     setAppliedFilters(todayFilters);
@@ -445,8 +447,12 @@ export default function ContactsTable({ status = "" }) {
       </div>
 
       <form className={styles.filters} onSubmit={applyFilters}>
-        {!status && <><label><span>From date</span><input type="date" value={filters.fromDate} onChange={(event) => setFilters({...filters, fromDate: event.target.value})} /></label>
-        <label><span>To date</span><input type="date" min={filters.fromDate || undefined} value={filters.toDate} onChange={(event) => setFilters({...filters, toDate: event.target.value})} /></label></>}
+        {!status && <><label><span>Date range (Kolkata time)</span><select value={datePreset} onChange={(event) => {
+          const preset = event.target.value;
+          setDatePreset(preset);
+          setFilters({ ...filters, ...(preset === "custom" ? { allDates: false } : contactDatePreset(preset)) });
+        }}>{CONTACT_DATE_PRESETS.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label><label><span>From date</span><input type="date" value={filters.fromDate} onChange={(event) => { setDatePreset("custom"); setFilters({...filters, allDates: false, fromDate: event.target.value}); }} /></label>
+        <label><span>To date</span><input type="date" min={filters.fromDate || undefined} value={filters.toDate} onChange={(event) => { setDatePreset("custom"); setFilters({...filters, allDates: false, toDate: event.target.value}); }} /></label></>}
         <label><span>Form type</span><select value={filters.businessType} onChange={(event) => setFilters({...filters, businessType: event.target.value})}><option value="">All form types</option>{CONTACT_FORM_TYPES.map((type) => <option key={type} value={type}>{getContactFormLabel(type)}</option>)}</select></label>
         <div className={styles.filterActions}><button className={styles.filterButton} type="submit">Filter</button><button type="button" onClick={clearFilters}>Clear</button></div>
       </form>

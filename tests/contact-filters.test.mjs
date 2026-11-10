@@ -44,3 +44,16 @@ test("status pages ignore date ranges and include all dates for each status", ()
     });
   }
 });
+
+test("quick date ranges use Kolkata dates and handle month and week boundaries", async () => {
+  const { contactDatePreset } = await import("../src/lib/contact-filters.mjs");
+  const now = new Date("2026-11-09T20:00:00Z");
+  const range = (fromDate, toDate) => ({ fromDate, toDate, allDates: false });
+  assert.deepEqual(contactDatePreset("yesterday", now), range("2026-11-09", "2026-11-09"));
+  assert.deepEqual(contactDatePreset("7", now), range("2026-11-04", "2026-11-10"));
+  assert.deepEqual(contactDatePreset("last-week", now), range("2026-11-02", "2026-11-08"));
+  assert.deepEqual(contactDatePreset("last-month", now), range("2026-10-01", "2026-10-31"));
+  assert.deepEqual(resolveContactFilters({ ...contactDatePreset("maximum", now), businessType: "Banner Form" }), {
+    fromDate: "", toDate: "", businessType: "Banner Form", allDates: true,
+  });
+});
