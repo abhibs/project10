@@ -1,5 +1,7 @@
 // Contact dates follow the business timezone, regardless of browser/server timezone.
-export function resolveContactFilters({ fromDate = "", toDate = "", businessType = "" } = {}, now = new Date()) {
+export function resolveContactFilters({ fromDate = "", toDate = "", businessType = "", status = "" } = {}, now = new Date()) {
+  if (status) return { fromDate: "", toDate: "", businessType, status };
+
   if (!fromDate && !toDate) {
     const parts = new Intl.DateTimeFormat("en-US", {
       timeZone: "Asia/Kolkata",

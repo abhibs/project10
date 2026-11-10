@@ -42,3 +42,10 @@ export function normalizeBranchVisit(branchId = "", visitDate = "", visitTime = 
 export function getContactStatusLabel(status) {
   return CONTACT_STATUS_OPTIONS.find(([value]) => value === status)?.[1] || status;
 }
+
+export const CONTACT_STATUS_PAGES = [
+  { slug: "pending", status: PENDING_STATUS, label: "Pending" },
+  { slug: "pending-call-back", status: CALLBACK_STATUS, label: "Pending Call Back" },
+  { slug: "visiting-branch", status: VISITING_BRANCH_STATUS, label: "Visiting Branch" },
+  { slug: "completed", status: COMPLETED_STATUS, label: "Completed" },
+];

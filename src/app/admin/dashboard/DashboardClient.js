@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { CONTACT_STATUS_PAGES } from "@/lib/contact-status.mjs";
 import RateForm from "./RateForm";
 import ContactsTable from "./ContactsTable";
 import BranchManager from "../branches/BranchManager";
@@ -14,7 +15,17 @@ import AdminBrand from "../AdminBrand";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 
-export default function DashboardClient({ admin, section = "dashboard" }) {
+function ContactStatusIcon({ slug }) {
+  const paths = {
+    pending: <><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></>,
+    "pending-call-back": <><path d="M22 6v5h-5M21 11a7 7 0 0 0-12-5" /><path d="M7 10l3 3-2 2c2 3 4 5 7 6l2-2 3 3c-1 2-3 2-5 1C9 21 3 15 2 9c-1-2 0-4 2-5l3 3-2 2 2 1Z" transform="translate(1 -1) scale(.85)" /></>,
+    "visiting-branch": <><path d="M4 21V5h10v16M2 21h20M8 9h2m-2 4h2m-2 4h2M17 7l4 4-4 4m-3-4h7" /></>,
+    completed: <><circle cx="12" cy="12" r="9" /><path d="m8 12 3 3 5-6" /></>,
+  };
+  return <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ display: "block" }}>{paths[slug]}</svg>;
+}
+
+export default function DashboardClient({ admin, section = "dashboard", contactStatus = "" }) {
   const router = useRouter();
   const [profileUpdate, setProfileUpdate] = useState(null);
   const profile = profileUpdate?.source === admin ? profileUpdate.value : admin;
@@ -133,7 +144,8 @@ export default function DashboardClient({ admin, section = "dashboard" }) {
   }
 
   const avatar = imagePreview || (profile.image ? `/admin/${profile.image}` : "");
-  const sectionTitle = section === "blogs" ? "Blog images" : section === "admins" ? "Admins & permissions" : section === "no-access" ? "Account access" : section === "seo" ? "SEO Control Center" : section === "branches" ? "Branches" : section === "rate" ? "Gold rates" : section === "contact" ? "Contact requests" : "Dashboard";
+  const statusPage = CONTACT_STATUS_PAGES.find(({ status }) => status === contactStatus);
+  const sectionTitle = statusPage?.label || (section === "blogs" ? "Blog images" : section === "admins" ? "Admins & permissions" : section === "no-access" ? "Account access" : section === "seo" ? "SEO Control Center" : section === "branches" ? "Branches" : section === "rate" ? "Gold rates" : section === "contact" ? "Contact requests" : "Dashboard");
 
   return (
     <main className={styles.dashboard}>
@@ -141,7 +153,8 @@ export default function DashboardClient({ admin, section = "dashboard" }) {
         <div className={styles.brand}><AdminBrand /></div>
         <p className={styles.menuTitle}>ADMIN WORKSPACE</p>
         <nav aria-label="Admin navigation">
-          {ADMIN_SECTIONS.filter(({ key }) => hasAdminPermission(admin, key)).map(({ key, label, href, icon }) => <Link key={key} className={section === key ? styles.active : undefined} aria-current={section === key ? "page" : undefined} href={href}><span aria-hidden="true">{icon}</span> {label}</Link>)}
+          {ADMIN_SECTIONS.filter(({ key }) => hasAdminPermission(admin, key)).map(({ key, label, href, icon }) => <Link key={key} className={section === key && !contactStatus ? styles.active : undefined} aria-current={section === key && !contactStatus ? "page" : undefined} href={href}><span aria-hidden="true">{icon}</span> {label}</Link>)}
+          {hasAdminPermission(admin, "contact") && CONTACT_STATUS_PAGES.map(({ slug, status, label }) => <Link key={slug} className={contactStatus === status ? styles.active : undefined} aria-current={contactStatus === status ? "page" : undefined} href={"/admin/contact/" + slug}><span aria-hidden="true"><ContactStatusIcon slug={slug} /></span> {label}</Link>)}
         </nav>
         <div className={styles.sidebarFoot}><span>ARYAN GOLD</span><p>Trust today.<br />Brighter tomorrows.</p><Link href="/">View website →</Link></div>
       </aside>
@@ -160,7 +173,7 @@ export default function DashboardClient({ admin, section = "dashboard" }) {
             </div>}
           </div>
         </header>
-        {section === "no-access" ? <article className={styles.welcome}><h2>No sections assigned yet</h2><p>Ask your administrator to select the sidebar sections you can access. You can still update your profile or sign out using the account menu.</p></article> : section === "blogs" ? <BlogImageManager /> : section === "admins" ? <AdminUsersManager admin={admin} /> : section === "seo" ? <SeoManager /> : section === "branches" ? <BranchManager /> : section === "rate" ? <RateForm /> : section === "contact" ? <ContactsTable /> : <>
+        {section === "no-access" ? <article className={styles.welcome}><h2>No sections assigned yet</h2><p>Ask your administrator to select the sidebar sections you can access. You can still update your profile or sign out using the account menu.</p></article> : section === "blogs" ? <BlogImageManager /> : section === "admins" ? <AdminUsersManager admin={admin} /> : section === "seo" ? <SeoManager /> : section === "branches" ? <BranchManager /> : section === "rate" ? <RateForm /> : section === "contact" ? <ContactsTable key={contactStatus || "all"} status={contactStatus} /> : <>
           <article className={styles.welcome}>
             <p className={styles.eyebrow}>YOUR ARYAN GOLD WORKSPACE</p>
             <h2>Welcome back, {profile.name}.</h2>

@@ -294,10 +294,14 @@ export async function createManualContact({ name, mobile, city, weight, services
   return result.insertId;
 }
 
-export async function getContacts({ fromDate = "", toDate = "", businessType = "" } = {}) {
+export async function getContacts({ fromDate = "", toDate = "", businessType = "", status = "" } = {}) {
   const conditions = [];
   const values = [];
 
+  if (status) {
+    conditions.push("status = ?");
+    values.push(status);
+  }
   const dateFilter = buildContactDateFilter(fromDate, toDate);
   if (dateFilter.condition) conditions.push(dateFilter.condition);
   values.push(...dateFilter.values);

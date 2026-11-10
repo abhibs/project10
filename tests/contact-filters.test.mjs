@@ -36,3 +36,11 @@ test("date queries include enquiries scheduled for a call back in the selected r
   assert.deepEqual(filter.values, ["2026-10-24 00:00:00", "2026-10-24", "2026-10-24", "2026-10-24"]);
   assert.deepEqual(buildContactDateFilter(), { condition: "", values: [] });
 });
+
+test("status pages ignore date ranges and include all dates for each status", () => {
+  for (const status of ["inactive", "pending_callback", "visiting_branch", "active"]) {
+    assert.deepEqual(resolveContactFilters({ status, fromDate: "2026-01-01", toDate: "2026-01-02", businessType: "Banner Form" }), {
+      fromDate: "", toDate: "", businessType: "Banner Form", status,
+    });
+  }
+});

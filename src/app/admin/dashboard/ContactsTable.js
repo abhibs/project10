@@ -254,8 +254,8 @@ function ManualEnquiryDialog({ onCreated }) {
   </>;
 }
 
-export default function ContactsTable() {
-  const [filters, setFilters] = useState(() => resolveContactFilters());
+export default function ContactsTable({ status = "" }) {
+  const [filters, setFilters] = useState(() => resolveContactFilters({ status }));
   const [appliedFilters, setAppliedFilters] = useState(filters);
   const [contacts, setContacts] = useState([]);
   const [branches, setBranches] = useState([]);
@@ -275,9 +275,9 @@ export default function ContactsTable() {
   const [exportMessage, setExportMessage] = useState("");
 
   function updateRow(id, changes) {
-    setContacts((previous) => previous.map((contact) => contact.id === id ? { ...contact, ...changes } : contact));
+    setContacts((previous) => previous.map((contact) => contact.id === id ? { ...contact, ...changes } : contact).filter((contact) => !status || contact.status === status));
     if (changes.status !== undefined) {
-      if (changes.status === CALLBACK_STATUS && changes.callbackDate) {
+      if (!status && changes.status === CALLBACK_STATUS && changes.callbackDate) {
         const nextFilters = resolveContactFilters({ fromDate: changes.callbackDate, toDate: changes.callbackDate, businessType: appliedFilters.businessType });
         setFilters(nextFilters);
         setAppliedFilters(nextFilters);
@@ -288,7 +288,9 @@ export default function ContactsTable() {
   }
 
   function manualEnquiryCreated(message, callbackDate) {
-    const nextFilters = callbackDate
+    const nextFilters = status
+      ? resolveContactFilters({ status, businessType: appliedFilters.businessType })
+      : callbackDate
       ? resolveContactFilters({ fromDate: callbackDate, toDate: callbackDate, businessType: INCOMING_CALL_TYPE })
       : resolveContactFilters({ businessType: INCOMING_CALL_TYPE });
     setFilters(nextFilters);
@@ -420,7 +422,7 @@ export default function ContactsTable() {
   function clearFilters() {
     setLoading(true);
     setError("");
-    const todayFilters = resolveContactFilters();
+    const todayFilters = resolveContactFilters({ status });
     setFilters(todayFilters);
     setAppliedFilters(todayFilters);
     setRequestVersion((version) => version + 1);
@@ -438,18 +440,18 @@ export default function ContactsTable() {
   return (
     <article className={styles.contactsPanel}>
       <div className={styles.panelHeading}>
-        <div><h2>Contact requests</h2><p>Today’s requests are shown by default. Choose a date range and click Filter to view older requests.</p></div>
+        <div><h2>{status ? getContactStatusLabel(status) + " requests" : "Contact requests"}</h2><p>{status ? "All requests with this status are shown across all dates." : <>Today’s requests are shown by default. Choose a date range and click Filter to view older requests.</>}</p></div>
         <div className={styles.panelActions}><ManualEnquiryDialog onCreated={manualEnquiryCreated} /><span className={styles.resultCount}>{loading ? "…" : contacts.length} records</span></div>
       </div>
 
       <form className={styles.filters} onSubmit={applyFilters}>
-        <label><span>From date</span><input type="date" value={filters.fromDate} onChange={(event) => setFilters({...filters, fromDate: event.target.value})} /></label>
-        <label><span>To date</span><input type="date" min={filters.fromDate || undefined} value={filters.toDate} onChange={(event) => setFilters({...filters, toDate: event.target.value})} /></label>
+        {!status && <><label><span>From date</span><input type="date" value={filters.fromDate} onChange={(event) => setFilters({...filters, fromDate: event.target.value})} /></label>
+        <label><span>To date</span><input type="date" min={filters.fromDate || undefined} value={filters.toDate} onChange={(event) => setFilters({...filters, toDate: event.target.value})} /></label></>}
         <label><span>Form type</span><select value={filters.businessType} onChange={(event) => setFilters({...filters, businessType: event.target.value})}><option value="">All form types</option>{CONTACT_FORM_TYPES.map((type) => <option key={type} value={type}>{getContactFormLabel(type)}</option>)}</select></label>
         <div className={styles.filterActions}><button className={styles.filterButton} type="submit">Filter</button><button type="button" onClick={clearFilters}>Clear</button></div>
       </form>
 
-      <div className={styles.contactSummary} role="group" aria-label="Lead counts by form type for the selected dates">
+      <div className={styles.contactSummary} role="group" aria-label={status ? "Lead counts by form type for this status across all dates" : "Lead counts by form type for the selected dates"}>
         {[["", "All form types"], ...CONTACT_FORM_TYPES.map((type) => [type, getContactFormLabel(type)])].map(([type, label]) => <button key={type} type="button" className={`${styles.summaryCard} ${appliedFilters.businessType === type ? styles.summarySelected : ""}`} aria-pressed={appliedFilters.businessType === type} disabled={loading} onClick={() => selectFormType(type)}>
           <span>{label}</span><strong>{loading ? "…" : type ? summary.counts[type] || 0 : summary.total}</strong><small>{type ? "leads" : "total leads"}</small>
           <span className={styles.summaryWeight}>Total weight <b>{loading ? "…" : `${Number(type ? summary.weights?.[type] || 0 : summary.totalWeight || 0).toLocaleString("en-IN", { maximumFractionDigits: 2 })} g`}</b></span>

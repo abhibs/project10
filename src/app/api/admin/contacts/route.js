@@ -4,7 +4,7 @@ import { buildBranchVisitNotification, sendBranchVisitNotification } from "@/lib
 import { resolveContactFilters } from "@/lib/contact-filters.mjs";
 import { CONTACT_FORM_TYPES, countContactTypes, sumContactWeights } from "@/lib/contact-summary.mjs";
 import { validateManualContact } from "@/lib/manual-contact.mjs";
-import { normalizeBranchVisit, normalizeContactStatus, VISITING_BRANCH_STATUS } from "@/lib/contact-status.mjs";
+import { CONTACT_STATUS_OPTIONS, normalizeBranchVisit, normalizeContactStatus, VISITING_BRANCH_STATUS } from "@/lib/contact-status.mjs";
 
 const BUSINESS_TYPES = new Set(CONTACT_FORM_TYPES);
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
@@ -127,11 +127,16 @@ export async function GET(request) {
   try { await authorizeAdminRequest(request, "contact"); } catch (error) { return adminApiError(error); }
 
   const { searchParams } = new URL(request.url);
-  const { fromDate, toDate, businessType } = resolveContactFilters({
+  const { fromDate, toDate, businessType, status } = resolveContactFilters({
+    status: searchParams.get("status") || "",
     fromDate: searchParams.get("fromDate") || "",
     toDate: searchParams.get("toDate") || "",
     businessType: searchParams.get("businessType") || "",
   });
+
+  if (status && !CONTACT_STATUS_OPTIONS.some(([value]) => value === status)) {
+    return Response.json({ message: "Invalid status filter." }, { status: 400 });
+  }
 
   if ((fromDate && !DATE_PATTERN.test(fromDate)) || (toDate && !DATE_PATTERN.test(toDate))) {
     return Response.json({ message: "Invalid date filter." }, { status: 400 });
@@ -144,7 +149,7 @@ export async function GET(request) {
   }
 
   try {
-    const allContacts = await getContacts({ fromDate, toDate });
+    const allContacts = await getContacts({ fromDate, toDate, status });
     return Response.json({
       contacts: businessType ? allContacts.filter((contact) => contact.businessType === businessType) : allContacts,
       counts: countContactTypes(allContacts), total: allContacts.length,
