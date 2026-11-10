@@ -345,7 +345,7 @@ export async function getContacts({ fromDate = "", toDate = "", businessType = "
 
 export async function findContactById(id) {
   const [rows] = await executeContactQuery(
-    "SELECT id, name, mobile, city FROM contacts WHERE id = ? LIMIT 1",
+    "SELECT id, name, mobile, city, status FROM contacts WHERE id = ? LIMIT 1",
     [id],
   );
   return rows[0] || null;

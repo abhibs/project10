@@ -153,8 +153,7 @@ export default function DashboardClient({ admin, section = "dashboard", contactS
         <div className={styles.brand}><AdminBrand /></div>
         <p className={styles.menuTitle}>ADMIN WORKSPACE</p>
         <nav aria-label="Admin navigation">
-          {ADMIN_SECTIONS.filter(({ key }) => hasAdminPermission(admin, key)).map(({ key, label, href, icon }) => <Link key={key} className={section === key && !contactStatus ? styles.active : undefined} aria-current={section === key && !contactStatus ? "page" : undefined} href={href}><span aria-hidden="true">{icon}</span> {label}</Link>)}
-          {hasAdminPermission(admin, "contact") && CONTACT_STATUS_PAGES.map(({ slug, status, label }) => <Link key={slug} className={contactStatus === status ? styles.active : undefined} aria-current={contactStatus === status ? "page" : undefined} href={"/admin/contact/" + slug}><span aria-hidden="true"><ContactStatusIcon slug={slug} /></span> {label}</Link>)}
+          {ADMIN_SECTIONS.filter(({ key }) => hasAdminPermission(admin, key)).map(({ key, label, href, icon, slug }) => <Link key={key} className={(contactStatus ? statusPage?.permission === key : section === key) ? styles.active : undefined} aria-current={section === key && !contactStatus ? "page" : undefined} href={href}><span aria-hidden="true">{slug ? <ContactStatusIcon slug={slug} /> : icon}</span> {label}</Link>)}
         </nav>
         <div className={styles.sidebarFoot}><span>ARYAN GOLD</span><p>Trust today.<br />Brighter tomorrows.</p><Link href="/">View website →</Link></div>
       </aside>
@@ -173,7 +172,7 @@ export default function DashboardClient({ admin, section = "dashboard", contactS
             </div>}
           </div>
         </header>
-        {section === "no-access" ? <article className={styles.welcome}><h2>No sections assigned yet</h2><p>Ask your administrator to select the sidebar sections you can access. You can still update your profile or sign out using the account menu.</p></article> : section === "blogs" ? <BlogImageManager /> : section === "admins" ? <AdminUsersManager admin={admin} /> : section === "seo" ? <SeoManager /> : section === "branches" ? <BranchManager /> : section === "rate" ? <RateForm /> : section === "contact" ? <ContactsTable key={contactStatus || "all"} status={contactStatus} /> : <>
+        {section === "no-access" ? <article className={styles.welcome}><h2>No sections assigned yet</h2><p>Ask your administrator to select the sidebar sections you can access. You can still update your profile or sign out using the account menu.</p></article> : section === "blogs" ? <BlogImageManager /> : section === "admins" ? <AdminUsersManager admin={admin} /> : section === "seo" ? <SeoManager /> : section === "branches" ? <BranchManager /> : section === "rate" ? <RateForm /> : section === "contact" ? <ContactsTable key={contactStatus || "all"} status={contactStatus} canCreate={hasAdminPermission(admin, "contact")} /> : <>
           <article className={styles.welcome}>
             <p className={styles.eyebrow}>YOUR ARYAN GOLD WORKSPACE</p>
             <h2>Welcome back, {profile.name}.</h2>

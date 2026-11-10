@@ -62,3 +62,22 @@ test("self deletion and changing one's own access are blocked; other account cha
   assert.doesNotThrow(() => assertAdminUserChange(admin, contactUser, { ...valid, role: "admin", permissions: [] }));
   assert.doesNotThrow(() => assertAdminUserChange(admin, { ...admin, id: 8 }, null, true));
 });
+
+test("status permissions are independently assignable and restrict contact data access", async () => {
+  const { CONTACT_STATUS_PAGES } = await import("../src/lib/contact-status.mjs");
+  const { canAccessContactStatus } = await import("../src/lib/admin-access.mjs");
+  for (const page of CONTACT_STATUS_PAGES) {
+    const user = { role: "custom", permissions: [page.permission] };
+    assert.equal(adminHome(user), `/admin/contact/${page.slug}`);
+    assert.equal(hasAdminPermission(user, "contact"), false);
+    assert.deepEqual(validateAdminUser({ ...valid, permissions: [page.permission] }).permissions, [page.permission]);
+    assert.equal(canAccessContactStatus(user, page.status), true);
+    assert.equal(canAccessContactStatus(user, ""), false);
+    for (const other of CONTACT_STATUS_PAGES.filter(other => other !== page)) {
+      assert.equal(hasAdminPermission(user, other.permission), false);
+      assert.equal(canAccessContactStatus(user, other.status), false);
+    }
+    assert.throws(() => assertAdminUserChange(manager, null, { ...valid, permissions: [page.permission] }), { status: 403 });
+    assert.equal(canAccessContactStatus(contactUser, page.status), true);
+  }
+});

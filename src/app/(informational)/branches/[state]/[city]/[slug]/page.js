@@ -1,3 +1,4 @@
+import { getPageSeoMetadata } from "@/lib/seo-metadata";
 import BusinessSchema from "@/app/BusinessSchema";
 import { SITE_URL, jsonLd } from "@/lib/site-seo.mjs";
 import { cache } from "react";

@@ -5,7 +5,7 @@ import DashboardClient from "../../dashboard/DashboardClient";
 export const dynamic = "force-dynamic";
 
 export default async function ContactStatusPage() {
-  const admin = await requireAdminPage("contact");
-  const { status } = CONTACT_STATUS_PAGES.find(({ slug }) => slug === "completed");
+  const { status, permission } = CONTACT_STATUS_PAGES.find(({ slug }) => slug === "completed");
+  const admin = await requireAdminPage(permission);
   return <DashboardClient section="contact" contactStatus={status} admin={admin} />;
 }

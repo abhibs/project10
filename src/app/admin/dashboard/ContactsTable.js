@@ -254,7 +254,7 @@ function ManualEnquiryDialog({ onCreated }) {
   </>;
 }
 
-export default function ContactsTable({ status = "" }) {
+export default function ContactsTable({ status = "", canCreate = true }) {
   const [datePreset, setDatePreset] = useState("today");
   const [filters, setFilters] = useState(() => resolveContactFilters({ status }));
   const [appliedFilters, setAppliedFilters] = useState(filters);
@@ -443,7 +443,7 @@ export default function ContactsTable({ status = "" }) {
     <article className={styles.contactsPanel}>
       <div className={styles.panelHeading}>
         <div><h2>{status ? getContactStatusLabel(status) + " requests" : "Contact requests"}</h2><p>{status ? "All requests with this status are shown across all dates." : <>Today’s requests are shown by default. Choose a date range and click Filter to view older requests.</>}</p></div>
-        <div className={styles.panelActions}><ManualEnquiryDialog onCreated={manualEnquiryCreated} /><span className={styles.resultCount}>{loading ? "…" : contacts.length} records</span></div>
+        <div className={styles.panelActions}>{canCreate && <ManualEnquiryDialog onCreated={manualEnquiryCreated} />}<span className={styles.resultCount}>{loading ? "…" : contacts.length} records</span></div>
       </div>
 
       <form className={styles.filters} onSubmit={applyFilters}>

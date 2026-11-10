@@ -1,3 +1,4 @@
+import { AdminAccessError, canAccessContactStatus } from "@/lib/admin-access.mjs";
 import { authorizeAdminRequest, adminApiError } from "@/lib/admin-auth";
 import { createManualContact, findBranchByCode, findContactById, getContacts, updateContact } from "@/lib/admin-db";
 import { buildBranchVisitNotification, sendBranchVisitNotification } from "@/lib/branch-visit-notification.mjs";
@@ -42,6 +43,11 @@ export async function PATCH(request) {
       (body.status === undefined && body.comment === undefined)) {
     return Response.json({ message: "Enter a valid status and a comment of up to 2,000 characters." }, { status: 400 });
   }
+  try {
+    const contact = await findContactById(body.id);
+    if (!contact) return Response.json({ message: "Contact not found." }, { status: 404 });
+    if (!canAccessContactStatus(admin, contact.status)) throw new AdminAccessError("You do not have access to this contact.", 403);
+  } catch (error) { return adminApiError(error); }
   const changes = {};
   const responseChanges = {};
   let notificationPayload = null;

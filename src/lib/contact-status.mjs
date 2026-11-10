@@ -44,8 +44,8 @@ export function getContactStatusLabel(status) {
 }
 
 export const CONTACT_STATUS_PAGES = [
-  { slug: "pending", status: PENDING_STATUS, label: "Pending" },
-  { slug: "pending-call-back", status: CALLBACK_STATUS, label: "Pending Call Back" },
-  { slug: "visiting-branch", status: VISITING_BRANCH_STATUS, label: "Visiting Branch" },
-  { slug: "completed", status: COMPLETED_STATUS, label: "Completed" },
+  { permission: "contact_pending", slug: "pending", status: PENDING_STATUS, label: "Pending" },
+  { permission: "contact_callback", slug: "pending-call-back", status: CALLBACK_STATUS, label: "Pending Call Back" },
+  { permission: "contact_visiting", slug: "visiting-branch", status: VISITING_BRANCH_STATUS, label: "Visiting Branch" },
+  { permission: "contact_completed", slug: "completed", status: COMPLETED_STATUS, label: "Completed" },
 ];

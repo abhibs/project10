@@ -1,3 +1,4 @@
+import { getPageSeoMetadata } from "@/lib/seo-metadata";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -16,7 +17,7 @@ async function resolve(params) {
 export async function generateMetadata({ params }) {
   const post = await resolve(params);
   const image = blogImage(post, await blogImages());
-  return { title: post.metaTitle, description: post.description, keywords: post.source.keywords.map(item => item.keyword), alternates: { canonical: `/blogs/${post.slug}` }, openGraph: { type: "article", title: post.title, description: post.description, url: `/blogs/${post.slug}`, images: [image] } };
+  return getPageSeoMetadata(`/blogs/${post.slug}`, { title: post.metaTitle, description: post.description, keywords: post.source.keywords.map(item => item.keyword), alternates: { canonical: `/blogs/${post.slug}` }, openGraph: { type: "article", title: post.title, description: post.description, url: `/blogs/${post.slug}`, images: [image] } });
 }
 export default async function ArticlePage({ params }) {
   const post = await resolve(params);

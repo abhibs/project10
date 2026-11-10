@@ -1,8 +1,11 @@
+import { CONTACT_STATUS_PAGES } from "./contact-status.mjs";
+
 export const ADMIN_SECTIONS = [
   { key: "dashboard", label: "Dashboard", href: "/admin/dashboard", icon: "▦" },
   { key: "admins", label: "Admins", href: "/admin/users", icon: "♙" },
   { key: "branches", label: "Branches", href: "/admin/branches", icon: "⌂" },
   { key: "contact", label: "Contacts", href: "/admin/contact/index", icon: "☎" },
+  ...CONTACT_STATUS_PAGES.map(({ permission, slug, label }) => ({ key: permission, slug, label, href: "/admin/contact/" + slug })),
   { key: "rate", label: "Gold rates", href: "/admin/rate", icon: "₹" },
   { key: "seo", label: "SEO", href: "/admin/seo", icon: "⌕" },
   { key: "blogs", label: "Blog images", href: "/admin/blogs", icon: "▤" },
@@ -79,4 +82,9 @@ export function assertAdminUserChange(actor, target, values, deleting = false) {
       (values.role !== "custom" || values.permissions.some((key) => !hasAdminPermission(actor, key)))) {
     throw new AdminAccessError("You can only grant permissions that you have. Full administrator access requires an admin.", 403);
   }
+}
+
+export function canAccessContactStatus(admin, status) {
+  const page = CONTACT_STATUS_PAGES.find(page => page.status === status);
+  return hasAdminPermission(admin, "contact") || !!page && hasAdminPermission(admin, page.permission);
 }

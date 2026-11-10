@@ -1,8 +1,9 @@
 import { getSeoPages } from "./admin-db";
+import { canonicalUrl } from "./seo-indexing.mjs";
 import { PAGE_DEFAULTS } from "./site-seo.mjs";
 
 export async function getPageSeoMetadata(route, fallback) {
-  fallback = { ...fallback, ...PAGE_DEFAULTS[route], alternates: { ...fallback.alternates, canonical: route } };
+  fallback = { ...fallback, ...PAGE_DEFAULTS[route], alternates: { ...fallback.alternates, canonical: canonicalUrl(route) } };
   let pages;
   try {
     pages = await getSeoPages();
@@ -20,7 +21,7 @@ export async function getPageSeoMetadata(route, fallback) {
   if (page?.meta_title && !legacyTitles.includes(page.meta_title)) result.title = page.meta_title;
   if (page?.meta_description && page.meta_description !== "Aryan Gold Buyers offers gold valuation, cash for gold and pledged gold release services." && !/^Aryan Gold . cash for gold, pledged gold release and doorstep valuation services\.$/.test(page.meta_description)) result.description = page.meta_description;
   if (value("focus_keywords")) result.keywords = value("focus_keywords");
-  if (page?.canonical_url) result.alternates = { ...fallback.alternates, canonical: page.canonical_url };
+  if (page?.canonical_url) result.alternates = { ...fallback.alternates, canonical: canonicalUrl(page.canonical_url) };
   const og = {};
   for (const [field, key] of [["og_title", "title"], ["og_description", "description"], ["og_site_name", "siteName"], ["og_locale", "locale"]]) {
     if (value(field)) og[key] = value(field);
