@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { CONTACT_DATE_PRESETS, contactDatePreset, resolveContactFilters } from "@/lib/contact-filters.mjs";
 import { CONTACT_FORM_TYPES, GOOGLE_LEAD_TYPE, INCOMING_CALL_TYPE, getContactFormLabel } from "@/lib/contact-summary.mjs";
 import { CALLBACK_STATUS, CONTACT_STATUS_OPTIONS, getContactStatusLabel, VISITING_BRANCH_STATUS } from "@/lib/contact-status.mjs";
@@ -40,6 +40,7 @@ function ContactDetails({ contact }) {
     ["Date", displayDate(contact.submittedDate)],
     ["Time (IST)", displayTime(contact.submittedTime)],
     ["Form type", getContactFormLabel(contact.businessType)],
+    ["Language", contact.language], ["Meta lead ID", contact.metaLeadId],
     ["Name", contact.name], ["Mobile", contact.mobile], ["City", contact.city], ["Area", contact.area],
     ["Blog ID", contact.blogId], ["Blog name", contact.blogName],
     ["Branch ID", contact.branchId], ["Branch name", contact.branchName],
@@ -274,6 +275,25 @@ export default function ContactsTable({ status = "", canCreate = true }) {
   const [requestVersion, setRequestVersion] = useState(0);
   const [exporting, setExporting] = useState(false);
   const [exportMessage, setExportMessage] = useState("");
+  const [syncing, setSyncing] = useState(false);
+  const [syncMessage, setSyncMessage] = useState("");
+
+  const syncMetaLeads = useCallback(async (signal) => {
+    setSyncing(true);
+    setSyncMessage("");
+    try {
+      const response = await fetch("/api/admin/contacts/sync-meta", { method: "POST", signal });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || "Unable to sync Meta leads.");
+      setSyncMessage(data.message);
+      setLoading(true);
+      setRequestVersion((version) => version + 1);
+    } catch (syncError) {
+      if (syncError.name !== "AbortError") setSyncMessage(syncError.message || "Unable to sync Meta leads.");
+    } finally {
+      if (!signal?.aborted) setSyncing(false);
+    }
+  }, []);
 
   function updateRow(id, changes) {
     setContacts((previous) => previous.map((contact) => contact.id === id ? { ...contact, ...changes } : contact).filter((contact) => !status || contact.status === status));
@@ -306,10 +326,10 @@ export default function ContactsTable({ status = "", canCreate = true }) {
   async function exportContacts(format) {
     setExporting(true);
     setExportMessage("");
-    const headers = ["#", "Date", "Time (IST)", "Form type", "Name", "Mobile", "City", "Weight", "Release bank", "Release place", "Preferred date", "Preferred time", "Service / Help with", "Details", "GCLID", "UTM Source", "UTM Campaign", "Keyword", "Adgroup ID", "Landing page", "Referrer", "Tracking data", "Call-back date", "Visit branch ID", "Visit branch", "Visit date", "Visit time", "Status", "Comment", "Blog ID", "Blog name", "Area"];
+    const headers = ["#", "Date", "Time (IST)", "Form type", "Language", "Meta lead ID", "Name", "Mobile", "City", "Weight", "Release bank", "Release place", "Preferred date", "Preferred time", "Service / Help with", "Details", "GCLID", "UTM Source", "UTM Campaign", "Keyword", "Adgroup ID", "Landing page", "Referrer", "Tracking data", "Call-back date", "Visit branch ID", "Visit branch", "Visit date", "Visit time", "Status", "Comment", "Blog ID", "Blog name", "Area"];
     const rows = contacts.map((contact, index) => [
       index + 1, displayDate(contact.submittedDate), displayTime(contact.submittedTime),
-      getContactFormLabel(contact.businessType), contact.name, contact.mobile, contact.city || "—",
+      getContactFormLabel(contact.businessType), contact.language || "", contact.metaLeadId || "", contact.name, contact.mobile, contact.city || "—",
       contact.weight ? `${contact.weight} g` : "—", contact.releaseBank || "", contact.releasePlace || "", displayDate(contact.preferredDate),
       displayTime(contact.preferredTime), displayService(contact), contact.details || "",
       ...["gclid", "utmSource", "utmCampaign", "keyword", "adgroupId"].map((field) => contact[field] || "-"),
@@ -341,7 +361,7 @@ export default function ContactsTable({ status = "", canCreate = true }) {
         sheet.getRow(1).font = { bold: true };
         sheet.columns.forEach((column, index) => { column.width = index === 13 ? 50 : 22; });
         sheet.views = [{ state: "frozen", ySplit: 1 }];
-        sheet.autoFilter = { from: "A1", to: "AC1" };
+        sheet.autoFilter = { from: { row: 1, column: 1 }, to: { row: 1, column: headers.length } };
         blob = new Blob([await workbook.xlsx.writeBuffer()], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
       }
       const url = URL.createObjectURL(blob);
@@ -359,6 +379,13 @@ export default function ContactsTable({ status = "", canCreate = true }) {
       setExporting(false);
     }
   }
+
+  useEffect(() => {
+    if (!canCreate) return;
+    const controller = new AbortController();
+    const timeout = setTimeout(() => syncMetaLeads(controller.signal), 0);
+    return () => { clearTimeout(timeout); controller.abort(); };
+  }, [canCreate, syncMetaLeads]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -443,8 +470,9 @@ export default function ContactsTable({ status = "", canCreate = true }) {
     <article className={styles.contactsPanel}>
       <div className={styles.panelHeading}>
         <div><h2>{status ? getContactStatusLabel(status) + " requests" : "Contact requests"}</h2><p>{status ? "All requests with this status are shown across all dates." : <>Today’s requests are shown by default. Choose a date range and click Filter to view older requests.</>}</p></div>
-        <div className={styles.panelActions}>{canCreate && <ManualEnquiryDialog onCreated={manualEnquiryCreated} />}<span className={styles.resultCount}>{loading ? "…" : contacts.length} records</span></div>
+        <div className={styles.panelActions}>{canCreate && <button type="button" className={styles.syncLeadsButton} disabled={syncing} onClick={() => syncMetaLeads()}>{syncing ? "Syncing…" : "Sync Meta leads"}</button>}{canCreate && <ManualEnquiryDialog onCreated={manualEnquiryCreated} />}<span className={styles.resultCount}>{loading ? "…" : contacts.length} records</span></div>
       </div>
+      {syncMessage && <p className={styles.syncStatus} role="status">{syncMessage}</p>}
 
       <form className={styles.filters} onSubmit={applyFilters}>
         {!status && <><label><span>Date range (Kolkata time)</span><select value={datePreset} onChange={(event) => {
@@ -475,15 +503,15 @@ export default function ContactsTable({ status = "", canCreate = true }) {
       </div>
       <div className={styles.tableWrap}>
         <table className={styles.contactsTable}>
-          <thead><tr><th>#</th><th>Date</th><th>Time (IST)</th><th>Form type</th><th>Blog name</th><th>Name</th><th>Mobile</th><th>City</th><th>Area</th><th>Weight</th><th>Service / Help with</th><th>Details</th><th>Status</th><th>Comment</th></tr></thead>
+          <thead><tr><th>#</th><th>Date</th><th>Time (IST)</th><th>Form type</th><th>Language</th><th>Blog name</th><th>Name</th><th>Mobile</th><th>City</th><th>Area</th><th>Weight</th><th>Service / Help with</th><th>Details</th><th>Status</th><th>Comment</th></tr></thead>
           <tbody>
-            {loading ? <tr><td className={styles.tableStatus} colSpan="14">Loading contact requests…</td></tr> : contacts.length === 0 ? <tr><td className={styles.tableStatus} colSpan="14">No contact requests found.</td></tr> : visibleContacts.map((contact, index) => (
+            {loading ? <tr><td className={styles.tableStatus} colSpan="15">Loading contact requests…</td></tr> : contacts.length === 0 ? <tr><td className={styles.tableStatus} colSpan="15">No contact requests found.</td></tr> : visibleContacts.map((contact, index) => (
               <tr key={contact.id} className={contact.comment?.trim() ? styles.commentedRow : undefined}>
                 <td>{pageStart + index + 1}</td>
                 <td className={styles.noWrap}>{displayDate(contact.submittedDate)}</td>
                 <td className={styles.noWrap}>{displayTime(contact.submittedTime)}</td>
                 <td><span className={`${styles.typeBadge} ${["Quick Contact", "Contact Page", "Banner Form", GOOGLE_LEAD_TYPE, INCOMING_CALL_TYPE].includes(contact.businessType) ? styles.quickBadge : ""}`}>{getContactFormLabel(contact.businessType)}</span></td>
-                <td>{contact.blogName || "\u2014"}</td><td>{contact.name}</td><td className={styles.noWrap}>{contact.mobile}</td><td>{contact.city || "—"}</td><td>{contact.area || "—"}</td>
+                <td>{contact.language ? contact.language[0].toUpperCase() + contact.language.slice(1) : "—"}</td><td>{contact.blogName || "\u2014"}</td><td>{contact.name}</td><td className={styles.noWrap}>{contact.mobile}</td><td>{contact.city || "—"}</td><td>{contact.area || "—"}</td>
                 <td className={styles.noWrap}>{contact.weight ? `${contact.weight} g` : "—"}</td><td>{displayService(contact)}</td><td><ContactDetails contact={contact} /></td>
                 <ContactControls contact={contact} onSaved={updateRow} branches={branches} branchesLoading={branchesLoading} />
               </tr>

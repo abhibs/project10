@@ -296,6 +296,49 @@ export async function createManualContact({ name, mobile, city, weight, services
   return result.insertId;
 }
 
+export async function syncMetaLeadContacts(leads) {
+  if (!leads.length) return { inserted: 0, updated: 0 };
+  const connection = await getPool().getConnection();
+  let inserted = 0;
+  let updated = 0;
+  try {
+    await connection.query("SET SESSION time_zone = '+00:00'");
+    await connection.beginTransaction();
+    const [existingRows] = await connection.query(
+      `SELECT meta_lead_id FROM contacts WHERE meta_lead_id IN (${leads.map(() => "?").join(",")})`,
+      leads.map((lead) => lead.metaLeadId),
+    );
+    const existingIds = new Set(existingRows.map((row) => row.meta_lead_id));
+    for (const lead of leads) {
+      await connection.execute(
+        `INSERT INTO contacts
+          (name, mobile, city, area, language, meta_lead_id, weight, services, business_type,
+           utm_campaign, keyword, adgroup_id, tracking_data, created_at)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'googlelead-lp', ?, ?, ?, ?, ?)
+         ON DUPLICATE KEY UPDATE
+           name = VALUES(name), mobile = VALUES(mobile), city = VALUES(city), area = VALUES(area),
+           language = VALUES(language), weight = VALUES(weight), services = VALUES(services),
+           utm_campaign = VALUES(utm_campaign), keyword = VALUES(keyword), adgroup_id = VALUES(adgroup_id),
+           tracking_data = VALUES(tracking_data), created_at = VALUES(created_at)`,
+        [
+          lead.name, lead.mobile, lead.city || null, lead.area || null, lead.language, lead.metaLeadId,
+          lead.weight, lead.services, lead.campaignName || null, lead.adName || null, lead.adsetId || null,
+          JSON.stringify(lead.trackingData), lead.createdAt,
+        ],
+      );
+      if (existingIds.has(lead.metaLeadId)) updated++;
+      else inserted++;
+    }
+    await connection.commit();
+    return { inserted, updated };
+  } catch (error) {
+    await connection.rollback();
+    throw error;
+  } finally {
+    connection.release();
+  }
+}
+
 export async function getContacts({ fromDate = "", toDate = "", businessType = "", status = "" } = {}) {
   const conditions = [];
   const values = [];
@@ -314,7 +357,7 @@ export async function getContacts({ fromDate = "", toDate = "", businessType = "
 
   const where = conditions.length ? `WHERE ${conditions.join(" AND ")}` : "";
   const [rows] = await executeContactQuery(
-    `SELECT id, name, mobile, city, area, weight, details, status, comment, release_bank AS releaseBank, release_place AS releasePlace,
+    `SELECT id, name, mobile, city, area, language, meta_lead_id AS metaLeadId, weight, details, status, comment, release_bank AS releaseBank, release_place AS releasePlace,
        blog_id AS blogId, blog_name AS blogName,
        branch_id AS branchId,
        (SELECT b.name FROM branches b WHERE b.branch_id = contacts.branch_id) AS branchName,

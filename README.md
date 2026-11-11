@@ -120,6 +120,15 @@ Run `node scripts/migrate-google-leads.mjs` once per database, then open
 The form retains the existing GCLID, UTM campaign, keyword and ad-group fields,
 plus common campaign query parameters, the landing-page URL and referrer.
 
+## Meta Ads Google Sheet leads
+
+Run `npm run migrate:meta-leads` once per database. The admin Contact Requests
+page then imports the configured Google Sheet automatically when it opens, and
+also provides a **Sync Meta leads** button. Rows from **English Leads** are stored
+with `language = english`; rows from **Kannada Leads** use `language = kannada`.
+The Meta lead ID prevents duplicate imports. Invalid Meta test rows are skipped.
+Set `META_LEADS_SPREADSHEET_URL` to override the default public workbook.
+
 ## Branch contact references
 
 Run `node scripts/migrate-contact-branches.mjs` after the branches migration in each environment.

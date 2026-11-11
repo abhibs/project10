@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "migrate:meta-leads": "node scripts/migrate-meta-leads.mjs",
     "migrate:contact-branch-visits": "node scripts/migrate-contact-branch-visits.mjs",
     "import:blogs": "node scripts/import-blog-content.mjs",
     "import:website-blogs": "node scripts/import-website-blogs.mjs",

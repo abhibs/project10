@@ -97,6 +97,8 @@ CREATE TABLE `contacts` (
   `mobile` varchar(20) NOT NULL,
   `city` varchar(255) DEFAULT NULL,
   `area` varchar(160) DEFAULT NULL,
+  `language` enum('kannada','english') DEFAULT NULL,
+  `meta_lead_id` varchar(128) DEFAULT NULL,
   `weight` decimal(10,2) DEFAULT NULL,
   `preffered_date` date DEFAULT NULL,
   `preffered_time` varchar(20) DEFAULT NULL COMMENT '24-hour time or time range',
@@ -179,6 +181,7 @@ ALTER TABLE `branches`
 --
 ALTER TABLE `contacts`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `contacts_meta_lead_id_unique` (`meta_lead_id`),
   ADD KEY `contacts_created_at_index` (`created_at`),
   ADD KEY `contacts_business_type_index` (`business_type`),
   ADD KEY `contacts_callback_date_index` (`callback_date`),
