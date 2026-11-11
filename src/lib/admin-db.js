@@ -239,6 +239,7 @@ export async function createContact({
   name,
   mobile,
   city,
+  area = "",
   weight,
   preferredDate,
   preferredTime,
@@ -257,14 +258,15 @@ export async function createContact({
     return await runOncePerContactDay(connection, mobile, async () => {
       const [result] = await connection.execute(
         `INSERT INTO contacts
-          (name, mobile, city, weight, preffered_date, preffered_time, services, business_type,
+          (name, mobile, city, area, weight, preffered_date, preffered_time, services, business_type,
            gclid, utm_source, utm_campaign, keyword, adgroup_id, tracking_data, landing_page, referrer,
            release_bank, release_place, branch_id, blog_id, blog_name)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
           name,
           mobile,
           city || null,
+          area || null,
           weight || null,
           preferredDate || null,
           preferredTime || null,
@@ -312,7 +314,7 @@ export async function getContacts({ fromDate = "", toDate = "", businessType = "
 
   const where = conditions.length ? `WHERE ${conditions.join(" AND ")}` : "";
   const [rows] = await executeContactQuery(
-    `SELECT id, name, mobile, city, weight, details, status, comment, release_bank AS releaseBank, release_place AS releasePlace,
+    `SELECT id, name, mobile, city, area, weight, details, status, comment, release_bank AS releaseBank, release_place AS releasePlace,
        blog_id AS blogId, blog_name AS blogName,
        branch_id AS branchId,
        (SELECT b.name FROM branches b WHERE b.branch_id = contacts.branch_id) AS branchName,

@@ -183,6 +183,7 @@ export default function GoldHomepage({ initialBranches = [] }) {
       name: fields.name,
       mobile: fields.mobile,
       city: appointment ? fields.city : "",
+      area: fields.area || "",
       weight: appointment || kind === "banner" ? fields.weight : "",
       preferredDate: appointment ? fields.preferredDate : "",
       preferredTime: appointment ? fields.preferredTime : "",
@@ -276,6 +277,7 @@ export default function GoldHomepage({ initialBranches = [] }) {
             <span>Phone number</span>
             <input id="banner-phone" name="mobile" type="tel" inputMode="numeric" autoComplete="tel-national" placeholder="10-digit mobile number" pattern="[0-9]{10}" maxLength={10} title="Enter a 10-digit mobile number" onInput={keepTenDigits} required />
           </label>
+          <label className="banner-field" htmlFor="banner-area"><span>Area</span><input id="banner-area" name="area" autoComplete="address-level3" placeholder="Your area" maxLength={160} required /></label>
           <label className="banner-field" htmlFor="banner-weight">
             <span>Gold weight <small>(grams)</small></span>
             <input id="banner-weight" name="weight" type="number" inputMode="decimal" placeholder="Approx. weight in grams" min="0.01" max="100000" step="0.01" required />
@@ -388,12 +390,13 @@ export default function GoldHomepage({ initialBranches = [] }) {
           <div className="field-grid two">
             <label className="field"><span>Full name</span><input name="name" autoComplete="name" required minLength="2" maxLength="255" onInput={keepNameCharacters} placeholder="Enter your name" /></label>
             <label className="field"><span>Mobile number</span><input name="mobile" type="tel" inputMode="numeric" autoComplete="tel" required pattern="[0-9]{10}" minLength="10" maxLength="10" onInput={keepTenDigits} placeholder="10-digit mobile number" /></label>
-            <label className="field"><span>Service city / area</span><input name="city" autoComplete="address-level2" required placeholder="e.g. Bengaluru, Jayanagar" /></label>
+            <label className="field"><span>City</span><input name="city" autoComplete="address-level2" maxLength={255} required placeholder="e.g. Bengaluru" /></label>
+            <label className="field"><span>Area</span><input name="area" autoComplete="address-level3" maxLength={160} required placeholder="e.g. Jayanagar" /></label>
             <label className="field"><span>Approx. gold weight</span><div className="input-unit"><input name="weight" type="number" min="0.1" step="0.1" placeholder="Optional" /><b>grams</b></div></label>
             <label className="field"><span>Preferred date</span><input name="preferredDate" id="booking-date" min={minimumDate} type="date" required /></label>
             <label className="field"><span>Preferred time</span><select name="preferredTime" required><option value="">Choose a time</option><option value="09:00-12:00">09:00 – 12:00</option><option value="12:00-15:00">12:00 – 15:00</option><option value="15:00-18:00">15:00 – 18:00</option></select></label>
+            <label className="field"><span>Service required</span><select name="services" required><option>Sell Gold for Cash</option><option>Release Pledged Gold</option><option>Gold Valuation Only</option><option>Other / Need Guidance</option></select></label>
           </div>
-          <label className="field"><span>Service required</span><select name="services" required><option>Sell Gold for Cash</option><option>Release Pledged Gold</option><option>Gold Valuation Only</option><option>Other / Need Guidance</option></select></label>
           <label className="consent"><input type="checkbox" required /><span>I agree to be contacted by Aryan Gold regarding this request.</span></label>
           <button className="btn btn-gold btn-block" type="submit" disabled={submitting.booking}><SubmitLabel loading={submitting.booking}>Request Appointment</SubmitLabel></button>
           <p className="form-message" id="booking-message" role="status">{messages.booking}</p>

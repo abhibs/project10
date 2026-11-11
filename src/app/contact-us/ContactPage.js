@@ -50,7 +50,7 @@ export default function ContactPage() {
     setSubmitting(true);
     setFeedback(null);
     try {
-      await submitContactRequest({ ...getContactAttribution(), name: fields.name.trim(), mobile: fields.mobile, city: fields.city.trim(), weight: fields.weight, preferredDate: fields.preferredDate, preferredTime: fields.preferredTime, businessType: "Contact Page" });
+      await submitContactRequest({ ...getContactAttribution(), name: fields.name.trim(), mobile: fields.mobile, city: fields.city.trim(), area: fields.area.trim(), weight: fields.weight, preferredDate: fields.preferredDate, preferredTime: fields.preferredTime, businessType: "Contact Page" });
       showFeedback({ error: false, message: "Thank you! Your message has been received. Our team will get back to you shortly." });
       form.reset();
     } catch (error) {
@@ -93,7 +93,8 @@ export default function ContactPage() {
               <div className={styles.fields}>
                 <label className={styles.field}><span>Name <b>*</b></span><input name="name" autoComplete="name" minLength={2} maxLength={255} placeholder="Your name" required /></label>
                 <label className={styles.field}><span>Phone Number <b>*</b></span><span className={styles.phoneInput}><span>+91</span><input name="mobile" type="tel" autoComplete="tel-national" inputMode="numeric" pattern="[0-9]{10}" maxLength={10} onInput={(event) => { event.currentTarget.value = event.currentTarget.value.replace(/\D/g, "").slice(0, 10); }} title="Enter your 10-digit mobile number" placeholder="Mobile number" required /></span></label>
-                <label className={styles.field}><span>Service city / area</span><input name="city" autoComplete="address-level2" maxLength={255} placeholder="e.g. Bengaluru, Jayanagar" required /></label>
+                <label className={styles.field}><span>City</span><input name="city" autoComplete="address-level2" maxLength={255} placeholder="e.g. Bengaluru" required /></label>
+                <label className={styles.field}><span>Area</span><input name="area" autoComplete="address-level3" maxLength={160} placeholder="e.g. Jayanagar" required /></label>
                 <label className={styles.field}><span>Approx. gold weight</span><span className={styles.weightInput}><input name="weight" type="number" min="0.1" max="100000" step="0.1" placeholder="Optional" /><span>grams</span></span></label>
                 <label className={styles.field}><span>Preferred date</span><input name="preferredDate" type="date" required /></label>
                 <label className={styles.field}><span>Preferred time</span><select name="preferredTime" defaultValue="" required><option value="" disabled>Choose a time</option><option value="09:00-12:00">09:00 ? 12:00</option><option value="12:00-15:00">12:00 ? 15:00</option><option value="15:00-18:00">15:00 ? 18:00</option></select></label>

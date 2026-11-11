@@ -90,7 +90,8 @@ export async function POST(request) {
     const id = await createContact({
       name,
       mobile,
-      city: branch ? branch.city : googleLead ? `${city}, ${area}` : city,
+      city: branch ? branch.city : city,
+      area,
       branchId: branch ? branch.branchId : null,
       blogId: blog?.id ?? null,
       blogName: blog?.title ?? "",

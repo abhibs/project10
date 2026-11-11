@@ -44,6 +44,7 @@ export default function ServiceForm({ service, blogId }) {
     <form onSubmit={submit} aria-busy={submitting}>
       <label>Name<input name="name" autoComplete="name" placeholder="Your full name" minLength={2} maxLength={255} required onInput={(event) => { event.currentTarget.value = event.currentTarget.value.replace(/[^\p{L}\s]/gu, ""); }} /></label>
       <label>Contact number<input name="mobile" type="tel" inputMode="numeric" autoComplete="tel-national" placeholder="10-digit mobile number" pattern="[0-9]{10}" maxLength={10} required onInput={(event) => { event.currentTarget.value = event.currentTarget.value.replace(/\D/g, "").slice(0, 10); }} /></label>
+      <label>Area<input name="area" autoComplete="address-level3" placeholder="Your area" maxLength={160} required /></label>
       <label>Gold weight (grams)<input name="weight" type="number" min="0.01" max="100000" step="0.01" placeholder="Approx. weight in grams" required /></label>
       {pledged && <>
         <label>Release bank / NBFC<input name="releaseBank" placeholder="Bank or NBFC name" maxLength={255} required /></label>

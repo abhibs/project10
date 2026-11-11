@@ -96,6 +96,7 @@ CREATE TABLE `contacts` (
   `name` varchar(255) NOT NULL,
   `mobile` varchar(20) NOT NULL,
   `city` varchar(255) DEFAULT NULL,
+  `area` varchar(160) DEFAULT NULL,
   `weight` decimal(10,2) DEFAULT NULL,
   `preffered_date` date DEFAULT NULL,
   `preffered_time` varchar(20) DEFAULT NULL COMMENT '24-hour time or time range',
