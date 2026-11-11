@@ -1,9 +1,10 @@
+export const META_LEAD_TYPE = "meta-lead";
 export const GOOGLE_LEAD_TYPE = "googlelead-lp";
 export const INCOMING_CALL_TYPE = "Incoming Calls";
-export const CONTACT_FORM_TYPES = ["Branch Visit", "Doorstep Service", "Quick Contact", "Contact Page", "Banner Form", "Branch Form", "Blog Page", "Sell Gold", "Release Pledged Gold", "Doorstep Valuation", GOOGLE_LEAD_TYPE, INCOMING_CALL_TYPE];
+export const CONTACT_FORM_TYPES = ["Branch Visit", "Doorstep Service", "Quick Contact", "Contact Page", "Banner Form", "Branch Form", "Blog Page", "Sell Gold", "Release Pledged Gold", "Doorstep Valuation", GOOGLE_LEAD_TYPE, META_LEAD_TYPE, INCOMING_CALL_TYPE];
 
 export function getContactFormLabel(type) {
-  return type === GOOGLE_LEAD_TYPE ? "Google Lead" : type;
+  return type === GOOGLE_LEAD_TYPE ? "Google Lead" : type === META_LEAD_TYPE ? "Meta Lead" : type;
 }
 
 export function countContactTypes(contacts) {

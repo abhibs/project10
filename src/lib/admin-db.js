@@ -314,9 +314,9 @@ export async function syncMetaLeadContacts(leads) {
         `INSERT INTO contacts
           (name, mobile, city, area, language, meta_lead_id, weight, services, business_type,
            utm_campaign, keyword, adgroup_id, tracking_data, created_at)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'googlelead-lp', ?, ?, ?, ?, ?)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'meta-lead', ?, ?, ?, ?, ?)
          ON DUPLICATE KEY UPDATE
-           name = VALUES(name), mobile = VALUES(mobile), city = VALUES(city), area = VALUES(area),
+           business_type = 'meta-lead', name = VALUES(name), mobile = VALUES(mobile), city = VALUES(city), area = VALUES(area),
            language = VALUES(language), weight = VALUES(weight), services = VALUES(services),
            utm_campaign = VALUES(utm_campaign), keyword = VALUES(keyword), adgroup_id = VALUES(adgroup_id),
            tracking_data = VALUES(tracking_data), created_at = VALUES(created_at)`,

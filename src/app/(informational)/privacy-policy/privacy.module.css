@@ -1,0 +1,20 @@
+.page { --muted: #355a54; background: #faf7ef; padding: 140px 24px 88px; }
+.inner { max-width: 1080px; margin: 0 auto; }
+.breadcrumb { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 26px; color: #51716b; font-size: 13px; }
+.breadcrumb a { color: #00685e; text-decoration: none; }
+.policy { padding: clamp(24px, 5vw, 68px); border: 1px solid #e5decd; border-top: 4px solid #ffca42; border-radius: 28px; background: #fffaf2; box-shadow: 0 18px 50px #004c4110; color: #355a54; font-size: 15px; line-height: 1.9; overflow-wrap: anywhere; }
+.policy h1 { margin: 0 0 10px; color: #00685e; font-family: var(--font-aryan-display), Georgia, serif; font-size: clamp(36px, 6vw, 66px); line-height: 1.15; }
+.policy .subtitle { color: #00685e; font-weight: 700; margin: 12px 0 6px; }
+.policy .updated { display: inline-block; margin: 0 0 24px; padding: 6px 14px; border: 1px solid #ebd38f; border-radius: 20px; background: #fff3ce; color: #72551b; font-size: 12px; }
+.policy h2 { margin: 34px 0 14px; padding-top: 26px; border-top: 1px solid #e5decd; color: #00685e; font-family: var(--font-aryan-display), Georgia, serif; font-size: clamp(23px, 3vw, 30px); line-height: 1.4; }
+.policy h3 { color: #00685e; margin: 22px 0 8px; font-size: 16px; line-height: 1.5; }
+.policy p { margin: 12px 0; }
+:global(.aryan-home) .page .policy p,
+:global(.aryan-home) .page .policy li { color: #355a54; }
+:global(.aryan-home) .page .policy .subtitle { color: #00685e; }
+:global(.aryan-home) .page .policy .updated { color: #72551b; }
+.policy ul { margin: 10px 0 20px; padding-left: 24px; list-style: disc; }
+.policy li { margin: 7px 0; }
+.policy li::marker { color: #a67b14; }
+.policy a { color: #00685e; text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 600px) { .page { padding: 110px 16px 48px; } .policy { border-radius: 20px; font-size: 14px; } }

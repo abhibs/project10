@@ -1,6 +1,6 @@
 import ExcelJS from "exceljs";
 
-export const META_LEAD_SPREADSHEET = "https://docs.google.com/spreadsheets/d/14HMSLmYUzsR9VAC9sKJT0M-G2eULW5md2muxTRcAKOA";
+export const META_LEAD_SPREADSHEET = "https://docs.google.com/spreadsheets/d/1COG68Cdsu75dK4wKyJX6fOdU5Y5LnSsD9yGhNjVIHYM";
 
 const SHEET_CONFIGS = [
   {
@@ -57,7 +57,7 @@ function mysqlUtcTimestamp(value) {
 
 export function normalizeMetaLead(record, config) {
   const metaLeadId = limited(record.id, 128);
-  const name = limited(record.first_name, 255);
+  const name = limited(record.first_name || record.full_name, 255);
   const mobile = phoneNumber(record.phone_number);
   const createdAt = mysqlUtcTimestamp(record.created_time);
   if (!metaLeadId || !name || !mobile || !createdAt) return null;
@@ -77,7 +77,7 @@ export function normalizeMetaLead(record, config) {
     city: "",
     area: limited(record[config.area], 160),
     weight: weightInGrams(record[config.weight]),
-    services: limited(record[config.service], 255) || "Meta Ads enquiry",
+    services: limited(record[config.service] || record["select_service_type?"], 255) || "Meta Ads enquiry",
     language: config.language,
     campaignName: limited(record.campaign_name, 255),
     adName: limited(record.ad_name, 255),
@@ -91,13 +91,17 @@ export async function parseMetaLeadWorkbook(buffer) {
   await workbook.xlsx.load(buffer);
   const leadsById = new Map();
   let skipped = 0;
+  let matchedSheets = 0;
 
   for (const config of SHEET_CONFIGS) {
-    const sheet = workbook.getWorksheet(config.name);
-    if (!sheet) throw new Error(`Spreadsheet tab not found: ${config.name}`);
+    const sheet = workbook.worksheets.find((sheet) => [config.name.toLowerCase(), config.name.toLowerCase().replace(" leads", " creative leads")].includes(sheet.name.trim().toLowerCase()));
+    if (!sheet) continue;
+    matchedSheets++;
     const headers = sheet.getRow(1).values.slice(1).map((value) => text(value).trim());
-    const required = ["id", "created_time", "first_name", "phone_number", config.service, config.weight, config.area];
+    const required = ["id", "created_time", "phone_number", config.weight];
     const missing = required.filter((header) => !headers.includes(header));
+    if (!headers.includes("first_name") && !headers.includes("full_name")) missing.push("first_name or full_name");
+    if (!headers.includes(config.service) && !headers.includes("select_service_type?")) missing.push(config.service);
     if (missing.length) throw new Error(`${config.name} is missing columns: ${missing.join(", ")}`);
 
     for (let rowNumber = 2; rowNumber <= sheet.actualRowCount; rowNumber++) {
@@ -110,6 +114,7 @@ export async function parseMetaLeadWorkbook(buffer) {
     }
   }
 
+  if (!matchedSheets) throw new Error("No supported lead tabs found. Expected English Leads or Kannada Leads.");
   return { leads: [...leadsById.values()], skipped };
 }
 

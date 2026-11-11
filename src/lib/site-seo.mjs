@@ -1,5 +1,6 @@
 export const SITE_URL = "https://aryangoldbuyers.com";
 export const PAGE_DEFAULTS = {
+"/privacy-policy": {title:"Privacy Policy | Aryan Gold Attendance",description:"Read the Aryan Gold Attendance privacy policy covering attendance data, permissions, security and your rights."},
 "/": {title:"Gold Buyers in Bangalore & Chennai | Aryan Gold Buyers",description:"Explore gold selling, pledged gold assistance and valuation services. Find a branch and understand your offer before selling."},
 "/about-us": {title:"About Aryan Gold Buyers | Gold Valuation",description:"Learn about Aryan Gold Buyers and our approach to gold valuation. Understand weight, purity and the offer before deciding to sell."},
 "/branches": {title:"Gold Buying Branches | Aryan Gold Buyers",description:"Find active branches, street addresses, opening hours and directions for a personal gold valuation with Aryan Gold Buyers."},

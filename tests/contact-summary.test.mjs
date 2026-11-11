@@ -53,3 +53,12 @@ test("Blog Page leads have a separate card count and weight total", () => {
   assert.equal(sumContactWeights(contacts).weights["Blog Page"], 4.25);
   assert.equal(sumContactWeights(contacts).totalWeight, 6.75);
 });
+
+test("Google and Meta leads have separate labels and counts", () => {
+  const contacts = [{businessType: "googlelead-lp", weight: 10}, {businessType: "meta-lead", weight: 20}];
+  assert.equal(getContactFormLabel("googlelead-lp"), "Google Lead");
+  assert.equal(getContactFormLabel("meta-lead"), "Meta Lead");
+  assert.equal(countContactTypes(contacts)["googlelead-lp"], 1);
+  assert.equal(countContactTypes(contacts)["meta-lead"], 1);
+  assert.equal(sumContactWeights(contacts).weights["meta-lead"], 20);
+});

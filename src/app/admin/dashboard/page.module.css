@@ -89,7 +89,7 @@
 .syncLeadsButton:hover:not(:disabled) { color: var(--admin-cream); background: var(--admin-teal); }
 .syncLeadsButton:disabled { cursor: wait; opacity: .6; }
 .syncLeadsButton:focus-visible { outline: 2px solid var(--admin-red); outline-offset: 3px; }
-.syncStatus { margin: -12px 26px 18px; color: var(--admin-teal); font-size: 12px; }
+.panelHeading .syncStatus { margin: 12px 0 0; color: var(--admin-teal); font-size: 12px; line-height: 1.7; overflow-wrap: anywhere; }
 .resultCount { flex: none; padding: 8px 12px; border: 1px solid var(--admin-red); border-radius: 999px; color: var(--admin-ink); background: var(--admin-gold); font-size: 11px; font-weight: 800; }
 .filters { display: grid; grid-template-columns: minmax(130px, 1fr) minmax(130px, 1fr) minmax(150px, 1.2fr) auto; gap: 14px; align-items: end; padding: 22px 26px; }
 .filters label { min-width: 0; }

@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { CONTACT_DATE_PRESETS, contactDatePreset, resolveContactFilters } from "@/lib/contact-filters.mjs";
-import { CONTACT_FORM_TYPES, GOOGLE_LEAD_TYPE, INCOMING_CALL_TYPE, getContactFormLabel } from "@/lib/contact-summary.mjs";
+import { CONTACT_FORM_TYPES, META_LEAD_TYPE, GOOGLE_LEAD_TYPE, INCOMING_CALL_TYPE, getContactFormLabel } from "@/lib/contact-summary.mjs";
 import { CALLBACK_STATUS, CONTACT_STATUS_OPTIONS, getContactStatusLabel, VISITING_BRANCH_STATUS } from "@/lib/contact-status.mjs";
 import styles from "./page.module.css";
 
@@ -255,9 +255,9 @@ function ManualEnquiryDialog({ onCreated }) {
   </>;
 }
 
-export default function ContactsTable({ status = "", canCreate = true }) {
+export default function ContactsTable({ status = "", canCreate = true, metaOnly = false, googleOnly = false }) {
   const [datePreset, setDatePreset] = useState("today");
-  const [filters, setFilters] = useState(() => resolveContactFilters({ status }));
+  const [filters, setFilters] = useState(() => resolveContactFilters(metaOnly || googleOnly ? { allDates: true, businessType: metaOnly ? META_LEAD_TYPE : GOOGLE_LEAD_TYPE } : { status }));
   const [appliedFilters, setAppliedFilters] = useState(filters);
   const [contacts, setContacts] = useState([]);
   const [branches, setBranches] = useState([]);
@@ -381,11 +381,11 @@ export default function ContactsTable({ status = "", canCreate = true }) {
   }
 
   useEffect(() => {
-    if (!canCreate) return;
+    if (!canCreate || googleOnly) return;
     const controller = new AbortController();
     const timeout = setTimeout(() => syncMetaLeads(controller.signal), 0);
     return () => { clearTimeout(timeout); controller.abort(); };
-  }, [canCreate, syncMetaLeads]);
+  }, [canCreate, googleOnly, syncMetaLeads]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -469,12 +469,12 @@ export default function ContactsTable({ status = "", canCreate = true }) {
   return (
     <article className={styles.contactsPanel}>
       <div className={styles.panelHeading}>
-        <div><h2>{status ? getContactStatusLabel(status) + " requests" : "Contact requests"}</h2><p>{status ? "All requests with this status are shown across all dates." : <>Today’s requests are shown by default. Choose a date range and click Filter to view older requests.</>}</p></div>
-        <div className={styles.panelActions}>{canCreate && <button type="button" className={styles.syncLeadsButton} disabled={syncing} onClick={() => syncMetaLeads()}>{syncing ? "Syncing…" : "Sync Meta leads"}</button>}{canCreate && <ManualEnquiryDialog onCreated={manualEnquiryCreated} />}<span className={styles.resultCount}>{loading ? "…" : contacts.length} records</span></div>
+        <div><h2>{googleOnly ? "Google Lead" : metaOnly ? "Meta Lead" : status ? getContactStatusLabel(status) + " requests" : "Contact requests"}</h2><p>{googleOnly ? "All Google leads are shown across all dates." : metaOnly ? "All Meta leads are shown across all dates." : status ? "All requests with this status are shown across all dates." : <>Today’s requests are shown by default. Choose a date range and click Filter to view older requests.</>}</p>{syncMessage && <p className={styles.syncStatus} role="status">{syncMessage}</p>}</div>
+        <div className={styles.panelActions}>{canCreate && !googleOnly && <button type="button" className={styles.syncLeadsButton} disabled={syncing} onClick={() => syncMetaLeads()}>{syncing ? "Syncing…" : "Sync Meta leads"}</button>}{canCreate && !metaOnly && !googleOnly && <ManualEnquiryDialog onCreated={manualEnquiryCreated} />}<span className={styles.resultCount}>{loading ? "…" : contacts.length} records</span></div>
       </div>
-      {syncMessage && <p className={styles.syncStatus} role="status">{syncMessage}</p>}
 
-      <form className={styles.filters} onSubmit={applyFilters}>
+
+      {!metaOnly && !googleOnly && <form className={styles.filters} onSubmit={applyFilters}>
         {!status && <><label><span>Date range (Kolkata time)</span><select value={datePreset} onChange={(event) => {
           const preset = event.target.value;
           setDatePreset(preset);
@@ -483,14 +483,14 @@ export default function ContactsTable({ status = "", canCreate = true }) {
         <label><span>To date</span><input type="date" min={filters.fromDate || undefined} value={filters.toDate} onChange={(event) => { setDatePreset("custom"); setFilters({...filters, allDates: false, toDate: event.target.value}); }} /></label></>}
         <label><span>Form type</span><select value={filters.businessType} onChange={(event) => setFilters({...filters, businessType: event.target.value})}><option value="">All form types</option>{CONTACT_FORM_TYPES.map((type) => <option key={type} value={type}>{getContactFormLabel(type)}</option>)}</select></label>
         <div className={styles.filterActions}><button className={styles.filterButton} type="submit">Filter</button><button type="button" onClick={clearFilters}>Clear</button></div>
-      </form>
+      </form>}
 
-      <div className={styles.contactSummary} role="group" aria-label={status ? "Lead counts by form type for this status across all dates" : "Lead counts by form type for the selected dates"}>
+      {!status && !metaOnly && !googleOnly && <div className={styles.contactSummary} role="group" aria-label={status ? "Lead counts by form type for this status across all dates" : "Lead counts by form type for the selected dates"}>
         {[["", "All form types"], ...CONTACT_FORM_TYPES.map((type) => [type, getContactFormLabel(type)])].map(([type, label]) => <button key={type} type="button" className={`${styles.summaryCard} ${appliedFilters.businessType === type ? styles.summarySelected : ""}`} aria-pressed={appliedFilters.businessType === type} disabled={loading} onClick={() => selectFormType(type)}>
           <span>{label}</span><strong>{loading ? "…" : type ? summary.counts[type] || 0 : summary.total}</strong><small>{type ? "leads" : "total leads"}</small>
           <span className={styles.summaryWeight}>Total weight <b>{loading ? "…" : `${Number(type ? summary.weights?.[type] || 0 : summary.totalWeight || 0).toLocaleString("en-IN", { maximumFractionDigits: 2 })} g`}</b></span>
         </button>)}
-      </div>
+      </div>}
       {error && <p className={styles.tableError} role="alert">{error}</p>}
       {branchError && <p className={styles.tableError} role="alert">{branchError} Branch visits cannot be assigned until the branch list is available.</p>}
       <div className={styles.exportToolbar}>

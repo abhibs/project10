@@ -38,3 +38,31 @@ test("Meta test rows without a real mobile number are skipped", () => {
   });
   assert.equal(lead, null);
 });
+
+import ExcelJS from "exceljs";
+import { parseMetaLeadWorkbook } from "../src/lib/meta-leads.mjs";
+
+async function englishWorkbook(validHeaders = true) {
+  const workbook = new ExcelJS.Workbook();
+  const sheet = workbook.addWorksheet("English Leads");
+  sheet.addRow(validHeaders ? ["id", "created_time", "first_name", "phone_number", "select_type", "approx._gold_weight_(grams)?", "which_area?"] : ["id"]);
+  if (validHeaders) sheet.addRow([common.id, common.created_time, common.first_name, common.phone_number, "Sell Gold", 10, "Jayanagar"]);
+  return workbook.xlsx.writeBuffer();
+}
+
+test("imports English leads when the optional Kannada tab is absent", async () => {
+  const result = await parseMetaLeadWorkbook(await englishWorkbook());
+  assert.equal(result.leads.length, 1);
+  assert.equal(result.leads[0].language, "english");
+  assert.equal(result.skipped, 0);
+});
+
+test("still rejects malformed columns in an available tab", async () => {
+  await assert.rejects(parseMetaLeadWorkbook(await englishWorkbook(false)), /missing columns/);
+});
+
+test("reports an error when no supported lead tab exists", async () => {
+  const workbook = new ExcelJS.Workbook();
+  workbook.addWorksheet("Unrelated");
+  await assert.rejects(parseMetaLeadWorkbook(await workbook.xlsx.writeBuffer()), /No supported lead tabs/);
+});

@@ -32,6 +32,7 @@ export default function SiteFooter({ homePage = false }) {
         </div>
         <div>
           <h4>Important</h4>
+          <Link href="/privacy-policy">Privacy Policy</Link>
           <p className="footer-small">Rates shown online are indicative. Final value is confirmed after physical evaluation and applicable compliance checks.</p>
         </div>
       </div>

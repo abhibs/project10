@@ -15,6 +15,9 @@ try {
   });
   const [columns] = await connection.query("SHOW COLUMNS FROM contacts");
   const changes = [];
+  const businessType = columns.find((column) => column.Field === "business_type")?.Type;
+  if (!businessType?.startsWith("enum(")) throw new Error("Unexpected contact business type schema.");
+  if (!businessType.includes("'meta-lead'")) changes.push(`MODIFY COLUMN business_type ${businessType.slice(0, -1)},'meta-lead') NOT NULL`);
   if (!columns.some((column) => column.Field === "language")) changes.push("ADD COLUMN language ENUM('kannada','english') DEFAULT NULL AFTER area");
   if (!columns.some((column) => column.Field === "meta_lead_id")) changes.push("ADD COLUMN meta_lead_id VARCHAR(128) DEFAULT NULL AFTER language");
   if (changes.length) await connection.query(`ALTER TABLE contacts ${changes.join(", ")}`);
@@ -23,6 +26,7 @@ try {
   if (!indexes.some((index) => index.Key_name === "contacts_meta_lead_id_unique")) {
     await connection.query("ALTER TABLE contacts ADD UNIQUE KEY contacts_meta_lead_id_unique (meta_lead_id)");
   }
+  await connection.query("UPDATE contacts SET business_type = 'meta-lead' WHERE meta_lead_id IS NOT NULL AND business_type = 'googlelead-lp'");
 
   const [verified] = await connection.query("SHOW COLUMNS FROM contacts");
   const language = verified.find((column) => column.Field === "language")?.Type || "";

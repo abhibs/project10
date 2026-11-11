@@ -25,7 +25,7 @@ function ContactStatusIcon({ slug }) {
   return <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ display: "block" }}>{paths[slug]}</svg>;
 }
 
-export default function DashboardClient({ admin, section = "dashboard", contactStatus = "" }) {
+export default function DashboardClient({ admin, section = "dashboard", contactStatus = "", metaOnly = false, googleOnly = false }) {
   const router = useRouter();
   const [profileUpdate, setProfileUpdate] = useState(null);
   const profile = profileUpdate?.source === admin ? profileUpdate.value : admin;
@@ -153,7 +153,10 @@ export default function DashboardClient({ admin, section = "dashboard", contactS
         <div className={styles.brand}><AdminBrand /></div>
         <p className={styles.menuTitle}>ADMIN WORKSPACE</p>
         <nav aria-label="Admin navigation">
-          {ADMIN_SECTIONS.filter(({ key }) => hasAdminPermission(admin, key)).map(({ key, label, href, icon, slug }) => <Link key={key} className={(contactStatus ? statusPage?.permission === key : section === key) ? styles.active : undefined} aria-current={section === key && !contactStatus ? "page" : undefined} href={href}><span aria-hidden="true">{slug ? <ContactStatusIcon slug={slug} /> : icon}</span> {label}</Link>)}
+          {ADMIN_SECTIONS.slice(0, ADMIN_SECTIONS.findIndex(({ slug }) => slug === "completed") + 1).filter(({ key }) => hasAdminPermission(admin, key)).map(({ key, label, href, icon, slug }) => <Link key={key} className={(contactStatus ? statusPage?.permission === key : !metaOnly && !googleOnly && section === key) ? styles.active : undefined} aria-current={section === key && !contactStatus && !metaOnly && !googleOnly ? "page" : undefined} href={href}><span aria-hidden="true">{slug ? <ContactStatusIcon slug={slug} /> : icon}</span> {label}</Link>)}
+          {hasAdminPermission(admin, "contact") && <Link href="/admin/contact/meta-leads" className={metaOnly ? styles.active : undefined} aria-current={metaOnly ? "page" : undefined}><span aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ display: "block" }}><path d="M12 12c-3-5-5-7-7-5C2 9 1 18 5 18c4 0 9-14 13-11 3 2 5 11 1 11-3 0-5-4-7-6Z" /></svg></span> Meta Lead</Link>}
+          {hasAdminPermission(admin, "contact") && <Link href="/admin/contact/google-leads" className={googleOnly ? styles.active : undefined} aria-current={googleOnly ? "page" : undefined}><span aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ display: "block" }}><path d="M20 7a9 9 0 1 0 1 5h-9m9 0v5" /></svg></span> Google Lead</Link>}
+          {ADMIN_SECTIONS.slice(ADMIN_SECTIONS.findIndex(({ slug }) => slug === "completed") + 1).filter(({ key }) => hasAdminPermission(admin, key)).map(({ key, label, href, icon, slug }) => <Link key={key} className={(contactStatus ? statusPage?.permission === key : !metaOnly && !googleOnly && section === key) ? styles.active : undefined} aria-current={section === key && !contactStatus && !metaOnly && !googleOnly ? "page" : undefined} href={href}><span aria-hidden="true">{slug ? <ContactStatusIcon slug={slug} /> : icon}</span> {label}</Link>)}
         </nav>
         <div className={styles.sidebarFoot}><span>ARYAN GOLD</span><p>Trust today.<br />Brighter tomorrows.</p><Link href="/">View website →</Link></div>
       </aside>
@@ -172,7 +175,7 @@ export default function DashboardClient({ admin, section = "dashboard", contactS
             </div>}
           </div>
         </header>
-        {section === "no-access" ? <article className={styles.welcome}><h2>No sections assigned yet</h2><p>Ask your administrator to select the sidebar sections you can access. You can still update your profile or sign out using the account menu.</p></article> : section === "blogs" ? <BlogImageManager /> : section === "admins" ? <AdminUsersManager admin={admin} /> : section === "seo" ? <SeoManager /> : section === "branches" ? <BranchManager /> : section === "rate" ? <RateForm /> : section === "contact" ? <ContactsTable key={contactStatus || "all"} status={contactStatus} canCreate={hasAdminPermission(admin, "contact")} /> : <>
+        {section === "no-access" ? <article className={styles.welcome}><h2>No sections assigned yet</h2><p>Ask your administrator to select the sidebar sections you can access. You can still update your profile or sign out using the account menu.</p></article> : section === "blogs" ? <BlogImageManager /> : section === "admins" ? <AdminUsersManager admin={admin} /> : section === "seo" ? <SeoManager /> : section === "branches" ? <BranchManager /> : section === "rate" ? <RateForm /> : section === "contact" ? <ContactsTable key={googleOnly ? "google" : metaOnly ? "meta" : contactStatus || "all"} googleOnly={googleOnly} metaOnly={metaOnly} status={contactStatus} canCreate={hasAdminPermission(admin, "contact")} /> : <>
           <article className={styles.welcome}>
             <p className={styles.eyebrow}>YOUR ARYAN GOLD WORKSPACE</p>
             <h2>Welcome back, {profile.name}.</h2>

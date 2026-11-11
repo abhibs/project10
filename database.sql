@@ -103,7 +103,7 @@ CREATE TABLE `contacts` (
   `preffered_date` date DEFAULT NULL,
   `preffered_time` varchar(20) DEFAULT NULL COMMENT '24-hour time or time range',
   `services` varchar(255) NOT NULL,
-  `business_type` enum('Branch Visit','Doorstep Service','Quick Contact','Contact Page','Banner Form','Sell Gold','Release Pledged Gold','Doorstep Valuation','googlelead-lp','Incoming Calls','Branch Form') NOT NULL,
+  `business_type` enum('Branch Visit','Doorstep Service','Quick Contact','Contact Page','Banner Form','Sell Gold','Release Pledged Gold','Doorstep Valuation','googlelead-lp','meta-lead','Incoming Calls','Branch Form') NOT NULL,
   `gclid` varchar(255) DEFAULT NULL,
   `utm_source` varchar(255) DEFAULT NULL,
   `utm_campaign` varchar(255) DEFAULT NULL,
