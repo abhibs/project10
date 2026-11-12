@@ -260,15 +260,21 @@ export default function ContactsTable({ status = "", canCreate = true, metaOnly 
   const [filters, setFilters] = useState(() => resolveContactFilters(metaOnly || googleOnly ? { allDates: true, businessType: metaOnly ? META_LEAD_TYPE : GOOGLE_LEAD_TYPE } : { status }));
   const [appliedFilters, setAppliedFilters] = useState(filters);
   const [contacts, setContacts] = useState([]);
+  const [search, setSearch] = useState("");
+  const searchTerms = search.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const matchingContacts = contacts.filter(contact => {
+    const text = [...Object.values(contact), getContactFormLabel(contact.businessType), getContactStatusLabel(contact.status), displayService(contact), displayDate(contact.submittedDate), displayTime(contact.submittedTime)].join(" ").toLowerCase();
+    return searchTerms.every(term => text.includes(term));
+  });
   const [branches, setBranches] = useState([]);
   const [branchesLoading, setBranchesLoading] = useState(true);
   const [branchError, setBranchError] = useState("");
   const [page, setPage] = useState(1);
   const pageSize = 10;
-  const totalPages = Math.max(1, Math.ceil(contacts.length / pageSize));
+  const totalPages = Math.max(1, Math.ceil(matchingContacts.length / pageSize));
   const currentPage = Math.min(page, totalPages);
   const pageStart = (currentPage - 1) * pageSize;
-  const visibleContacts = contacts.slice(pageStart, pageStart + pageSize);
+  const visibleContacts = matchingContacts.slice(pageStart, pageStart + pageSize);
   const [summary, setSummary] = useState({ counts: {}, total: 0, weights: {}, totalWeight: 0 });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -327,7 +333,7 @@ export default function ContactsTable({ status = "", canCreate = true, metaOnly 
     setExporting(true);
     setExportMessage("");
     const headers = ["#", "Date", "Time (IST)", "Form type", "Language", "Meta lead ID", "Name", "Mobile", "City", "Weight", "Release bank", "Release place", "Preferred date", "Preferred time", "Service / Help with", "Details", "GCLID", "UTM Source", "UTM Campaign", "Keyword", "Adgroup ID", "Landing page", "Referrer", "Tracking data", "Call-back date", "Visit branch ID", "Visit branch", "Visit date", "Visit time", "Status", "Comment", "Blog ID", "Blog name", "Area"];
-    const rows = contacts.map((contact, index) => [
+    const rows = matchingContacts.map((contact, index) => [
       index + 1, displayDate(contact.submittedDate), displayTime(contact.submittedTime),
       getContactFormLabel(contact.businessType), contact.language || "", contact.metaLeadId || "", contact.name, contact.mobile, contact.city || "—",
       contact.weight ? `${contact.weight} g` : "—", contact.releaseBank || "", contact.releasePlace || "", displayDate(contact.preferredDate),
@@ -346,7 +352,7 @@ export default function ContactsTable({ status = "", canCreate = true, metaOnly 
       if (format === "copy") {
         const text = [headers, ...rows].map((row) => row.map((value) => safeText(value).replace(/[\t\r\n]+/g, " ")).join("\t")).join("\r\n");
         await navigator.clipboard.writeText(text);
-        setExportMessage(`${contacts.length} records copied to clipboard.`);
+        setExportMessage(`${matchingContacts.length} records copied to clipboard.`);
         return;
       }
       let blob;
@@ -372,7 +378,7 @@ export default function ContactsTable({ status = "", canCreate = true, metaOnly 
       link.click();
       link.remove();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
-      setExportMessage(`${format === "csv" ? "CSV" : "Excel"} download ready: ${contacts.length} records.`);
+      setExportMessage(`${format === "csv" ? "CSV" : "Excel"} download ready: ${matchingContacts.length} records.`);
     } catch {
       setExportMessage(format === "copy" ? "Unable to copy. Check clipboard permissions or download CSV or Excel instead." : "Unable to export contacts. Please try again.");
     } finally {
@@ -495,17 +501,21 @@ export default function ContactsTable({ status = "", canCreate = true, metaOnly 
       {branchError && <p className={styles.tableError} role="alert">{branchError} Branch visits cannot be assigned until the branch list is available.</p>}
       <div className={styles.exportToolbar}>
         <div className={styles.exportButtons} role="group" aria-label="Export contact requests">
-          <button type="button" disabled={loading || exporting || !contacts.length} onClick={() => exportContacts("copy")}>Copy</button>
-          <button type="button" disabled={loading || exporting || !contacts.length} onClick={() => exportContacts("csv")}>CSV</button>
-          <button type="button" disabled={loading || exporting || !contacts.length} onClick={() => exportContacts("excel")}>Excel</button>
+          <button type="button" disabled={loading || exporting || !matchingContacts.length} onClick={() => exportContacts("copy")}>Copy</button>
+          <button type="button" disabled={loading || exporting || !matchingContacts.length} onClick={() => exportContacts("csv")}>CSV</button>
+          <button type="button" disabled={loading || exporting || !matchingContacts.length} onClick={() => exportContacts("excel")}>Excel</button>
         </div>
         <span className={styles.exportStatus} role="status">{exporting ? "Preparing export…" : exportMessage}</span>
+        <label className={styles.contactSearch}>
+          <span>Search</span>
+          <input type="search" placeholder="Name, mobile, city, comment…" value={search} onChange={event => { setSearch(event.target.value); setPage(1); setExportMessage(""); }} />
+        </label>
       </div>
       <div className={styles.tableWrap}>
         <table className={styles.contactsTable}>
           <thead><tr><th>#</th><th>Date</th><th>Time (IST)</th><th>Form type</th><th>Language</th><th>Blog name</th><th>Name</th><th>Mobile</th><th>City</th><th>Area</th><th>Weight</th><th>Service / Help with</th><th>Details</th><th>Status</th><th>Comment</th></tr></thead>
           <tbody>
-            {loading ? <tr><td className={styles.tableStatus} colSpan="15">Loading contact requests…</td></tr> : contacts.length === 0 ? <tr><td className={styles.tableStatus} colSpan="15">No contact requests found.</td></tr> : visibleContacts.map((contact, index) => (
+            {loading ? <tr><td className={styles.tableStatus} colSpan="15">Loading contact requests…</td></tr> : matchingContacts.length === 0 ? <tr><td className={styles.tableStatus} colSpan="15">No contact requests found.</td></tr> : visibleContacts.map((contact, index) => (
               <tr key={contact.id} className={contact.comment?.trim() ? styles.commentedRow : undefined}>
                 <td>{pageStart + index + 1}</td>
                 <td className={styles.noWrap}>{displayDate(contact.submittedDate)}</td>
@@ -520,10 +530,10 @@ export default function ContactsTable({ status = "", canCreate = true, metaOnly 
         </table>
       </div>
       <nav className={styles.pagination} aria-label="Contact pages">
-        <span role="status">{loading ? "Loading…" : `Showing ${contacts.length ? pageStart + 1 : 0}–${Math.min(pageStart + pageSize, contacts.length)} of ${contacts.length} contacts`}</span>
+        <span role="status">{loading ? "Loading…" : `Showing ${matchingContacts.length ? pageStart + 1 : 0}–${Math.min(pageStart + pageSize, matchingContacts.length)} of ${matchingContacts.length} contacts`}</span>
         <div>
           <button type="button" disabled={loading || currentPage === 1} onClick={() => setPage(currentPage - 1)}>Previous</button>
-          <label>Page <select aria-label="Contact page" value={currentPage} disabled={loading || !contacts.length} onChange={(event) => setPage(Number(event.target.value))}>
+          <label>Page <select aria-label="Contact page" value={currentPage} disabled={loading || !matchingContacts.length} onChange={(event) => setPage(Number(event.target.value))}>
             {Array.from({ length: totalPages }, (_, index) => <option key={index + 1} value={index + 1}>{index + 1}</option>)}
           </select> of {totalPages}</label>
           <button type="button" disabled={loading || currentPage === totalPages} onClick={() => setPage(currentPage + 1)}>Next</button>
