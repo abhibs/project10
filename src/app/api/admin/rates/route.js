@@ -18,7 +18,7 @@ export async function PUT(request) {
   try {
     await authorizeAdminRequest(request, "rate");
     const rates = validateRates(await request.json().catch(() => null));
-    if (!rates) return Response.json({ message: "Enter a positive price for all three purities, with at most two decimal places (maximum 99,999,999.99)." }, { status: 400 });
+    if (!rates) return Response.json({ message: "Enter positive whole-rupee prices for 24K and 22K gold (maximum 99,999,999)." }, { status: 400 });
     await saveRates(rates);
     return Response.json({ message: "Rates saved successfully." });
   } catch (error) {

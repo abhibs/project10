@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import styles from "./page.module.css";
 
 export default function RateForm() {
-  const [rates, setRates] = useState({ 24: "", 22: "", 18: "" });
+  const [rates, setRates] = useState({ 24: "", 22: "" });
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -20,7 +20,7 @@ export default function RateForm() {
         const response = await fetch("/api/admin/rates", { cache: "no-store", signal: controller.signal });
         const data = await response.json();
         if (!response.ok) throw new Error(data.message);
-        if (data.rate) { setRates(data.rate.rates); setExists(true); }
+        if (data.rate) { setRates({ 24: Math.round(data.rate.rates[24]), 22: Math.round(data.rate.rates[22]) }); setExists(true); }
       } catch (error) {
         if (controller.signal.aborted) return;
         setError(error.message || "Unable to load rates.");
@@ -53,9 +53,13 @@ export default function RateForm() {
     {loading ? <p role="status">Loading rates…</p> : loadError ? <button className={styles.retryButton} type="button" onClick={() => { setLoading(true); setLoadError(false); setError(""); setAttempt(attempt + 1); }}>Retry loading</button> :
       <form onSubmit={save}>
         <fieldset className={styles.rateFields} disabled={saving}>
-          {[24, 22, 18].map(karat => <div key={karat}>
+          {[24, 22].map(karat => <div key={karat}>
             <label htmlFor={`gold-${karat}`}>{karat}K Gold — ₹ per gram</label>
-            <input id={`gold-${karat}`} name={`gold${karat}`} type="number" min="0.01" max="99999999.99" step="0.01" required value={rates[karat]} onChange={event => { setRates({ ...rates, [karat]: event.target.value }); setMessage(""); }} />
+            <input id={`gold-${karat}`} name={`gold${karat}`} type="number" min="1" max="99999999" step="1" required value={rates[karat]} onChange={event => {
+              const value = event.target.value;
+              setRates(current => ({ ...current, [karat]: value, ...(karat === 24 ? { 22: value === "" ? "" : Math.round(Number(value) * 91.6 / 100) } : {}) }));
+              setMessage("");
+            }} />
           </div>)}
         </fieldset>
         <div className={styles.modalActions}><button className={styles.savePassword} type="submit" disabled={saving}>{saving ? "Saving…" : exists ? "Update rates" : "Save rates"}</button></div>

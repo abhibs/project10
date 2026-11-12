@@ -185,7 +185,7 @@ export default function DashboardClient({ admin, section = "dashboard", contactS
           <div className={styles.quickGrid}>
             {hasAdminPermission(admin, "branches") && <Link className={styles.quickCard} href="/admin/branches"><span className={styles.cardIcon} aria-hidden="true">⌂</span><h2>Branch locations</h2><p>Add and manage the branches customers can find on your website.</p><strong>Manage branches →</strong></Link>}
             {hasAdminPermission(admin, "contact") && <Link className={styles.quickCard} href="/admin/contact/index"><span className={styles.cardIcon} aria-hidden="true">☏</span><h2>Customer enquiries</h2><p>Review branch visits, doorstep service requests, quick contacts and contact page enquiries.</p><strong>View contact requests →</strong></Link>}
-            {hasAdminPermission(admin, "rate") && <Link className={styles.quickCard} href="/admin/rate"><span className={styles.cardIcon} aria-hidden="true">₹</span><h2>Gold rates</h2><p>Manage the 24K, 22K and 18K prices displayed on your website.</p><strong>Update gold rates →</strong></Link>}
+            {hasAdminPermission(admin, "rate") && <Link className={styles.quickCard} href="/admin/rate"><span className={styles.cardIcon} aria-hidden="true">₹</span><h2>Gold rates</h2><p>Manage the 24K and 22K prices displayed on your website.</p><strong>Update gold rates →</strong></Link>}
           </div>
         </>}
       </section>
