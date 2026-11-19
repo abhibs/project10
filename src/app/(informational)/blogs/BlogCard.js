@@ -3,7 +3,7 @@ import Image from "next/image";
 import styles from "./blogs.module.css";
 export default function BlogCard({ post, image }) {
   return <article className={styles.card}>
-    <Link href={`/blogs/${post.slug}`} className={styles.cardImage} tabIndex={-1} aria-hidden="true"><Image src={image} alt="" fill sizes="(max-width: 600px) 90vw, (max-width: 1050px) 45vw, 30vw" /></Link>
+    <Link href={`/blogs/${post.slug}`} className={styles.cardImage} tabIndex={-1} aria-hidden="true"><Image src={image} alt={post.title} fill sizes="(max-width: 600px) 90vw, (max-width: 1050px) 45vw, 30vw" /></Link>
     <div className={styles.cardCopy}>
       <span className={styles.tag}>{post.category}</span>
       <h2><Link href={`/blogs/${post.slug}`}>{post.title}</Link></h2>

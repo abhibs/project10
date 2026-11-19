@@ -216,9 +216,9 @@ export default function GoldHomepage({ initialBranches = [] }) {
   <main>
     <section className="hero section-shell" id="hero" aria-labelledby="hero-title">
       <div className="hero-gold-flow" aria-hidden="true">
-        <Image className="hero-gold-pile" src="/hero-gold-cutout.webp" alt="" width={600} height={400} sizes="40vw" />
+        <Image className="hero-gold-pile" src="/hero-gold-cutout.webp" alt="Gold jewellery for valuation" width={600} height={400} sizes="40vw" />
         <div className="hero-gold-right">
-          <Image src="/buy-gold-jewellery.webp" alt="" width={1254} height={1254} sizes="(max-width: 1200px) 440px, 42vw" />
+          <Image src="/buy-gold-jewellery.webp" alt="Gold necklace and matching jewellery" width={1254} height={1254} sizes="(max-width: 1200px) 440px, 42vw" />
         </div>
       </div>
       <div className="container hero-grid">

@@ -102,7 +102,7 @@ export default async function BranchDetailPage({ params }) {
     <section className={styles.section} aria-labelledby="branch-services-title"><div className={styles.shell}>
       <div className={styles.sectionHeading}><span className={styles.eyebrow}>GOLD SERVICES</span><h2 id="branch-services-title">More possibilities.<br />One transparent process.</h2><p>Explore gold selling and valuation services with our {branch.area} team.</p></div>
       <div className={styles.servicesGrid}>{services.map(([number, title, description, src, href]) => <Link href={href} className={styles.serviceCard} key={number}>
-        <div className={styles.serviceImage}><Image src={src} alt="" fill sizes="(max-width: 600px) 90vw, (max-width: 1000px) 45vw, 25vw" /></div>
+        <div className={styles.serviceImage}><Image src={src} alt={title} fill sizes="(max-width: 600px) 90vw, (max-width: 1000px) 45vw, 25vw" /></div>
         <div className={styles.serviceCopy}><span>{number} /</span><h3>{title}</h3><p>{description}</p><strong>Explore service <span aria-hidden="true">↗</span></strong></div>
       </Link>)}</div>
     </div></section>

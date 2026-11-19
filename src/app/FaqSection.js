@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./faq.module.css";
+import { jsonLd } from "@/lib/site-seo.mjs";
 
 const questions = [
   {
@@ -46,6 +47,13 @@ function ContactIcon({ name }) {
 
 export default function FaqSection() {
   return <section className={styles.section} id="faq" aria-labelledby="faq-title">
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({
+      "@context": "https://schema.org", "@type": "FAQPage",
+      mainEntity: questions.map(({ question, answer }) => ({
+        "@type": "Question", name: question,
+        acceptedAnswer: { "@type": "Answer", text: answer },
+      })),
+    }) }} />
     <div className={"container " + styles.shell}>
       <div className={styles.layout}>
         <div className={styles.questions}>
@@ -62,6 +70,7 @@ export default function FaqSection() {
             <Image src="/old-gold-consultation.webp" alt="Customer asking a gold valuation advisor about selling her old jewellery" fill sizes="(max-width: 760px) 90vw, 38vw" />
           </div>
           <h3>Still have questions?<br />Talk to our team.</h3>
+          <p>Contact our team to discuss valuation, documents or your nearest branch.</p>
           <div className={styles.actions}>
             <a className={styles.call} href="#branches"><ContactIcon name="pin" /><span>Find a Branch</span></a>
             <a className={styles.message} href="#booking"><ContactIcon name="message" /><span>Book a Visit</span></a>

@@ -1,3 +1,4 @@
+import { articleDates } from "@/lib/article-dates.mjs";
 import { getPageSeoMetadata } from "@/lib/seo-metadata";
 import Link from "next/link";
 import Image from "next/image";
@@ -17,16 +18,17 @@ async function resolve(params) {
 export async function generateMetadata({ params }) {
   const post = await resolve(params);
   const image = blogImage(post, await blogImages());
-  return getPageSeoMetadata(`/blogs/${post.slug}`, { title: post.metaTitle, description: post.description, keywords: post.source.keywords.map(item => item.keyword), alternates: { canonical: `/blogs/${post.slug}` }, openGraph: { type: "article", title: post.title, description: post.description, url: `/blogs/${post.slug}`, images: [image] } });
+  return getPageSeoMetadata(`/blogs/${post.slug}`, { title: post.metaTitle, description: post.description, keywords: post.source.keywords.map(item => item.keyword), alternates: { canonical: `/blogs/${post.slug}` }, openGraph: { ...articleDates(post), authors: [`${SITE_URL}/about-us`], type: "article", title: post.title, description: post.description, url: `/blogs/${post.slug}`, images: [image] } });
 }
 export default async function ArticlePage({ params }) {
   const post = await resolve(params);
   const images = await blogImages();
   const related = (await publishedBlogs()).filter(item => item.slug !== post.slug && item.category === post.category).slice(0, 3);
   const url = `${SITE_URL}/blogs/${post.slug}`;
+  const dates = articleDates(post);
   const schema = { "@context": "https://schema.org", "@graph": [
     { "@type": "Organization", "@id": `${SITE_URL}#organization`, name: "Aryan Gold Buyers", url: SITE_URL },
-    { "@type": "Article", "@id": `${url}#article`, headline: post.title, description: post.description, mainEntityOfPage: url, image: new URL(blogImage(post, images), SITE_URL).href, publisher: { "@id": `${SITE_URL}#organization` }, articleSection: post.category, inLanguage: "en-IN" },
+    { "@type": "Article", "@id": `${url}#article`, datePublished: dates.publishedTime, dateModified: dates.modifiedTime, headline: post.title, description: post.description, mainEntityOfPage: url, image: new URL(blogImage(post, images), SITE_URL).href, publisher: { "@id": `${SITE_URL}#organization` }, author: { "@type": "Organization", name: "Aryan Gold Buyers", url: `${SITE_URL}/about-us` }, articleSection: post.category, inLanguage: "en-IN" },
     { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: SITE_URL }, { "@type": "ListItem", position: 2, name: "Journal", item: `${SITE_URL}/blogs` }, { "@type": "ListItem", position: 3, name: post.title, item: url }] },
   ] };
   return <div className={styles.page}><div className={styles.articleShell}>
@@ -36,7 +38,7 @@ export default async function ArticlePage({ params }) {
       <aside className={styles.toc}><span className={styles.eyebrow}>IN THIS ARTICLE</span><nav aria-label="Table of contents">{post.headings.slice(0, 18).map(heading => <a href={`#${heading.id}`} key={heading.id}>{heading.title}</a>)}<a href="#article-next-step">Your next step</a></nav><Link className={styles.back} href="/blogs">← Back to the journal</Link></aside>
       <div className={styles.articleCenter}>
         <article className={styles.article}>
-          <span className={styles.eyebrow}>{post.category}</span><h1>{post.title}</h1><p className={styles.standfirst}>{post.excerpt}</p><div className={styles.byline}><span>By Aryan Gold Buyers</span><span>{post.readMinutes} min read</span></div>
+          <span className={styles.eyebrow}>{post.category}</span><h1>{post.title}</h1><p className={styles.standfirst}>{post.excerpt}</p><div className={styles.byline}><span>Published by <Link href="/about-us" rel="author">Aryan Gold Buyers</Link></span>{dates.publishedTime && <span>Published <time dateTime={dates.publishedTime}>{new Date(dates.publishedTime).toLocaleDateString("en-IN", { timeZone: "Asia/Kolkata" })}</time></span>}{dates.modifiedTime && <span>Updated <time dateTime={dates.modifiedTime}>{new Date(dates.modifiedTime).toLocaleDateString("en-IN", { timeZone: "Asia/Kolkata" })}</time></span>}<span>{post.readMinutes} min read</span></div>
           <div className={styles.heroImage}><Image src={blogImage(post, images)} alt={post.title} fill sizes="(max-width: 800px) 90vw, (max-width: 1200px) 65vw, 55vw" priority /></div>
           <p className={styles.rateNote}>Rates and calculations in this guide are illustrative. <Link href="/gold-rate">Check our published rates</Link> and confirm your offer after physical evaluation.</p>
           <div className={styles.prose} dangerouslySetInnerHTML={{ __html: post.html }} />

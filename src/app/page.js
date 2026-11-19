@@ -1,4 +1,3 @@
-import BusinessSchema from "./BusinessSchema";
 import { getPublicBranches } from "@/lib/public-branches";
 import { getPageSeoMetadata } from "@/lib/seo-metadata";
 import GoldHomepage from "./GoldHomepage";
@@ -34,7 +33,6 @@ export default async function Home() {
  const branches = await getPublicBranches();
   return (
     <>
-      <BusinessSchema />
       {/* Meta Pixel Code */}
       <Script id="meta-pixel" strategy="afterInteractive">
         {`!function(f,b,e,v,n,t,s)

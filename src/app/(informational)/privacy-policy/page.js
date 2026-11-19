@@ -1,3 +1,4 @@
+import { SITE_URL, jsonLd } from "@/lib/site-seo.mjs";
 import Link from "next/link";
 import { getPageSeoMetadata } from "@/lib/seo-metadata";
 import styles from "./privacy.module.css";
@@ -7,6 +8,7 @@ export async function generateMetadata() {
 export default function PrivacyPolicyPage() {
   return <section className={styles.page}>
     <div className={styles.inner}>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd({ "@context": "https://schema.org", "@type": "WebPage", name: "Aryan Gold Attendance Privacy Policy", url: `${SITE_URL}/privacy-policy`, dateModified: "2026-04-08", publisher: { "@id": `${SITE_URL}#organization` } }) }} />
       <nav className={styles.breadcrumb} aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">/</span><span>Privacy Policy</span></nav>
       <article className={styles.policy}>
             <h1>Privacy Policy</h1>

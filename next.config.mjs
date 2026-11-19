@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+ // Keep metadata in the initial head for scanners that do not execute JavaScript.
+ htmlLimitedBots: /.*/,
  images: {
   localPatterns: [
    { pathname: "/**", search: "" },

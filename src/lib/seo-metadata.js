@@ -1,6 +1,7 @@
 import { getSeoPages } from "./admin-db";
 import { canonicalUrl } from "./seo-indexing.mjs";
 import { PAGE_DEFAULTS } from "./site-seo.mjs";
+import { completeSocialMetadata } from "./social-metadata.mjs";
 
 export async function getPageSeoMetadata(route, fallback) {
   fallback = { ...fallback, ...PAGE_DEFAULTS[route], alternates: { ...fallback.alternates, canonical: canonicalUrl(route) } };
@@ -11,7 +12,7 @@ export async function getPageSeoMetadata(route, fallback) {
     // Database SEO overrides are optional; keep serving the page's defaults.
     // console.error surfaces even handled failures in the Next.js dev overlay.
     console.warn("SEO database unavailable; using default metadata:", error.code || error.message);
-    return fallback;
+    return completeSocialMetadata(fallback);
   }
   const site = pages.find((page) => page.route_path === "*" && page.is_active);
   const page = pages.find((page) => page.route_path === route && page.is_active);
@@ -39,5 +40,5 @@ export async function getPageSeoMetadata(route, fallback) {
     const directives = [value("robots_index") == null ? "" : value("robots_index") ? "index" : "noindex", value("robots_follow") == null ? "" : value("robots_follow") ? "follow" : "nofollow", value("robots_extra")].filter(Boolean);
     result.robots = directives.join(", ");
   }
-  return result;
+  return completeSocialMetadata(result);
 }

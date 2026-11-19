@@ -70,7 +70,7 @@ export default function BranchLocations({ standalone = false, initialBranches = 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [attempt, setAttempt] = useState(0);
-  const [selectedCity, setSelectedCity] = useState(initialBranches[0] ? cityName(initialBranches[0].city) : "Bangalore");
+  const [selectedCity, setSelectedCity] = useState("All Branches");
   const [searchDraft, setSearchDraft] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
@@ -82,6 +82,7 @@ export default function BranchLocations({ standalone = false, initialBranches = 
   const loopResetRef = useRef(null);
   const visibleCount = useSyncExternalStore(subscribeToCardLayout, visibleCardCount, () => 4);
   const cities = useMemo(() => [
+    "All Branches",
     "Bangalore",
     "Chennai",
     ...[...new Set(branches.map(branch => cityName(branch.city)).filter(Boolean))]
@@ -90,7 +91,7 @@ export default function BranchLocations({ standalone = false, initialBranches = 
   const city = selectedCity;
   const visibleBranches = useMemo(() => {
     const term = searchQuery.trim().toLocaleLowerCase();
-    return branches.filter(branch => cityName(branch.city) === city && (!term || [branch.name, branch.area, branch.address, branch.pincode].some(value => String(value || "").toLocaleLowerCase().includes(term))));
+    return branches.filter(branch => (city === "All Branches" || cityName(branch.city) === city) && (!term || [branch.name, branch.area, branch.address, branch.pincode].some(value => String(value || "").toLocaleLowerCase().includes(term))));
   }, [branches, city, searchQuery]);
   const carouselBranches = useMemo(() => getBranchCarouselItems(visibleBranches, visibleCount), [visibleBranches, visibleCount]);
   const maxIndex = Math.max(0, visibleBranches.length - 1);
@@ -168,7 +169,7 @@ export default function BranchLocations({ standalone = false, initialBranches = 
           <p className={styles.eyebrow}>OUR LOCATIONS</p>
           <Heading id="branches-title">Find Aryan Gold Buyers<br /><span>Near You</span></Heading>
           <p className={styles.subtitle}>Find a nearby branch for a personal gold valuation.</p>
-          <div className={styles.cityTabs} aria-label="Choose a city">
+          <div className={styles.cityTabs} aria-label="Filter branches by city">
             {cities.map(option => <button key={option} type="button" className={option === city ? styles.cityActive : styles.cityTab} onClick={() => selectCity(option)} aria-pressed={option === city}>{option}</button>)}
           </div>
           <form className={styles.search} role="search" onSubmit={event => { event.preventDefault(); setSearchQuery(searchDraft); setActiveIndex(0); }}>
@@ -186,9 +187,9 @@ export default function BranchLocations({ standalone = false, initialBranches = 
       onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget)) setFocusPaused(false); }}>
       {loading ? <p className={styles.notice} role="status">Loading branch locations...</p> : error && !branches.length ? <div className={styles.notice} role="status">Branch locations are temporarily unavailable. <button type="button" onClick={() => { setLoading(true); setAttempt(value => value + 1); }}>Try again</button></div> :
         !branches.length ? <p className={styles.notice}>Branch locations will be listed here soon. <Link href="/#booking">Book a valuation</Link> for assistance.</p> :
-        !visibleBranches.length ? <div className={styles.notice} role="status">{searchQuery ? <>No branches found for “{searchQuery}” in {city}. <button type="button" onClick={() => { setSearchDraft(""); setSearchQuery(""); }}>Clear search</button></> : <>No branches are currently listed in {city}. <Link href="/#booking">Book a valuation</Link> for assistance.</>}</div> :
+        !visibleBranches.length ? <div className={styles.notice} role="status">{searchQuery ? <>No branches found for “{searchQuery}” {city === "All Branches" ? "across all branches" : `in ${city}`}. <button type="button" onClick={() => { setSearchDraft(""); setSearchQuery(""); }}>Clear search</button></> : <>No branches are currently listed in {city}. <Link href="/#booking">Book a valuation</Link> for assistance.</>}</div> :
         <>
-          <div className={styles.track} ref={trackRef} role="region" aria-roledescription="carousel" aria-label={`${city} branch locations`} tabIndex={0}
+          <div className={styles.track} ref={trackRef} role="region" aria-roledescription="carousel" aria-label={city === "All Branches" ? "All branch locations" : `${city} branch locations`} tabIndex={0}
             onScroll={event => {
             const track = event.currentTarget;
             const step = track.children[1]?.offsetLeft - track.children[0]?.offsetLeft || track.clientWidth;

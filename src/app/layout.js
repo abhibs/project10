@@ -3,6 +3,7 @@ import Script from "next/script";
 import ContactAttribution from "./ContactAttribution";
 import GoogleTagManager, { GoogleTagManagerNoScript } from "./GoogleTagManager";
 import FloatingContactActions from "./FloatingContactActions";
+import BusinessSchema from "./BusinessSchema";
 
 export const metadata = {
   metadataBase: new URL("https://aryangoldbuyers.com"),
@@ -39,6 +40,7 @@ gtag('config', 'G-ZCN1VRN9HD');`,
       <body className="min-h-full flex flex-col">
         <GoogleTagManagerNoScript />
         <ContactAttribution />
+        <BusinessSchema />
         {children}
         <FloatingContactActions />
       </body>
