@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { formatRateUpdatedAtIst } from "@/lib/rate-freshness.mjs";
+import { floorRateToHundreds } from "@/lib/rate-rounding.mjs";
 import styles from "./page.module.css";
 
 export default function RateForm() {
@@ -9,6 +11,7 @@ export default function RateForm() {
   const [loadError, setLoadError] = useState(false);
   const [saving, setSaving] = useState(false);
   const [exists, setExists] = useState(false);
+  const [updatedAt, setUpdatedAt] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [attempt, setAttempt] = useState(0);
@@ -20,7 +23,11 @@ export default function RateForm() {
         const response = await fetch("/api/admin/rates", { cache: "no-store", signal: controller.signal });
         const data = await response.json();
         if (!response.ok) throw new Error(data.message);
-        if (data.rate) { setRates({ 24: Math.round(data.rate.rates[24]), 22: Math.round(data.rate.rates[22]) }); setExists(true); }
+        if (data.rate) {
+          setRates({ 24: Math.round(data.rate.rates[24]), 22: Math.round(data.rate.rates[22]) });
+          setUpdatedAt(data.rate.updatedAt || "");
+          setExists(true);
+        }
       } catch (error) {
         if (controller.signal.aborted) return;
         setError(error.message || "Unable to load rates.");
@@ -42,22 +49,28 @@ export default function RateForm() {
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.message);
-      setExists(true); setMessage(data.message);
+      if (data.rate) setRates({ 24: Math.round(data.rate.rates[24]), 22: Math.round(data.rate.rates[22]) });
+      setExists(true);
+      setUpdatedAt(data.rate?.updatedAt || "");
+      setMessage(data.message);
     } catch (error) { setError(error.message || "Unable to save rates."); }
     finally { setSaving(false); }
   }
 
   return <article className={`${styles.modal} ${styles.ratePanel}`}>
     <div className={styles.modalHead}><div><h2>Gold rates</h2><p>Set the price per gram in INR shown on the website.</p></div></div>
-    <p className={styles.rateHelp}>The first save creates your rates. Future saves update the same record.</p>
+    <p className={styles.rateHelp}>The first save creates your rates. Future saves update the same record. The 22K rate is rounded down to the nearest ₹100.</p>
+    {exists && <p className={styles.rateUpdatedAt}>Last updated: {updatedAt ? <time dateTime={updatedAt}>{formatRateUpdatedAtIst(updatedAt)}</time> : "Unavailable"}</p>}
     {loading ? <p role="status">Loading rates…</p> : loadError ? <button className={styles.retryButton} type="button" onClick={() => { setLoading(true); setLoadError(false); setError(""); setAttempt(attempt + 1); }}>Retry loading</button> :
       <form onSubmit={save}>
         <fieldset className={styles.rateFields} disabled={saving}>
           {[24, 22].map(karat => <div key={karat}>
             <label htmlFor={`gold-${karat}`}>{karat}K Gold — ₹ per gram</label>
-            <input id={`gold-${karat}`} name={`gold${karat}`} type="number" min="1" max="99999999" step="1" required value={rates[karat]} onChange={event => {
+            <input id={`gold-${karat}`} name={`gold${karat}`} type="number" min={karat === 22 ? "100" : "1"} max="99999999" step="1" required value={rates[karat]} onBlur={() => {
+              if (karat === 22 && rates[22] !== "") setRates(current => ({ ...current, 22: floorRateToHundreds(current[22]) }));
+            }} onChange={event => {
               const value = event.target.value;
-              setRates(current => ({ ...current, [karat]: value, ...(karat === 24 ? { 22: value === "" ? "" : Math.round(Number(value) * 91.6 / 100) } : {}) }));
+              setRates(current => ({ ...current, [karat]: value, ...(karat === 24 ? { 22: value === "" ? "" : floorRateToHundreds(Number(value) * 91.6 / 100) } : {}) }));
               setMessage("");
             }} />
           </div>)}

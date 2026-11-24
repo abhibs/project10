@@ -20,7 +20,10 @@ export async function PUT(request) {
     const rates = validateRates(await request.json().catch(() => null));
     if (!rates) return Response.json({ message: "Enter positive whole-rupee prices for 24K and 22K gold (maximum 99,999,999)." }, { status: 400 });
     await saveRates(rates);
-    return Response.json({ message: "Rates saved successfully." });
+    return Response.json(
+      { message: "Rates saved successfully.", rate: await getRates() },
+      { headers: { "Cache-Control": "no-store" } },
+    );
   } catch (error) {
     return adminApiError(error);
   }

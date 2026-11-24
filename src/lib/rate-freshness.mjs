@@ -1,3 +1,9 @@
+export function formatRateUpdatedAtIst(updatedAt) {
+ const date = new Date(updatedAt);
+ if (!updatedAt || !Number.isFinite(date.getTime())) return "";
+ return `${date.toLocaleString("en-IN",{dateStyle:"medium",timeStyle:"medium",timeZone:"Asia/Kolkata"})} IST`;
+}
+
 export function publishedRateStatus(updatedAt, now = Date.now()) {
  const date = new Date(updatedAt);
  if (!updatedAt || !Number.isFinite(date.getTime()) || date.getTime() > now + 60000) return {fresh:false,label:"Publication time unavailable; confirm rates with the branch."};
