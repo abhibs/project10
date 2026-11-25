@@ -157,6 +157,10 @@
 .footer p { margin: 0; }
 
 @media (min-width: 1181px) {
+  .heroInner {
+    align-content: center;
+  }
+
   .portrait {
     height: auto;
     aspect-ratio: 1;
@@ -169,10 +173,22 @@
   }
 
   .leadForm {
-    max-width: none;
-    min-height: 800px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 12px;
+    aspect-ratio: .95;
     align-content: center;
+    max-width: none;
+    padding: 20px 24px;
   }
+
+  .leadForm > :where(:not(.field)) {
+    grid-column: 1 / -1;
+  }
+
+  .fieldRow { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .field { gap: 4px; margin: 0; }
+  .formHeading, .consent, .formNote, .branchLink { margin-block: 0; }
 }
 
 @media (max-width: 1180px) {
