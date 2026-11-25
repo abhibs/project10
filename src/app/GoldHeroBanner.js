@@ -14,12 +14,7 @@ export function HeroBenefitIcon({type}) {
 
 export default function GoldHeroBanner({
   children, valuationHref, branchesHref, animateCopy = false,
-  eyebrow = "Gold buyers in Bangalore & Chennai",
-  heading = <>Your Gold Deserves<br /><span>Its True Value.</span></>,
-  description = "Sell your gold with confidence at Aryan Gold Buyers. Get your gold evaluated in front of you using advanced, non-destructive testing technology — without scratching, cutting or damaging your ornaments.",
-  valuationLabel = "Get Free Gold Valuation",
-  branchesLabel = "Find Nearest Branch",
-  benefits, portrait,
+  copy, portrait,
 }) {
   return (
     <section className="hero section-shell" id="hero" aria-labelledby="hero-title">
@@ -30,25 +25,25 @@ export default function GoldHeroBanner({
         </div>
       </div>
       <div className="container hero-grid">
-        <div className={animateCopy ? "hero-copy reveal" : "hero-copy"}>
-          <div className="eyebrow">{eyebrow}</div>
-          <h1 id="hero-title">{heading}</h1>
-          <p className="hero-lead">{description}</p>
+        {copy ?? <div className={animateCopy ? "hero-copy reveal" : "hero-copy"}>
+          <div className="eyebrow">Gold buyers in Bangalore &amp; Chennai</div>
+          <h1 id="hero-title">Your Gold Deserves<br /><span>Its True Value.</span></h1>
+          <p className="hero-lead">Sell your gold with confidence at Aryan Gold Buyers. Get your gold evaluated in front of you using advanced, non-destructive testing technology — without scratching, cutting or damaging your ornaments.</p>
 
-          <div className="hero-actions">
-            <a className="btn btn-gold btn-lg" href={valuationHref}>{valuationLabel} <span aria-hidden="true">→</span></a>
-            <a className="btn btn-outline btn-lg" href={branchesHref}><span aria-hidden="true">⌖</span> {branchesLabel}</a>
-          </div>
+          {(valuationHref || branchesHref) && (
+            <div className="hero-actions">
+              {valuationHref && <a className="btn btn-gold btn-lg" href={valuationHref}>Get Free Gold Valuation <span aria-hidden="true">→</span></a>}
+              {branchesHref && <a className="btn btn-outline btn-lg" href={branchesHref}><span aria-hidden="true">⌖</span> Find Nearest Branch</a>}
+            </div>
+          )}
 
           <div className="trust-row" aria-label="Our service benefits">
-            {benefits ?? <>
             <div><HeroBenefitIcon type="diamond" /><span>Non-Destructive<br />Testing</span></div>
             <div><HeroBenefitIcon type="shield" /><span>Transparent<br />Evaluation</span></div>
             <div><HeroBenefitIcon type="chart" /><span>Competitive<br />Gold Rate</span></div>
             <div><HeroBenefitIcon type="payment" /><span>Quick<br />Payment</span></div>
-            </>}
           </div>
-        </div>
+        </div>}
 
         <div className="hero-siddhi">
           <svg className="hero-mandala" viewBox="0 0 600 600" fill="none" stroke="currentColor" aria-hidden="true" focusable="false">

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import GoldHeroBanner, { HeroBenefitIcon } from "../GoldHeroBanner";
+import GoldHeroBanner from "../GoldHeroBanner";
 import "../home.css";
 import "../banner-form.css";
 import { getPageSeoMetadata } from "@/lib/seo-metadata";
@@ -20,6 +20,12 @@ export async function generateMetadata() {
   return getPageSeoMetadata("/googleleads", defaultMetadata);
 }
 
+function BenefitIcon({ type }) {
+  if (type === "shield") return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8 20 6v5.5c0 4.8-3.2 8.2-8 10-4.8-1.8-8-5.2-8-10V6l8-3.2Z"/><path d="m8.6 12 2.1 2.1 4.8-5"/></svg>;
+  if (type === "cash") return <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.8" y="5.5" width="18.4" height="13" rx="2"/><path d="M7 9h.01M17 15h.01M12 9.2c1.7 0 3 1.2 3 2.8s-1.3 2.8-3 2.8-3-1.2-3-2.8 1.3-2.8 3-2.8Z"/></svg>;
+  return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15.5 8.5 11l3 3L20 5.5"/><path d="M14.5 5.5H20V11"/><path d="M4 20h16"/></svg>;
+}
+
 export default function GoogleLeadsPage() {
   return (
     <div className={`${styles.page} ${bodyFont.variable} ${displayFont.variable}`}>
@@ -36,26 +42,24 @@ export default function GoogleLeadsPage() {
       <main>
         <div className={`aryan-home ${styles.banner}`} data-theme="light">
           <GoldHeroBanner
-            eyebrow="Gold buyers in Bengaluru & Chennai"
-            heading={<>Your gold.<br />Its true value.<br /><span>Paid quickly.</span></>}
-            description="A transparent gold valuation, completed in front of you. No cutting, no hidden steps, and no obligation to sell."
-            valuationHref="#lead-form"
-            valuationLabel="Get a free valuation"
-            branchesHref="/branches"
-            branchesLabel="Find your nearest branch"
-            benefits={[
-              ["shield", "Non-destructive testing", "Your jewellery stays intact"],
-              ["chart", "Transparent valuation", "Purity, weight and rate explained"],
-              ["payment", "Quick payment", "After verification and formalities"],
-            ].map(([icon, title, detail]) => (
-              <div key={icon}>
-                <HeroBenefitIcon type={icon} />
-                <span>{title}<small className={styles.benefitDetail}>{detail}</small></span>
+            copy={
+              <div className={styles.heroCopy}>
+                <div className={styles.heroIntro}>
+                  <span className={styles.eyebrow}>Gold buyers in Bengaluru &amp; Chennai</span>
+                  <h1 id="hero-title">Your gold.<br />Its true value.<br /><em>Paid quickly.</em></h1>
+                  <p className={styles.heroLead}>A transparent gold valuation, completed in front of you. No cutting, no hidden steps, and no obligation to sell.</p>
+                </div>
+
+                <div className={styles.benefits} aria-label="Aryan Gold Buyers benefits">
+                  <div><span><BenefitIcon type="shield" /></span><p><strong>Non-destructive testing</strong><small>Your jewellery stays intact</small></p></div>
+                  <div><span><BenefitIcon type="rate" /></span><p><strong>Transparent valuation</strong><small>Purity, weight and rate explained</small></p></div>
+                  <div><span><BenefitIcon type="cash" /></span><p><strong>Quick payment</strong><small>After verification and formalities</small></p></div>
+                </div>
               </div>
-            ))}
+            }
             portrait={
               <div className={styles.portrait}>
-                <Image src="/Selected/306A7111-transparent.png" alt="Aryan Gold Buyers representative holding cash and gold jewellery" width={1024} height={1536} sizes="(max-width: 1200px) 90vw, 40vw" preload />
+                <Image src="/Selected/306A7111-transparent.png" alt="Aryan Gold Buyers representative holding cash and gold jewellery" width={1024} height={1536} sizes="(max-width: 720px) 120vw, (max-width: 1200px) 893px, min(48vw, 893px)" preload />
               </div>
             }
           >
