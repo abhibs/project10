@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
 import Link from "next/link";
+import { useRef, useState } from "react";
 import { getContactAttribution } from "@/lib/contact-attribution.mjs";
 import { GOOGLE_LEAD_TYPE } from "@/lib/contact-summary.mjs";
 import { submitContactRequest } from "@/lib/submit-contact.mjs";
@@ -53,11 +53,11 @@ export default function GoogleLeadForm() {
   }
 
   return (
-    <form className={styles.leadForm} id="lead-form" aria-labelledby="google-lead-form-title" aria-busy={submitting} onSubmit={submitLead}>
+    <form className="banner-form" id="lead-form" aria-labelledby="google-lead-form-title" aria-busy={submitting} onSubmit={submitLead}>
       <div className={styles.formHeading}>
-        <span className={styles.formKicker}>FREE GOLD VALUATION</span>
+        <span className="banner-form-kicker">FREE GOLD VALUATION</span>
         <h2 id="google-lead-form-title">Request a free valuation</h2>
-        <p>Leave your details and our gold expert will call you shortly.</p>
+        <p className="banner-form-intro">Leave your details and our gold expert will call you shortly.</p>
       </div>
 
       <label className={styles.field} htmlFor="google-lead-name">
@@ -102,17 +102,17 @@ export default function GoogleLeadForm() {
         </select>
       </label>
 
-      <label className={styles.consent} htmlFor="google-lead-consent">
+      <label className="banner-consent" htmlFor="google-lead-consent">
         <input id="google-lead-consent" type="checkbox" defaultChecked required />
         <span>I authorise Aryan Gold Buyers to contact me about this enquiry.</span>
       </label>
 
-      <button className={styles.submitButton} type="submit" disabled={submitting || feedback.type === "success"}>
+      <button className="banner-submit" type="submit" disabled={submitting || feedback.type === "success"}>
         <span>{submitting ? "Submitting…" : "Get Free Valuation"}</span>
         <span aria-hidden="true">→</span>
       </button>
 
-      <p className={styles.formNote}>No fees. No obligation to sell. Your details stay private.</p>
+      <p className="banner-form-note">No fees. No obligation to sell. Your details stay private.</p>
       <Link className={styles.branchLink} href="/branches">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" />
