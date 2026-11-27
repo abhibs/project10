@@ -164,15 +164,15 @@ export async function updateAdminProfile(id, { name, email, phone, address, imag
   );
 }
 
-export async function updateAdminPassword(id, passwordHash, passwordHint) {
+export async function updateAdminPassword(id, passwordHash) {
   await getPool().execute(
-    "UPDATE admins SET password = ?, password_hint = ?, session_version = session_version + 1, updated_at = NOW() WHERE id = ?",
-    [passwordHash, passwordHint, id]
+    "UPDATE admins SET password = ?, session_version = session_version + 1, updated_at = NOW() WHERE id = ?",
+    [passwordHash, id]
   );
 }
 
 export async function getAdminUsers(actor) {
-  const [rows] = await getPool().execute("SELECT id, name, email, password_hint, role, permissions FROM admins ORDER BY id");
+  const [rows] = await getPool().execute("SELECT id, name, email, role, permissions FROM admins ORDER BY id");
   return rows.filter((row) => canManageAdmin(actor, row)).map((row) => ({ ...row, permissions: adminPermissions(row.permissions) }));
 }
 
@@ -195,15 +195,15 @@ export async function saveAdminUser(actor, id, values, passwordHash, deleting = 
       await connection.execute("DELETE FROM admins WHERE id = ?", [id]);
     } else if (id == null) {
       const [result] = await connection.execute(
-        "INSERT INTO admins (name, email, password, password_hint, role, permissions, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW())",
-        [values.name, values.email, passwordHash, values.password, values.role, JSON.stringify(values.permissions)],
+        "INSERT INTO admins (name, email, password, role, permissions, created_at, updated_at) VALUES (?, ?, ?, ?, ?, NOW(), NOW())",
+        [values.name, values.email, passwordHash, values.role, JSON.stringify(values.permissions)],
       );
       savedId = result.insertId;
     } else {
-      const passwordSql = passwordHash ? ", password = ?, password_hint = ?, session_version = session_version + 1" : "";
+      const passwordSql = passwordHash ? ", password = ?, session_version = session_version + 1" : "";
       await connection.execute(
         `UPDATE admins SET name = ?, email = ?, role = ?, permissions = ?, updated_at = NOW()${passwordSql} WHERE id = ?`,
-        [values.name, values.email, values.role, JSON.stringify(values.permissions), ...(passwordHash ? [passwordHash, values.password] : []), id],
+        [values.name, values.email, values.role, JSON.stringify(values.permissions), ...(passwordHash ? [passwordHash] : []), id],
       );
     }
     await connection.commit();

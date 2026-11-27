@@ -20,3 +20,14 @@ export function branchMapQuery(branch) {
 export function branchDirections(branch) {
   return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(branchMapQuery(branch))}`;
 }
+
+export function branchMapLink(branch) {
+  const url = typeof branch.url === "string" ? branch.url.trim() : "";
+  if (url) {
+    try {
+      const parsed = new URL(url);
+      if (["http:", "https:"].includes(parsed.protocol) && !parsed.username && !parsed.password) return url;
+    } catch {}
+  }
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(branchMapQuery(branch))}`;
+}

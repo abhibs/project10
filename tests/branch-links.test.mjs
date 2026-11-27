@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { branchPath, matchesBranchRoute, branchMapQuery, branchDirections } from "../src/lib/branch-links.mjs";
+import { branchPath, matchesBranchRoute, branchMapQuery, branchDirections, branchMapLink } from "../src/lib/branch-links.mjs";
 
 const branch = { state: "Tamil Nadu", city: "Chennai", slug: "t-nagar", name: "T Nagar", status: "active", latitude: 13.04, longitude: 80.23 };
 
@@ -23,4 +23,14 @@ test("map directions use coordinates, including zero, with an encoded address fa
   const directions = new URL(branchDirections(withoutCoordinates));
   assert.equal(directions.hostname, "www.google.com");
   assert.equal(directions.searchParams.get("destination"), query);
+});
+
+test("map links prefer the saved map URL and otherwise search the location", () => {
+  const url = "https://maps.app.goo.gl/example";
+  assert.equal(branchMapLink({ ...branch, url }), url);
+  for (const url of [undefined, "", "javascript:alert(1)", "invalid"]) {
+    const map = new URL(branchMapLink({ ...branch, url }));
+    assert.equal(map.pathname, "/maps/search/");
+    assert.equal(map.searchParams.get("query"), "13.04,80.23");
+  }
 });

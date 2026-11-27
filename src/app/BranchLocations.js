@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { branchPath, branchDirections } from "@/lib/branch-links.mjs";
+import { branchPath, branchMapLink } from "@/lib/branch-links.mjs";
 import { getBranchCarouselItems } from "@/lib/branch-carousel.mjs";
 
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
@@ -41,7 +41,7 @@ function BranchCard({ branch }) {
   const uploadedImage = branch.image ? `/api/branch-images/${encodeURIComponent(branch.image)}` : null;
   const image = uploadedImage && failedImage !== uploadedImage ? uploadedImage : "/branches-storefront.webp";
   const path = branchPath(branch);
-  const directions = branchDirections(branch);
+  const mapLink = branchMapLink(branch);
 
   return <article className={styles.card}>
     <div className={styles.cardImage}>
@@ -58,7 +58,7 @@ function BranchCard({ branch }) {
       </div>
       <div className={styles.actions}>
         <Link className={styles.actionPrimary} href={path}>Read More <span aria-hidden="true">→</span></Link>
-        <a className={styles.actionLight} href={directions} target="_blank" rel="noopener noreferrer"><Icon name="pin" /> Directions</a>
+        <a className={styles.actionLight} href={mapLink} target="_blank" rel="noopener noreferrer"><Icon name="pin" /> Map</a>
         {branch.phone && <a className={styles.actionLight} href={`tel:${branch.phone}`}><Icon name="phone" /> Call Branch</a>}
       </div>
     </div>
@@ -211,7 +211,7 @@ export default function BranchLocations({ standalone = false, initialBranches = 
             </div>
           </div>}
         </>}
-    <details><summary>All branch addresses and opening hours</summary>{branches.map(branch => <div key={branch.id}><h3><Link href={branchPath(branch)}>{branch.name}</Link></h3><p>{branch.address}, {branch.city}, {branch.state} {branch.pincode}</p><p>{branch.timings}</p><a href={branchDirections(branch)}>Directions</a></div>)}<Link href="/contact-us">Contact our team for branch assistance</Link></details>
+    <details><summary>All branch addresses and opening hours</summary>{branches.map(branch => <div key={branch.id}><h3><Link href={branchPath(branch)}>{branch.name}</Link></h3><p>{branch.address}, {branch.city}, {branch.state} {branch.pincode}</p><p>{branch.timings}</p><a href={branchMapLink(branch)}>Map</a></div>)}<Link href="/contact-us">Contact our team for branch assistance</Link></details>
     </div>
   </section>;
 }

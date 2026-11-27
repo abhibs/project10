@@ -51,7 +51,7 @@ try {
   for (const path of ["users", "contacts", "branches", "rates", "seo"]) status(await api(`/api/admin/${path}`), 401);
   const listed = await api("/api/admin/users", fullCookie);
   status(listed, 200);
-  assert.ok(listed.data.users.every((user) => !("password" in user) && !("session_version" in user)));
+  assert.ok(listed.data.users.every((user) => !("password" in user) && !("password_hint" in user) && !("session_version" in user)));
   status(await api(`/api/admin/users/${fullId}`, fullCookie, "DELETE"), 409);
   status(await api(`/api/admin/users/${fullId}`, fullCookie, "PUT", { ...full, password: "", role: "custom", permissions: [] }), 409);
   status(await api("/api/admin/users", fullCookie, "POST", { ...values("invalid"), permissions: ["unknown"] }), 400);
@@ -75,8 +75,7 @@ try {
   status(await api(`/api/admin/users/${restrictedId}`, fullCookie, "PUT", { ...restricted, password: "", permissions: ["rate"] }), 200);
   status(await api("/api/admin/contacts", restrictedCookie), 403);
   status(await api("/api/admin/rates", restrictedCookie), 200);
-  const [stored] = await connection.execute("SELECT password, password_hint FROM admins WHERE id = ?", [restrictedId]);
-  assert.equal(stored[0].password_hint, password);
+  const [stored] = await connection.execute("SELECT password FROM admins WHERE id = ?", [restrictedId]);
   assert.notEqual(stored[0].password, password);
   assert.ok(await bcrypt.compare(password, stored[0].password));
   console.log("PASS: live permission changes, bcrypt storage and unchanged password retention");
@@ -103,8 +102,7 @@ try {
   const changedCookie = cookie(changed);
   status(await api("/api/admin/rates", restrictedCookie), 401);
   status(await api("/api/admin/rates", changedCookie), 200);
-  const [changedRows] = await connection.execute("SELECT password, password_hint FROM admins WHERE id = ?", [restrictedId]);
-  assert.equal(changedRows[0].password_hint, changedPassword);
+  const [changedRows] = await connection.execute("SELECT password FROM admins WHERE id = ?", [restrictedId]);
   assert.ok(await bcrypt.compare(changedPassword, changedRows[0].password));
   status(await api(`/api/admin/users/${restrictedId}`, fullCookie, "PUT", { ...restricted, permissions: ["rate"] }), 200);
   status(await api("/api/admin/rates", changedCookie), 401);

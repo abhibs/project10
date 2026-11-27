@@ -13,7 +13,7 @@ const fields = [
   { name: "timings", label: "Timings", maxLength: 160, placeholder: "9:30 AM – 6:30 PM" },
   { name: "latitude", label: "Latitude (optional)", type: "number", min: -90, max: 90, step: "0.0000001", optional: true },
   { name: "longitude", label: "Longitude (optional)", type: "number", min: -180, max: 180, step: "0.0000001", optional: true },
-  { name: "url", label: "URL (optional)", type: "url", maxLength: 2048, optional: true, placeholder: "https://maps.google.com/…" },
+  { name: "url", label: "Map URL (optional)", type: "url", maxLength: 2048, optional: true, placeholder: "https://maps.google.com/…" },
 ];
 
 function BranchForm({ branch, onSaved, onCancel }) {
@@ -134,7 +134,7 @@ export default function BranchManager() {
             <div><span className={styles.branchId}>ID: {branch.branchId}</span><h3>{branch.name}</h3><p>Slug: {branch.slug}</p><p>{branch.area}, {branch.city}</p></div>
             <span className={branch.status === "active" ? styles.active : styles.inactive}>{branch.status === "active" ? "Active" : "Inactive"}</span>
           </div>
-          <details><summary>View details</summary><dl><dt>Address</dt><dd>{branch.address}</dd><dt>State / Pincode</dt><dd>{branch.state} · {branch.pincode}</dd><dt>Timings</dt><dd>{branch.timings}</dd><dt>Coordinates</dt><dd>{branch.latitude !== null ? branch.latitude + ", " + branch.longitude : "Not provided"}</dd><dt>URL</dt><dd>{branch.url ? <a href={branch.url} target="_blank" rel="noopener noreferrer">{branch.url}</a> : "Not provided"}</dd></dl></details>
+          <details><summary>View details</summary><dl><dt>Address</dt><dd>{branch.address}</dd><dt>State / Pincode</dt><dd>{branch.state} · {branch.pincode}</dd><dt>Timings</dt><dd>{branch.timings}</dd><dt>Coordinates</dt><dd>{branch.latitude !== null ? branch.latitude + ", " + branch.longitude : "Not provided"}</dd><dt>Map URL</dt><dd>{branch.url ? <a href={branch.url} target="_blank" rel="noopener noreferrer">{branch.url}</a> : "Not provided"}</dd></dl></details>
           <div className={styles.actions}><button type="button" disabled={!!editor || deleting !== null} onClick={() => { setEditor(branch); setMessage(""); }}>Edit<span className={styles.srOnly}> {branch.name}</span></button><button className={styles.danger} type="button" disabled={deleting !== null} onClick={() => remove(branch)}>{deleting === branch.id ? "Deleting…" : "Delete"}<span className={styles.srOnly}> {branch.name}</span></button></div>
         </article>)}</div>}
     </section>

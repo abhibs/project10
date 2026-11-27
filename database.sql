@@ -35,9 +35,7 @@ CREATE TABLE `admins` (
   `address` longtext DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `password_hint` varchar(255) NOT NULL,
-  `role` varchar(20) NOT NULL DEFAULT 'admin',
+  `password` varchar(255) NOT NULL,  `role` varchar(20) NOT NULL DEFAULT 'admin',
   `permissions` longtext DEFAULT NULL,
   `session_version` int UNSIGNED NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -48,8 +46,8 @@ CREATE TABLE `admins` (
 -- Dumping data for table `admins`
 --
 
-INSERT INTO `admins` (`id`, `name`, `email`, `phone`, `address`, `image`, `email_verified_at`, `password`, `password_hint`, `created_at`, `updated_at`) VALUES
-(1, 'Abhiram', 'abhirambs97@gmail.com', 9481187122, 'Javalli Tudoor Thirthahalli Shimoga Karnataka 577226', NULL, NULL, '$2y$10$ppIPG38oiWAeCPkwQuJMueOAP.JhZZzX.myXFr1nWZH4K3ucDWpZq', '12345678', '2026-09-24 04:34:59', '2026-09-24 04:34:59');
+INSERT INTO `admins` (`id`, `name`, `email`, `phone`, `address`, `image`, `email_verified_at`, `password`, `created_at`, `updated_at`) VALUES
+(1, 'Abhiram', 'abhirambs97@gmail.com', 9481187122, 'Javalli Tudoor Thirthahalli Shimoga Karnataka 577226', NULL, NULL, '$2y$10$ppIPG38oiWAeCPkwQuJMueOAP.JhZZzX.myXFr1nWZH4K3ucDWpZq', '2026-09-24 04:34:59', '2026-09-24 04:34:59');
 
 -- --------------------------------------------------------
 

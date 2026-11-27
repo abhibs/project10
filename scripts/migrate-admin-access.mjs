@@ -15,7 +15,6 @@ try {
   if (!columns.some(({ Field }) => Field === "role")) changes.push("ADD COLUMN role VARCHAR(20) NOT NULL DEFAULT 'admin'");
   if (!columns.some(({ Field }) => Field === "permissions")) changes.push("ADD COLUMN permissions LONGTEXT DEFAULT NULL");
   if (!columns.some(({ Field }) => Field === "session_version")) changes.push("ADD COLUMN session_version INT UNSIGNED NOT NULL DEFAULT 0");
-  if (!columns.some(({ Field }) => Field === "password_hint")) changes.push("ADD COLUMN password_hint VARCHAR(255) NOT NULL DEFAULT ''");
   if (changes.length) await connection.query(`ALTER TABLE admins ${changes.join(", ")}`);
   console.log("Admin roles, permissions and session versions are ready. Existing accounts retain full access.");
 } catch (error) {

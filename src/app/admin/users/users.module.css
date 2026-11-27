@@ -22,9 +22,6 @@
 .customRole { color: var(--admin-ink); background: var(--admin-gold); }
 .badges { display: flex; flex-wrap: wrap; gap: 5px; min-width: 140px; }
 .badges span { color: var(--admin-teal); background: var(--admin-tint); }
-.hint { display: flex; align-items: center; gap: 8px; }
-.hint span { min-width: 65px; max-width: 160px; overflow-wrap: anywhere; }
-.hint button { padding: 4px 7px; font-size: 10px; }
 .rowActions { display: flex; gap: 7px; }
 .manager .deleteButton { color: var(--admin-red); }
 .empty { padding: 24px; color: var(--admin-teal); font-size: 13px; }

@@ -48,7 +48,7 @@ function UserDialog({ actor, user, onClose, onSaved }) {
           <label>Name<input name="name" value={name} onChange={(event) => setName(event.target.value)} maxLength={255} autoComplete="off" required autoFocus /></label>
           <label>Email<input name="email" type="email" value={email} onChange={(event) => setEmail(event.target.value)} maxLength={255} autoComplete="off" required /></label>
         </div>
-        <label>{user ? "New password" : "Password"}<div className={styles.passwordField}><input name="password" type={showPassword ? "text" : "password"} value={password} onChange={(event) => setPassword(event.target.value)} minLength={8} maxLength={72} autoComplete="new-password" required={!user} /><button type="button" onClick={() => setShowPassword(!showPassword)} aria-pressed={showPassword}>{showPassword ? "Hide" : "Show"}</button></div><small>{user ? "Leave blank to keep the current password. " : "At least 8 characters. "}The original value is saved as password_hint.</small></label>
+        <label>{user ? "New password" : "Password"}<div className={styles.passwordField}><input name="password" type={showPassword ? "text" : "password"} value={password} onChange={(event) => setPassword(event.target.value)} minLength={8} maxLength={72} autoComplete="new-password" required={!user} /><button type="button" onClick={() => setShowPassword(!showPassword)} aria-pressed={showPassword}>{showPassword ? "Hide" : "Show"}</button></div><small>{user ? "Leave blank to keep the current password. " : "At least 8 characters. "}Passwords are stored securely as hashes.</small></label>
         <label>Role<select name="role" value={role} onChange={(event) => setRole(event.target.value)} disabled={isSelf}>
           {actor.role === "admin" && <option value="admin">Admin — full access</option>}
           <option value="custom">Custom Permissions</option>
@@ -97,7 +97,6 @@ export default function AdminUsersManager({ admin }) {
   const [search, setSearch] = useState("");
   const [editing, setEditing] = useState(null);
   const [deleting, setDeleting] = useState(null);
-  const [visibleHints, setVisibleHints] = useState([]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -110,7 +109,7 @@ export default function AdminUsersManager({ admin }) {
     return () => controller.abort();
   }, [version]);
 
-  function reload() { setLoading(true); setError(""); setVisibleHints([]); setVersion((value) => value + 1); }
+  function reload() { setLoading(true); setError(""); setVersion((value) => value + 1); }
   function saved(message) { setEditing(null); setDeleting(null); setMessage(message); reload(); router.refresh(); }
   const visible = users.filter((user) => `${user.name} ${user.email}`.toLowerCase().includes(search.trim().toLowerCase()));
 
@@ -120,9 +119,8 @@ export default function AdminUsersManager({ admin }) {
     <section className={styles.panel} aria-labelledby="accounts-title">
       <div className={styles.heading}><div><h2 id="accounts-title">Admin accounts</h2><p>{users.length} account{users.length === 1 ? "" : "s"}{admin.role !== "admin" ? " within your permissions" : ""}</p></div><label className={styles.search}>Search accounts<input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Name or email" /></label></div>
       {error && <p className={styles.error} role="alert">{error} <button type="button" onClick={reload}>Retry</button></p>}
-      {loading ? <p className={styles.empty} role="status">Loading accounts…</p> : !visible.length ? <p className={styles.empty}>{search ? "No accounts match your search." : "No accounts available."}</p> : <div className={styles.tableWrap}><table><thead><tr><th scope="col">Name</th><th scope="col">Email</th><th scope="col">Password hint</th><th scope="col">Role</th><th scope="col">Permissions</th><th scope="col">Actions</th></tr></thead><tbody>{visible.map((user) => <tr key={user.id}>
+      {loading ? <p className={styles.empty} role="status">Loading accounts…</p> : !visible.length ? <p className={styles.empty}>{search ? "No accounts match your search." : "No accounts available."}</p> : <div className={styles.tableWrap}><table><thead><tr><th scope="col">Name</th><th scope="col">Email</th><th scope="col">Role</th><th scope="col">Permissions</th><th scope="col">Actions</th></tr></thead><tbody>{visible.map((user) => <tr key={user.id}>
         <td><strong>{user.name}</strong>{String(user.id) === String(admin.id) && <small className={styles.you}>You</small>}</td><td>{user.email}</td>
-        <td><div className={styles.hint}><span>{!user.password_hint ? "—" : visibleHints.includes(user.id) ? user.password_hint : "••••••••"}</span>{!!user.password_hint && <button type="button" aria-label={`${visibleHints.includes(user.id) ? "Hide" : "Show"} password hint for ${user.name}`} aria-pressed={visibleHints.includes(user.id)} onClick={() => setVisibleHints((current) => current.includes(user.id) ? current.filter((id) => id !== user.id) : [...current, user.id])}>{visibleHints.includes(user.id) ? "Hide" : "Show"}</button>}</div></td>
         <td><span className={user.role === "admin" ? styles.adminRole : styles.customRole}>{user.role === "admin" ? "Admin" : "Custom Permissions"}</span></td>
         <td><div className={styles.badges}>{user.role === "admin" ? <span>All access</span> : user.permissions.length ? ADMIN_SECTIONS.filter(({ key }) => user.permissions.includes(key)).map(({ key, label }) => <span key={key}>{label}</span>) : <span>No sections selected</span>}</div></td>
         <td><div className={styles.rowActions}><button type="button" onClick={() => { setMessage(""); setEditing(user); }} disabled={!canManageAdmin(admin, user)}>Edit</button><button type="button" className={styles.deleteButton} onClick={() => setDeleting(user)} disabled={String(user.id) === String(admin.id) || !canManageAdmin(admin, user)}>Delete</button></div></td>

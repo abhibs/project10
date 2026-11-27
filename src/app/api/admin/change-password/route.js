@@ -23,7 +23,7 @@ export async function POST(request) {
       return NextResponse.json({ message: "Your current password is incorrect." }, { status: 400 });
     }
 
-    await updateAdminPassword(admin.id, await bcrypt.hash(newPassword, 10), newPassword);
+    await updateAdminPassword(admin.id, await bcrypt.hash(newPassword, 10));
     const response = NextResponse.json({ message: "Password changed successfully." });
     response.cookies.set(ADMIN_SESSION_COOKIE, createAdminSession(await findAdminById(admin.id)), sessionCookieOptions);
     return response;

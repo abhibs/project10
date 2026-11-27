@@ -24,7 +24,7 @@ export default function RateForm() {
         const data = await response.json();
         if (!response.ok) throw new Error(data.message);
         if (data.rate) {
-          setRates({ 24: Math.round(data.rate.rates[24]), 22: Math.round(data.rate.rates[22]) });
+          setRates({ 24: Math.round(data.rate.rates[24]), 22: floorRateToHundreds(data.rate.rates[22]) });
           setUpdatedAt(data.rate.updatedAt || "");
           setExists(true);
         }
@@ -45,11 +45,11 @@ export default function RateForm() {
     setSaving(true); setMessage(""); setError("");
     try {
       const response = await fetch("/api/admin/rates", {
-        method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(rates),
+        method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...rates, 22: floorRateToHundreds(rates[22]) }),
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.message);
-      if (data.rate) setRates({ 24: Math.round(data.rate.rates[24]), 22: Math.round(data.rate.rates[22]) });
+      if (data.rate) setRates({ 24: Math.round(data.rate.rates[24]), 22: floorRateToHundreds(data.rate.rates[22]) });
       setExists(true);
       setUpdatedAt(data.rate?.updatedAt || "");
       setMessage(data.message);
@@ -60,7 +60,7 @@ export default function RateForm() {
   return <article className={`${styles.modal} ${styles.ratePanel}`}>
     <div className={styles.modalHead}><div><h2>Gold rates</h2><p>Set the price per gram in INR shown on the website.</p></div></div>
     <p className={styles.rateHelp}>The first save creates your rates. Future saves update the same record. The 22K rate is rounded down to the nearest ₹100.</p>
-    {exists && <p className={styles.rateUpdatedAt}>Last updated: {updatedAt ? <time dateTime={updatedAt}>{formatRateUpdatedAtIst(updatedAt)}</time> : "Unavailable"}</p>}
+    {!loading && !loadError && <p className={styles.rateUpdatedAt}>Last gold rate update (IST): {updatedAt ? <time dateTime={updatedAt}>{formatRateUpdatedAtIst(updatedAt)}</time> : exists ? "Unavailable" : "No rates saved yet"}</p>}
     {loading ? <p role="status">Loading rates…</p> : loadError ? <button className={styles.retryButton} type="button" onClick={() => { setLoading(true); setLoadError(false); setError(""); setAttempt(attempt + 1); }}>Retry loading</button> :
       <form onSubmit={save}>
         <fieldset className={styles.rateFields} disabled={saving}>

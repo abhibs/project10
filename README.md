@@ -8,7 +8,7 @@ Run `node scripts/migrate-admin-access.mjs` against an existing database before 
 
 Open **Admin → Admins** to create, edit or delete accounts. The **Admin** role has all access; **Custom Permissions** lets you select Dashboard, Admins, Branches, Contacts, Gold rates and SEO. These permissions apply to both pages and APIs, and changes take effect on the next request. Custom users with Admins access can manage only custom accounts whose permissions are within their own. Accounts cannot delete themselves or change their own access.
 
-Passwords are stored as bcrypt hashes in `password`. As requested, `password_hint` stores the original password, synchronized on creation and password changes. It is masked in the table until revealed, but is readable by authorized account managers and database operators. Password resets invalidate older sessions. Existing profile columns are retained for compatibility; they are not part of the account-management form.
+Passwords are stored only as bcrypt hashes. Run `node scripts/migrate-admin-passwords.mjs` on existing databases to hash legacy plaintext passwords and remove password hints. Existing login passwords remain unchanged.
 
 Verify access rules with `node --test tests/admin-access.test.mjs`. With a local app running and an existing administrator in the database, `node scripts/test-admin-access.mjs` exercises account CRUD, restricted requests, live permission changes and session revocation using temporary accounts that it removes afterward. Set `ADMIN_TEST_URL` if the local server uses a port other than 3000.
 
